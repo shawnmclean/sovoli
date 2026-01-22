@@ -1,14 +1,14 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { Divider } from "@sovoli/ui/components/divider";
 import { Link } from "@sovoli/ui/components/link";
 import { Progress } from "@sovoli/ui/components/progress";
 import { ArrowRight } from "lucide-react";
-import type { Project, ProjectPhase } from "~/modules/projects/types";
+import { usePathname } from "next/navigation";
 import type { Need, NeedType } from "~/modules/needs/types";
 import { NEED_TYPE_CONFIG } from "~/modules/needs/utils";
+import type { Project, ProjectPhase } from "~/modules/projects/types";
 import { pluralize } from "~/utils/pluralize";
 
 interface ProjectPhasesSectionProps {
@@ -33,15 +33,27 @@ function calculateNeedProgress(need: Need): number {
   }
 
   // For human needs, use headcount
-  if (need.type === "human" && need.headcount && need.fulfillment?.quantityMet !== undefined) {
+  if (
+    need.type === "human" &&
+    need.headcount &&
+    need.fulfillment?.quantityMet !== undefined
+  ) {
     return Math.round((need.fulfillment.quantityMet / need.headcount) * 100);
   }
 
   // For financial needs, calculate from amounts
-  if (need.type === "financial" && need.targetAmount && need.fulfillment?.amountRaised) {
+  if (
+    need.type === "financial" &&
+    need.targetAmount &&
+    need.fulfillment?.amountRaised
+  ) {
     // Get the first currency key from target
-    const currency = Object.keys(need.targetAmount)[0] as keyof typeof need.targetAmount | undefined;
-    const raisedAmount = currency ? need.fulfillment.amountRaised[currency] : undefined;
+    const currency = Object.keys(need.targetAmount)[0] as
+      | keyof typeof need.targetAmount
+      | undefined;
+    const raisedAmount = currency
+      ? need.fulfillment.amountRaised[currency]
+      : undefined;
     if (currency && raisedAmount !== undefined) {
       const target = need.targetAmount[currency] ?? 0;
       if (target > 0) {
@@ -87,10 +99,16 @@ function countNeedsByType(needs: Need[]): Record<NeedType, NeedTypeStats> {
   return counts;
 }
 
-function getTotalNeedsCount(counts: Record<NeedType, NeedTypeStats>): { total: number; fulfilled: number } {
+function getTotalNeedsCount(counts: Record<NeedType, NeedTypeStats>): {
+  total: number;
+  fulfilled: number;
+} {
   return Object.values(counts).reduce(
-    (acc, stats) => ({ total: acc.total + stats.total, fulfilled: acc.fulfilled + stats.fulfilled }),
-    { total: 0, fulfilled: 0 }
+    (acc, stats) => ({
+      total: acc.total + stats.total,
+      fulfilled: acc.fulfilled + stats.fulfilled,
+    }),
+    { total: 0, fulfilled: 0 },
   );
 }
 
@@ -107,25 +125,32 @@ function PhaseCard({
   const needs = phase.needs ?? [];
 
   // Calculate overall phase progress
-  const totalProgress = needs.length > 0
-    ? Math.round(needs.reduce((sum, need) => sum + calculateNeedProgress(need), 0) / needs.length)
-    : 0;
+  const totalProgress =
+    needs.length > 0
+      ? Math.round(
+          needs.reduce((sum, need) => sum + calculateNeedProgress(need), 0) /
+            needs.length,
+        )
+      : 0;
   const isPhaseComplete = status === "completed" || totalProgress === 100;
   const needsCounts = countNeedsByType(needs);
   const totalNeedsStats = getTotalNeedsCount(needsCounts);
-  const needsSummary = (Object.entries(needsCounts) as [NeedType, NeedTypeStats][])
+  const needsSummary = (
+    Object.entries(needsCounts) as [NeedType, NeedTypeStats][]
+  )
     .filter(([, stats]) => stats.total > 0)
     .slice(0, 3);
 
   return (
-    <Card
-      as={Link}
-      href={`${basePath}/phases/${phase.slug}`}
-    >
+    <Card as={Link} href={`${basePath}/phases/${phase.slug}`}>
       <CardBody className="p-4">
         {/* Title */}
-        <h3 className={`text-lg font-semibold text-foreground mb-1 ${status === "completed" ? "text-default-400 line-through" : ""}`}>
-          <span className={`mr-2 text-sm font-medium ${isPhaseComplete ? "text-success" : "text-default-500"}`}>
+        <h3
+          className={`text-lg font-semibold text-foreground mb-1 ${status === "completed" ? "text-default-400 line-through" : ""}`}
+        >
+          <span
+            className={`mr-2 text-sm font-medium ${isPhaseComplete ? "text-success" : "text-default-500"}`}
+          >
             {index + 1}.
           </span>
           {phase.title}
@@ -170,7 +195,10 @@ function PhaseCard({
                   >
                     <Icon className={`h-3 w-3 ${config.textColor}`} />
                     <span className={config.textColor}>
-                      {hasFulfilled ? `${stats.fulfilled}/${stats.total}` : stats.total} {pluralize(stats.total, config.label)}
+                      {hasFulfilled
+                        ? `${stats.fulfilled}/${stats.total}`
+                        : stats.total}{" "}
+                      {pluralize(stats.total, config.label)}
                     </span>
                   </div>
                 );
@@ -178,10 +206,9 @@ function PhaseCard({
             </div>
           ) : (
             <span className="text-xs text-default-500">
-              {totalNeedsStats.fulfilled > 0 
+              {totalNeedsStats.fulfilled > 0
                 ? `${totalNeedsStats.fulfilled}/${totalNeedsStats.total} ${pluralize(totalNeedsStats.total, "need")} funded`
-                : `${totalNeedsStats.total} ${pluralize(totalNeedsStats.total, "need")}`
-              }
+                : `${totalNeedsStats.total} ${pluralize(totalNeedsStats.total, "need")}`}
             </span>
           )}
 
@@ -209,25 +236,26 @@ export function ProjectPhasesSection({ project }: ProjectPhasesSectionProps) {
     <>
       <Divider className="my-6 sm:my-8" />
       <section className="mb-6 sm:mb-8">
-      <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-2xl font-semibold leading-tight tracking-tight">Project Roadmap</h2>
-        <span className="text-sm text-muted-foreground">
-          {completedCount}/{phases.length} completed
-        </span>
-      </div>
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-2xl font-semibold leading-tight tracking-tight">
+            Project Roadmap
+          </h2>
+          <span className="text-sm text-muted-foreground">
+            {completedCount}/{phases.length} completed
+          </span>
+        </div>
 
-      <div className="space-y-3">
-        {phases.map((phase, index) => (
-          <PhaseCard
-            key={phase.slug}
-            phase={phase}
-            index={index}
-            basePath={pathname}
-          />
-        ))}
-      </div>
-    </section>
+        <div className="space-y-3">
+          {phases.map((phase, index) => (
+            <PhaseCard
+              key={phase.slug}
+              phase={phase}
+              index={index}
+              basePath={pathname}
+            />
+          ))}
+        </div>
+      </section>
     </>
   );
 }
-

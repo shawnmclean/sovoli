@@ -1,9 +1,9 @@
 "use client";
 
-import { useProgramCycleSelection } from "../../context/ProgramCycleSelectionContext";
-import type { Program, ProgramCycle } from "~/modules/academics/types";
 import { ProgramPriceCard } from "~/app/(tenants)/w/[username]/(main-layout)/programs/components/ProgramPriceCard";
+import type { Program, ProgramCycle } from "~/modules/academics/types";
 import type { PricingItem } from "~/modules/core/economics/types";
+import { useProgramCycleSelection } from "../../context/ProgramCycleSelectionContext";
 import { PaymentPlan } from "../PaymentPlan";
 
 interface PricingContentProps {

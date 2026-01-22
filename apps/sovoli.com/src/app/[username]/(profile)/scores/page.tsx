@@ -1,14 +1,11 @@
-import { notFound } from "next/navigation";
-
-import { bus } from "~/services/core/bus";
-import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
-
-import { categoryRuleSets } from "~/modules/scoring/ruleSets";
-
-import { Button } from "@sovoli/ui/components/button";
-import { PublicScoreBreakdown } from "~/modules/scoring/components/PublicScoreBreakdown";
 import { Alert } from "@sovoli/ui/components/alert";
+import { Button } from "@sovoli/ui/components/button";
 import { Link } from "@sovoli/ui/components/link";
+import { notFound } from "next/navigation";
+import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
+import { PublicScoreBreakdown } from "~/modules/scoring/components/PublicScoreBreakdown";
+import { categoryRuleSets } from "~/modules/scoring/ruleSets";
+import { bus } from "~/services/core/bus";
 
 const retrieveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(

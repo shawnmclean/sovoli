@@ -1,6 +1,6 @@
+import type { OrgInstanceWithWebsite } from "~/modules/organisations/types";
 import type { PageSection } from "~/modules/websites/types";
 import { sectionRegistry } from "./SectionRegistry";
-import type { OrgInstanceWithWebsite } from "~/modules/organisations/types";
 
 interface SectionRendererProps {
   section: PageSection;

@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
-import { Maximize2Icon } from "lucide-react";
 import { Button } from "@sovoli/ui/components/button";
+import { Maximize2Icon } from "lucide-react";
+import Link from "next/link";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { ProgramMap } from "./ProgramMap";
 

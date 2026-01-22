@@ -1,9 +1,9 @@
 "use client";
 
 import type { UseEmblaCarouselType } from "embla-carousel-react";
-import * as React from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
+import * as React from "react";
 import { tv } from "tailwind-variants";
 
 import type { ButtonProps } from "../button";

@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Button } from "@sovoli/ui/components/button";
 import {
@@ -17,9 +16,11 @@ import {
   NavbarItem,
 } from "@sovoli/ui/components/navbar";
 import { ChevronDownIcon } from "lucide-react";
+import { useState } from "react";
 import { tv } from "tailwind-variants";
 
 import type { OrgInstanceWithWebsite } from "../../lib/types";
+
 // import { MobileSearchBar } from "./MobileSearchBar";
 
 const navbarBaseStyles = tv({

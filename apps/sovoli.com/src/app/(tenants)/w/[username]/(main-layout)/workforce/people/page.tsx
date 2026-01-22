@@ -1,8 +1,7 @@
-import { notFound } from "next/navigation";
-
-import { TeamDirectory } from "./components/TeamDirectory";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { getOrgInstanceByUsername } from "../../../lib/getOrgInstanceByUsername";
+import { TeamDirectory } from "./components/TeamDirectory";
 
 const retrieveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);

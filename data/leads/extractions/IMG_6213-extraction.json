@@ -42,12 +42,8 @@
     "socialLinks": [],
     "urls": [],
     "locations": [],
-    "platformSignals": [
-      "Sponsored"
-    ]
+    "platformSignals": ["Sponsored"]
   },
-  "business": [
-    "Shameka's Artistry"
-  ],
+  "business": ["Shameka's Artistry"],
   "matchedOrgs": null
 }

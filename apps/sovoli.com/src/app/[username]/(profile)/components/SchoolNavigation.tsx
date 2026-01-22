@@ -1,9 +1,9 @@
 "use client";
 
-import { Tab, Tabs } from "@sovoli/ui/components/tabs";
-import type { OrgInstance } from "~/modules/organisations/types";
-import { usePathname } from "next/navigation";
 import { Chip } from "@sovoli/ui/components/chip";
+import { Tab, Tabs } from "@sovoli/ui/components/tabs";
+import { usePathname } from "next/navigation";
+import type { OrgInstance } from "~/modules/organisations/types";
 
 export interface SchoolNavigationProps {
   orgInstance: OrgInstance;
@@ -20,9 +20,6 @@ export function SchoolNavigation({ orgInstance }: SchoolNavigationProps) {
           10,
       ) / 10
     : 0;
-
-  // eslint-disable-next-line prefer-const
-  let jobsCount = 0;
 
   return (
     <Tabs
@@ -67,16 +64,6 @@ export function SchoolNavigation({ orgInstance }: SchoolNavigationProps) {
         title={
           <div className="flex items-center space-x-2">
             <span>Jobs</span>
-            {jobsCount > 0 ? (
-              <Chip
-                size="sm"
-                variant="solid"
-                color="primary"
-                className="font-bold shadow-md animate-pulse"
-              >
-                {jobsCount}
-              </Chip>
-            ) : null}
           </div>
         }
         // href={`/${orgInstance.org.username}/jobs`}

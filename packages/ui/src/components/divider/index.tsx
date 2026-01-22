@@ -1,1 +1,1 @@
-export * from '@heroui/divider'
+export * from "@heroui/divider";

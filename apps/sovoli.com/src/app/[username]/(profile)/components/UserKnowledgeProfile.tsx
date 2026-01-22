@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody } from "@sovoli/ui/components/card";
-import { KnowledgeCard } from "./KnowledgeCard";
+import Link from "next/link";
 import type { KnowledgeFile } from "~/modules/notes/services/types";
+import { KnowledgeCard } from "./KnowledgeCard";
 
 interface UserKnowledgeProfileProps {
   username: string;

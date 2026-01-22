@@ -22,7 +22,8 @@ export function getOrgCategoryDisplay(org: Org): string | null {
   };
 
   const overrideValue = unsafeOrg.categoryDisplay;
-  const override = typeof overrideValue === "string" ? overrideValue.trim() : "";
+  const override =
+    typeof overrideValue === "string" ? overrideValue.trim() : "";
   if (override) return override;
 
   const categories = unsafeOrg.categories;
@@ -34,4 +35,3 @@ export function getOrgCategoryDisplay(org: Org): string | null {
 
   return toTitleCase(firstCategory.replaceAll("-", " "));
 }
-

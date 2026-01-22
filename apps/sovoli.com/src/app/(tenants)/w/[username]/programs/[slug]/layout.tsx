@@ -1,34 +1,33 @@
-import { notFound, redirect } from "next/navigation";
-import { Footer } from "../../components/footer/Footer";
 import { parseISO } from "date-fns";
+import { notFound, redirect } from "next/navigation";
 import type { EducationalOccupationalProgram, WithContext } from "schema-dts";
-
-import { ProgramDetailMobileNavbar } from "./components/navbar/ProgramDetailMobileNavbar";
-import { getOrgInstanceWithProgram } from "./lib/getOrgInstanceWithProgram";
+import { NavigationDrawer } from "~/app/(tenants)/w/[username]/components/NavigationDrawer";
 import { MobileOnlyAlert } from "~/components/MobileOnlyAlert";
-import { ProgramHeroSection } from "./components/ProgramHeroSection";
-import { ProgramCycleSelectionProvider } from "./context/ProgramCycleSelectionContext";
-import { ProgramDetailMobileFooter } from "./components/footer/ProgramDetailMobileFooter";
-import { CurriculumSection } from "./components/curriculum/CurriculumSection";
-import { CertificationSection } from "./components/certification/CertificationSection";
+import { getProgramImageUrl } from "~/modules/academics/getProgramImage";
+import { Footer } from "../../components/footer/Footer";
 import { ActivitiesSection } from "./components/activities/ActivitiesSection";
-import { TeachersSection } from "./components/teachers/TeachersSection";
+import { CycleSection } from "./components/CycleSection";
+import { CertificationSection } from "./components/certification/CertificationSection";
+import { CurriculumSection } from "./components/curriculum/CurriculumSection";
+import { ProgramDetailMobileFooter } from "./components/footer/ProgramDetailMobileFooter";
 import { LocationSection } from "./components/location/LocationSection";
 import { LocationFeaturesSection } from "./components/locationFeatures/LocationFeaturesSection";
-import { ProgramsSection } from "./components/ProgramsSection";
-import { PricingSection } from "./components/PricingSection";
-import { ProgramTracking } from "./components/ProgramTracking";
-import { CycleSection } from "./components/CycleSection";
-import { ProgramTestimonialsSection } from "./components/ProgramTestimonialsSection";
-import { SuppliesSection } from "./components/supplies/SuppliesSection";
-import { ProgramHighlightsSection } from "./components/ProgramHighlightsSection";
+import { ProgramDetailMobileNavbar } from "./components/navbar/ProgramDetailMobileNavbar";
 import { OrgSection } from "./components/org/OrgSection";
+import { OrgHighlightsSection } from "./components/orgHighlights/OrgHighlightsSection";
+import { PricingSection } from "./components/PricingSection";
 import { ProgramDescriptionSection } from "./components/ProgramDescriptionSection";
 import { ProgramGroupTracking } from "./components/ProgramGroupTracking";
+import { ProgramHeroSection } from "./components/ProgramHeroSection";
+import { ProgramHighlightsSection } from "./components/ProgramHighlightsSection";
 import { ProgramsInGroupSection } from "./components/ProgramsInGroupSection";
-import { OrgHighlightsSection } from "./components/orgHighlights/OrgHighlightsSection";
-import { NavigationDrawer } from "~/app/(tenants)/w/[username]/components/NavigationDrawer";
-import { getProgramImageUrl } from "~/modules/academics/getProgramImage";
+import { ProgramsSection } from "./components/ProgramsSection";
+import { ProgramTestimonialsSection } from "./components/ProgramTestimonialsSection";
+import { ProgramTracking } from "./components/ProgramTracking";
+import { SuppliesSection } from "./components/supplies/SuppliesSection";
+import { TeachersSection } from "./components/teachers/TeachersSection";
+import { ProgramCycleSelectionProvider } from "./context/ProgramCycleSelectionContext";
+import { getOrgInstanceWithProgram } from "./lib/getOrgInstanceWithProgram";
 
 const retreiveOrgInstanceWithProgram = async (
   username: string,

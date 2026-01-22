@@ -1,14 +1,14 @@
 import type { AcademicModule } from "../academics/types";
-import type { Contact, SocialLink } from "../core/types";
 import type { CatalogModule } from "../catalogs/types";
-import type { ServiceModule } from "../services/types";
-import type { ScoringModule } from "../scoring/types";
-import type { WebsiteModule } from "../websites/types";
-import type { WorkforceModule } from "../workforce/types";
-import type { EventModule } from "../events/types";
 import type { Media } from "../core/media/types";
+import type { Contact, SocialLink } from "../core/types";
+import type { EventModule } from "../events/types";
 import type { NeedsModule } from "../needs/types";
 import type { ProjectsModule } from "../projects/types";
+import type { ScoringModule } from "../scoring/types";
+import type { ServiceModule } from "../services/types";
+import type { WebsiteModule } from "../websites/types";
+import type { WorkforceModule } from "../workforce/types";
 
 // For use internally
 export interface Person {

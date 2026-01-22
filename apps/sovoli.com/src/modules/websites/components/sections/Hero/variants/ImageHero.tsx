@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { Button } from "@sovoli/ui/components/button";
 import { Image } from "@sovoli/ui/components/image";
+import Link from "next/link";
 import { tv } from "tailwind-variants";
 
 import type { PageSection } from "~/modules/websites/types";

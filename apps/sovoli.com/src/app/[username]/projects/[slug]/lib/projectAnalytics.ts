@@ -1,5 +1,5 @@
-import type { Project, ProjectGroup } from "~/modules/projects/types";
 import posthog from "posthog-js";
+import type { Project, ProjectGroup } from "~/modules/projects/types";
 
 interface ProjectAnalyticsData {
   project: Project;

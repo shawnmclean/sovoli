@@ -1,7 +1,7 @@
 import { Input } from "@sovoli/ui/components/input";
 import { Select, SelectItem } from "@sovoli/ui/components/select";
-import { PARISH_OPTIONS } from "./options";
 import type { ParishOptionKey } from "./options";
+import { PARISH_OPTIONS } from "./options";
 
 interface LocationInfoProps {
   addressLine1: string;

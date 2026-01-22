@@ -1,7 +1,9 @@
 import { ORGS } from "~/modules/data/organisations";
 import { getOrgCategoryGroupKeysForCategories } from "~/modules/organisations/lib/categoryHierarchy";
-import type { OrgCategoryIdentifier } from "~/modules/organisations/types";
-import type { Address } from "~/modules/organisations/types";
+import type {
+  Address,
+  OrgCategoryIdentifier,
+} from "~/modules/organisations/types";
 import type { Query } from "~/services/core/Query";
 import type { QueryHandler } from "~/services/core/QueryHandler";
 

@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { Slider } from "@sovoli/ui/components/slider";
 import { Input } from "@sovoli/ui/components/input";
 import type { SliderValue } from "@sovoli/ui/components/slider";
+import { Slider } from "@sovoli/ui/components/slider";
+import { useMemo, useState } from "react";
 
 export interface ReturnStepProps {
   value: number;

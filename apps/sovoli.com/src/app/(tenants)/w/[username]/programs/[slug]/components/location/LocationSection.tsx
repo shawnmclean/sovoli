@@ -1,11 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { ChevronRightIcon } from "lucide-react";
-
+import Link from "next/link";
+import type { Program } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { countryCodeToName } from "~/utils/countryUtils";
-import type { Program } from "~/modules/academics/types";
 import { MapSection } from "./MapSection";
 
 interface LocationSectionProps {

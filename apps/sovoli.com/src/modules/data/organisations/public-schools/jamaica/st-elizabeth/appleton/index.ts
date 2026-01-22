@@ -4,8 +4,8 @@ import { APPLETON_BASIC_SCHOOL_ACADEMIC } from "./academic";
 import { ORG_USERNAME } from "./constants";
 import { APPLETON_BASIC_SCHOOL_NEEDS } from "./needs";
 import { APPLETON_BASIC_SCHOOL_PROJECTS } from "./projects";
-import { APPLETON_BASIC_SCHOOL_WORKFORCE } from "./workforce";
 import { APPLETON_BASIC_SCHOOL_WEBSITE } from "./website";
+import { APPLETON_BASIC_SCHOOL_WORKFORCE } from "./workforce";
 
 export const APPLETON_BASIC_SCHOOL_ORG: OrgInstance = {
   org: {

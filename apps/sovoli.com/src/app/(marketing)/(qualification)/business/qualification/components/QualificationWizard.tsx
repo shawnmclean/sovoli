@@ -1,18 +1,18 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 import { Button } from "@sovoli/ui/components/button";
 import { ArrowLeftIcon, CheckCircle2Icon } from "lucide-react";
-import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 import Link from "next/link";
 import posthog from "posthog-js";
+import { useEffect, useState } from "react";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { AdSpendStep } from "./steps/AdSpendStep";
+import { BusinessNameStep } from "./steps/BusinessNameStep";
+import { NameStep } from "./steps/NameStep";
+import { PhoneStep } from "./steps/PhoneStep";
 import { ReturnStep } from "./steps/ReturnStep";
 import { ROASCalculatorStep } from "./steps/ROASCalculatorStep";
-import { BusinessNameStep } from "./steps/BusinessNameStep";
-import { PhoneStep } from "./steps/PhoneStep";
-import { NameStep } from "./steps/NameStep";
 
 type WizardStep =
   | "ad-spend"
@@ -366,7 +366,7 @@ export function QualificationWizard() {
 
   if (step === "business-name") {
     const isBusinessNameValid = formData.businessName.trim().length >= 2;
-    
+
     return (
       <div className="min-h-screen flex flex-col">
         {renderBackButton()}
@@ -444,43 +444,43 @@ export function QualificationWizard() {
     : "Hello! I just completed the qualification survey. I'd like to learn more about how Sovoli can help improve my ROAS.";
 
   return (
-      <div className="min-h-screen flex flex-col">
-        <div className="flex-1 flex flex-col items-center justify-center px-4 py-8 text-center space-y-6">
-          <div className="flex justify-center">
-            <CheckCircle2Icon className="h-16 w-16 text-success" />
-          </div>
-          <div>
-            <h2 className="text-2xl font-bold mb-2 sm:text-3xl">
-              Thank you{formData.firstName ? `, ${formData.firstName}` : ""}!
-            </h2>
-            <p className="text-base text-default-600 sm:text-lg mb-6">
-              We&apos;ll review your information and get back to you soon.
-            </p>
-          </div>
-          <div className="w-full max-w-md">
-            <Button
-              as={WhatsAppLink}
-              message={whatsappMessage}
-              size="lg"
-              color="primary"
-              variant="solid"
-              radius="full"
-              fullWidth
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold"
-              event="WhatsAppContactFromQualification"
-              eventProperties={{
-                intent: "Contact",
-                role: "admin",
-                page: "qualification-success",
-                funnel: "business_qualification",
-                source: "sovoli_web",
-              }}
-            >
-              <SiWhatsapp className="mr-2 h-5 w-5" />
-              Contact Us on WhatsApp
-            </Button>
-          </div>
+    <div className="min-h-screen flex flex-col">
+      <div className="flex-1 flex flex-col items-center justify-center px-4 py-8 text-center space-y-6">
+        <div className="flex justify-center">
+          <CheckCircle2Icon className="h-16 w-16 text-success" />
+        </div>
+        <div>
+          <h2 className="text-2xl font-bold mb-2 sm:text-3xl">
+            Thank you{formData.firstName ? `, ${formData.firstName}` : ""}!
+          </h2>
+          <p className="text-base text-default-600 sm:text-lg mb-6">
+            We&apos;ll review your information and get back to you soon.
+          </p>
+        </div>
+        <div className="w-full max-w-md">
+          <Button
+            as={WhatsAppLink}
+            message={whatsappMessage}
+            size="lg"
+            color="primary"
+            variant="solid"
+            radius="full"
+            fullWidth
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold"
+            event="WhatsAppContactFromQualification"
+            eventProperties={{
+              intent: "Contact",
+              role: "admin",
+              page: "qualification-success",
+              funnel: "business_qualification",
+              source: "sovoli_web",
+            }}
+          >
+            <SiWhatsapp className="mr-2 h-5 w-5" />
+            Contact Us on WhatsApp
+          </Button>
         </div>
       </div>
-    );
+    </div>
+  );
 }

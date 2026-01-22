@@ -1,9 +1,9 @@
-import { Plans } from "./components/Plans";
+import type { Metadata } from "next";
 import { plans } from "~/modules/plans/data";
 import { categoryRuleSets } from "~/modules/scoring/ruleSets";
-import type { Metadata } from "next";
 import { Answers } from "../(business)/business/[category]/components/Answers";
 import { getContent } from "../(business)/business/categories";
+import { Plans } from "./components/Plans";
 
 export const metadata: Metadata = {
   title: "Pricing Plans",

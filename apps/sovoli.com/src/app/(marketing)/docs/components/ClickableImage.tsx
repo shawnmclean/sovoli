@@ -1,16 +1,16 @@
 "use client";
 
-import Image from "next/image";
-import type { StaticImageData } from "next/image";
-import { useDisclosure } from "@sovoli/ui/components/dialog";
+import { Button } from "@sovoli/ui/components/button";
 import {
   Modal,
+  ModalBody,
   ModalContent,
   ModalHeader,
-  ModalBody,
+  useDisclosure,
 } from "@sovoli/ui/components/dialog";
 import { XIcon } from "lucide-react";
-import { Button } from "@sovoli/ui/components/button";
+import type { StaticImageData } from "next/image";
+import Image from "next/image";
 
 interface ClickableImageProps {
   src: StaticImageData | string;
@@ -18,7 +18,11 @@ interface ClickableImageProps {
   className?: string;
 }
 
-export function ClickableImage({ src, alt, className = "" }: ClickableImageProps) {
+export function ClickableImage({
+  src,
+  alt,
+  className = "",
+}: ClickableImageProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
@@ -29,14 +33,15 @@ export function ClickableImage({ src, alt, className = "" }: ClickableImageProps
         className={`cursor-pointer hover:opacity-90 transition-opacity ${className}`}
         aria-label={`Click to view full size: ${alt}`}
       >
-        <Image
-          src={src}
-          alt={alt}
-          className="my-6 rounded-lg w-full h-auto"
-        />
+        <Image src={src} alt={alt} className="my-6 rounded-lg w-full h-auto" />
       </button>
 
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="full" hideCloseButton>
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        size="full"
+        hideCloseButton
+      >
         <ModalContent className="max-w-full w-full h-full m-0 rounded-none">
           <ModalHeader className="flex items-center justify-end p-4">
             <Button

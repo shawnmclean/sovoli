@@ -1,18 +1,17 @@
 "use client";
 
-import React from "react";
-
-import { useDisclosure } from "@sovoli/ui/components/dialog";
 import { Button } from "@sovoli/ui/components/button";
 import {
   Modal,
-  ModalContent,
-  ModalHeader,
   ModalBody,
+  ModalContent,
   ModalFooter,
+  ModalHeader,
+  useDisclosure,
 } from "@sovoli/ui/components/dialog";
-import { CheckCircleIcon, InfoIcon } from "lucide-react";
 import { Divider } from "@sovoli/ui/components/divider";
+import { CheckCircleIcon, InfoIcon } from "lucide-react";
+import type React from "react";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
 
 interface ApplyDialogButtonProps {

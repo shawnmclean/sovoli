@@ -1,12 +1,12 @@
-import React from "react";
-import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { Avatar } from "@sovoli/ui/components/avatar";
-import type { OrgInstance } from "~/modules/organisations/types";
-import { BadgeCheckIcon, HeartIcon, EyeIcon } from "lucide-react";
+import { Button } from "@sovoli/ui/components/button";
+import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
 import { Tooltip } from "@sovoli/ui/components/tooltip";
-import { Button } from "@sovoli/ui/components/button";
+import { BadgeCheckIcon, EyeIcon, HeartIcon } from "lucide-react";
+import React from "react";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
+import type { OrgInstance } from "~/modules/organisations/types";
 
 import { OrgListItemBreakdown } from "./OrgListItemBreakdown";
 

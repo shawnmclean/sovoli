@@ -1,17 +1,17 @@
 "use client";
 
-import type { Program } from "~/modules/academics/types";
-import type { OrgInstance } from "~/modules/organisations/types";
+import { Card, CardBody } from "@sovoli/ui/components/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@sovoli/ui/components/carousel";
-import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
 import { UserIcon } from "lucide-react";
 import { CldImage } from "next-cloudinary";
 import { getProgramImage } from "~/modules/academics/getProgramImage";
+import type { Program } from "~/modules/academics/types";
+import type { OrgInstance } from "~/modules/organisations/types";
 
 // Helper function to display age range
 const formatAgeRange = (range: {

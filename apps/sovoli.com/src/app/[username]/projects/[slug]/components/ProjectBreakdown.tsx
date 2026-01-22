@@ -1,18 +1,18 @@
 "use client";
 
+import { Button } from "@sovoli/ui/components/button";
 import { Card } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
-import { Button } from "@sovoli/ui/components/button";
-import { Progress } from "@sovoli/ui/components/progress";
 import { Divider } from "@sovoli/ui/components/divider";
+import { Progress } from "@sovoli/ui/components/progress";
 import { CheckCircle2, Circle, Minus, Plus, Trash2 } from "lucide-react";
-import type { Project } from "~/modules/projects/types";
-import type { Need } from "~/modules/needs/types";
 import type { Item } from "~/modules/core/items/types";
-import type { OrgInstance } from "~/modules/organisations/types";
-import { useProjectCart } from "../context/ProjectCartContext";
-import { pluralize } from "~/utils/pluralize";
 import { ORGS } from "~/modules/data/organisations";
+import type { Need } from "~/modules/needs/types";
+import type { OrgInstance } from "~/modules/organisations/types";
+import type { Project } from "~/modules/projects/types";
+import { pluralize } from "~/utils/pluralize";
+import { useProjectCart } from "../context/ProjectCartContext";
 
 interface ProjectBreakdownProps {
   project: Project;
@@ -443,89 +443,89 @@ export function ProjectBreakdown({
     <>
       <Divider className="my-6 sm:my-8" />
       <div className="space-y-8 mb-12">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h2 className="text-2xl font-bold text-foreground">
-            Project Items Needed
-          </h2>
-          <p className="text-muted-foreground">
-            All materials and supplies required for this project
-          </p>
-        </div>
-        <div className="flex items-center gap-4 text-sm">
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-success-500/20 border border-success-500" />
-            <span>Funded</span>
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h2 className="text-2xl font-bold text-foreground">
+              Project Items Needed
+            </h2>
+            <p className="text-muted-foreground">
+              All materials and supplies required for this project
+            </p>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-warning-500/20 border border-warning-500" />
-            <span>Partial</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full border border-default-400" />
-            <span>Open</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Project Summary */}
-      <Card className="overflow-hidden border-muted">
-        <div className="bg-default-100/50 p-4 border-b border-default-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="space-y-1">
-            <h3 className="font-semibold text-lg">Project Summary</h3>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <span>
-                {formatCurrency(totalFunded)} raised of{" "}
-                {formatCurrency(totalCost)}
-              </span>
-              <span>•</span>
-              <span>{percentFunded}% Funded</span>
-              <span>•</span>
-              <span>{projectItems.length} items needed</span>
+          <div className="flex items-center gap-4 text-sm">
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-success-500/20 border border-success-500" />
+              <span>Funded</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-warning-500/20 border border-warning-500" />
+              <span>Partial</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full border border-default-400" />
+              <span>Open</span>
             </div>
           </div>
-          <div className="w-full md:w-48">
-            <Progress value={percentFunded} className="h-2" />
+        </div>
+
+        {/* Project Summary */}
+        <Card className="overflow-hidden border-muted">
+          <div className="bg-default-100/50 p-4 border-b border-default-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <h3 className="font-semibold text-lg">Project Summary</h3>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <span>
+                  {formatCurrency(totalFunded)} raised of{" "}
+                  {formatCurrency(totalCost)}
+                </span>
+                <span>•</span>
+                <span>{percentFunded}% Funded</span>
+                <span>•</span>
+                <span>{projectItems.length} items needed</span>
+              </div>
+            </div>
+            <div className="w-full md:w-48">
+              <Progress value={percentFunded} className="h-2" />
+            </div>
           </div>
-        </div>
-      </Card>
+        </Card>
 
-      {/* Items List */}
-      <Card className="overflow-hidden border-muted">
-        <div className="bg-default-100/50 p-4 border-b border-default-200">
-          <h3 className="font-semibold text-lg">Items Breakdown</h3>
-          <p className="text-sm text-muted-foreground">
-            {projectItems.some((item) => item.total > 0)
-              ? "Sorted by cost (highest first)"
-              : "Prices will be shown when suppliers are available"}
-          </p>
-        </div>
+        {/* Items List */}
+        <Card className="overflow-hidden border-muted">
+          <div className="bg-default-100/50 p-4 border-b border-default-200">
+            <h3 className="font-semibold text-lg">Items Breakdown</h3>
+            <p className="text-sm text-muted-foreground">
+              {projectItems.some((item) => item.total > 0)
+                ? "Sorted by cost (highest first)"
+                : "Prices will be shown when suppliers are available"}
+            </p>
+          </div>
 
-        <div className="divide-y divide-default-200">
-          {projectItems.map((item) => (
-            <BreakdownItemComponent key={item.id} item={item} />
-          ))}
-        </div>
-      </Card>
+          <div className="divide-y divide-default-200">
+            {projectItems.map((item) => (
+              <BreakdownItemComponent key={item.id} item={item} />
+            ))}
+          </div>
+        </Card>
 
-      {/* Supplier Information */}
-      {orgInstance.org.supplierRecommendations &&
-      orgInstance.org.supplierRecommendations.length > 0 ? (
-        <div className="text-sm text-muted-foreground">
-          <p>
-            Prices shown are from recommended suppliers:{" "}
-            {orgInstance.org.supplierRecommendations
-              .map((rec) => rec.org.name)
-              .join(", ")}
-          </p>
-        </div>
-      ) : (
-        <div className="text-sm text-warning-600 bg-warning-50 p-3 rounded-lg border border-warning-200">
-          <p>
-            <strong>We are awaiting quotes for some items.</strong>
-          </p>
-        </div>
-      )}
+        {/* Supplier Information */}
+        {orgInstance.org.supplierRecommendations &&
+        orgInstance.org.supplierRecommendations.length > 0 ? (
+          <div className="text-sm text-muted-foreground">
+            <p>
+              Prices shown are from recommended suppliers:{" "}
+              {orgInstance.org.supplierRecommendations
+                .map((rec) => rec.org.name)
+                .join(", ")}
+            </p>
+          </div>
+        ) : (
+          <div className="text-sm text-warning-600 bg-warning-50 p-3 rounded-lg border border-warning-200">
+            <p>
+              <strong>We are awaiting quotes for some items.</strong>
+            </p>
+          </div>
+        )}
       </div>
     </>
   );

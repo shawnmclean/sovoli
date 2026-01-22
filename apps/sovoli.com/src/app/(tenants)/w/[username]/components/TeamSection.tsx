@@ -2,13 +2,13 @@
 
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Button } from "@sovoli/ui/components/button";
-import { Link } from "@sovoli/ui/components/link";
 import {
+  AutoScroll,
   Carousel,
   CarouselContent,
   CarouselItem,
-  AutoScroll,
 } from "@sovoli/ui/components/carousel";
+import { Link } from "@sovoli/ui/components/link";
 
 import type { OrgInstance } from "~/modules/organisations/types";
 

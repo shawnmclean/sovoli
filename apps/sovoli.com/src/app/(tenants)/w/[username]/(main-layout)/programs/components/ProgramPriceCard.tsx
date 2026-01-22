@@ -1,7 +1,7 @@
-import React from "react";
+import { parseISO } from "date-fns";
+import type React from "react";
 import type { PricingPackage } from "~/modules/core/economics/types";
 import type { CurrencyCode } from "~/utils/currencyDetection";
-import { parseISO } from "date-fns";
 
 interface ProgramPriceCardProps {
   pricingPackage: PricingPackage;

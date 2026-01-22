@@ -1,5 +1,3 @@
-import type { Metadata } from "next";
-import React from "react";
 import { Card } from "@sovoli/ui/components/card";
 import {
   AwardIcon,
@@ -9,11 +7,12 @@ import {
   TargetIcon,
   UsersIcon,
 } from "lucide-react";
-
-import { PageAssembler } from "~/modules/websites/components/PageAssembler";
-import { Timeline } from "./components/Timeline";
-import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import React from "react";
+import { PageAssembler } from "~/modules/websites/components/PageAssembler";
+import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
+import { Timeline } from "./components/Timeline";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);

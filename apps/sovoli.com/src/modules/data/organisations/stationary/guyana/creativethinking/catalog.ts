@@ -1,6 +1,6 @@
 import type { CatalogModule, CatalogOffer } from "~/modules/catalogs/types";
-import { findItemById } from "~/modules/data/items";
 import type { AmountByCurrency } from "~/modules/core/economics/types";
+import { findItemById } from "~/modules/data/items";
 
 /**
  * Helper function to create a catalog item with pricing

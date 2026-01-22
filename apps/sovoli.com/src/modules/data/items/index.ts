@@ -1,29 +1,29 @@
 import type { Item } from "~/modules/core/items/types";
 import { itemJsonSchema } from "~/modules/core/items/types";
 import { hydrateCategory } from "./categories";
-import plumbingHeatingVentilationAirConditioningData from "./library/plumbingHeatingVentilationAirConditioning.json";
-import workbooksData from "./library/textualPrintedReferenceMaterials/workbooks.json";
-import readersData from "./library/textualPrintedReferenceMaterials/readers.json";
-import textbooksData from "./library/textualPrintedReferenceMaterials/textbooks.json";
-import referencesData from "./library/textualPrintedReferenceMaterials/references.json";
-import roofingData from "./library/buildingProducts/roofing.json";
-import fastenersData from "./library/buildingProducts/fasteners.json";
-import lumberData from "./library/buildingProducts/lumber.json";
-import adhesivesSealantsData from "./library/buildingProducts/adhesivesSealants.json";
-import hardwareData from "./library/buildingProducts/hardware.json";
-import gypsumDrywallData from "./library/buildingProducts/gypsumDrywall.json";
-import handToolsData from "./library/toolsEquipment/handTools.json";
-import cuttingToolsData from "./library/toolsEquipment/cuttingTools.json";
-import powerToolsData from "./library/toolsEquipment/powerTools.json";
 import artSuppliesData from "./library/artsCraftsNeedlework/artSupplies.json";
-import educationalToysData from "./library/toysGames/educationalToys.json";
-import pencilsData from "./library/stationeryOfficeMachineryOccasionSupplies/pencils.json";
-import exerciseBooksData from "./library/stationeryOfficeMachineryOccasionSupplies/exerciseBooks.json";
-import hygieneData from "./library/hygiene.json";
 import beautyPersonalCareData from "./library/beautyPersonalCare.json";
-import householdFurnishingsData from "./library/householdFurnishings.json";
+import adhesivesSealantsData from "./library/buildingProducts/adhesivesSealants.json";
+import fastenersData from "./library/buildingProducts/fasteners.json";
+import gypsumDrywallData from "./library/buildingProducts/gypsumDrywall.json";
+import hardwareData from "./library/buildingProducts/hardware.json";
+import lumberData from "./library/buildingProducts/lumber.json";
+import roofingData from "./library/buildingProducts/roofing.json";
 import cleaningProductsData from "./library/cleaningProducts.json";
+import householdFurnishingsData from "./library/householdFurnishings.json";
+import hygieneData from "./library/hygiene.json";
 import kitchenwareData from "./library/kitchenware.json";
+import plumbingHeatingVentilationAirConditioningData from "./library/plumbingHeatingVentilationAirConditioning.json";
+import exerciseBooksData from "./library/stationeryOfficeMachineryOccasionSupplies/exerciseBooks.json";
+import pencilsData from "./library/stationeryOfficeMachineryOccasionSupplies/pencils.json";
+import readersData from "./library/textualPrintedReferenceMaterials/readers.json";
+import referencesData from "./library/textualPrintedReferenceMaterials/references.json";
+import textbooksData from "./library/textualPrintedReferenceMaterials/textbooks.json";
+import workbooksData from "./library/textualPrintedReferenceMaterials/workbooks.json";
+import cuttingToolsData from "./library/toolsEquipment/cuttingTools.json";
+import handToolsData from "./library/toolsEquipment/handTools.json";
+import powerToolsData from "./library/toolsEquipment/powerTools.json";
+import educationalToysData from "./library/toysGames/educationalToys.json";
 
 // Parse and hydrate items from JSON files
 function hydrateItemsFromJson(jsonData: unknown[]): Item[] {
@@ -75,9 +75,7 @@ const HOUSEHOLD_FURNISHINGS_ITEMS = [
   ...hydrateItemsFromJson(householdFurnishingsData),
 ];
 
-const CLEANING_PRODUCTS_ITEMS = [
-  ...hydrateItemsFromJson(cleaningProductsData),
-];
+const CLEANING_PRODUCTS_ITEMS = [...hydrateItemsFromJson(cleaningProductsData)];
 
 const KITCHENWARE_ITEMS = [...hydrateItemsFromJson(kitchenwareData)];
 

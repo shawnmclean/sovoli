@@ -1,8 +1,8 @@
 import type {
+  Department,
+  Position,
   WorkforceMember,
   WorkforceModule,
-  Position,
-  Department,
 } from "~/modules/workforce/types";
 
 // Define departments and positions for Argosy Book Store

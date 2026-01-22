@@ -58,7 +58,10 @@ export function removeSuffix(name: string): string {
 /**
  * Replace any existing suffix with a new one, or add if none exists
  */
-export function replaceSuffix(name: string, newSuffix: ProgramSuffix | null): string {
+export function replaceSuffix(
+  name: string,
+  newSuffix: ProgramSuffix | null,
+): string {
   if (!newSuffix) {
     // If no suffix selected, just remove any existing suffix
     return removeSuffix(name);
@@ -66,7 +69,7 @@ export function replaceSuffix(name: string, newSuffix: ProgramSuffix | null): st
 
   // Remove any existing suffix first
   const baseName = removeSuffix(name);
-  
+
   // Add the new suffix
   return `${baseName} ${newSuffix}`;
 }

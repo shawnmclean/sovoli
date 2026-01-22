@@ -1,8 +1,8 @@
+import { ORGS } from "~/modules/data/organisations";
 import type { OrgInstance } from "~/modules/organisations/types";
+import { computeOrgScoring } from "~/modules/scoring/lib/computeOrgScoring";
 import type { Query } from "~/services/core/Query";
 import type { QueryHandler } from "~/services/core/QueryHandler";
-import { ORGS } from "~/modules/data/organisations";
-import { computeOrgScoring } from "~/modules/scoring/lib/computeOrgScoring";
 
 interface Result {
   orgInstance: OrgInstance | null;

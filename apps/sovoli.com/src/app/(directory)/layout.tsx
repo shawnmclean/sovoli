@@ -1,6 +1,6 @@
 import { Footer } from "~/components/footer/Footer";
-import { DirectoryNavbar } from "./components/DirectoryNavbar/DirectoryNavbar";
 import { MobileOnlyAlert } from "~/components/MobileOnlyAlert";
+import { DirectoryNavbar } from "./components/DirectoryNavbar/DirectoryNavbar";
 
 interface Props {
   children: React.ReactNode;

@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { Card, CardHeader } from "@sovoli/ui/components/card";
 import { Image } from "@sovoli/ui/components/image";
+import Link from "next/link";
 
 export interface BusinessCardData {
   id: string;

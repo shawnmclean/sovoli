@@ -1,5 +1,5 @@
-import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
 import { ProjectsContent } from "./components/ProjectsContent";
 

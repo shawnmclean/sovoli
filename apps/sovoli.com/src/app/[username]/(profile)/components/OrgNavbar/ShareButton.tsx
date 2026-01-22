@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { ShareIcon } from "lucide-react";
 import { Button } from "@sovoli/ui/components/button";
+import { ShareIcon } from "lucide-react";
+import { useState } from "react";
 
 interface ShareButtonProps {
   title: string;

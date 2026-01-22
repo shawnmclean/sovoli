@@ -1,15 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
-import { ArrowRightIcon, ChevronDownIcon } from "lucide-react";
-import { Link } from "@sovoli/ui/components/link";
 import {
   Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
 } from "@sovoli/ui/components/dropdown";
+import { Link } from "@sovoli/ui/components/link";
+import { ArrowRightIcon, ChevronDownIcon } from "lucide-react";
+import React, { useState } from "react";
 
 const areas = [
   { name: "All Areas", key: "all" },

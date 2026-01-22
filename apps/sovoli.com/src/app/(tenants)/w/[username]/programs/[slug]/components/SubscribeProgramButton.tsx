@@ -1,18 +1,18 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
+import { useDisclosure } from "@sovoli/ui/components/dialog";
 import {
   Drawer,
+  DrawerBody,
   DrawerContent,
   DrawerHeader,
-  DrawerBody,
 } from "@sovoli/ui/components/drawer";
-import { useDisclosure } from "@sovoli/ui/components/dialog";
-import type { Program } from "~/modules/academics/types";
 import { BellIcon, CheckCircleIcon } from "lucide-react";
-import { trackProgramAnalytics } from "../lib/programAnalytics";
+import { useState } from "react";
+import type { Program } from "~/modules/academics/types";
 import { SignupDialog } from "~/modules/auth/components/SignupDialog";
+import { trackProgramAnalytics } from "../lib/programAnalytics";
 
 export interface SubscribeProgramButtonProps {
   program: Program;

@@ -1,7 +1,7 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import { Link } from "@sovoli/ui/components/link";
+import { useTheme } from "next-themes";
 import { Badge } from "./Badge";
 
 interface GooglePlayDownloadProps {

@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { ArrowRightIcon } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { ArrowRightIcon } from "lucide-react";
+import Link from "next/link";
 
 export interface Industry {
   id: string;
@@ -54,4 +54,3 @@ export function IndustryTile({ industry }: { industry: Industry }) {
     </Link>
   );
 }
-

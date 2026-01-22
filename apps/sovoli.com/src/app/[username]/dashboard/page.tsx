@@ -1,20 +1,18 @@
+import { SiWhatsapp } from "@icons-pack/react-simple-icons";
+import { Button } from "@sovoli/ui/components/button";
+import { Card, CardBody } from "@sovoli/ui/components/card";
 import { notFound } from "next/navigation";
-
-import { GetAllWebsiteUsernamesQuery } from "~/modules/websites/services/queries/GetAllWebsiteUsernames";
-import { bus } from "~/services/core/bus";
-
+import { WhatsAppLink } from "~/components/WhatsAppLink";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
 import { AdminScoreBreakdown } from "~/modules/scoring/components/AdminScoreBreakdown";
 import { RulesAttentionSummary } from "~/modules/scoring/components/RulesAttentionSummary";
-import { Button } from "@sovoli/ui/components/button";
-import { Card, CardBody } from "@sovoli/ui/components/card";
-import { SiWhatsapp } from "@icons-pack/react-simple-icons";
-import { WhatsAppLink } from "~/components/WhatsAppLink";
-import { LeadsSummaryCards } from "./programs/[slug]/leads/components/LeadsSummaryCards";
-import type { LeadsSummaryStats } from "./programs/[slug]/leads/components/LeadsSummaryCards";
-import { categorizeLead } from "./programs/[slug]/leads/utils/leadCategorization";
-import type { LeadInteraction } from "./programs/[slug]/leads/utils/leadCategorization";
+import { GetAllWebsiteUsernamesQuery } from "~/modules/websites/services/queries/GetAllWebsiteUsernames";
+import { bus } from "~/services/core/bus";
 import { getLeadsForOrg, isLeadsConfiguredForOrg } from "./_lib/getLeadsForOrg";
+import type { LeadsSummaryStats } from "./programs/[slug]/leads/components/LeadsSummaryCards";
+import { LeadsSummaryCards } from "./programs/[slug]/leads/components/LeadsSummaryCards";
+import type { LeadInteraction } from "./programs/[slug]/leads/utils/leadCategorization";
+import { categorizeLead } from "./programs/[slug]/leads/utils/leadCategorization";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(

@@ -1,18 +1,18 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { Button } from "@sovoli/ui/components/button";
 import {
   Autocomplete,
   AutocompleteItem,
 } from "@sovoli/ui/components/autocomplete";
+import { Button } from "@sovoli/ui/components/button";
 import { SearchIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
+import { useTenant } from "~/app/(tenants)/w/[username]/components/TenantProvider";
 import { OrganizationAutocomplete } from "~/components/OrganizationAutocomplete";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
-import { useTenant } from "~/app/(tenants)/w/[username]/components/TenantProvider";
-import { ORGS } from "~/modules/data/organisations";
 import type { Program } from "~/modules/academics/types";
+import { ORGS } from "~/modules/data/organisations";
 
 interface SchoolProgramSearchContentProps {
   onSearchStart?: () => void;

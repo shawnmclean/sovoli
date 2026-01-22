@@ -1,10 +1,10 @@
 "use client";
 
+import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 import { Button } from "@sovoli/ui/components/button";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
-import { SiWhatsapp } from "@icons-pack/react-simple-icons";
-import type { TrackingEventProperties } from "./Tracking";
 import type { GrowthSystemContent } from "../../categories";
+import type { TrackingEventProperties } from "./Tracking";
 
 interface CTAProps {
   content: GrowthSystemContent["cta"];
@@ -50,4 +50,3 @@ export function CTA({
     </section>
   );
 }
-

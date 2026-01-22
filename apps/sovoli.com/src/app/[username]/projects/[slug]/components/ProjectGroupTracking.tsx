@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { trackProjectGroupAnalytics } from "../lib/projectAnalytics";
-
 import type { ProjectGroup } from "~/modules/projects/types";
+import { trackProjectGroupAnalytics } from "../lib/projectAnalytics";
 
 interface ProjectGroupTrackingProps {
   group: ProjectGroup;
@@ -17,4 +16,3 @@ export function ProjectGroupTracking({ group }: ProjectGroupTrackingProps) {
 
   return null; // This component doesn't render anything
 }
-

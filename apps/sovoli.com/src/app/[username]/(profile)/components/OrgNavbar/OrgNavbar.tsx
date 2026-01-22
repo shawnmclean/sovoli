@@ -1,15 +1,15 @@
 "use client";
 
-import Link from "next/link";
-import { ChevronLeftIcon, HeartIcon } from "lucide-react";
+import { Button } from "@sovoli/ui/components/button";
 import {
   Navbar,
   NavbarContent,
   NavbarItem,
 } from "@sovoli/ui/components/navbar";
-import { Button } from "@sovoli/ui/components/button";
-import type { OrgInstance } from "~/modules/organisations/types";
+import { ChevronLeftIcon, HeartIcon } from "lucide-react";
+import Link from "next/link";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
+import type { OrgInstance } from "~/modules/organisations/types";
 import { ShareButton } from "./ShareButton";
 
 export interface OrgNavbarProps {

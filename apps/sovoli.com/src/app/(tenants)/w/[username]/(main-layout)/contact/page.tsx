@@ -1,5 +1,5 @@
-import { notFound } from "next/navigation";
 import { Card, CardBody } from "@sovoli/ui/components/card";
+import { notFound } from "next/navigation";
 
 import { ContactMethods } from "../../components/ContactMethods";
 import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";

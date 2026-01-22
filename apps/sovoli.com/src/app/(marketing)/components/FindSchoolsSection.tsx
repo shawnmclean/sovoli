@@ -1,8 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
-import { Link } from "@sovoli/ui/components/link";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import {
   Dropdown,
@@ -10,7 +8,9 @@ import {
   DropdownMenu,
   DropdownTrigger,
 } from "@sovoli/ui/components/dropdown";
+import { Link } from "@sovoli/ui/components/link";
 import { ArrowRightIcon, ChevronDownIcon } from "lucide-react";
+import React, { useState } from "react";
 
 const areas = [
   { name: "All Areas", key: "all" },
@@ -91,4 +91,3 @@ export function FindSchoolsSection() {
     </section>
   );
 }
-

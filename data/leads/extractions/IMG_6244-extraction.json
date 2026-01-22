@@ -52,13 +52,8 @@
     "socialLinks": [],
     "urls": [],
     "locations": [],
-    "platformSignals": [
-      "Sponsored"
-    ]
+    "platformSignals": ["Sponsored"]
   },
-  "business": [
-    "Legendary Kids Academy",
-    "Legendary Chess Academy"
-  ],
+  "business": ["Legendary Kids Academy", "Legendary Chess Academy"],
   "matchedOrgs": null
 }

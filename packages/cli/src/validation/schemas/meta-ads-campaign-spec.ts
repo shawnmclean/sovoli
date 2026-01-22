@@ -61,133 +61,141 @@ const metaAdsCarouselSchema = z.object({
   multiShareOptimized: z.boolean().optional(),
 });
 
-export const metaAdsCreativeSpecSchema = z.object({
-  /**
-   * Creative name for Meta ad account library (optional).
-   */
-  name: z.string().min(1).optional(),
+export const metaAdsCreativeSpecSchema = z
+  .object({
+    /**
+     * Creative name for Meta ad account library (optional).
+     */
+    name: z.string().min(1).optional(),
 
-  /**
-   * Facebook Page ID that owns the creative.
-   */
-  pageId: z.string().min(1),
+    /**
+     * Facebook Page ID that owns the creative.
+     */
+    pageId: z.string().min(1),
 
-  /**
-   * Instagram user ID (optional, but recommended if you plan to run on Instagram placements).
-   *
-   * Note: Meta has moved from "actor" naming to "user" naming. Prefer instagramUserId.
-   */
-  instagramUserId: z.string().min(1).optional(),
+    /**
+     * Instagram user ID (optional, but recommended if you plan to run on Instagram placements).
+     *
+     * Note: Meta has moved from "actor" naming to "user" naming. Prefer instagramUserId.
+     */
+    instagramUserId: z.string().min(1).optional(),
 
-  /**
-   * Deprecated: use instagramUserId instead.
-   * Kept for backwards compatibility with older spec files.
-   */
-  instagramActorId: z.string().min(1).optional(),
+    /**
+     * Deprecated: use instagramUserId instead.
+     * Kept for backwards compatibility with older spec files.
+     */
+    instagramActorId: z.string().min(1).optional(),
 
-  /**
-   * Program page URL (destination link).
-   */
-  linkUrl: z.string().url(),
+    /**
+     * Program page URL (destination link).
+     */
+    linkUrl: z.string().url(),
 
-  /**
-   * Primary text shown above the image.
-   */
-  message: z.union([z.string().min(1), z.array(z.string().min(1)).min(1)]),
+    /**
+     * Primary text shown above the image.
+     */
+    message: z.union([z.string().min(1), z.array(z.string().min(1)).min(1)]),
 
-  /**
-   * Headline text (Meta calls this link_data.name).
-   */
-  headline: z.union([z.string().min(1), z.array(z.string().min(1)).min(1)]),
+    /**
+     * Headline text (Meta calls this link_data.name).
+     */
+    headline: z.union([z.string().min(1), z.array(z.string().min(1)).min(1)]),
 
-  /**
-   * Optional description/subheadline.
-   */
-  description: z
-    .union([z.string().min(1), z.array(z.string().min(1)).min(1)])
-    .optional(),
+    /**
+     * Optional description/subheadline.
+     */
+    description: z
+      .union([z.string().min(1), z.array(z.string().min(1)).min(1)])
+      .optional(),
 
-  /**
-   * Optional URL parameters appended by Meta at delivery time.
-   * Supports Meta dynamic macros like:
-   * - {{site_source_name}}, {{placement}}
-   * - {{campaign.id}}, {{campaign.name}}
-   * - {{adset.id}}, {{adset.name}}
-   * - {{ad.id}}, {{ad.name}}
-   *
-   * Example:
-   * utm_source={{site_source_name}}&utm_campaign={{campaign.name}}&utm_term={{placement}}
-   */
-  urlTags: z.string().min(1).optional(),
+    /**
+     * Optional URL parameters appended by Meta at delivery time.
+     * Supports Meta dynamic macros like:
+     * - {{site_source_name}}, {{placement}}
+     * - {{campaign.id}}, {{campaign.name}}
+     * - {{adset.id}}, {{adset.name}}
+     * - {{ad.id}}, {{ad.name}}
+     *
+     * Example:
+     * utm_source={{site_source_name}}&utm_campaign={{campaign.name}}&utm_term={{placement}}
+     */
+    urlTags: z.string().min(1).optional(),
 
-  /**
-   * Creative format.
-   * - SINGLE_IMAGE: uses imagePath (and optional placementImages)
-   * - CAROUSEL: uses carousel.cards[] images
-   */
-  format: metaAdsCreativeFormatSchema.optional().default("SINGLE_IMAGE"),
+    /**
+     * Creative format.
+     * - SINGLE_IMAGE: uses imagePath (and optional placementImages)
+     * - CAROUSEL: uses carousel.cards[] images
+     */
+    format: metaAdsCreativeFormatSchema.optional().default("SINGLE_IMAGE"),
 
-  /**
-   * Local file path (repo-relative by default) to the creative image.
-   * Required for SINGLE_IMAGE format.
-   */
-  imagePath: z.string().min(1).optional(),
+    /**
+     * Local file path (repo-relative by default) to the creative image.
+     * Required for SINGLE_IMAGE format.
+     */
+    imagePath: z.string().min(1).optional(),
 
-  /**
-   * Optional placement-specific images via Meta asset customization rules.
-   * These are mapped to asset_feed_spec.images + asset_customization_rules.
-   *
-   * NOTE: This only applies to SINGLE_IMAGE format.
-   */
-  placementImages: z.array(metaAdsAssetCustomizationRuleSchema).min(1).optional(),
+    /**
+     * Optional placement-specific images via Meta asset customization rules.
+     * These are mapped to asset_feed_spec.images + asset_customization_rules.
+     *
+     * NOTE: This only applies to SINGLE_IMAGE format.
+     */
+    placementImages: z
+      .array(metaAdsAssetCustomizationRuleSchema)
+      .min(1)
+      .optional(),
 
-  /**
-   * Optional carousel configuration (required when format is CAROUSEL).
-   */
-  carousel: metaAdsCarouselSchema.optional(),
+    /**
+     * Optional carousel configuration (required when format is CAROUSEL).
+     */
+    carousel: metaAdsCarouselSchema.optional(),
 
-  /**
-   * CTA type (defaults to LEARN_MORE).
-   */
-  callToActionType: z.string().min(1).optional(),
-}).superRefine((creative, ctx) => {
-  const format = creative.format ?? "SINGLE_IMAGE";
+    /**
+     * CTA type (defaults to LEARN_MORE).
+     */
+    callToActionType: z.string().min(1).optional(),
+  })
+  .superRefine((creative, ctx) => {
+    const format = creative.format ?? "SINGLE_IMAGE";
 
-  if (format === "SINGLE_IMAGE") {
-    if (!creative.imagePath) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: "creative.imagePath is required when creative.format is SINGLE_IMAGE",
-        path: ["imagePath"],
-      });
+    if (format === "SINGLE_IMAGE") {
+      if (!creative.imagePath) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            "creative.imagePath is required when creative.format is SINGLE_IMAGE",
+          path: ["imagePath"],
+        });
+      }
+      if (creative.carousel) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            "creative.carousel is only allowed when creative.format is CAROUSEL",
+          path: ["carousel"],
+        });
+      }
     }
-    if (creative.carousel) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: "creative.carousel is only allowed when creative.format is CAROUSEL",
-        path: ["carousel"],
-      });
-    }
-  }
 
-  if (format === "CAROUSEL") {
-    if (!creative.carousel) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: "creative.carousel is required when creative.format is CAROUSEL",
-        path: ["carousel"],
-      });
+    if (format === "CAROUSEL") {
+      if (!creative.carousel) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            "creative.carousel is required when creative.format is CAROUSEL",
+          path: ["carousel"],
+        });
+      }
+      if (creative.placementImages && creative.placementImages.length > 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message:
+            "creative.placementImages is not supported for CAROUSEL (use separate ads/ad sets per placement, or extend asset_feed_spec carousel later)",
+          path: ["placementImages"],
+        });
+      }
     }
-    if (creative.placementImages && creative.placementImages.length > 0) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message:
-          "creative.placementImages is not supported for CAROUSEL (use separate ads/ad sets per placement, or extend asset_feed_spec carousel later)",
-        path: ["placementImages"],
-      });
-    }
-  }
-});
+  });
 
 export const metaAdsAdSpecSchema = z.object({
   name: z.string().min(1),

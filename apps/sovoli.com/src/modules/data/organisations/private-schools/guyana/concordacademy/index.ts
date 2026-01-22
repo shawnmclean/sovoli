@@ -10,9 +10,7 @@ export const CONCORD_ACADEMY_ORG: OrgInstance = {
       {
         key: "main",
         address: { countryCode: "GY" },
-        contacts: [
-          { type: "phone", value: "+592-223-6393", isPublic: true },
-        ],
+        contacts: [{ type: "phone", value: "+592-223-6393", isPublic: true }],
         isPrimary: true,
       },
     ],

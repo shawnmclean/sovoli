@@ -1,8 +1,8 @@
 import { readdir, readFile } from "fs/promises";
-import { join, extname } from "path";
 import matter from "gray-matter";
-import type { KnowledgeFile, UserSlug } from "./types";
+import { extname, join } from "path";
 import type { Media } from "~/modules/core/media/types";
+import type { KnowledgeFile, UserSlug } from "./types";
 
 export class KnowledgeFileCache {
   private static instance?: KnowledgeFileCache;

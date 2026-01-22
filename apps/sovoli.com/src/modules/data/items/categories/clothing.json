@@ -1,642 +1,642 @@
 {
-	"id": "clothing-group",
-	"name": "Clothing",
-	"gpcCode": "67000000",
-	"children": [
-		{
-			"id": "activewear",
-			"name": "Activewear",
-			"gpcCode": "67030000",
-			"gpcDescription": "These products are intended to be worn during sports or exercise.",
-			"parentId": "clothing-group",
-			"children": [
-				{
-					"id": "activewear",
-					"name": "Activewear",
-					"gpcCode": "67030100",
-					"parentId": "activewear",
-					"children": [
-						{
-							"id": "activewear-badges-buckles",
-							"name": "Activewear - Badges/Buckles",
-							"gpcCode": "10004115",
-							"gpcDescription": "Includes any products that may be described/observed as an item fashioned of non-precious material and affixed to the clothing to identify the sporting activity. Includes products such as sports team Badges and Buckles to identify boxing champions.",
-							"parentId": "activewear"
-						},
-						{
-							"id": "sportswear-belts",
-							"name": "Sportswear - Belts",
-							"gpcCode": "10004114",
-							"gpcDescription": "Includes any products that may be described/observed as a band to place around the waist to fasten clothing. These products are often decorative and help to accessorise sports clothing and identify the particular sport. Includes products such as belts worn to identify different Martial Arts. ",
-							"parentId": "activewear"
-						},
-						{
-							"id": "sportswear-full-body-wear",
-							"name": "Sportswear - Full Body Wear",
-							"gpcCode": "10001342",
-							"gpcDescription": "Includes any products that may be described/observed as a one-piece garment to be worn on the body while playing sports. Includes products such as wet suits and leotards.",
-							"parentId": "activewear"
-						},
-						{
-							"id": "sportswear-handwear",
-							"name": "Sportswear - Handwear",
-							"gpcCode": "10003707",
-							"gpcDescription": "Includes any products that may be described/observed as handwear to be worn while playing sport. Includes products such as a Golf Glove and Skiing Gloves.",
-							"parentId": "activewear"
-						},
-						{
-							"id": "sportswear-headwear",
-							"name": "Sportswear - Headwear",
-							"gpcCode": "10003708",
-							"gpcDescription": "Includes any products that may be described/observed as headwear to be worn while playing sport. Includes products such as helmets and Swimming Caps. ",
-							"parentId": "activewear"
-						},
-						{
-							"id": "sportswear-lower-body-wear",
-							"name": "Sportswear - Lower Body Wear",
-							"gpcCode": "10001343",
-							"gpcDescription": "Includes any products that may be described/observed as a garment to be worn on the lower body while playing sport. Includes products such as Sports Trousers and Football Shorts.",
-							"parentId": "activewear"
-						},
-						{
-							"id": "sportswear-neckwear",
-							"name": "Sportswear - Neckwear",
-							"gpcCode": "10004113",
-							"gpcDescription": "Includes any products that may be described/observed as an item or garment specifically designed to be worn on or around the neck while playing sport. Includes products such as Bandanas, Scarves, Cravats, Neck Ties and Bow Ties.",
-							"parentId": "activewear"
-						},
-						{
-							"id": "sportswear-other",
-							"name": "Sportswear - Other",
-							"gpcCode": "10006840",
-							"gpcDescription": "Includes any products that may be described/observed as Sportswear, where the user of the schema is not able to classify the products in existing bricks within the schema.",
-							"parentId": "activewear"
-						},
-						{
-							"id": "sportswear-upper-body-wear",
-							"name": "Sportswear - Upper Body Wear",
-							"gpcCode": "10001344",
-							"gpcDescription": "Includes any products that may be described/observed as a garment to be worn on the upper body while playing sport. Includes products such as Football Shirts.",
-							"parentId": "activewear"
-						},
-						{
-							"id": "sportswear-hosiery",
-							"name": "Sportswear Hosiery",
-							"gpcCode": "10003709",
-							"gpcDescription": "Includes any products that may be described/observed as hosiery to be worn while playing sport. Includes products such as Rugby Socks and specially constructed Running Socks.",
-							"parentId": "activewear"
-						},
-						{
-							"id": "sportswear-variety-packs",
-							"name": "Sportswear Variety Packs",
-							"gpcCode": "10001359",
-							"gpcDescription": "Includes any products than can be described/observed as two or more distinct Sportswear items sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Sportswear class. Includes products such as Football Shirts and Football Shorts sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
-							"parentId": "activewear"
-						}
-					]
-				}
-			]
-		},
-		{
-			"id": "clothing",
-			"name": "Clothing",
-			"gpcCode": "67010000",
-			"parentId": "clothing-group",
-			"children": [
-				{
-					"id": "clothing-accessories",
-					"name": "Clothing Accessories",
-					"gpcCode": "67010100",
-					"parentId": "clothing",
-					"children": [
-						{
-							"id": "belts-braces-cummerbunds",
-							"name": "Belts/Braces/Cummerbunds",
-							"gpcCode": "10001326",
-							"gpcDescription": "Includes any products that may be described/observed as either a band to place around the waist to fasten clothing, or in the case of braces, two straps which stretch from the front of trousers, over each shoulder to the back and help to hold up the trousers. These products are often decorative and help to accessorise clothing.",
-							"parentId": "clothing-accessories"
-						},
-						{
-							"id": "clothing-accessories-variety-packs",
-							"name": "Clothing Accessories Variety Packs",
-							"gpcCode": "10001354",
-							"gpcDescription": "Includes any products than can be described/observed as two or more distinct Clothing Accessories sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Clothing Accessories class. Includes products such as a Tie and Braces sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
-							"parentId": "clothing-accessories"
-						},
-						{
-							"id": "clothing-adornment-floral-accessories-badges-buckles",
-							"name": "Clothing Adornment/Floral Accessories/Badges/Buckles",
-							"gpcCode": "10001331",
-							"gpcDescription": "Includes any products that may be described/observed as an item fashioned of non-precious material and affixed to the clothing to enhance its appearance. Includes products such as Badges, Corsages and Buckles.",
-							"parentId": "clothing-accessories"
-						},
-						{
-							"id": "clothing-fashion-tape",
-							"name": "Clothing/Fashion Tape",
-							"gpcCode": "10006903",
-							"gpcDescription": "Includes any double-sided products that may be described/observed as an item designed to secure clothing in place while remaining hidden. Can be used to fix a hem, hold a dress in place or even hold a bra strap in place.",
-							"parentId": "clothing-accessories"
-						},
-						{
-							"id": "handwear",
-							"name": "Handwear",
-							"gpcCode": "10001328",
-							"gpcDescription": "Includes any products that may be described/observed as a garment specifically designed to be worn on the hands as a clothing or fashion accessory. Includes products such as Gloves, Mittens and Fingerless Gloves.",
-							"parentId": "clothing-accessories"
-						},
-						{
-							"id": "headwear",
-							"name": "Headwear",
-							"gpcCode": "10001329",
-							"gpcDescription": "Includes any products that may be described/observed as an item or garment specifically designed to be worn on the head to provide warmth or to be used as a fashion accessory. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes products such as Hats, Berets, Ear Muffs and Balaclavas. ",
-							"parentId": "clothing-accessories"
-						},
-						{
-							"id": "pocket-square-handkerchiefs",
-							"name": "Pocket Square/Handkerchiefs",
-							"gpcCode": "10001327",
-							"gpcDescription": "Includes any products that may be described/observed as a square of fabric used as a decorative item inserted in a jacket pocket called Pocket Square/Handkerchiefs. Alternatively, these products are used to wipe the eyes or nose.",
-							"parentId": "clothing-accessories"
-						},
-						{
-							"id": "scarf-tie-neckwear",
-							"name": "Scarf/Tie/Neckwear",
-							"gpcCode": "10001330",
-							"gpcDescription": "Includes any products that may be described/observed as an item or garment specifically designed to be worn on or around the neck. Includes products such as Bandanas, Scarves, Cravats, Neck Ties, Bow Ties and collar ribs.",
-							"parentId": "clothing-accessories"
-						}
-					]
-				},
-				{
-					"id": "clothing-variety-packs",
-					"name": "Clothing Variety Packs",
-					"gpcCode": "67011100",
-					"parentId": "clothing-group",
-					"children": [
-						{
-							"id": "clothing-variety-packs",
-							"name": "Clothing Variety Packs",
-							"gpcCode": "10002102",
-							"gpcDescription": "Includes any products than can be described/observed as two or more distinct Clothing products sold together, which exist within the schema belonging to different classes, that is two or more products contained within the same pack which cross classes within the Clothing family. Includes products such as a Baby Set with Trousers, Cardigan and matching Hat sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
-							"parentId": "clothing-variety-packs"
-						}
-					]
-				},
-				{
-					"id": "full-body-wear",
-					"name": "Full Body Wear",
-					"gpcCode": "67010200",
-					"parentId": "clothing",
-					"children": [
-						{
-							"id": "dresses",
-							"name": "Dresses",
-							"gpcCode": "10001333",
-							"gpcDescription": "Includes any products that may be described/observed as a garment designed to cover the upper body and which hangs down over the legs. Females normally, but not exclusively, wear this type of clothing. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes products such as Evening Gowns and Party Dresses. ",
-							"parentId": "full-body-wear"
-						},
-						{
-							"id": "full-body-wear-variety-packs",
-							"name": "Full Body Wear Variety Packs",
-							"gpcCode": "10001355",
-							"gpcDescription": "Includes any products than can be described/observed as two or more distinct Full Body Wear items sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Full Body Wear class. Includes products such as a Baby Romper and Baby Dress sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
-							"parentId": "full-body-wear"
-						},
-						{
-							"id": "overalls-bodysuits",
-							"name": "Overalls/Bodysuits",
-							"gpcCode": "10001332",
-							"gpcDescription": "Includes any products that may be described/observed as a single garment designed to fully cover the body.  Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes products such as Overalls and Baby Rompers. ",
-							"parentId": "full-body-wear"
-						}
-					]
-				},
-				{
-					"id": "lower-body-wear-bottoms",
-					"name": "Lower Body Wear/Bottoms",
-					"gpcCode": "67010300",
-					"parentId": "clothing",
-					"children": [
-						{
-							"id": "lower-body-wear-bottoms-variety-packs",
-							"name": "Lower Body Wear/Bottoms Variety Packs",
-							"gpcCode": "10001356",
-							"gpcDescription": "Includes any products than can be described/observed as two or more distinct Lower Body Wear/Bottoms products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Lower Body Wear/Bottoms class. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes products such as Trousers and Skirts sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
-							"parentId": "lower-body-wear-bottoms"
-						},
-						{
-							"id": "skirts",
-							"name": "Skirts",
-							"gpcCode": "10001334",
-							"gpcDescription": "Includes any products that may be described/observed as a garment that hangs from the waist, with a single opening for the legs.  Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. ",
-							"parentId": "lower-body-wear-bottoms"
-						},
-						{
-							"id": "trousers-shorts",
-							"name": "Trousers/Shorts",
-							"gpcCode": "10001335",
-							"gpcDescription": "Includes any products that may be described/observed as a garment extending from the waist to the knee or ankle, covering each leg separately.  Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes products such as Trousers, Dungarees, Shorts and Culottes.",
-							"parentId": "lower-body-wear-bottoms"
-						}
-					]
-				},
-				{
-					"id": "upper-body-wear-tops",
-					"name": "Upper Body Wear/Tops",
-					"gpcCode": "67010800",
-					"parentId": "clothing",
-					"children": [
-						{
-							"id": "jackets-blazers-cardigans-waistcoats",
-							"name": "Jackets/Blazers/Cardigans/Waistcoats",
-							"gpcCode": "10001350",
-							"gpcDescription": "Includes any products that may be described/observed as clothing that covers the upper part of the body, with or without sleeves, which fastens at the front and is usually worn over other clothing.  Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.",
-							"parentId": "upper-body-wear-tops"
-						},
-						{
-							"id": "shirts-blouses-polo-shirts-t-shirts",
-							"name": "Shirts/Blouses/Polo Shirts/T-shirts",
-							"gpcCode": "10001352",
-							"gpcDescription": "Includes any products that may be described/observed as clothing worn over the upper body and normally made of a light cloth such as cotton or silk. They may or may not fasten at the front, may or may not have sleeves and come with a variety of necklines including collars, turtlenecks, v-necks and round necks. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.",
-							"parentId": "upper-body-wear-tops"
-						},
-						{
-							"id": "sweaters-pullovers",
-							"name": "Sweaters/Pullovers",
-							"gpcCode": "10001351",
-							"gpcDescription": "Includes any products that may be described/observed as clothing worn over the upper part of the body, that do not fasten at the front and are put on by pulling over the over the head. Normally they are made of a warm material such as wool.  Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.",
-							"parentId": "upper-body-wear-tops"
-						},
-						{
-							"id": "upper-body-wear-tops-variety-packs",
-							"name": "Upper Body Wear/Tops Variety Packs",
-							"gpcCode": "10001361",
-							"gpcDescription": "Includes any products than can be described/observed as two or more distinct Upper Body Wear items or Tops sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Upper Body Wear/Tops class.  Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.Includes products such as Shirts and Waistcoats sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
-							"parentId": "upper-body-wear-tops"
-						}
-					]
-				}
-			]
-		},
-		{
-			"id": "protective-wear",
-			"name": "Protective Wear",
-			"gpcCode": "67050000",
-			"gpcDescription": "These products are intended to protect the wearer and/or the wearer's clothes from harm or the weather, in the home, work environment or outdoors.",
-			"parentId": "clothing",
-			"children": [
-				{
-					"id": "protective-wear",
-					"name": "Protective Wear",
-					"gpcCode": "67050100",
-					"parentId": "protective-wear",
-					"children": [
-						{
-							"id": "environmental-respiratory-protection-non-powered",
-							"name": "Environmental Respiratory Protection - Non Powered",
-							"gpcCode": "10005106",
-							"gpcDescription": "Includes any products that can be described/observed as a non powered protective mask with a filter used to protect the lungs against environment contaminants or to protect the enviromnent from wearer. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes respirators and full masks.",
-							"parentId": "protective-wear"
-						},
-						{
-							"id": "environmental-respiratory-protection-powered",
-							"name": "Environmental Respiratory Protection - Powered",
-							"gpcCode": "10005105",
-							"gpcDescription": "Includes any products that can be described/observed as a powered protective mask with a filter used to cover the mouth thus protecting the lungs against environment contaminants or the enviromnent from wearer. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes respirators, full masks and products with own air supply.",
-							"parentId": "protective-wear"
-						},
-						{
-							"id": "face-shields-guards",
-							"name": "Face Shields/Guards",
-							"gpcCode": "10005112",
-							"gpcDescription": "Includes any products that can be described/observed as an object worn to protect the face during welding. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes full face welding masks.",
-							"parentId": "protective-wear"
-						},
-						{
-							"id": "feeding-eating-bibs",
-							"name": "Feeding/Eating Bibs",
-							"gpcCode": "10000732",
-							"gpcDescription": "Includes any products that can be described/observed as a garment specifically designed for use in feeding and typically intended to provide a degree of convenience and/or protection for clothing, or safety and comfort. Products include items such as rigid plastic bibs, fabric bibs and disposable bibs made from polythene or absorbent fibres.",
-							"parentId": "protective-wear"
-						},
-						{
-							"id": "gloves",
-							"name": "Gloves",
-							"gpcCode": "10005894",
-							"gpcDescription": "Includes any products that can be described as latex/rubber/vinyl gloves used in food preparation or D.I.Y. for coverage of hands and hygienic purposes. Includes disposable gloves, powdered gloves and products which are sterile.",
-							"parentId": "protective-wear"
-						},
-						{
-							"id": "hard-hats-caps",
-							"name": "Hard Hats/Caps",
-							"gpcCode": "10005111",
-							"gpcDescription": "Includes any products that can be described/observed as a rigid shell that resists and deflects blows to the head or that serves as an insulator against electrical shock. Includes products that can be modified to add face shields, goggles, hoods or hearing protection to them.",
-							"parentId": "protective-wear"
-						},
-						{
-							"id": "hearing-protection-non-powered",
-							"name": "Hearing Protection - Non Powered",
-							"gpcCode": "10005108",
-							"gpcDescription": "Includes any products that can be described/observed as an object designed to block the entry of water or sound. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes over-the-ear and behind-the-ear devices.",
-							"parentId": "protective-wear"
-						},
-						{
-							"id": "hearing-protection-powered",
-							"name": "Hearing Protection - Powered",
-							"gpcCode": "10005107",
-							"gpcDescription": "Includes any products that can be described/observed as an electronic hearing protection device that is fitted onto the ear to block the entry of sound or to minimise resonance. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes over-the-ear and behind-the-ear devices.",
-							"parentId": "protective-wear"
-						},
-						{
-							"id": "helmets-non-powered",
-							"name": "Helmets - Non Powered",
-							"gpcCode": "10005110",
-							"gpcDescription": "Includes any products that can be described/observed as a helmet worn to protect the head and/or the face. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes helmets with filters and built in non-powered ear defence.",
-							"parentId": "protective-wear"
-						},
-						{
-							"id": "helmets-powered",
-							"name": "Helmets - Powered",
-							"gpcCode": "10005109",
-							"gpcDescription": "Includes any products that can be described/observed as a head covering of hard material, such as leather, metal, or plastic, worn to protect the head and/or face. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes helmets with powered lenses, powered filters or built in electronic ear defence.",
-							"parentId": "protective-wear"
-						},
-						{
-							"id": "protective-full-body-wear",
-							"name": "Protective Full Body Wear",
-							"gpcCode": "10001394",
-							"gpcDescription": "Includes any products that may be described/observed as a single garment covering the torso from the neck to below the waist and which may sometimes be worn over other clothing. These products are intended to protect the wearer and/or the wearer's clothes from harm or the weather, in the home, work environment or outdoors.  They may also be used to protect the environment from the wearer.  Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes products such as an all-in-one Rain Suit, a Rain Cloak/Poncho and Industrial Overalls that have incorporated protective features.",
-							"parentId": "protective-wear"
-						},
-						{
-							"id": "protective-handwear",
-							"name": "Protective Handwear",
-							"gpcCode": "10001395",
-							"gpcDescription": "Includes any products that may be described/observed as a garment covering the hands, which protects the wearer's hands from harm or the weather, in the home, work environment or outdoors. Includes products such as Thermal Gloves and Welding Gloves.",
-							"parentId": "protective-wear"
-						},
-						{
-							"id": "protective-knee-pads",
-							"name": "Protective Knee Pads",
-							"gpcCode": "10007933",
-							"gpcDescription": "Includes any products that may be described/observed as a garment covering the knee, which protects the wearer from harm in the home, work environment or outdoors.",
-							"parentId": "protective-wear"
-						},
-						{
-							"id": "protective-lower-body-wear",
-							"name": "Protective Lower Body Wear",
-							"gpcCode": "10001397",
-							"gpcDescription": "Includes any products that may be described/observed as a single garment covering the body from the waist down, which protects the wearer from harm or the weather, in the home, work environment or outdoors.  Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes products such as Rain Trousers and Industrial or working Trousers used in a working environment.",
-							"parentId": "protective-wear"
-						},
-						{
-							"id": "protective-personal-aids-other",
-							"name": "Protective Personal Aids Other",
-							"gpcCode": "10005116",
-							"gpcDescription": "Includes any products that can be described/observed as Protective Personal Aid products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
-							"parentId": "protective-wear"
-						},
-						{
-							"id": "protective-personal-aids-replacement-parts-accessories",
-							"name": "Protective Personal Aids Replacement Parts/Accessories",
-							"gpcCode": "10005115",
-							"gpcDescription": "Includes any products that can be described/observed as an item designed to be used in conjunction or as a replacement part for a Protective Personal Aids product.",
-							"parentId": "protective-wear"
-						},
-						{
-							"id": "protective-personal-aids-variety-packs",
-							"name": "Protective Personal Aids Variety Packs",
-							"gpcCode": "10005117",
-							"gpcDescription": "Includes any products that can be described/observed as two or more distinct Protective Personal Aids sold together which exist within the same class but belong to different bricks, that is two or more products contained within the same pack which cross bricks within the Protective Personal Aids Class. Includes products such as goggles and protective hearing devices sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
-							"parentId": "protective-wear"
-						},
-						{
-							"id": "protective-upper-body-wear",
-							"name": "Protective Upper Body Wear",
-							"gpcCode": "10001398",
-							"gpcDescription": "Includes any products that may be described/observed as a garment that covers the upper body and which protects the wearer from harm or the weather, in the home, work environment or outdoors. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes products such as an Anorak and a Reflective Jacket, a sweater used in a working environment. It also includes arm guards used in a working environment. ",
-							"parentId": "protective-wear"
-						},
-						{
-							"id": "protective-wear-accessories",
-							"name": "Protective Wear Accessories",
-							"gpcCode": "10003704",
-							"gpcDescription": "Includes any products that may be described/observed as a clothing accessory that protects the wearer from harm and/or the weather, in a work environment and/or outdoors. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes products such as an Industrial Safety Belt/Harness or a Reflective Badge.",
-							"parentId": "protective-wear"
-						},
-						{
-							"id": "protective-wear-variety-packs",
-							"name": "Protective Wear Variety Packs",
-							"gpcCode": "10003705",
-							"gpcDescription": "Includes any products than can be described/observed as two or more distinct Protective Wear items sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Protective Wear class. Includes products such as Rain Coat and Rain Hat sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
-							"parentId": "protective-wear"
-						},
-						{
-							"id": "safety-glasses-goggles",
-							"name": "Safety Glasses/Goggles",
-							"gpcCode": "10003586",
-							"gpcDescription": "Includes any products that can be described/observed as spectacles worn to protect the eyes and in some cases the whole face. These products may be fitted closely to the head and around the eyes. Includes products such as goggles, safety glasses (including prescription safety glasses) and complete face shields.",
-							"parentId": "protective-wear"
-						},
-						{
-							"id": "swaddle-blanket-wrap-cloth",
-							"name": "Swaddle Blanket/Wrap Cloth",
-							"gpcCode": "10008243",
-							"gpcDescription": "Includes any products that can be described/observed as a large, thin blanket that you wrap a baby up in with only their head peeking out.",
-							"parentId": "protective-wear"
-						}
-					]
-				}
-			]
-		},
-		{
-			"id": "sleepwear",
-			"name": "Sleepwear",
-			"gpcCode": "67020000",
-			"parentId": "clothing",
-			"children": [
-				{
-					"id": "sleepwear",
-					"name": "Sleepwear",
-					"gpcCode": "67020100",
-					"parentId": "sleepwear",
-					"children": [
-						{
-							"id": "dressing-gowns",
-							"name": "Dressing Gowns",
-							"gpcCode": "10001338",
-							"gpcDescription": "Includes any products that may be described/observed as a loose, usually belted, garment worn before dressing or over nightwear around the house.",
-							"parentId": "sleepwear"
-						},
-						{
-							"id": "night-dresses-shirts",
-							"name": "Night Dresses/Shirts",
-							"gpcCode": "10001339",
-							"gpcDescription": "Includes any products that may be described/observed as a loose garment hanging from the shoulders specifically designed to be worn in bed. Includes products such as Nightdresses and Nightshirts.",
-							"parentId": "sleepwear"
-						},
-						{
-							"id": "sleep-headwear",
-							"name": "Sleep Headwear",
-							"gpcCode": "10001340",
-							"gpcDescription": "Includes any products that may be described/observed as any garment designed to be worn on the head during sleep. Includes products such as sleep caps and eye masks.",
-							"parentId": "sleepwear"
-						},
-						{
-							"id": "sleep-trousers-shorts",
-							"name": "Sleep Trousers/Shorts",
-							"gpcCode": "10001341",
-							"gpcDescription": "Includes any products that may be described/observed as a garment hanging from the waist and covering each leg separately specifically designed to be worn in bed. Includes products such as Sleep Trousers and Sleep Shorts.",
-							"parentId": "sleepwear"
-						},
-						{
-							"id": "sleepwear-variety-packs",
-							"name": "Sleepwear Variety Packs",
-							"gpcCode": "10001358",
-							"gpcDescription": "Includes any products than can be described/observed as two or more distinct Sleepwear products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Sleepwear class. Includes products such as Nightdresses and Dressing Gowns sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
-							"parentId": "sleepwear"
-						}
-					]
-				}
-			]
-		},
-		{
-			"id": "swimwear",
-			"name": "Swimwear",
-			"gpcCode": "67060000",
-			"parentId": "clothing",
-			"children": [
-				{
-					"id": "swimwear",
-					"name": "Swimwear",
-					"gpcCode": "67060100",
-					"gpcDescription": "Products/Clothing that is designed to be worn by people engaging in a water-based activity or water sports, or sun orientated activities.",
-					"parentId": "swimwear",
-					"children": [
-						{
-							"id": "beachwear-cover-ups",
-							"name": "Beachwear/Cover Ups",
-							"gpcCode": "10006964",
-							"gpcDescription": "Includes any products that may be describe/observed as a garment worn under a wet suit or over swimwear to protect from the sun.  Specifically includes rash guards and cover ups.",
-							"parentId": "swimwear"
-						},
-						{
-							"id": "swimsuit-2-pieces",
-							"name": "Swimsuit - 2+ Pieces",
-							"gpcCode": "10008068",
-							"gpcDescription": "Includes all products that can be described/observed as a garment that usually covers the upper and lower part with two or more pieces of the torso and is worn directly on the skin. These products are designed to be worn by people who engage in an aquatic activity.",
-							"parentId": "swimwear"
-						},
-						{
-							"id": "swimsuit-bottom",
-							"name": "Swimsuit Bottom",
-							"gpcCode": "10008066",
-							"gpcDescription": "Includes all products that can be described/observed as a garment that usually covers the lower part of the body and is worn directly on the skin. These products are designed to be worn by people who engage in an aquatic activity. ",
-							"parentId": "swimwear"
-						},
-						{
-							"id": "swimsuit-top",
-							"name": "Swimsuit Top",
-							"gpcCode": "10008065",
-							"gpcDescription": "Includes all products that can be described/observed as a garment that usually covers the upper part of the torso and is worn directly on the skin. These products are designed to be worn by people who engage in an aquatic activity. ",
-							"parentId": "swimwear"
-						},
-						{
-							"id": "swimsuit-one-piece",
-							"name": "Swimsuit-One Piece",
-							"gpcCode": "10008067",
-							"gpcDescription": "Includes all products that can be described/observed as a garment that usually covers the upper and lower part of the body and is worn directly on the skin. These products are designed to be worn by people who engage in an aquatic activity. ",
-							"parentId": "swimwear"
-						},
-						{
-							"id": "swimwear-other",
-							"name": "Swimwear - Other",
-							"gpcCode": "10006965",
-							"gpcDescription": "Includes any products that can be described/observed as Swimwear products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
-							"parentId": "swimwear"
-						}
-					]
-				}
-			]
-		},
-		{
-			"id": "underwear",
-			"name": "Underwear",
-			"gpcCode": "67040000",
-			"parentId": "clothing",
-			"children": [
-				{
-					"id": "underwear",
-					"name": "Underwear",
-					"gpcCode": "67040100",
-					"parentId": "underwear",
-					"children": [
-						{
-							"id": "bras-basques-corsets",
-							"name": "Bras/Basques/Corsets",
-							"gpcCode": "10001345",
-							"gpcDescription": "Includes any products that may be described/observed as a close-fitting women's undergarment worn to support the breasts and/or shape and define the figure. Includes products such as Strapless Bras, Maternity Bras, Basques and Corsets.",
-							"parentId": "underwear"
-						},
-						{
-							"id": "full-body-underwear",
-							"name": "Full Body Underwear",
-							"gpcCode": "10001346",
-							"gpcDescription": "Includes any products that may be described/observed as a one- piece garment that covers the upper and lower torso and is worn next to the skin, underneath other garments. Includes full- body products such as \"bodies\" and full body long johns. ",
-							"parentId": "underwear"
-						},
-						{
-							"id": "pants-briefs-undershorts",
-							"name": "Pants/Briefs/Undershorts",
-							"gpcCode": "10001347",
-							"gpcDescription": "Includes any products that may be described/observed as a lower-body undergarment usually held by elastic at the waist. These garments are intended to be worn next to the skin and underneath other garments. Includes products such as Briefs, Pants and Undershorts.",
-							"parentId": "underwear"
-						},
-						{
-							"id": "pantyhose-stockings",
-							"name": "Pantyhose/Stockings",
-							"gpcCode": "10002425",
-							"gpcDescription": "Includes any products that may be described/observed as skin-tight knit hose covering the legs. These products may extend to the waist covering the pelvic area, or may end at a variety of points on the leg. Includes products such as Pantyhose, Stockings, Knee-High Pantyhose and Ankle-High Pantyhose.",
-							"parentId": "underwear"
-						},
-						{
-							"id": "petticoats-underskirts-slips",
-							"name": "Petticoats/Underskirts/Slips",
-							"gpcCode": "10002424",
-							"gpcDescription": "Includes any products that may be described/observed as a light skirt or sleeveless dress, usually designed to be slightly shorter than clothing and often ending in a ruffled, pleated or lace edge. These garments are intended to be worn next to the skin and underneath other garments. Includes products such as Petticoats, Slips and Underskirts.",
-							"parentId": "underwear"
-						},
-						{
-							"id": "socks",
-							"name": "Socks",
-							"gpcCode": "10001348",
-							"gpcDescription": "Includes any products that may be described/observed as a cloth covering for the foot, worn inside the shoe, which reaches to between the lower ankle and the knee. Includes products such as Knee-Socks, Ankle-Socks and Trainer-Socks.",
-							"parentId": "underwear"
-						},
-						{
-							"id": "suspenders-garters",
-							"name": "Suspenders/Garters",
-							"gpcCode": "10002426",
-							"gpcDescription": "Includes any products that may be described/observed as a method of holding up stockings. Typically these products are either elasticated bands worn around the leg, or thin straps attached to a belt which hook through the stocking top. Includes products such as Suspender Belts and Garters.",
-							"parentId": "underwear"
-						},
-						{
-							"id": "undershirts-chemises-camisoles",
-							"name": "Undershirts/Chemises/Camisoles",
-							"gpcCode": "10001349",
-							"gpcDescription": "Includes any products that may be described/observed as a loose typically sleeveless undergarment worn covering the upper half, the lower half of the body or both. These garments are intended to be worn next to the skin and underneath other garments such as a dress or skirt. Includes products such as Undershirts, Chemises, Camisoles, Petticoats and Vests.",
-							"parentId": "underwear"
-						},
-						{
-							"id": "underwear-variety-packs",
-							"name": "Underwear Variety Packs",
-							"gpcCode": "10001360",
-							"gpcDescription": "Includes any products than can be described/observed as two or more distinct Underwear products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Underwear class. Includes products such as Briefs and Socks sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
-							"parentId": "underwear"
-						}
-					]
-				}
-			]
-		}
-	]
+  "id": "clothing-group",
+  "name": "Clothing",
+  "gpcCode": "67000000",
+  "children": [
+    {
+      "id": "activewear",
+      "name": "Activewear",
+      "gpcCode": "67030000",
+      "gpcDescription": "These products are intended to be worn during sports or exercise.",
+      "parentId": "clothing-group",
+      "children": [
+        {
+          "id": "activewear",
+          "name": "Activewear",
+          "gpcCode": "67030100",
+          "parentId": "activewear",
+          "children": [
+            {
+              "id": "activewear-badges-buckles",
+              "name": "Activewear - Badges/Buckles",
+              "gpcCode": "10004115",
+              "gpcDescription": "Includes any products that may be described/observed as an item fashioned of non-precious material and affixed to the clothing to identify the sporting activity. Includes products such as sports team Badges and Buckles to identify boxing champions.",
+              "parentId": "activewear"
+            },
+            {
+              "id": "sportswear-belts",
+              "name": "Sportswear - Belts",
+              "gpcCode": "10004114",
+              "gpcDescription": "Includes any products that may be described/observed as a band to place around the waist to fasten clothing. These products are often decorative and help to accessorise sports clothing and identify the particular sport. Includes products such as belts worn to identify different Martial Arts. ",
+              "parentId": "activewear"
+            },
+            {
+              "id": "sportswear-full-body-wear",
+              "name": "Sportswear - Full Body Wear",
+              "gpcCode": "10001342",
+              "gpcDescription": "Includes any products that may be described/observed as a one-piece garment to be worn on the body while playing sports. Includes products such as wet suits and leotards.",
+              "parentId": "activewear"
+            },
+            {
+              "id": "sportswear-handwear",
+              "name": "Sportswear - Handwear",
+              "gpcCode": "10003707",
+              "gpcDescription": "Includes any products that may be described/observed as handwear to be worn while playing sport. Includes products such as a Golf Glove and Skiing Gloves.",
+              "parentId": "activewear"
+            },
+            {
+              "id": "sportswear-headwear",
+              "name": "Sportswear - Headwear",
+              "gpcCode": "10003708",
+              "gpcDescription": "Includes any products that may be described/observed as headwear to be worn while playing sport. Includes products such as helmets and Swimming Caps. ",
+              "parentId": "activewear"
+            },
+            {
+              "id": "sportswear-lower-body-wear",
+              "name": "Sportswear - Lower Body Wear",
+              "gpcCode": "10001343",
+              "gpcDescription": "Includes any products that may be described/observed as a garment to be worn on the lower body while playing sport. Includes products such as Sports Trousers and Football Shorts.",
+              "parentId": "activewear"
+            },
+            {
+              "id": "sportswear-neckwear",
+              "name": "Sportswear - Neckwear",
+              "gpcCode": "10004113",
+              "gpcDescription": "Includes any products that may be described/observed as an item or garment specifically designed to be worn on or around the neck while playing sport. Includes products such as Bandanas, Scarves, Cravats, Neck Ties and Bow Ties.",
+              "parentId": "activewear"
+            },
+            {
+              "id": "sportswear-other",
+              "name": "Sportswear - Other",
+              "gpcCode": "10006840",
+              "gpcDescription": "Includes any products that may be described/observed as Sportswear, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "activewear"
+            },
+            {
+              "id": "sportswear-upper-body-wear",
+              "name": "Sportswear - Upper Body Wear",
+              "gpcCode": "10001344",
+              "gpcDescription": "Includes any products that may be described/observed as a garment to be worn on the upper body while playing sport. Includes products such as Football Shirts.",
+              "parentId": "activewear"
+            },
+            {
+              "id": "sportswear-hosiery",
+              "name": "Sportswear Hosiery",
+              "gpcCode": "10003709",
+              "gpcDescription": "Includes any products that may be described/observed as hosiery to be worn while playing sport. Includes products such as Rugby Socks and specially constructed Running Socks.",
+              "parentId": "activewear"
+            },
+            {
+              "id": "sportswear-variety-packs",
+              "name": "Sportswear Variety Packs",
+              "gpcCode": "10001359",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Sportswear items sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Sportswear class. Includes products such as Football Shirts and Football Shorts sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "activewear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clothing",
+      "name": "Clothing",
+      "gpcCode": "67010000",
+      "parentId": "clothing-group",
+      "children": [
+        {
+          "id": "clothing-accessories",
+          "name": "Clothing Accessories",
+          "gpcCode": "67010100",
+          "parentId": "clothing",
+          "children": [
+            {
+              "id": "belts-braces-cummerbunds",
+              "name": "Belts/Braces/Cummerbunds",
+              "gpcCode": "10001326",
+              "gpcDescription": "Includes any products that may be described/observed as either a band to place around the waist to fasten clothing, or in the case of braces, two straps which stretch from the front of trousers, over each shoulder to the back and help to hold up the trousers. These products are often decorative and help to accessorise clothing.",
+              "parentId": "clothing-accessories"
+            },
+            {
+              "id": "clothing-accessories-variety-packs",
+              "name": "Clothing Accessories Variety Packs",
+              "gpcCode": "10001354",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Clothing Accessories sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Clothing Accessories class. Includes products such as a Tie and Braces sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "clothing-accessories"
+            },
+            {
+              "id": "clothing-adornment-floral-accessories-badges-buckles",
+              "name": "Clothing Adornment/Floral Accessories/Badges/Buckles",
+              "gpcCode": "10001331",
+              "gpcDescription": "Includes any products that may be described/observed as an item fashioned of non-precious material and affixed to the clothing to enhance its appearance. Includes products such as Badges, Corsages and Buckles.",
+              "parentId": "clothing-accessories"
+            },
+            {
+              "id": "clothing-fashion-tape",
+              "name": "Clothing/Fashion Tape",
+              "gpcCode": "10006903",
+              "gpcDescription": "Includes any double-sided products that may be described/observed as an item designed to secure clothing in place while remaining hidden. Can be used to fix a hem, hold a dress in place or even hold a bra strap in place.",
+              "parentId": "clothing-accessories"
+            },
+            {
+              "id": "handwear",
+              "name": "Handwear",
+              "gpcCode": "10001328",
+              "gpcDescription": "Includes any products that may be described/observed as a garment specifically designed to be worn on the hands as a clothing or fashion accessory. Includes products such as Gloves, Mittens and Fingerless Gloves.",
+              "parentId": "clothing-accessories"
+            },
+            {
+              "id": "headwear",
+              "name": "Headwear",
+              "gpcCode": "10001329",
+              "gpcDescription": "Includes any products that may be described/observed as an item or garment specifically designed to be worn on the head to provide warmth or to be used as a fashion accessory. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes products such as Hats, Berets, Ear Muffs and Balaclavas. ",
+              "parentId": "clothing-accessories"
+            },
+            {
+              "id": "pocket-square-handkerchiefs",
+              "name": "Pocket Square/Handkerchiefs",
+              "gpcCode": "10001327",
+              "gpcDescription": "Includes any products that may be described/observed as a square of fabric used as a decorative item inserted in a jacket pocket called Pocket Square/Handkerchiefs. Alternatively, these products are used to wipe the eyes or nose.",
+              "parentId": "clothing-accessories"
+            },
+            {
+              "id": "scarf-tie-neckwear",
+              "name": "Scarf/Tie/Neckwear",
+              "gpcCode": "10001330",
+              "gpcDescription": "Includes any products that may be described/observed as an item or garment specifically designed to be worn on or around the neck. Includes products such as Bandanas, Scarves, Cravats, Neck Ties, Bow Ties and collar ribs.",
+              "parentId": "clothing-accessories"
+            }
+          ]
+        },
+        {
+          "id": "clothing-variety-packs",
+          "name": "Clothing Variety Packs",
+          "gpcCode": "67011100",
+          "parentId": "clothing-group",
+          "children": [
+            {
+              "id": "clothing-variety-packs",
+              "name": "Clothing Variety Packs",
+              "gpcCode": "10002102",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Clothing products sold together, which exist within the schema belonging to different classes, that is two or more products contained within the same pack which cross classes within the Clothing family. Includes products such as a Baby Set with Trousers, Cardigan and matching Hat sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "clothing-variety-packs"
+            }
+          ]
+        },
+        {
+          "id": "full-body-wear",
+          "name": "Full Body Wear",
+          "gpcCode": "67010200",
+          "parentId": "clothing",
+          "children": [
+            {
+              "id": "dresses",
+              "name": "Dresses",
+              "gpcCode": "10001333",
+              "gpcDescription": "Includes any products that may be described/observed as a garment designed to cover the upper body and which hangs down over the legs. Females normally, but not exclusively, wear this type of clothing. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes products such as Evening Gowns and Party Dresses. ",
+              "parentId": "full-body-wear"
+            },
+            {
+              "id": "full-body-wear-variety-packs",
+              "name": "Full Body Wear Variety Packs",
+              "gpcCode": "10001355",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Full Body Wear items sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Full Body Wear class. Includes products such as a Baby Romper and Baby Dress sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "full-body-wear"
+            },
+            {
+              "id": "overalls-bodysuits",
+              "name": "Overalls/Bodysuits",
+              "gpcCode": "10001332",
+              "gpcDescription": "Includes any products that may be described/observed as a single garment designed to fully cover the body.  Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes products such as Overalls and Baby Rompers. ",
+              "parentId": "full-body-wear"
+            }
+          ]
+        },
+        {
+          "id": "lower-body-wear-bottoms",
+          "name": "Lower Body Wear/Bottoms",
+          "gpcCode": "67010300",
+          "parentId": "clothing",
+          "children": [
+            {
+              "id": "lower-body-wear-bottoms-variety-packs",
+              "name": "Lower Body Wear/Bottoms Variety Packs",
+              "gpcCode": "10001356",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Lower Body Wear/Bottoms products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Lower Body Wear/Bottoms class. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes products such as Trousers and Skirts sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "lower-body-wear-bottoms"
+            },
+            {
+              "id": "skirts",
+              "name": "Skirts",
+              "gpcCode": "10001334",
+              "gpcDescription": "Includes any products that may be described/observed as a garment that hangs from the waist, with a single opening for the legs.  Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. ",
+              "parentId": "lower-body-wear-bottoms"
+            },
+            {
+              "id": "trousers-shorts",
+              "name": "Trousers/Shorts",
+              "gpcCode": "10001335",
+              "gpcDescription": "Includes any products that may be described/observed as a garment extending from the waist to the knee or ankle, covering each leg separately.  Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes products such as Trousers, Dungarees, Shorts and Culottes.",
+              "parentId": "lower-body-wear-bottoms"
+            }
+          ]
+        },
+        {
+          "id": "upper-body-wear-tops",
+          "name": "Upper Body Wear/Tops",
+          "gpcCode": "67010800",
+          "parentId": "clothing",
+          "children": [
+            {
+              "id": "jackets-blazers-cardigans-waistcoats",
+              "name": "Jackets/Blazers/Cardigans/Waistcoats",
+              "gpcCode": "10001350",
+              "gpcDescription": "Includes any products that may be described/observed as clothing that covers the upper part of the body, with or without sleeves, which fastens at the front and is usually worn over other clothing.  Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.",
+              "parentId": "upper-body-wear-tops"
+            },
+            {
+              "id": "shirts-blouses-polo-shirts-t-shirts",
+              "name": "Shirts/Blouses/Polo Shirts/T-shirts",
+              "gpcCode": "10001352",
+              "gpcDescription": "Includes any products that may be described/observed as clothing worn over the upper body and normally made of a light cloth such as cotton or silk. They may or may not fasten at the front, may or may not have sleeves and come with a variety of necklines including collars, turtlenecks, v-necks and round necks. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.",
+              "parentId": "upper-body-wear-tops"
+            },
+            {
+              "id": "sweaters-pullovers",
+              "name": "Sweaters/Pullovers",
+              "gpcCode": "10001351",
+              "gpcDescription": "Includes any products that may be described/observed as clothing worn over the upper part of the body, that do not fasten at the front and are put on by pulling over the over the head. Normally they are made of a warm material such as wool.  Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.",
+              "parentId": "upper-body-wear-tops"
+            },
+            {
+              "id": "upper-body-wear-tops-variety-packs",
+              "name": "Upper Body Wear/Tops Variety Packs",
+              "gpcCode": "10001361",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Upper Body Wear items or Tops sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Upper Body Wear/Tops class.  Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition.Includes products such as Shirts and Waistcoats sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "upper-body-wear-tops"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "protective-wear",
+      "name": "Protective Wear",
+      "gpcCode": "67050000",
+      "gpcDescription": "These products are intended to protect the wearer and/or the wearer's clothes from harm or the weather, in the home, work environment or outdoors.",
+      "parentId": "clothing",
+      "children": [
+        {
+          "id": "protective-wear",
+          "name": "Protective Wear",
+          "gpcCode": "67050100",
+          "parentId": "protective-wear",
+          "children": [
+            {
+              "id": "environmental-respiratory-protection-non-powered",
+              "name": "Environmental Respiratory Protection - Non Powered",
+              "gpcCode": "10005106",
+              "gpcDescription": "Includes any products that can be described/observed as a non powered protective mask with a filter used to protect the lungs against environment contaminants or to protect the enviromnent from wearer. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes respirators and full masks.",
+              "parentId": "protective-wear"
+            },
+            {
+              "id": "environmental-respiratory-protection-powered",
+              "name": "Environmental Respiratory Protection - Powered",
+              "gpcCode": "10005105",
+              "gpcDescription": "Includes any products that can be described/observed as a powered protective mask with a filter used to cover the mouth thus protecting the lungs against environment contaminants or the enviromnent from wearer. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes respirators, full masks and products with own air supply.",
+              "parentId": "protective-wear"
+            },
+            {
+              "id": "face-shields-guards",
+              "name": "Face Shields/Guards",
+              "gpcCode": "10005112",
+              "gpcDescription": "Includes any products that can be described/observed as an object worn to protect the face during welding. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes full face welding masks.",
+              "parentId": "protective-wear"
+            },
+            {
+              "id": "feeding-eating-bibs",
+              "name": "Feeding/Eating Bibs",
+              "gpcCode": "10000732",
+              "gpcDescription": "Includes any products that can be described/observed as a garment specifically designed for use in feeding and typically intended to provide a degree of convenience and/or protection for clothing, or safety and comfort. Products include items such as rigid plastic bibs, fabric bibs and disposable bibs made from polythene or absorbent fibres.",
+              "parentId": "protective-wear"
+            },
+            {
+              "id": "gloves",
+              "name": "Gloves",
+              "gpcCode": "10005894",
+              "gpcDescription": "Includes any products that can be described as latex/rubber/vinyl gloves used in food preparation or D.I.Y. for coverage of hands and hygienic purposes. Includes disposable gloves, powdered gloves and products which are sterile.",
+              "parentId": "protective-wear"
+            },
+            {
+              "id": "hard-hats-caps",
+              "name": "Hard Hats/Caps",
+              "gpcCode": "10005111",
+              "gpcDescription": "Includes any products that can be described/observed as a rigid shell that resists and deflects blows to the head or that serves as an insulator against electrical shock. Includes products that can be modified to add face shields, goggles, hoods or hearing protection to them.",
+              "parentId": "protective-wear"
+            },
+            {
+              "id": "hearing-protection-non-powered",
+              "name": "Hearing Protection - Non Powered",
+              "gpcCode": "10005108",
+              "gpcDescription": "Includes any products that can be described/observed as an object designed to block the entry of water or sound. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes over-the-ear and behind-the-ear devices.",
+              "parentId": "protective-wear"
+            },
+            {
+              "id": "hearing-protection-powered",
+              "name": "Hearing Protection - Powered",
+              "gpcCode": "10005107",
+              "gpcDescription": "Includes any products that can be described/observed as an electronic hearing protection device that is fitted onto the ear to block the entry of sound or to minimise resonance. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes over-the-ear and behind-the-ear devices.",
+              "parentId": "protective-wear"
+            },
+            {
+              "id": "helmets-non-powered",
+              "name": "Helmets - Non Powered",
+              "gpcCode": "10005110",
+              "gpcDescription": "Includes any products that can be described/observed as a helmet worn to protect the head and/or the face. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes helmets with filters and built in non-powered ear defence.",
+              "parentId": "protective-wear"
+            },
+            {
+              "id": "helmets-powered",
+              "name": "Helmets - Powered",
+              "gpcCode": "10005109",
+              "gpcDescription": "Includes any products that can be described/observed as a head covering of hard material, such as leather, metal, or plastic, worn to protect the head and/or face. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes helmets with powered lenses, powered filters or built in electronic ear defence.",
+              "parentId": "protective-wear"
+            },
+            {
+              "id": "protective-full-body-wear",
+              "name": "Protective Full Body Wear",
+              "gpcCode": "10001394",
+              "gpcDescription": "Includes any products that may be described/observed as a single garment covering the torso from the neck to below the waist and which may sometimes be worn over other clothing. These products are intended to protect the wearer and/or the wearer's clothes from harm or the weather, in the home, work environment or outdoors.  They may also be used to protect the environment from the wearer.  Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes products such as an all-in-one Rain Suit, a Rain Cloak/Poncho and Industrial Overalls that have incorporated protective features.",
+              "parentId": "protective-wear"
+            },
+            {
+              "id": "protective-handwear",
+              "name": "Protective Handwear",
+              "gpcCode": "10001395",
+              "gpcDescription": "Includes any products that may be described/observed as a garment covering the hands, which protects the wearer's hands from harm or the weather, in the home, work environment or outdoors. Includes products such as Thermal Gloves and Welding Gloves.",
+              "parentId": "protective-wear"
+            },
+            {
+              "id": "protective-knee-pads",
+              "name": "Protective Knee Pads",
+              "gpcCode": "10007933",
+              "gpcDescription": "Includes any products that may be described/observed as a garment covering the knee, which protects the wearer from harm in the home, work environment or outdoors.",
+              "parentId": "protective-wear"
+            },
+            {
+              "id": "protective-lower-body-wear",
+              "name": "Protective Lower Body Wear",
+              "gpcCode": "10001397",
+              "gpcDescription": "Includes any products that may be described/observed as a single garment covering the body from the waist down, which protects the wearer from harm or the weather, in the home, work environment or outdoors.  Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes products such as Rain Trousers and Industrial or working Trousers used in a working environment.",
+              "parentId": "protective-wear"
+            },
+            {
+              "id": "protective-personal-aids-other",
+              "name": "Protective Personal Aids Other",
+              "gpcCode": "10005116",
+              "gpcDescription": "Includes any products that can be described/observed as Protective Personal Aid products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "protective-wear"
+            },
+            {
+              "id": "protective-personal-aids-replacement-parts-accessories",
+              "name": "Protective Personal Aids Replacement Parts/Accessories",
+              "gpcCode": "10005115",
+              "gpcDescription": "Includes any products that can be described/observed as an item designed to be used in conjunction or as a replacement part for a Protective Personal Aids product.",
+              "parentId": "protective-wear"
+            },
+            {
+              "id": "protective-personal-aids-variety-packs",
+              "name": "Protective Personal Aids Variety Packs",
+              "gpcCode": "10005117",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Protective Personal Aids sold together which exist within the same class but belong to different bricks, that is two or more products contained within the same pack which cross bricks within the Protective Personal Aids Class. Includes products such as goggles and protective hearing devices sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "protective-wear"
+            },
+            {
+              "id": "protective-upper-body-wear",
+              "name": "Protective Upper Body Wear",
+              "gpcCode": "10001398",
+              "gpcDescription": "Includes any products that may be described/observed as a garment that covers the upper body and which protects the wearer from harm or the weather, in the home, work environment or outdoors. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes products such as an Anorak and a Reflective Jacket, a sweater used in a working environment. It also includes arm guards used in a working environment. ",
+              "parentId": "protective-wear"
+            },
+            {
+              "id": "protective-wear-accessories",
+              "name": "Protective Wear Accessories",
+              "gpcCode": "10003704",
+              "gpcDescription": "Includes any products that may be described/observed as a clothing accessory that protects the wearer from harm and/or the weather, in a work environment and/or outdoors. Includes all products (e.g. military, emergency service, industrial or other special specifications) which fit the product definition. Includes products such as an Industrial Safety Belt/Harness or a Reflective Badge.",
+              "parentId": "protective-wear"
+            },
+            {
+              "id": "protective-wear-variety-packs",
+              "name": "Protective Wear Variety Packs",
+              "gpcCode": "10003705",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Protective Wear items sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Protective Wear class. Includes products such as Rain Coat and Rain Hat sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "protective-wear"
+            },
+            {
+              "id": "safety-glasses-goggles",
+              "name": "Safety Glasses/Goggles",
+              "gpcCode": "10003586",
+              "gpcDescription": "Includes any products that can be described/observed as spectacles worn to protect the eyes and in some cases the whole face. These products may be fitted closely to the head and around the eyes. Includes products such as goggles, safety glasses (including prescription safety glasses) and complete face shields.",
+              "parentId": "protective-wear"
+            },
+            {
+              "id": "swaddle-blanket-wrap-cloth",
+              "name": "Swaddle Blanket/Wrap Cloth",
+              "gpcCode": "10008243",
+              "gpcDescription": "Includes any products that can be described/observed as a large, thin blanket that you wrap a baby up in with only their head peeking out.",
+              "parentId": "protective-wear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sleepwear",
+      "name": "Sleepwear",
+      "gpcCode": "67020000",
+      "parentId": "clothing",
+      "children": [
+        {
+          "id": "sleepwear",
+          "name": "Sleepwear",
+          "gpcCode": "67020100",
+          "parentId": "sleepwear",
+          "children": [
+            {
+              "id": "dressing-gowns",
+              "name": "Dressing Gowns",
+              "gpcCode": "10001338",
+              "gpcDescription": "Includes any products that may be described/observed as a loose, usually belted, garment worn before dressing or over nightwear around the house.",
+              "parentId": "sleepwear"
+            },
+            {
+              "id": "night-dresses-shirts",
+              "name": "Night Dresses/Shirts",
+              "gpcCode": "10001339",
+              "gpcDescription": "Includes any products that may be described/observed as a loose garment hanging from the shoulders specifically designed to be worn in bed. Includes products such as Nightdresses and Nightshirts.",
+              "parentId": "sleepwear"
+            },
+            {
+              "id": "sleep-headwear",
+              "name": "Sleep Headwear",
+              "gpcCode": "10001340",
+              "gpcDescription": "Includes any products that may be described/observed as any garment designed to be worn on the head during sleep. Includes products such as sleep caps and eye masks.",
+              "parentId": "sleepwear"
+            },
+            {
+              "id": "sleep-trousers-shorts",
+              "name": "Sleep Trousers/Shorts",
+              "gpcCode": "10001341",
+              "gpcDescription": "Includes any products that may be described/observed as a garment hanging from the waist and covering each leg separately specifically designed to be worn in bed. Includes products such as Sleep Trousers and Sleep Shorts.",
+              "parentId": "sleepwear"
+            },
+            {
+              "id": "sleepwear-variety-packs",
+              "name": "Sleepwear Variety Packs",
+              "gpcCode": "10001358",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Sleepwear products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Sleepwear class. Includes products such as Nightdresses and Dressing Gowns sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "sleepwear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "swimwear",
+      "name": "Swimwear",
+      "gpcCode": "67060000",
+      "parentId": "clothing",
+      "children": [
+        {
+          "id": "swimwear",
+          "name": "Swimwear",
+          "gpcCode": "67060100",
+          "gpcDescription": "Products/Clothing that is designed to be worn by people engaging in a water-based activity or water sports, or sun orientated activities.",
+          "parentId": "swimwear",
+          "children": [
+            {
+              "id": "beachwear-cover-ups",
+              "name": "Beachwear/Cover Ups",
+              "gpcCode": "10006964",
+              "gpcDescription": "Includes any products that may be describe/observed as a garment worn under a wet suit or over swimwear to protect from the sun.  Specifically includes rash guards and cover ups.",
+              "parentId": "swimwear"
+            },
+            {
+              "id": "swimsuit-2-pieces",
+              "name": "Swimsuit - 2+ Pieces",
+              "gpcCode": "10008068",
+              "gpcDescription": "Includes all products that can be described/observed as a garment that usually covers the upper and lower part with two or more pieces of the torso and is worn directly on the skin. These products are designed to be worn by people who engage in an aquatic activity.",
+              "parentId": "swimwear"
+            },
+            {
+              "id": "swimsuit-bottom",
+              "name": "Swimsuit Bottom",
+              "gpcCode": "10008066",
+              "gpcDescription": "Includes all products that can be described/observed as a garment that usually covers the lower part of the body and is worn directly on the skin. These products are designed to be worn by people who engage in an aquatic activity. ",
+              "parentId": "swimwear"
+            },
+            {
+              "id": "swimsuit-top",
+              "name": "Swimsuit Top",
+              "gpcCode": "10008065",
+              "gpcDescription": "Includes all products that can be described/observed as a garment that usually covers the upper part of the torso and is worn directly on the skin. These products are designed to be worn by people who engage in an aquatic activity. ",
+              "parentId": "swimwear"
+            },
+            {
+              "id": "swimsuit-one-piece",
+              "name": "Swimsuit-One Piece",
+              "gpcCode": "10008067",
+              "gpcDescription": "Includes all products that can be described/observed as a garment that usually covers the upper and lower part of the body and is worn directly on the skin. These products are designed to be worn by people who engage in an aquatic activity. ",
+              "parentId": "swimwear"
+            },
+            {
+              "id": "swimwear-other",
+              "name": "Swimwear - Other",
+              "gpcCode": "10006965",
+              "gpcDescription": "Includes any products that can be described/observed as Swimwear products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+              "parentId": "swimwear"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "underwear",
+      "name": "Underwear",
+      "gpcCode": "67040000",
+      "parentId": "clothing",
+      "children": [
+        {
+          "id": "underwear",
+          "name": "Underwear",
+          "gpcCode": "67040100",
+          "parentId": "underwear",
+          "children": [
+            {
+              "id": "bras-basques-corsets",
+              "name": "Bras/Basques/Corsets",
+              "gpcCode": "10001345",
+              "gpcDescription": "Includes any products that may be described/observed as a close-fitting women's undergarment worn to support the breasts and/or shape and define the figure. Includes products such as Strapless Bras, Maternity Bras, Basques and Corsets.",
+              "parentId": "underwear"
+            },
+            {
+              "id": "full-body-underwear",
+              "name": "Full Body Underwear",
+              "gpcCode": "10001346",
+              "gpcDescription": "Includes any products that may be described/observed as a one- piece garment that covers the upper and lower torso and is worn next to the skin, underneath other garments. Includes full- body products such as \"bodies\" and full body long johns. ",
+              "parentId": "underwear"
+            },
+            {
+              "id": "pants-briefs-undershorts",
+              "name": "Pants/Briefs/Undershorts",
+              "gpcCode": "10001347",
+              "gpcDescription": "Includes any products that may be described/observed as a lower-body undergarment usually held by elastic at the waist. These garments are intended to be worn next to the skin and underneath other garments. Includes products such as Briefs, Pants and Undershorts.",
+              "parentId": "underwear"
+            },
+            {
+              "id": "pantyhose-stockings",
+              "name": "Pantyhose/Stockings",
+              "gpcCode": "10002425",
+              "gpcDescription": "Includes any products that may be described/observed as skin-tight knit hose covering the legs. These products may extend to the waist covering the pelvic area, or may end at a variety of points on the leg. Includes products such as Pantyhose, Stockings, Knee-High Pantyhose and Ankle-High Pantyhose.",
+              "parentId": "underwear"
+            },
+            {
+              "id": "petticoats-underskirts-slips",
+              "name": "Petticoats/Underskirts/Slips",
+              "gpcCode": "10002424",
+              "gpcDescription": "Includes any products that may be described/observed as a light skirt or sleeveless dress, usually designed to be slightly shorter than clothing and often ending in a ruffled, pleated or lace edge. These garments are intended to be worn next to the skin and underneath other garments. Includes products such as Petticoats, Slips and Underskirts.",
+              "parentId": "underwear"
+            },
+            {
+              "id": "socks",
+              "name": "Socks",
+              "gpcCode": "10001348",
+              "gpcDescription": "Includes any products that may be described/observed as a cloth covering for the foot, worn inside the shoe, which reaches to between the lower ankle and the knee. Includes products such as Knee-Socks, Ankle-Socks and Trainer-Socks.",
+              "parentId": "underwear"
+            },
+            {
+              "id": "suspenders-garters",
+              "name": "Suspenders/Garters",
+              "gpcCode": "10002426",
+              "gpcDescription": "Includes any products that may be described/observed as a method of holding up stockings. Typically these products are either elasticated bands worn around the leg, or thin straps attached to a belt which hook through the stocking top. Includes products such as Suspender Belts and Garters.",
+              "parentId": "underwear"
+            },
+            {
+              "id": "undershirts-chemises-camisoles",
+              "name": "Undershirts/Chemises/Camisoles",
+              "gpcCode": "10001349",
+              "gpcDescription": "Includes any products that may be described/observed as a loose typically sleeveless undergarment worn covering the upper half, the lower half of the body or both. These garments are intended to be worn next to the skin and underneath other garments such as a dress or skirt. Includes products such as Undershirts, Chemises, Camisoles, Petticoats and Vests.",
+              "parentId": "underwear"
+            },
+            {
+              "id": "underwear-variety-packs",
+              "name": "Underwear Variety Packs",
+              "gpcCode": "10001360",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Underwear products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Underwear class. Includes products such as Briefs and Socks sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "underwear"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

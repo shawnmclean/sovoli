@@ -1,15 +1,15 @@
-import { notFound } from "next/navigation";
-import { Footer } from "../../components/footer/Footer";
 import { parseISO } from "date-fns";
+import { notFound } from "next/navigation";
 import type { Event, WithContext } from "schema-dts";
-
-import { getOrgInstanceWithEvent } from "./lib/getOrgInstanceWithEvent";
+import { GalleryCarousel } from "~/components/GalleryCarousel";
 import { MobileOnlyAlert } from "~/components/MobileOnlyAlert";
-import { EventDetailMobileFooter } from "./components/footer/EventDetailMobileFooter";
+import { Footer } from "../../components/footer/Footer";
 import { EventHeroSection } from "./components/EventHeroSection";
 import { EventRequirementsSection } from "./components/EventRequirementsSection";
-import { GalleryCarousel } from "~/components/GalleryCarousel";
+import { EventDetailMobileFooter } from "./components/footer/EventDetailMobileFooter";
 import { EventDetailNavbar } from "./components/navbar/EventDetailMobileNavbar";
+import { getOrgInstanceWithEvent } from "./lib/getOrgInstanceWithEvent";
+
 const retrieveOrgInstanceWithEvent = async (username: string, slug: string) => {
   const result = await getOrgInstanceWithEvent(username, slug);
   if (!result?.event) return notFound();

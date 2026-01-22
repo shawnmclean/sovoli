@@ -1,8 +1,8 @@
 "use client";
 
-import { useId } from "react";
-import { Input } from "@sovoli/ui/components/input";
 import { Checkbox } from "@sovoli/ui/components/checkbox";
+import { Input } from "@sovoli/ui/components/input";
+import { useId } from "react";
 import { extractStartDate, parseExtractionDate } from "../../utils/cycle-utils";
 
 interface CycleScheduleFieldProps {
@@ -121,7 +121,8 @@ export function CycleScheduleField({
           </div>
           {parsedDate && (
             <p className="text-xs text-muted-foreground">
-              Parsed as: {new Date(parsedDate).toLocaleDateString("en-US", {
+              Parsed as:{" "}
+              {new Date(parsedDate).toLocaleDateString("en-US", {
                 month: "long",
                 day: "numeric",
                 year: "numeric",

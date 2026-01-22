@@ -1,15 +1,15 @@
 "use client";
 
-import { useMemo } from "react";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
 import { ArrowRightIcon, DollarSign } from "lucide-react";
-
-import type { ProjectDirectoryEntry } from "../types";
+import { useMemo } from "react";
+import { slugify } from "~/utils/slugify";
 import { formatDate } from "../lib/formatters";
 import { getPriorityLabel, getPriorityTextClass } from "../lib/priorities";
+import type { ProjectDirectoryEntry } from "../types";
 import { ProjectCarousel } from "./ProjectCarousel";
-import { slugify } from "~/utils/slugify";
+
 interface ListViewProps {
   projects: ProjectDirectoryEntry[];
 }

@@ -22,7 +22,9 @@ export async function TrendingSection() {
       school,
       // Create a deterministic "random" value based on username
       sortKey: school.org.username
-        ? school.org.username.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0)
+        ? school.org.username
+            .split("")
+            .reduce((acc, char) => acc + char.charCodeAt(0), 0)
         : 0,
     }))
     .sort((a, b) => a.sortKey - b.sortKey)

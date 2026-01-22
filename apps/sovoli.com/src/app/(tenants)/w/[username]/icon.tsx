@@ -18,32 +18,30 @@ export default async function Icon({ params }: Props) {
   const firstLetter = username[0]?.toUpperCase() ?? "W";
 
   return new ImageResponse(
-    (
-      <div
+    <div
+      style={{
+        width: size.width,
+        height: size.height,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "linear-gradient(135deg, #800080 0%, #ff00ff 100%)",
+        borderRadius: "50%",
+      }}
+    >
+      <span
         style={{
-          width: size.width,
-          height: size.height,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "linear-gradient(135deg, #800080 0%, #ff00ff 100%)",
-          borderRadius: "50%",
+          color: "#fff",
+          fontSize: 20,
+          fontWeight: "bold",
+          fontFamily: "SignPainter, 'Brush Script MT', cursive, sans-serif",
+          lineHeight: 1,
+          userSelect: "none",
         }}
       >
-        <span
-          style={{
-            color: "#fff",
-            fontSize: 20,
-            fontWeight: "bold",
-            fontFamily: "SignPainter, 'Brush Script MT', cursive, sans-serif",
-            lineHeight: 1,
-            userSelect: "none",
-          }}
-        >
-          {firstLetter}
-        </span>
-      </div>
-    ),
+        {firstLetter}
+      </span>
+    </div>,
     { ...size },
   );
 }

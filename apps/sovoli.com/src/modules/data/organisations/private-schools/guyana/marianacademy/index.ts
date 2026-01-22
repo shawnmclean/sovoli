@@ -1,5 +1,5 @@
-import type { OrgInstance } from "~/modules/organisations/types";
 import type { Media } from "~/modules/core/media/types";
+import type { OrgInstance } from "~/modules/organisations/types";
 import { ORG_USERNAME } from "./constants";
 
 export const MARIAN_ACADEMY_ORG: OrgInstance = {

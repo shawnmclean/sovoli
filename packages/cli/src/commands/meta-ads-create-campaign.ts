@@ -51,23 +51,19 @@ export const metaAdsCreateCampaignCommand = new Command(
     "Lifetime budget in cents (alternative to daily budget)",
     (value: string) => parseInt(value, 10),
   )
-  .option(
-    "--bid-strategy <bidStrategy>",
-    "Bid strategy",
-    (value: string) => {
-      const valid = [
-        "LOWEST_COST_WITHOUT_CAP",
-        "LOWEST_COST_WITH_BID_CAP",
-        "COST_CAP",
-      ];
-      if (!valid.includes(value)) {
-        throw new Error(
-          `Invalid bid strategy: ${value}. Must be one of: ${valid.join(", ")}`,
-        );
-      }
-      return value;
-    },
-  )
+  .option("--bid-strategy <bidStrategy>", "Bid strategy", (value: string) => {
+    const valid = [
+      "LOWEST_COST_WITHOUT_CAP",
+      "LOWEST_COST_WITH_BID_CAP",
+      "COST_CAP",
+    ];
+    if (!valid.includes(value)) {
+      throw new Error(
+        `Invalid bid strategy: ${value}. Must be one of: ${valid.join(", ")}`,
+      );
+    }
+    return value;
+  })
   .option(
     "--bid-cap <bidCap>",
     "Bid cap in cents (required if bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP)",
@@ -115,8 +111,7 @@ export const metaAdsCreateCampaignCommand = new Command(
   .option(
     "--targeting-genders <genders>",
     "Targeting: genders (comma-separated, 1=male, 2=female)",
-    (value: string) =>
-      value.split(",").map((v) => parseInt(v.trim(), 10)),
+    (value: string) => value.split(",").map((v) => parseInt(v.trim(), 10)),
   )
   .option(
     "--targeting-countries <countries>",
@@ -278,9 +273,7 @@ export const metaAdsCreateCampaignCommand = new Command(
           }
 
           const adSetBody: Record<string, unknown> = {
-            name:
-              options.adSetName ||
-              `${options.campaignName} - Ad Set 1`,
+            name: options.adSetName || `${options.campaignName} - Ad Set 1`,
             campaign_id: campaignId,
             optimization_goal: options.optimizationGoal,
             billing_event: options.billingEvent,
@@ -385,8 +378,9 @@ export const metaAdsCreateCampaignCommand = new Command(
                 }
 
                 if (Object.keys(linkData).length > 0) {
-                  (creativeBody.object_story_spec as Record<string, unknown>).link_data =
-                    linkData;
+                  (
+                    creativeBody.object_story_spec as Record<string, unknown>
+                  ).link_data = linkData;
                 }
               }
             } else {
@@ -421,16 +415,15 @@ export const metaAdsCreateCampaignCommand = new Command(
               }
             }
 
-            const adCreativeResponse =
-              await metaApiRequest<AdCreativeResponse>(
-                `${formattedAdAccountId}/adcreatives`,
-                {
-                  method: "POST",
-                  accessToken: options.systemUserToken,
-                  apiVersion,
-                  body: creativeBody,
-                },
-              );
+            const adCreativeResponse = await metaApiRequest<AdCreativeResponse>(
+              `${formattedAdAccountId}/adcreatives`,
+              {
+                method: "POST",
+                accessToken: options.systemUserToken,
+                apiVersion,
+                body: creativeBody,
+              },
+            );
 
             adCreativeId = adCreativeResponse.id;
             console.log(`✅ Step 3: Ad Creative created`);
@@ -481,9 +474,7 @@ export const metaAdsCreateCampaignCommand = new Command(
           ...(adSetId && {
             adSet: {
               id: adSetId,
-              name:
-                options.adSetName ||
-                `${options.campaignName} - Ad Set 1`,
+              name: options.adSetName || `${options.campaignName} - Ad Set 1`,
             },
           }),
           ...(adCreativeId && {

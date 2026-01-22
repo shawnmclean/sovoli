@@ -2,8 +2,8 @@
 
 import { Card } from "@sovoli/ui/components/card";
 import { Select, SelectItem } from "@sovoli/ui/components/select";
-import { PROGRAM_SUFFIXES } from "../utils/suffix-utils";
 import type { ProgramSuffix } from "../utils/suffix-utils";
+import { PROGRAM_SUFFIXES } from "../utils/suffix-utils";
 
 interface ProgramConfigurationProps {
   selectedSuffix: ProgramSuffix | null;
@@ -22,7 +22,8 @@ export function ProgramConfiguration({
         <div>
           <h3 className="text-lg font-semibold mb-2">Configuration</h3>
           <p className="text-sm text-muted-foreground">
-            Choose a suffix to apply to all program names. Existing suffixes will be replaced.
+            Choose a suffix to apply to all program names. Existing suffixes
+            will be replaced.
           </p>
         </div>
 
@@ -36,7 +37,10 @@ export function ProgramConfiguration({
             }
             onSelectionChange={(keys) => {
               const selectedKey = Array.from(keys)[0] as string | undefined;
-              if (selectedKey && PROGRAM_SUFFIXES.includes(selectedKey as ProgramSuffix)) {
+              if (
+                selectedKey &&
+                PROGRAM_SUFFIXES.includes(selectedKey as ProgramSuffix)
+              ) {
                 const suffix = selectedKey as ProgramSuffix;
                 onSuffixChange(suffix);
                 // Apply suffix to all programs

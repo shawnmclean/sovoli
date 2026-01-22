@@ -1,8 +1,8 @@
+import { Card, CardBody } from "@sovoli/ui/components/card";
+import { format, parse, parseISO } from "date-fns";
+import { ClockIcon, MapPinIcon } from "lucide-react";
 import type { Event } from "~/modules/events/types";
 import type { OrgInstanceWithWebsite } from "~/modules/organisations/types";
-import { format, parseISO, parse } from "date-fns";
-import { ClockIcon, MapPinIcon } from "lucide-react";
-import { Card, CardBody } from "@sovoli/ui/components/card";
 
 // Utility function to format 24-hour time "09:00" to "9AM" using date-fns
 const formatTime = (timeString: string): string => {

@@ -1,8 +1,8 @@
+import { Button } from "@sovoli/ui/components/button";
+import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
+import { Link } from "@sovoli/ui/components/link";
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
-import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
-import { Button } from "@sovoli/ui/components/button";
-import { Link } from "@sovoli/ui/components/link";
 
 import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
 
@@ -116,4 +116,3 @@ export default async function ServicesPage({
     </div>
   );
 }
-

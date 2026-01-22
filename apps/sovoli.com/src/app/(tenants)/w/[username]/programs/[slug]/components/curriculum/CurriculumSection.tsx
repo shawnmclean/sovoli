@@ -1,12 +1,12 @@
 "use client";
 
-import { useMemo } from "react";
-import { Chip } from "@sovoli/ui/components/chip";
 import { Button } from "@sovoli/ui/components/button";
+import { Chip } from "@sovoli/ui/components/chip";
 import { BookOpenIcon, CheckIcon } from "lucide-react";
+import Link from "next/link";
+import { useMemo } from "react";
 import Markdown from "react-markdown";
 import type { Program } from "~/modules/academics/types";
-import Link from "next/link";
 
 interface CurriculumSectionProps {
   program: Program;
@@ -112,8 +112,14 @@ function WhatWillYouLearnSection({ program }: CurriculumSectionProps) {
                     <div className="text-foreground prose prose-sm dark:prose-invert max-w-none">
                       <Markdown
                         components={{
-                          p: ({ children }) => <span className="m-0">{children}</span>,
-                          strong: ({ children }) => <strong className="font-bold text-foreground">{children}</strong>
+                          p: ({ children }) => (
+                            <span className="m-0">{children}</span>
+                          ),
+                          strong: ({ children }) => (
+                            <strong className="font-bold text-foreground">
+                              {children}
+                            </strong>
+                          ),
                         }}
                       >
                         {capability.outcome}

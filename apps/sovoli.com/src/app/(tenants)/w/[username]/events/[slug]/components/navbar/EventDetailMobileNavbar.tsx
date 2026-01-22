@@ -1,14 +1,14 @@
-import Link from "next/link";
-import { ChevronLeftIcon } from "lucide-react";
+import { Button } from "@sovoli/ui/components/button";
 import {
   Navbar,
   NavbarContent,
   NavbarItem,
 } from "@sovoli/ui/components/navbar";
-import { Button } from "@sovoli/ui/components/button";
-import type { OrgInstance } from "~/modules/organisations/types";
+import { ChevronLeftIcon } from "lucide-react";
+import Link from "next/link";
 import { ShareButton } from "~/app/[username]/(profile)/components/OrgNavbar/ShareButton";
 import type { Event } from "~/modules/events/types";
+import type { OrgInstance } from "~/modules/organisations/types";
 import { SubscribeEventButton } from "../SubscribeEventButton";
 
 export interface EventDetailNavbarProps {

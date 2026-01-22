@@ -28,7 +28,8 @@ export const SCHOOL_PARTY_CLOSING_2025_EVENT: Event = {
     {
       icon: "users",
       label: "Whole-School Closing",
-      description: "Final assembly to share announcements and celebrate achievements.",
+      description:
+        "Final assembly to share announcements and celebrate achievements.",
     },
     {
       icon: "gift",
@@ -40,13 +41,15 @@ export const SCHOOL_PARTY_CLOSING_2025_EVENT: Event = {
     {
       id: "classroom-parties",
       title: "Classroom Parties",
-      description: "Teachers facilitate themed games, music, and treat sharing.",
+      description:
+        "Teachers facilitate themed games, music, and treat sharing.",
       duration: "2 hours",
     },
     {
       id: "closing-assembly",
       title: "Closing Assembly",
-      description: "Principal's remarks, student recognitions, and farewell messages.",
+      description:
+        "Principal's remarks, student recognitions, and farewell messages.",
       duration: "1 hour",
     },
   ],
@@ -54,7 +57,8 @@ export const SCHOOL_PARTY_CLOSING_2025_EVENT: Event = {
     {
       id: "snack-contribution",
       name: "Snack Contribution",
-      description: "Students may bring a small snack or drink to share with classmates.",
+      description:
+        "Students may bring a small snack or drink to share with classmates.",
       type: "bring",
       isRequired: false,
     },

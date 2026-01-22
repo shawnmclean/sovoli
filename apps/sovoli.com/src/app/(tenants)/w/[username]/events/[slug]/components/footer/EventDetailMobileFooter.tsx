@@ -2,15 +2,15 @@
 
 import { Button } from "@sovoli/ui/components/button";
 import { useDisclosure } from "@sovoli/ui/components/dialog";
+
 // import { Link } from "@sovoli/ui/components/link";
 
-import { gradientBorderButton } from "~/components/GradientBorderButton";
-
-import type { OrgInstance } from "~/modules/organisations/types";
-import type { Event } from "~/modules/events/types";
 import { MessageSquareShareIcon } from "lucide-react";
-import { getWhatsAppContact } from "~/utils/whatsappUtils";
+import { gradientBorderButton } from "~/components/GradientBorderButton";
 import { SignupDialog } from "~/modules/auth/components/SignupDialog";
+import type { Event } from "~/modules/events/types";
+import type { OrgInstance } from "~/modules/organisations/types";
+import { getWhatsAppContact } from "~/utils/whatsappUtils";
 
 export interface EventDetailMobileFooterProps {
   orgInstance: OrgInstance;

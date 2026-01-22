@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
+import type { Program, ProgramCycle } from "~/modules/academics/types";
 import { useProgramCycleSelection } from "../context/ProgramCycleSelectionContext";
 import { trackProgramAnalytics } from "../lib/programAnalytics";
-
-import type { ProgramCycle, Program } from "~/modules/academics/types";
 
 interface ProgramTrackingProps {
   program: Program;

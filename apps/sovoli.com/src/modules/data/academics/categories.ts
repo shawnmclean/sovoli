@@ -1,6 +1,6 @@
 import type {
-  ProgramCategoryDefinition,
   ProgramCategory,
+  ProgramCategoryDefinition,
 } from "~/modules/academics/categories/types";
 import { PROGRAM_CATEGORY_TREE } from "./categories/index";
 
@@ -61,4 +61,3 @@ export function hydrateProgramCategory(
       : undefined,
   };
 }
-

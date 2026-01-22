@@ -1,9 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo } from "react";
 import type { Program } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
-import Link from "next/link";
 import { pluralize } from "~/utils/pluralize";
 import { useProgramSupplies } from "./useProgramSupplies";
 
@@ -70,7 +70,8 @@ export function SuppliesSection({
               <>
                 {allItems.length}{" "}
                 {pluralize(allItems.length, "required item", "required items")}{" "}
-                • {totals.currency} {totals.totalPrice.toLocaleString()} • {supplierList}
+                • {totals.currency} {totals.totalPrice.toLocaleString()} •{" "}
+                {supplierList}
               </>
             ) : (
               <>

@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
 import { Footer } from "~/components/footer/Footer";
-import { bus } from "~/services/core/bus";
-import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
-import { config } from "~/utils/config";
 import { MobileOnlyAlert } from "~/components/MobileOnlyAlert";
+import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
+import { bus } from "~/services/core/bus";
+import { config } from "~/utils/config";
 import { AdminSchoolHeader } from "./components/AdminSchoolHeader";
 import { AdminSchoolNavigation } from "./components/AdminSchoolNavigation";
 

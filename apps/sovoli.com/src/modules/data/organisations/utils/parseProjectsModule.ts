@@ -2,10 +2,10 @@ import { z } from "zod";
 import type { Media } from "~/modules/core/media/types";
 import type { NeedsModule } from "~/modules/needs/types";
 import type {
-  ProjectsModule,
   Project,
   ProjectGroup,
   ProjectPhase,
+  ProjectsModule,
 } from "~/modules/projects/types";
 
 /**

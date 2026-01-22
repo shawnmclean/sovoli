@@ -1,7 +1,7 @@
-import type { OrgInstance } from "~/modules/organisations/types";
 import type { Media } from "~/modules/core/media/types";
-import { ORG_USERNAME } from "./constants";
+import type { OrgInstance } from "~/modules/organisations/types";
 import { PHILS_HARDWARE_CATALOG } from "./catalog";
+import { ORG_USERNAME } from "./constants";
 
 const PHILS_HARDWARE_PHOTOS: Media[] = [
   {

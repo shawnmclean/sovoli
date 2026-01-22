@@ -14,11 +14,11 @@ import {
 import { Link } from "@sovoli/ui/components/link";
 import { Tooltip } from "@sovoli/ui/components/tooltip";
 import {
-  BadgeCheckIcon,
-  EllipsisVerticalIcon,
   AlertCircleIcon,
-  HeartIcon,
+  BadgeCheckIcon,
   DollarSignIcon,
+  EllipsisVerticalIcon,
+  HeartIcon,
 } from "lucide-react";
 import { ApplyDialogButton } from "~/app/(directory)/components/ApplyDialogButton";
 import { WhatsAppLink } from "~/components/WhatsAppLink";

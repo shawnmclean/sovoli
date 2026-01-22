@@ -1,15 +1,15 @@
-import type {
-  ScoringModule,
-  ScoredRule,
-  ScoreSummary,
-  RuleScoreMap,
-  OrgCategoryRuleSet,
-  GroupScore,
-} from "../types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { categoryRuleSets } from "../ruleSets";
-import { rules } from "../rules";
 import type { RuleKey } from "../rules";
+import { rules } from "../rules";
+import type {
+  GroupScore,
+  OrgCategoryRuleSet,
+  RuleScoreMap,
+  ScoredRule,
+  ScoreSummary,
+  ScoringModule,
+} from "../types";
 
 function computeSummary(
   ruleScores: RuleScoreMap,

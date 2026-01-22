@@ -1,8 +1,8 @@
 "use client";
 
 import type { StaticImageData } from "next/image";
-import React from "react";
 import Image from "next/image";
+import React from "react";
 
 import mockupAttendance from "./mockup-attendance.png";
 import mockupDashboard from "./mockup-dashboard.png";

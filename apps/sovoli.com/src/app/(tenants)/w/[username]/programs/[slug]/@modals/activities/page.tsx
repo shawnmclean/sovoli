@@ -1,5 +1,5 @@
-import { getOrgInstanceWithProgram } from "../../lib/getOrgInstanceWithProgram";
 import { ActivitiesDetails } from "../../components/activities/ActivitiesDetails";
+import { getOrgInstanceWithProgram } from "../../lib/getOrgInstanceWithProgram";
 
 interface Props {
   params: Promise<{ username: string; slug: string }>;

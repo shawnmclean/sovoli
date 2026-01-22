@@ -1,16 +1,16 @@
 "use client";
 
-import Link from "next/link";
-import { ChevronLeftIcon } from "lucide-react";
+import { Button } from "@sovoli/ui/components/button";
 import {
   Navbar,
   NavbarContent,
   NavbarItem,
 } from "@sovoli/ui/components/navbar";
-import { Button } from "@sovoli/ui/components/button";
-import type { OrgInstance } from "~/modules/organisations/types";
+import { ChevronLeftIcon } from "lucide-react";
+import Link from "next/link";
 import { ShareButton } from "~/app/[username]/(profile)/components/OrgNavbar/ShareButton";
 import type { Program, ProgramGroup } from "~/modules/academics/types";
+import type { OrgInstance } from "~/modules/organisations/types";
 import { SubscribeProgramButton } from "../SubscribeProgramButton";
 
 export interface ProgramDetailMobileNavbarProps {

@@ -1,13 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { Button } from "@sovoli/ui/components/button";
 import { Chip } from "@sovoli/ui/components/chip";
+import Link from "next/link";
 import type { ReactNode } from "react";
-import {
-  formatAmountByCurrency,
-  formatDate,
-} from "../../components/needFormatters";
+import type { ItemCategory } from "~/modules/core/items/types";
 import type {
   FinancialNeed,
   HumanNeed,
@@ -15,7 +12,10 @@ import type {
   Need,
   ServiceNeed,
 } from "~/modules/needs/types";
-import type { ItemCategory } from "~/modules/core/items/types";
+import {
+  formatAmountByCurrency,
+  formatDate,
+} from "../../components/needFormatters";
 import { JobNeedDetails } from "./JobNeedDetails";
 
 interface NeedDetailsProps {

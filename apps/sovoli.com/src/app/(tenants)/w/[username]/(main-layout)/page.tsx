@@ -1,13 +1,12 @@
 import { notFound } from "next/navigation";
 import { GetAllWebsiteUsernamesQuery } from "~/modules/websites/services/queries/GetAllWebsiteUsernames";
 import { bus } from "~/services/core/bus";
-
-import { getOrgInstanceByUsername } from "../lib/getOrgInstanceByUsername";
+import { SearchContent } from "../components/search/SearchContent";
 import { TeamSection } from "../components/TeamSection";
+import { getOrgInstanceByUsername } from "../lib/getOrgInstanceByUsername";
+import { OfferingContent } from "./components/OfferingContent";
 import { OrgGalleryCarousel } from "./components/OrgGalleryCarousel";
 import { OrgLandingSection } from "./components/OrgLandingSection";
-import { OfferingContent } from "./components/OfferingContent";
-import { SearchContent } from "../components/search/SearchContent";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);

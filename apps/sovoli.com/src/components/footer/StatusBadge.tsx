@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState, startTransition } from "react";
 import { useTheme } from "next-themes";
+import { startTransition, useEffect, useState } from "react";
 
 export const StatusBadge = () => {
   const { resolvedTheme } = useTheme();

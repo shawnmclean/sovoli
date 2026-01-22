@@ -1,13 +1,12 @@
 import { notFound } from "next/navigation";
-import { Footer } from "../../components/footer/Footer";
 import type { Product, WithContext } from "schema-dts";
-import type { OrgInstanceWithWebsite } from "../../lib/types";
-
-import { getOrgInstanceWithCatalogItem } from "./lib/getOrgInstanceWithCatalogItem";
 import { MobileOnlyAlert } from "~/components/MobileOnlyAlert";
-import { CatalogItemHeroSection } from "./components/CatalogItemHeroSection";
+import { Footer } from "../../components/footer/Footer";
+import type { OrgInstanceWithWebsite } from "../../lib/types";
 import { CatalogItemDetailsSection } from "./components/CatalogItemDetailsSection";
 import { CatalogItemGallery } from "./components/CatalogItemGallery";
+import { CatalogItemHeroSection } from "./components/CatalogItemHeroSection";
+import { getOrgInstanceWithCatalogItem } from "./lib/getOrgInstanceWithCatalogItem";
 
 const retrieveOrgInstanceWithCatalogItem = async (
   username: string,

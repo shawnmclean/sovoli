@@ -15,9 +15,7 @@ export const FRASERS_EDUCATIONAL_ORG: OrgInstance = {
           countryCode: "GY",
         },
         placeId: "ChIJv6PHiVKcpY0Ridydgz_JXOI",
-        contacts: [
-          { type: "phone", value: "+592-232-0167", isPublic: true },
-        ],
+        contacts: [{ type: "phone", value: "+592-232-0167", isPublic: true }],
         isPrimary: true,
       },
     ],

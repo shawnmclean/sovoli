@@ -29,4 +29,3 @@ export const MODERN_FOUNDATION_ACADEMY_ORG: OrgInstance = {
   workforceModule: null,
   scoringModule: null,
 };
-

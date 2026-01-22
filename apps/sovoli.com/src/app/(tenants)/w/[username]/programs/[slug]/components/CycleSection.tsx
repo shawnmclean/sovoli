@@ -1,15 +1,15 @@
 "use client";
 
-import { useEffect } from "react";
 import type { RadioProps } from "@sovoli/ui/components/radio";
-import { RadioGroup, Radio } from "@sovoli/ui/components/radio";
+import { Radio, RadioGroup } from "@sovoli/ui/components/radio";
 import { CalendarIcon } from "lucide-react";
+import { useEffect } from "react";
 import { tv } from "tailwind-variants";
 import type { Program, ProgramCycle } from "~/modules/academics/types";
 import {
-  formatDateRange,
   calculateDuration,
   formatCycleLabel,
+  formatDateRange,
 } from "~/utils/dateUtils";
 import { useProgramCycleSelection } from "../context/ProgramCycleSelectionContext";
 

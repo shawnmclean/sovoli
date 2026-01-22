@@ -46,13 +46,9 @@
     },
     "socialLinks": [],
     "urls": [],
-    "locations": [
-      "Kingston, Ja."
-    ],
+    "locations": ["Kingston, Ja."],
     "platformSignals": []
   },
-  "business": [
-    "La Laing Image Consultancy"
-  ],
+  "business": ["La Laing Image Consultancy"],
   "matchedOrgs": null
 }

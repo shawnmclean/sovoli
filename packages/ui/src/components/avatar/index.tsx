@@ -1,1 +1,1 @@
-export * from "@heroui/avatar"
+export * from "@heroui/avatar";

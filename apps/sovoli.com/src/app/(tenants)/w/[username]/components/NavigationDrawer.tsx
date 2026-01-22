@@ -1,11 +1,11 @@
 "use client";
 import { Drawer } from "@sovoli/ui/components/drawer";
 import {
+  usePathname,
   useRouter,
   useSelectedLayoutSegment,
-  usePathname,
 } from "next/navigation";
-import { useEffect, useState, useRef, startTransition } from "react";
+import { startTransition, useEffect, useRef, useState } from "react";
 
 // Simple hook to track the previous path
 function usePreviousPath() {

@@ -1,6 +1,7 @@
 export * from "@heroui/radio";
-import { Radio } from "@heroui/radio";
+
 import type { RadioProps } from "@heroui/radio";
+import { Radio } from "@heroui/radio";
 import { tv } from "tailwind-variants";
 
 const customRadioStyles = tv({

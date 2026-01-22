@@ -1,11 +1,11 @@
 "use client";
 
-import { forwardRef } from "react";
-import { useLink } from "@sovoli/ui/hooks";
 import type { LinkProps } from "@sovoli/ui/components/link";
-import { config } from "~/utils/config";
+import { useLink } from "@sovoli/ui/hooks";
 import type { Properties } from "posthog-js";
 import posthog from "posthog-js";
+import { forwardRef } from "react";
+import { config } from "~/utils/config";
 
 interface WhatsAppLinkProps extends LinkProps {
   phoneNumber?: string;

@@ -1,22 +1,22 @@
 "use client";
 
-import { useState, useActionState, useMemo } from "react";
+import { parseFormData } from "@rvf/core";
 import { Button } from "@sovoli/ui/components/button";
-import { Input } from "@sovoli/ui/components/input";
-import { Form } from "@sovoli/ui/components/form";
 import {
   Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
   DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
 } from "@sovoli/ui/components/dropdown";
+import { Form } from "@sovoli/ui/components/form";
+import { Input } from "@sovoli/ui/components/input";
+import { GB, GY, JM, US } from "country-flag-icons/react/3x2";
 import { ChevronDownIcon } from "lucide-react";
-import { US, GB, GY, JM } from "country-flag-icons/react/3x2";
-import { parseFormData } from "@rvf/core";
-import type { PhoneActionStates } from "../../actions/states";
-import { whatsAppOTPFormSchema } from "../../actions/schemas";
+import { useActionState, useMemo, useState } from "react";
 import { useCountry } from "~/modules/core/context/CountryProvider";
 import { countryCodeToPhoneCode } from "~/utils/currencyDetection";
+import { whatsAppOTPFormSchema } from "../../actions/schemas";
+import type { PhoneActionStates } from "../../actions/states";
 
 // Define the country code type with only the countries we need
 type CountryCode = "US" | "GB" | "GY" | "JM";

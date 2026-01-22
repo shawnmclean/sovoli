@@ -1,23 +1,21 @@
-import type { Metadata } from "next";
-import { Card, CardBody } from "@sovoli/ui/components/card";
-import { Link } from "@sovoli/ui/components/link";
-import { SearchIcon, ArrowLeftIcon } from "lucide-react";
 import { Button } from "@sovoli/ui/components/button";
-
-import { pluralize } from "~/utils/pluralize";
-import { DirectoryViewTabs } from "../../components/DirectoryViewTabs";
-import { bus } from "~/services/core/bus";
-import { GetAllCategoryAddressesQuery } from "~/modules/organisations/services/queries/GetAllCategoryAddresses";
-import { GetOrgsByCategoryAndLocationQuery } from "~/modules/organisations/services/queries/GetOrgsByCategoryAndLocation";
-import { OrgListItem } from "../../components/OrgListItem";
+import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
-
-import { countryCodeToName, countryNameToCode } from "~/utils/countryUtils";
-import { DirectoryMapClient } from "../../components/DirectoryMapClient";
+import { Link } from "@sovoli/ui/components/link";
+import { ArrowLeftIcon, SearchIcon } from "lucide-react";
+import type { Metadata } from "next";
 import {
   toDisplayLocationSegment,
   toLocationSegment,
 } from "~/modules/organisations/lib/locationSegments";
+import { GetAllCategoryAddressesQuery } from "~/modules/organisations/services/queries/GetAllCategoryAddresses";
+import { GetOrgsByCategoryAndLocationQuery } from "~/modules/organisations/services/queries/GetOrgsByCategoryAndLocation";
+import { bus } from "~/services/core/bus";
+import { countryCodeToName, countryNameToCode } from "~/utils/countryUtils";
+import { pluralize } from "~/utils/pluralize";
+import { DirectoryMapClient } from "../../components/DirectoryMapClient";
+import { DirectoryViewTabs } from "../../components/DirectoryViewTabs";
+import { OrgListItem } from "../../components/OrgListItem";
 
 const CATEGORY_MAP: Record<string, string> = {
   "private-school": "Private School",

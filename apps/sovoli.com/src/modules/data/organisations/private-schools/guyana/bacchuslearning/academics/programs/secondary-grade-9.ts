@@ -1,10 +1,10 @@
-import { SECONDARY_PHOTOS } from "../../photos";
 import type { Program } from "~/modules/academics/types";
+import { SECONDARY_PHOTOS } from "../../photos";
 import { BLCGY_SHARED_TESTIMONIALS } from "../testimonials";
 import {
-  secondaryProgramHighlights,
   BLCGY_SECONDARY_DEPT_ACTIVITIES,
   blcgyProgramQuickFacts,
+  secondaryProgramHighlights,
 } from "./shared";
 
 export const BLCGY_SECONDARY_GRADE_9_PROGRAM: Program = {

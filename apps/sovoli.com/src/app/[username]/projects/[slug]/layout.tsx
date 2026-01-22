@@ -1,31 +1,29 @@
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { TagIcon } from "lucide-react";
-
-import { Footer } from "~/components/footer/Footer";
-import { GalleryCarousel } from "~/components/GalleryCarousel";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import {
   getPriorityBadgeClass,
   getPriorityLabel,
   getPriorityTextClass,
 } from "~/app/(temp)/projects/lib/priorities";
-import type { OrgLocation } from "~/modules/organisations/types";
+import { NavigationDrawer } from "~/app/(tenants)/w/[username]/components/NavigationDrawer";
+import { Footer } from "~/components/footer/Footer";
+import { GalleryCarousel } from "~/components/GalleryCarousel";
+import type { OrgInstance, OrgLocation } from "~/modules/organisations/types";
 import type { Project, ProjectGroup } from "~/modules/projects/types";
-import type { OrgInstance } from "~/modules/organisations/types";
+import { ProjectMetricsSection } from "./components/metrics/ProjectMetricsSection";
+import { ProjectNeedsSection } from "./components/needs/ProjectNeedsSection";
+import { ProjectCoordinators } from "./components/ProjectCoordinators";
+import { ProjectDetailMobileFooter } from "./components/ProjectDetailMobileFooter";
 import { ProjectDetailNavbar } from "./components/ProjectDetailNavbar";
+import { ProjectGroupTracking } from "./components/ProjectGroupTracking";
 import { ProjectHeroSection } from "./components/ProjectHeroSection";
 import { ProjectOrgBadgeSection } from "./components/ProjectOrgBadgeSection";
-import { ProjectDetailMobileFooter } from "./components/ProjectDetailMobileFooter";
-import { ProjectMetricsSection } from "./components/metrics/ProjectMetricsSection";
-import { ProjectCoordinators } from "./components/ProjectCoordinators";
-import { ProjectCartProvider } from "./context/ProjectCartContext";
-import { NavigationDrawer } from "~/app/(tenants)/w/[username]/components/NavigationDrawer";
-import { ProjectTracking } from "./components/ProjectTracking";
-import { ProjectGroupTracking } from "./components/ProjectGroupTracking";
 import { ProjectsInGroupSection } from "./components/ProjectsInGroupSection";
+import { ProjectTracking } from "./components/ProjectTracking";
 import { ProjectPhasesSection } from "./components/phases/ProjectPhasesSection";
-import { ProjectNeedsSection } from "./components/needs/ProjectNeedsSection";
+import { ProjectCartProvider } from "./context/ProjectCartContext";
 import { getOrgInstanceWithProject } from "./lib/getOrgInstanceWithProject";
 
 interface Props {
@@ -86,8 +84,10 @@ function getEarliestProjectByCreation(projects?: Project[]) {
   if (!projects || projects.length === 0) return undefined;
   return projects.reduce<Project | undefined>((earliest, project) => {
     if (!earliest) return project;
-    const earliestTimestamp = getProjectCreationTimestamp(earliest) ?? Number.POSITIVE_INFINITY;
-    const projectTimestamp = getProjectCreationTimestamp(project) ?? Number.POSITIVE_INFINITY;
+    const earliestTimestamp =
+      getProjectCreationTimestamp(earliest) ?? Number.POSITIVE_INFINITY;
+    const projectTimestamp =
+      getProjectCreationTimestamp(project) ?? Number.POSITIVE_INFINITY;
     return projectTimestamp < earliestTimestamp ? project : earliest;
   }, undefined);
 }
@@ -96,8 +96,10 @@ function getLatestProjectByUpdate(projects?: Project[]) {
   if (!projects || projects.length === 0) return undefined;
   return projects.reduce<Project | undefined>((latest, project) => {
     if (!latest) return project;
-    const latestTimestamp = getProjectUpdatedTimestamp(latest) ?? Number.NEGATIVE_INFINITY;
-    const projectTimestamp = getProjectUpdatedTimestamp(project) ?? Number.NEGATIVE_INFINITY;
+    const latestTimestamp =
+      getProjectUpdatedTimestamp(latest) ?? Number.NEGATIVE_INFINITY;
+    const projectTimestamp =
+      getProjectUpdatedTimestamp(project) ?? Number.NEGATIVE_INFINITY;
     return projectTimestamp > latestTimestamp ? project : latest;
   }, undefined);
 }
@@ -144,9 +146,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (project) {
     const fallbackMedia = orgInstance.org.media ?? [];
     const media =
-      project.media && project.media.length > 0
-        ? project.media
-        : fallbackMedia;
+      project.media && project.media.length > 0 ? project.media : fallbackMedia;
 
     const ogImage = media[0]?.url;
     const description =
@@ -188,10 +188,13 @@ export default async function Layout({ children, params, modals }: Props) {
     if (!firstProject) {
       notFound();
     }
-    const earliestProjectForCreated = getEarliestProjectByCreation(group.projects);
+    const earliestProjectForCreated = getEarliestProjectByCreation(
+      group.projects,
+    );
     const latestProjectForUpdated = getLatestProjectByUpdate(group.projects);
     const createdTimestamp =
-      earliestProjectForCreated?.createdAt ?? earliestProjectForCreated?.updatedAt;
+      earliestProjectForCreated?.createdAt ??
+      earliestProjectForCreated?.updatedAt;
     const updatedTimestamp =
       latestProjectForUpdated?.updatedAt ?? latestProjectForUpdated?.createdAt;
 
@@ -243,10 +246,7 @@ export default async function Layout({ children, params, modals }: Props) {
               updatedAt={updatedTimestamp}
             />
 
-            <ProjectsInGroupSection
-              orgInstance={orgInstance}
-              group={group}
-            />
+            <ProjectsInGroupSection orgInstance={orgInstance} group={group} />
           </main>
 
           {children}
@@ -265,9 +265,7 @@ export default async function Layout({ children, params, modals }: Props) {
   const location = resolveProjectLocation(project.locationKey, orgInstance);
   const fallbackMedia = orgInstance.org.media ?? [];
   const media =
-    project.media && project.media.length > 0
-      ? project.media
-      : fallbackMedia;
+    project.media && project.media.length > 0 ? project.media : fallbackMedia;
 
   const projectGroup = project.group;
 

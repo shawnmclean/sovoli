@@ -17,9 +17,7 @@
       {
         "id": "162",
         "name": "Basic Nail Classes",
-        "quickFacts": [
-          "PAYMENT PLAN AVAILABLE"
-        ],
+        "quickFacts": ["PAYMENT PLAN AVAILABLE"],
         "pricing": {
           "registration": [
             {
@@ -35,17 +33,13 @@
             }
           ]
         },
-        "callsToAction": [
-          "REGISTER NOW"
-        ],
+        "callsToAction": ["REGISTER NOW"],
         "matchedPrograms": null
       },
       {
         "id": "839",
         "name": "Advanced Nail Classes",
-        "quickFacts": [
-          "PAYMENT PLAN AVAILABLE"
-        ],
+        "quickFacts": ["PAYMENT PLAN AVAILABLE"],
         "pricing": {
           "registration": [
             {
@@ -61,9 +55,7 @@
             }
           ]
         },
-        "callsToAction": [
-          "REGISTER NOW"
-        ],
+        "callsToAction": ["REGISTER NOW"],
         "matchedPrograms": null
       }
     ],
@@ -85,13 +77,8 @@
     ],
     "urls": [],
     "locations": [],
-    "platformSignals": [
-      "Sponsored"
-    ]
+    "platformSignals": ["Sponsored"]
   },
-  "business": [
-    "Fabulouz Nails by Angel",
-    "Fabulouz Beauty Kingdom"
-  ],
+  "business": ["Fabulouz Nails by Angel", "Fabulouz Beauty Kingdom"],
   "matchedOrgs": null
 }

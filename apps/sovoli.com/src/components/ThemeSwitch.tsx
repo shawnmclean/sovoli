@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState, startTransition } from "react";
-import { useTheme } from "next-themes";
 import { Button } from "@sovoli/ui/components/button";
 import { MoonIcon, SunIcon } from "lucide-react";
+import { useTheme } from "next-themes";
+import { startTransition, useEffect, useState } from "react";
 
 export const ThemeSwitch = () => {
   const { resolvedTheme, setTheme } = useTheme();

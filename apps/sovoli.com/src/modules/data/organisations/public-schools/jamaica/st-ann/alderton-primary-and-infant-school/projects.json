@@ -315,10 +315,12 @@
           "locationKey": "main-campus",
           "startDate": "2025-11-28",
           "internal": false,
-          "needSlugs": [
-            "alderton-air-conditioning-unit-2025"
+          "needSlugs": ["alderton-air-conditioning-unit-2025"],
+          "tags": [
+            "hurricane-recovery",
+            "facilities-repair",
+            "school-equipment"
           ],
-          "tags": ["hurricane-recovery", "facilities-repair", "school-equipment"],
           "notes": "Includes plumbing repairs, electrical restoration, furniture replacement, and educational supplies.",
           "groupOrder": 2,
           "createdAt": "2025-11-28T00:00:00.000Z",
@@ -330,4 +332,3 @@
   ],
   "projects": []
 }
-

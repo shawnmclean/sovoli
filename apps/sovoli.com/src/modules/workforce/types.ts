@@ -1,6 +1,6 @@
 import type { AmountByCurrency } from "../core/economics/types";
-import type { Contact } from "../core/types";
 import type { Media } from "../core/media/types";
+import type { Contact } from "../core/types";
 
 export interface Department {
   name: string;

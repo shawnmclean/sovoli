@@ -37,9 +37,7 @@
           ]
         },
         "schedule": {
-          "times": [
-            "9:00AM - 1:00PM"
-          ]
+          "times": ["9:00AM - 1:00PM"]
         },
         "matchedPrograms": null
       }
@@ -59,16 +57,9 @@
     },
     "socialLinks": [],
     "urls": [],
-    "locations": [
-      "Brunswick Ave\nSpanish Town"
-    ],
-    "platformSignals": [
-      "Sponsored",
-      "See more"
-    ]
+    "locations": ["Brunswick Ave\nSpanish Town"],
+    "platformSignals": ["Sponsored", "See more"]
   },
-  "business": [
-    "Belmo's Learning Hub"
-  ],
+  "business": ["Belmo's Learning Hub"],
   "matchedOrgs": null
 }

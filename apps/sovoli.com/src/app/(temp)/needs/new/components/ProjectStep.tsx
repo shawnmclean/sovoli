@@ -1,11 +1,11 @@
 "use client";
 
-import { Select, SelectItem } from "@sovoli/ui/components/select";
 import { Textarea } from "@sovoli/ui/components/input";
-import { SEVERITY_OPTIONS } from "./options";
-import type { SeverityOptionKey } from "./options";
-import { ProjectMediaUpload } from "./ProjectMediaUpload";
+import { Select, SelectItem } from "@sovoli/ui/components/select";
 import type { Media } from "~/modules/core/media/types";
+import type { SeverityOptionKey } from "./options";
+import { SEVERITY_OPTIONS } from "./options";
+import { ProjectMediaUpload } from "./ProjectMediaUpload";
 
 const SEVERITY_COLORS: Record<SeverityOptionKey, string> = {
   minor: "bg-blue-500",

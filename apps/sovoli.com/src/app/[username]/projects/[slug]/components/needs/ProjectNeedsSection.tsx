@@ -1,21 +1,21 @@
 "use client";
 
-import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Button } from "@sovoli/ui/components/button";
+import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Divider } from "@sovoli/ui/components/divider";
 import {
+  Briefcase,
   CheckCircle2,
+  DollarSign,
   Minus,
+  Package,
   Plus,
   Trash2,
-  Package,
-  Wrench,
   Users,
-  DollarSign,
-  Briefcase,
+  Wrench,
 } from "lucide-react";
-import type { Project } from "~/modules/projects/types";
 import type { Need, NeedType } from "~/modules/needs/types";
+import type { Project } from "~/modules/projects/types";
 import { useProjectCart } from "../../context/ProjectCartContext";
 
 /** Configuration for each need type */
@@ -55,7 +55,16 @@ const NEED_TYPE_CONFIG = {
     textColor: "text-danger",
     bgColor: "bg-danger-100",
   },
-} as const satisfies Record<NeedType, { label: string; pluralLabel: string; icon: typeof Package; textColor: string; bgColor: string }>;
+} as const satisfies Record<
+  NeedType,
+  {
+    label: string;
+    pluralLabel: string;
+    icon: typeof Package;
+    textColor: string;
+    bgColor: string;
+  }
+>;
 
 interface ProjectNeedsSectionProps {
   project: Project;
@@ -107,12 +116,21 @@ function getNeedKey(need: Need): string {
   return need.slug;
 }
 
-function getNeedQuantityAndUnit(need: Need): { quantity: number; unit: string } {
+function getNeedQuantityAndUnit(need: Need): {
+  quantity: number;
+  unit: string;
+} {
   if (need.type === "human") {
-    return { quantity: need.headcount ?? need.quantity ?? 1, unit: "volunteer" };
+    return {
+      quantity: need.headcount ?? need.quantity ?? 1,
+      unit: "volunteer",
+    };
   }
   if (need.type === "material") {
-    return { quantity: need.quantity ?? 1, unit: need.item.unitLabel ?? "item" };
+    return {
+      quantity: need.quantity ?? 1,
+      unit: need.item.unitLabel ?? "item",
+    };
   }
   return { quantity: need.quantity ?? 1, unit: "item" };
 }
@@ -137,7 +155,8 @@ function collectAndCombineNeeds(project: Project): CombinedNeed[] {
     const { quantity, unit } = getNeedQuantityAndUnit(need);
     const unitPrice = getNeedUnitPrice(need);
     const isFulfilled = need.status === "fulfilled";
-    const fulfilledQty = need.fulfillment?.quantityMet ?? (isFulfilled ? quantity : 0);
+    const fulfilledQty =
+      need.fulfillment?.quantityMet ?? (isFulfilled ? quantity : 0);
 
     const existing = needsMap.get(key);
     if (existing) {
@@ -190,7 +209,13 @@ function collectAndCombineNeeds(project: Project): CombinedNeed[] {
 
 /** Group combined needs by type */
 function groupNeedsByType(combinedNeeds: CombinedNeed[]): NeedTypeGroup[] {
-  const typeOrder: NeedType[] = ["material", "service", "human", "financial", "job"];
+  const typeOrder: NeedType[] = [
+    "material",
+    "service",
+    "human",
+    "financial",
+    "job",
+  ];
 
   const groupedByType: Partial<Record<NeedType, CombinedNeed[]>> = {};
 
@@ -213,8 +238,14 @@ function groupNeedsByType(combinedNeeds: CombinedNeed[]): NeedTypeGroup[] {
       });
 
       // Calculate total quantities for the group
-      const totalQuantity = typeNeeds.reduce((sum, n) => sum + n.totalQuantity, 0);
-      const totalFulfilledQuantity = typeNeeds.reduce((sum, n) => sum + n.fulfilledQuantity, 0);
+      const totalQuantity = typeNeeds.reduce(
+        (sum, n) => sum + n.totalQuantity,
+        0,
+      );
+      const totalFulfilledQuantity = typeNeeds.reduce(
+        (sum, n) => sum + n.fulfilledQuantity,
+        0,
+      );
 
       return {
         type,
@@ -230,12 +261,22 @@ function groupNeedsByType(combinedNeeds: CombinedNeed[]): NeedTypeGroup[] {
 function NeedItem({ need }: { need: CombinedNeed }) {
   const { getItemQuantity, setItemQuantity } = useProjectCart();
 
-  const availableToFund = Math.max(0, need.totalQuantity - need.fulfilledQuantity);
+  const availableToFund = Math.max(
+    0,
+    need.totalQuantity - need.fulfilledQuantity,
+  );
   const isFullyFunded = need.isFulfilled || availableToFund === 0;
   const quantity = getItemQuantity(need.key);
   const totalCost = need.unitPrice * availableToFund;
 
-  const createCartItem = (): { id: string; name: string; type: "material" | "labor"; unit: string; unitPrice: number; quantity: number } => ({
+  const createCartItem = (): {
+    id: string;
+    name: string;
+    type: "material" | "labor";
+    unit: string;
+    unitPrice: number;
+    quantity: number;
+  } => ({
     id: need.key,
     name: need.title,
     type: need.type === "material" ? "material" : "labor",
@@ -282,16 +323,22 @@ function NeedItem({ need }: { need: CombinedNeed }) {
       {/* Left: Info */}
       <div className="flex flex-col gap-1 min-w-0 flex-1">
         <span className="font-medium">{need.title}</span>
-        
+
         <div className="flex flex-wrap items-center gap-x-2 text-sm text-default-500">
           <span>
-            <span className="font-semibold text-foreground">{availableToFund}</span> of {need.totalQuantity} {need.unit}{need.totalQuantity !== 1 ? "s" : ""} remaining
+            <span className="font-semibold text-foreground">
+              {availableToFund}
+            </span>{" "}
+            of {need.totalQuantity} {need.unit}
+            {need.totalQuantity !== 1 ? "s" : ""} remaining
           </span>
-          
+
           {totalCost > 0 && (
             <>
               <span className="text-default-300">•</span>
-              <span className="font-semibold text-success">{formatCurrency(totalCost)}</span>
+              <span className="font-semibold text-success">
+                {formatCurrency(totalCost)}
+              </span>
             </>
           )}
         </div>
@@ -320,7 +367,9 @@ function NeedItem({ need }: { need: CombinedNeed }) {
                     <Minus className="h-3.5 w-3.5" />
                   )}
                 </Button>
-                <span className="min-w-[2rem] text-center text-sm font-medium">{quantity}</span>
+                <span className="min-w-[2rem] text-center text-sm font-medium">
+                  {quantity}
+                </span>
                 <Button
                   variant="light"
                   isIconOnly
@@ -355,7 +404,12 @@ function NeedItem({ need }: { need: CombinedNeed }) {
 }
 
 function NeedTypeGroupCard({ group }: { group: NeedTypeGroup }) {
-  const { icon: Icon, bgColor, textColor, pluralLabel } = NEED_TYPE_CONFIG[group.type];
+  const {
+    icon: Icon,
+    bgColor,
+    textColor,
+    pluralLabel,
+  } = NEED_TYPE_CONFIG[group.type];
 
   return (
     <Card className="border-none shadow-sm">
@@ -392,7 +446,9 @@ export function ProjectNeedsSection({ project }: ProjectNeedsSectionProps) {
       <Divider className="my-6 sm:my-8" />
       <section className="mb-6 sm:mb-8">
         <div className="mb-4">
-          <h2 className="text-2xl font-semibold leading-tight tracking-tight">What&apos;s Needed</h2>
+          <h2 className="text-2xl font-semibold leading-tight tracking-tight">
+            What&apos;s Needed
+          </h2>
         </div>
 
         <div className="space-y-4">

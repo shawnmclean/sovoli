@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { findItemById } from "~/modules/data/items";
 import type { CatalogModule, CatalogOffer } from "~/modules/catalogs/types";
 import type { AmountByCurrency } from "~/modules/core/economics/types";
+import { findItemById } from "~/modules/data/items";
 
 /**
  * Zod schema for AmountByCurrency (partial record - all fields optional)

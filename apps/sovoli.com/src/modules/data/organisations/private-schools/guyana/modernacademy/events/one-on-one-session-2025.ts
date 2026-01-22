@@ -23,24 +23,28 @@ export const ONE_ON_ONE_SESSION_2025_EVENT: Event = {
     {
       icon: "users",
       label: "Individual Meetings",
-      description: "Dedicated time slots for tailored feedback and goal setting.",
+      description:
+        "Dedicated time slots for tailored feedback and goal setting.",
     },
     {
       icon: "book-open",
       label: "Progress Reviews",
-      description: "Teachers share assessment results and learning plans for next term.",
+      description:
+        "Teachers share assessment results and learning plans for next term.",
     },
     {
       icon: "heart",
       label: "Collaborative Support",
-      description: "Opportunity for parents to share insights and partner with teachers.",
+      description:
+        "Opportunity for parents to share insights and partner with teachers.",
     },
   ],
   activities: [
     {
       id: "scheduled-conferences",
       title: "Scheduled Conferences",
-      description: "Families attend pre-booked sessions lasting 15 minutes each.",
+      description:
+        "Families attend pre-booked sessions lasting 15 minutes each.",
       duration: "15 minutes per family",
     },
   ],
@@ -48,7 +52,8 @@ export const ONE_ON_ONE_SESSION_2025_EVENT: Event = {
     {
       id: "appointment",
       name: "Book an Appointment",
-      description: "Parents should confirm their meeting time with the class teacher in advance.",
+      description:
+        "Parents should confirm their meeting time with the class teacher in advance.",
       type: "prepare",
       isRequired: true,
     },

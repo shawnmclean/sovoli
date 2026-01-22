@@ -1,9 +1,9 @@
+import { Badge } from "@sovoli/ui/components/badge";
+import { Card, CardBody } from "@sovoli/ui/components/card";
+import { Link } from "@sovoli/ui/components/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getCldOgImageUrl } from "next-cloudinary";
-import { Card, CardBody } from "@sovoli/ui/components/card";
-import { Badge } from "@sovoli/ui/components/badge";
-import { Link } from "@sovoli/ui/components/link";
 import {
   GetKnowledgeBySlugQuery,
   GetKnowledgeBySlugQueryHandler,
@@ -12,10 +12,10 @@ import {
   GetUserKnowledgeByUsernameQuery,
   GetUserKnowledgeByUsernameQueryHandler,
 } from "~/modules/notes/services/GetUserKnowledgeByUsername";
-import { KnowledgeContent } from "./components/KnowledgeContent";
+import { config } from "~/utils/config";
 import { CoverImage } from "./components/CoverImage";
 import { InlinePhotos } from "./components/InlinePhotos";
-import { config } from "~/utils/config";
+import { KnowledgeContent } from "./components/KnowledgeContent";
 
 interface KnowledgePageProps {
   params: Promise<{

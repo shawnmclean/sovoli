@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
 import { Input } from "@sovoli/ui/components/input";
 import { MailIcon, PhoneIcon } from "lucide-react";
+import type React from "react";
+import { useState } from "react";
 
 interface ContactToggleInputProps {
   defaultMode?: "whatsapp" | "email";

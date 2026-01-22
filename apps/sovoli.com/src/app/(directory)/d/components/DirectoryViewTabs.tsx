@@ -1,10 +1,10 @@
 "use client";
 
-import type { Key } from "react";
-import { useMemo } from "react";
-import { Tabs, Tab } from "@sovoli/ui/components/tabs";
+import { Tab, Tabs } from "@sovoli/ui/components/tabs";
 import { ListIcon, MapIcon } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import type { Key } from "react";
+import { useMemo } from "react";
 
 type DirectoryView = "list" | "map";
 

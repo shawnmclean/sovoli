@@ -1,5 +1,5 @@
-import { getOrgInstanceWithProgram } from "../../lib/getOrgInstanceWithProgram";
 import { OrgDetails } from "../../components/org/OrgDetails";
+import { getOrgInstanceWithProgram } from "../../lib/getOrgInstanceWithProgram";
 
 interface Props {
   params: Promise<{ username: string; slug: string }>;
@@ -19,7 +19,5 @@ export default async function OrgPage({ params }: Props) {
     return null;
   }
 
-  return (
-    <OrgDetails orgInstance={result.orgInstance} program={program} />
-  );
+  return <OrgDetails orgInstance={result.orgInstance} program={program} />;
 }

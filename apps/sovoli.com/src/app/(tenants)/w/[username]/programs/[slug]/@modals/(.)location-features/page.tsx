@@ -1,5 +1,5 @@
-import { getOrgInstanceWithProgram } from "../../lib/getOrgInstanceWithProgram";
 import { LocationFeaturesDetails } from "../../components/locationFeatures/LocationFeaturesDetails";
+import { getOrgInstanceWithProgram } from "../../lib/getOrgInstanceWithProgram";
 
 interface Props {
   params: Promise<{ username: string; slug: string }>;

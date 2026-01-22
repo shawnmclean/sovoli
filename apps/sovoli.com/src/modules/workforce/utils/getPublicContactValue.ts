@@ -13,4 +13,3 @@ export function getPublicContactValue(
     member.contacts?.find((c) => c.type === type && c.isPublic)?.value ?? null
   );
 }
-

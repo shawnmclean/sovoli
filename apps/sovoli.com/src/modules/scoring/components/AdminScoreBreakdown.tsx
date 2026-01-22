@@ -1,24 +1,22 @@
 "use client";
 
-import React from "react";
-import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
-import { Progress } from "@sovoli/ui/components/progress";
 import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
+import { Alert } from "@sovoli/ui/components/alert";
+import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
+import { Chip } from "@sovoli/ui/components/chip";
+import { Progress } from "@sovoli/ui/components/progress";
 import {
+  AlertTriangleIcon,
   CheckCircleIcon,
-  XCircleIcon,
-  PlayIcon,
   ClipboardCheckIcon,
   HelpCircleIcon,
-  AlertTriangleIcon,
+  PlayIcon,
+  XCircleIcon,
 } from "lucide-react";
-
-import { Alert } from "@sovoli/ui/components/alert";
-import { Chip } from "@sovoli/ui/components/chip";
-import { OrgRuleGroupIcon } from "./OrgRuleGroupIcon";
-
+import React from "react";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { categoryRuleSets } from "../ruleSets";
+import { OrgRuleGroupIcon } from "./OrgRuleGroupIcon";
 
 export interface AdminScoreBreakdownProps {
   orgInstance: OrgInstance;

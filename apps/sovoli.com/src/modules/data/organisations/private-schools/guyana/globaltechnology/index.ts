@@ -15,9 +15,7 @@ export const GLOBAL_TECHNOLOGY_ORG: OrgInstance = {
           countryCode: "GY",
         },
         placeId: "ChIJozT46g7vr40RkD5N3M5y-VU",
-        contacts: [
-          { type: "phone", value: "+592-225-4657", isPublic: true },
-        ],
+        contacts: [{ type: "phone", value: "+592-225-4657", isPublic: true }],
         isPrimary: true,
       },
     ],

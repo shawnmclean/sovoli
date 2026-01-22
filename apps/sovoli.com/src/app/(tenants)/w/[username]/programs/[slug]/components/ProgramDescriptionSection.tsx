@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
+import { useState } from "react";
 import type { Program } from "~/modules/academics/types";
 
 interface ProgramDescriptionSectionProps {

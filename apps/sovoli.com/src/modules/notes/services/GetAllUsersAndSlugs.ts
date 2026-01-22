@@ -1,5 +1,5 @@
-import type { UserSlug } from "./types";
 import { KnowledgeFileCache } from "./KnowledgeFileCache";
+import type { UserSlug } from "./types";
 
 interface Result {
   usersAndSlugs: UserSlug[];

@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
-import { GY_PRIMARY_GRADE_1_V1 } from "~/modules/data/academics/guyana/programs";
-import { PRIMARY_PHOTOS } from "../../photos";
 import type { Program } from "~/modules/academics/types";
+import { GY_PRIMARY_GRADE_1_V1 } from "~/modules/data/academics/guyana/programs";
+import { findItemById } from "~/modules/data/items";
+import { PRIMARY_PHOTOS } from "../../photos";
 import { BLCGY_PRIMARY_GRADE_1_2025_T1 } from "../cycles";
 import { BLCGY_SHARED_TESTIMONIALS } from "../testimonials";
 import {
-  primaryProgramHighlights,
   BLCGY_PRIMARY_DEPT_ACTIVITIES,
   blcgyProgramQuickFacts,
+  primaryProgramHighlights,
 } from "./shared";
-import { findItemById } from "~/modules/data/items";
 
 export const BLCGY_PRIMARY_GRADE_1_PROGRAM: Program = {
   id: "blcgy-primary-grade-1",

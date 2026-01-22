@@ -31,9 +31,9 @@
  */
 
 import { v2 as cloudinary } from "cloudinary";
-import path from "path";
-import fs from "fs";
 import dotenv from "dotenv";
+import fs from "fs";
+import path from "path";
 
 // Load environment variables from root .env file
 dotenv.config({ path: path.join(process.cwd(), "../../../.env") });
@@ -98,7 +98,9 @@ async function uploadMedia() {
     const useLargeUpload = fileSizeInMB > 100;
 
     if (useLargeUpload) {
-      console.log(`File size: ${fileSizeInMB.toFixed(2)}MB - Using large file upload`);
+      console.log(
+        `File size: ${fileSizeInMB.toFixed(2)}MB - Using large file upload`,
+      );
     }
 
     const uploadOptions = {
@@ -145,7 +147,9 @@ async function uploadMedia() {
               // If eager transformation was created, use that instead
               if (result.eager && result.eager.length > 0) {
                 const compressed = result.eager[0];
-                console.log("Using compressed version from eager transformation");
+                console.log(
+                  "Using compressed version from eager transformation",
+                );
                 // Merge the compressed version data with the original result
                 resolve({
                   ...result,

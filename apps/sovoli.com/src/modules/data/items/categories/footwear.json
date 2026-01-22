@@ -1,153 +1,153 @@
 {
-	"id": "footwear-group",
-	"name": "Footwear",
-	"gpcCode": "63000000",
-	"children": [
-		{
-			"id": "footwear",
-			"name": "Footwear",
-			"gpcCode": "63010000",
-			"parentId": "footwear-group",
-			"children": [
-				{
-					"id": "athletic-footwear",
-					"name": "Athletic Footwear",
-					"gpcCode": "63010100",
-					"parentId": "footwear-group",
-					"children": [
-						{
-							"id": "athletic-footwear-general-purpose",
-							"name": "Athletic Footwear - General Purpose",
-							"gpcCode": "10001070",
-							"gpcDescription": "Includes any products that can be described/observed as footwear to be worn during active leisure. They are typically made of a flexible textile, rubber or plastic or a combination of these materials. Specifically includes Non-Specialist Walking Shoes and Non-Specialist Shoes worn within a gymnasium.",
-							"parentId": "athletic-footwear"
-						},
-						{
-							"id": "athletic-footwear-specialist",
-							"name": "Athletic Footwear - Specialist",
-							"gpcCode": "10001071",
-							"gpcDescription": "Includes any products that can be described/observed as specific, specially designed footwear to be worn during specialist sport activities. Specifically includes Spiked Running Shoes and Studded Rugby Boots.",
-							"parentId": "athletic-footwear"
-						}
-					]
-				},
-				{
-					"id": "footwear-accessories",
-					"name": "Footwear Accessories",
-					"gpcCode": "63010200",
-					"parentId": "footwear-group",
-					"children": [
-						{
-							"id": "footwear-replacement-parts-accessories",
-							"name": "Footwear - Replacement Parts/Accessories",
-							"gpcCode": "10000433",
-							"gpcDescription": "Includes any products that can be described/observed as a replacement part for footwear or a shoe care accessory. Includes products such as replacement shoe laces and heel caps as well as shoe care accessories such as brushes and sponges. Also included are products that aid in the putting on of shoes such as shoe horns and products that assist in the caring for shoes in storage such as shoe trees and shoe shapers.",
-							"parentId": "footwear-accessories"
-						},
-						{
-							"id": "footwear-accessories-variety-packs",
-							"name": "Footwear Accessories Variety Packs",
-							"gpcCode": "10000700",
-							"gpcDescription": "Includes any products that can be described/observed as two or more distinct Footwear Accessories products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Footwear Accessories class. Includes products such as shoe brushes and shoe polish sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
-							"parentId": "footwear-accessories"
-						},
-						{
-							"id": "footwear-inserts",
-							"name": "Footwear Inserts",
-							"gpcCode": "10001074",
-							"gpcDescription": "Includes any products that can be described/observed as Footwear Inserts that are worn inside either boots or shoes to provide additional comfort. ",
-							"parentId": "footwear-accessories"
-						},
-						{
-							"id": "shoe-cleaning-care-preparations",
-							"name": "Shoe Cleaning/Care Preparations",
-							"gpcCode": "10000400",
-							"gpcDescription": "Includes any products that may be observed/described as a preparation specifically designed for the cleaning, care and maintenance of footwear uppers. Includes shoe cleaners, shoe leather conditioners, shoe polish, shoe deodorants and waterproofing products for shoes.",
-							"parentId": "footwear-accessories"
-						},
-						{
-							"id": "shoe-colour-dyes",
-							"name": "Shoe Colour/Dyes",
-							"gpcCode": "10000432",
-							"gpcDescription": "Includes any products that can be described/observed as a coloured pigment specifically designed to permanently colour the surface of a shoe, with the purpose of either restoring faded shoe colour or changing the shoe colour.",
-							"parentId": "footwear-accessories"
-						}
-					]
-				},
-				{
-					"id": "general-purpose-footwear",
-					"name": "General Purpose Footwear",
-					"gpcCode": "63010300",
-					"parentId": "footwear-group",
-					"children": [
-						{
-							"id": "boots-general-purpose",
-							"name": "Boots - General Purpose",
-							"gpcCode": "10001076",
-							"gpcDescription": "Includes any products that can be described/observed as footwear extending above the ankle that can be worn every day, indoors and outdoors, and are not designed for a specific purpose such as safety boots that incorporate steel toe caps. Typically the uppers are made of a robust leather, textile or plastic. ",
-							"parentId": "general-purpose-footwear"
-						},
-						{
-							"id": "shoes-general-purpose",
-							"name": "Shoes - General Purpose",
-							"gpcCode": "10001077",
-							"gpcDescription": "Includes any products that can be described/observed as footwear not extending above the ankle that can be worn every day, indoors and outdoors and are not designed for a specific purpose such as safety shoes that incorporate steel toecaps. Typically the uppers are made of robust leather, textile or plastic. ",
-							"parentId": "general-purpose-footwear"
-						}
-					]
-				},
-				{
-					"id": "indoor-footwear",
-					"name": "Indoor Footwear",
-					"gpcCode": "63010400",
-					"parentId": "footwear-group",
-					"children": [
-						{
-							"id": "indoor-footwear-fully-enclosed-uppers",
-							"name": "Indoor Footwear - Fully Enclosed Uppers",
-							"gpcCode": "10001078",
-							"gpcDescription": "Includes any products that can be described/observed as Indoor Footwear with fully enclosed uppers that do not expose the toe, back or instep of the foot. Typically the uppers are made of a soft, comfortable textile. Specifically includes Indoor Slippers with a Fully Enclosed Upper.",
-							"parentId": "indoor-footwear"
-						},
-						{
-							"id": "indoor-footwear-partially-enclosed-uppers",
-							"name": "Indoor Footwear - Partially Enclosed Uppers",
-							"gpcCode": "10001079",
-							"gpcDescription": "Includes any products that can be described/observed as Indoor Footwear with partially enclosed uppers that expose part of the foot such as the toe, back or instep. Typically the uppers are made of a soft, comfortable textile. Specifically includes Indoor Slippers with a Partially Enclosed Upper.",
-							"parentId": "indoor-footwear"
-						}
-					]
-				},
-				{
-					"id": "safety-protective-footwear",
-					"name": "Safety/Protective Footwear",
-					"gpcCode": "63010500",
-					"parentId": "footwear-group",
-					"children": [
-						{
-							"id": "safety-protective-occupational-overshoes",
-							"name": "Safety/Protective Occupational Overshoes",
-							"gpcCode": "10001081",
-							"gpcDescription": "Includes any products that can be described/observed as an article of footwear worn over a shoe or boot to protect them against damage.",
-							"parentId": "safety-protective-footwear"
-						},
-						{
-							"id": "safety-protective-occupational-shoes",
-							"name": "Safety/Protective Occupational Shoes",
-							"gpcCode": "10001082",
-							"gpcDescription": "Includes any products that can be described/observed as footwear not extending above the ankle that are worn to protect the foot from harm such as impact and heat. Typically the uppers are made of robust leather, textile or plastic.",
-							"parentId": "safety-protective-footwear"
-						},
-						{
-							"id": "safety-protective-occupational-boots",
-							"name": "Safety/Protective/Occupational Boots",
-							"gpcCode": "10001080",
-							"gpcDescription": "Includes any products that can be described/ observed as footwear with uppers extending above the ankle that are worn to protect the foot from harm such as impact and heat.Typically the uppers are made of robust materials such as leather or textile and can incorporate safety features such as steel toecaps, conductive properties and resistance to heat. ",
-							"parentId": "safety-protective-footwear"
-						}
-					]
-				}
-			]
-		}
-	]
+  "id": "footwear-group",
+  "name": "Footwear",
+  "gpcCode": "63000000",
+  "children": [
+    {
+      "id": "footwear",
+      "name": "Footwear",
+      "gpcCode": "63010000",
+      "parentId": "footwear-group",
+      "children": [
+        {
+          "id": "athletic-footwear",
+          "name": "Athletic Footwear",
+          "gpcCode": "63010100",
+          "parentId": "footwear-group",
+          "children": [
+            {
+              "id": "athletic-footwear-general-purpose",
+              "name": "Athletic Footwear - General Purpose",
+              "gpcCode": "10001070",
+              "gpcDescription": "Includes any products that can be described/observed as footwear to be worn during active leisure. They are typically made of a flexible textile, rubber or plastic or a combination of these materials. Specifically includes Non-Specialist Walking Shoes and Non-Specialist Shoes worn within a gymnasium.",
+              "parentId": "athletic-footwear"
+            },
+            {
+              "id": "athletic-footwear-specialist",
+              "name": "Athletic Footwear - Specialist",
+              "gpcCode": "10001071",
+              "gpcDescription": "Includes any products that can be described/observed as specific, specially designed footwear to be worn during specialist sport activities. Specifically includes Spiked Running Shoes and Studded Rugby Boots.",
+              "parentId": "athletic-footwear"
+            }
+          ]
+        },
+        {
+          "id": "footwear-accessories",
+          "name": "Footwear Accessories",
+          "gpcCode": "63010200",
+          "parentId": "footwear-group",
+          "children": [
+            {
+              "id": "footwear-replacement-parts-accessories",
+              "name": "Footwear - Replacement Parts/Accessories",
+              "gpcCode": "10000433",
+              "gpcDescription": "Includes any products that can be described/observed as a replacement part for footwear or a shoe care accessory. Includes products such as replacement shoe laces and heel caps as well as shoe care accessories such as brushes and sponges. Also included are products that aid in the putting on of shoes such as shoe horns and products that assist in the caring for shoes in storage such as shoe trees and shoe shapers.",
+              "parentId": "footwear-accessories"
+            },
+            {
+              "id": "footwear-accessories-variety-packs",
+              "name": "Footwear Accessories Variety Packs",
+              "gpcCode": "10000700",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Footwear Accessories products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Footwear Accessories class. Includes products such as shoe brushes and shoe polish sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "footwear-accessories"
+            },
+            {
+              "id": "footwear-inserts",
+              "name": "Footwear Inserts",
+              "gpcCode": "10001074",
+              "gpcDescription": "Includes any products that can be described/observed as Footwear Inserts that are worn inside either boots or shoes to provide additional comfort. ",
+              "parentId": "footwear-accessories"
+            },
+            {
+              "id": "shoe-cleaning-care-preparations",
+              "name": "Shoe Cleaning/Care Preparations",
+              "gpcCode": "10000400",
+              "gpcDescription": "Includes any products that may be observed/described as a preparation specifically designed for the cleaning, care and maintenance of footwear uppers. Includes shoe cleaners, shoe leather conditioners, shoe polish, shoe deodorants and waterproofing products for shoes.",
+              "parentId": "footwear-accessories"
+            },
+            {
+              "id": "shoe-colour-dyes",
+              "name": "Shoe Colour/Dyes",
+              "gpcCode": "10000432",
+              "gpcDescription": "Includes any products that can be described/observed as a coloured pigment specifically designed to permanently colour the surface of a shoe, with the purpose of either restoring faded shoe colour or changing the shoe colour.",
+              "parentId": "footwear-accessories"
+            }
+          ]
+        },
+        {
+          "id": "general-purpose-footwear",
+          "name": "General Purpose Footwear",
+          "gpcCode": "63010300",
+          "parentId": "footwear-group",
+          "children": [
+            {
+              "id": "boots-general-purpose",
+              "name": "Boots - General Purpose",
+              "gpcCode": "10001076",
+              "gpcDescription": "Includes any products that can be described/observed as footwear extending above the ankle that can be worn every day, indoors and outdoors, and are not designed for a specific purpose such as safety boots that incorporate steel toe caps. Typically the uppers are made of a robust leather, textile or plastic. ",
+              "parentId": "general-purpose-footwear"
+            },
+            {
+              "id": "shoes-general-purpose",
+              "name": "Shoes - General Purpose",
+              "gpcCode": "10001077",
+              "gpcDescription": "Includes any products that can be described/observed as footwear not extending above the ankle that can be worn every day, indoors and outdoors and are not designed for a specific purpose such as safety shoes that incorporate steel toecaps. Typically the uppers are made of robust leather, textile or plastic. ",
+              "parentId": "general-purpose-footwear"
+            }
+          ]
+        },
+        {
+          "id": "indoor-footwear",
+          "name": "Indoor Footwear",
+          "gpcCode": "63010400",
+          "parentId": "footwear-group",
+          "children": [
+            {
+              "id": "indoor-footwear-fully-enclosed-uppers",
+              "name": "Indoor Footwear - Fully Enclosed Uppers",
+              "gpcCode": "10001078",
+              "gpcDescription": "Includes any products that can be described/observed as Indoor Footwear with fully enclosed uppers that do not expose the toe, back or instep of the foot. Typically the uppers are made of a soft, comfortable textile. Specifically includes Indoor Slippers with a Fully Enclosed Upper.",
+              "parentId": "indoor-footwear"
+            },
+            {
+              "id": "indoor-footwear-partially-enclosed-uppers",
+              "name": "Indoor Footwear - Partially Enclosed Uppers",
+              "gpcCode": "10001079",
+              "gpcDescription": "Includes any products that can be described/observed as Indoor Footwear with partially enclosed uppers that expose part of the foot such as the toe, back or instep. Typically the uppers are made of a soft, comfortable textile. Specifically includes Indoor Slippers with a Partially Enclosed Upper.",
+              "parentId": "indoor-footwear"
+            }
+          ]
+        },
+        {
+          "id": "safety-protective-footwear",
+          "name": "Safety/Protective Footwear",
+          "gpcCode": "63010500",
+          "parentId": "footwear-group",
+          "children": [
+            {
+              "id": "safety-protective-occupational-overshoes",
+              "name": "Safety/Protective Occupational Overshoes",
+              "gpcCode": "10001081",
+              "gpcDescription": "Includes any products that can be described/observed as an article of footwear worn over a shoe or boot to protect them against damage.",
+              "parentId": "safety-protective-footwear"
+            },
+            {
+              "id": "safety-protective-occupational-shoes",
+              "name": "Safety/Protective Occupational Shoes",
+              "gpcCode": "10001082",
+              "gpcDescription": "Includes any products that can be described/observed as footwear not extending above the ankle that are worn to protect the foot from harm such as impact and heat. Typically the uppers are made of robust leather, textile or plastic.",
+              "parentId": "safety-protective-footwear"
+            },
+            {
+              "id": "safety-protective-occupational-boots",
+              "name": "Safety/Protective/Occupational Boots",
+              "gpcCode": "10001080",
+              "gpcDescription": "Includes any products that can be described/ observed as footwear with uppers extending above the ankle that are worn to protect the foot from harm such as impact and heat.Typically the uppers are made of robust materials such as leather or textile and can incorporate safety features such as steel toecaps, conductive properties and resistance to heat. ",
+              "parentId": "safety-protective-footwear"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

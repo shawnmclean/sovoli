@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { trackProjectAnalytics } from "../lib/projectAnalytics";
 import type { Project } from "~/modules/projects/types";
+import { trackProjectAnalytics } from "../lib/projectAnalytics";
 
 interface ProjectTrackingProps {
   project: Project;

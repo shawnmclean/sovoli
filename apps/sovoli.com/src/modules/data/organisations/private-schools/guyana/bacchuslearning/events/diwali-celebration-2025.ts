@@ -1,5 +1,5 @@
-import type { Event } from "~/modules/events/types";
 import type { Media } from "~/modules/core/media/types";
+import type { Event } from "~/modules/events/types";
 
 const DIWALI_EVENT_PHOTOS: Media[] = [
   {

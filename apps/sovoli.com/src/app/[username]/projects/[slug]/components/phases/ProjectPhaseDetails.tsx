@@ -1,32 +1,32 @@
 "use client";
 
-import { useEffect } from "react";
-import {
-  DrawerContent,
-  DrawerHeader as DrawerHeaderComponent,
-  DrawerBody as DrawerBodyComponent,
-} from "@sovoli/ui/components/drawer";
+import { Alert } from "@sovoli/ui/components/alert";
 import { Button } from "@sovoli/ui/components/button";
 import { Card } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
 import { Divider } from "@sovoli/ui/components/divider";
-import { Alert } from "@sovoli/ui/components/alert";
 import {
+  DrawerBody as DrawerBodyComponent,
+  DrawerContent,
+  DrawerHeader as DrawerHeaderComponent,
+} from "@sovoli/ui/components/drawer";
+import {
+  Calendar,
   CheckCircle2,
   Circle,
   Clock,
-  Calendar,
-  Package,
   ImageIcon,
   Minus,
+  Package,
   Plus,
   Trash2,
 } from "lucide-react";
-import type { Project, ProjectStatus } from "~/modules/projects/types";
+import { useEffect } from "react";
 import type { Need } from "~/modules/needs/types";
-import { trackProjectAnalytics } from "../../lib/projectAnalytics";
-import { useProjectCart } from "../../context/ProjectCartContext";
+import type { Project, ProjectStatus } from "~/modules/projects/types";
 import { pluralize } from "~/utils/pluralize";
+import { useProjectCart } from "../../context/ProjectCartContext";
+import { trackProjectAnalytics } from "../../lib/projectAnalytics";
 
 interface ProjectPhaseDetailsProps {
   project: Project;
@@ -37,7 +37,13 @@ const STATUS_CONFIG: Record<
   ProjectStatus,
   {
     label: string;
-    color: "default" | "primary" | "secondary" | "success" | "warning" | "danger";
+    color:
+      | "default"
+      | "primary"
+      | "secondary"
+      | "success"
+      | "warning"
+      | "danger";
     Icon: typeof Circle;
   }
 > = {
@@ -65,12 +71,21 @@ function formatCurrency(amount: number): string {
   return `$${amount.toLocaleString()} JMD`;
 }
 
-function getNeedQuantityAndUnit(need: Need): { totalQuantity: number; unit: string } {
+function getNeedQuantityAndUnit(need: Need): {
+  totalQuantity: number;
+  unit: string;
+} {
   if (need.type === "human") {
-    return { totalQuantity: need.headcount ?? need.quantity ?? 1, unit: "volunteer" };
+    return {
+      totalQuantity: need.headcount ?? need.quantity ?? 1,
+      unit: "volunteer",
+    };
   }
   if (need.type === "material") {
-    return { totalQuantity: need.quantity ?? 1, unit: need.item.unitLabel ?? "item" };
+    return {
+      totalQuantity: need.quantity ?? 1,
+      unit: need.item.unitLabel ?? "item",
+    };
   }
   return { totalQuantity: need.quantity ?? 1, unit: "item" };
 }
@@ -99,17 +114,18 @@ function getNeedKey(need: Need): string {
 
 function NeedCard({ need }: { need: Need }) {
   const { getItemQuantity, setItemQuantity } = useProjectCart();
-  
+
   const isFulfilled = need.status === "fulfilled";
   const isInProgress = need.status === "in-progress";
-  
+
   // Get need details for funding - use consistent key that matches ProjectNeedsSection
   const needId = getNeedKey(need);
   const { totalQuantity, unit } = getNeedQuantityAndUnit(need);
   // Match ProjectNeedsSection pattern exactly for fulfillment extraction
-  const fulfilledQuantity = need.fulfillment?.quantityMet ?? (isFulfilled ? totalQuantity : 0);
+  const fulfilledQuantity =
+    need.fulfillment?.quantityMet ?? (isFulfilled ? totalQuantity : 0);
   const unitPrice = getNeedUnitPrice(need, totalQuantity);
-  
+
   const quantity = getItemQuantity(needId);
   const availableToFund = Math.max(0, totalQuantity - fulfilledQuantity);
   const isFullyFunded = isFulfilled || availableToFund === 0;
@@ -207,9 +223,7 @@ function NeedCard({ need }: { need: Need }) {
               <span className="font-semibold text-sm">
                 {formatCurrency(unitPrice)}
               </span>
-              <span className="text-xs text-default-400 block">
-                per {unit}
-              </span>
+              <span className="text-xs text-default-400 block">per {unit}</span>
             </div>
           )}
         </div>
@@ -218,10 +232,13 @@ function NeedCard({ need }: { need: Need }) {
         {!isFullyFunded && (
           <>
             <Divider />
-            
+
             <div className="flex items-center justify-between gap-3">
               <span className="text-xs text-default-500">
-                <span className="font-semibold text-foreground">{availableToFund}</span> of {totalQuantity} {pluralize(totalQuantity, unit)} remaining
+                <span className="font-semibold text-foreground">
+                  {availableToFund}
+                </span>{" "}
+                of {totalQuantity} {pluralize(totalQuantity, unit)} remaining
               </span>
 
               {quantity > 0 ? (
@@ -274,11 +291,7 @@ function NeedCard({ need }: { need: Need }) {
                   )}
                 </div>
               ) : (
-                <Button
-                  color="primary"
-                  size="sm"
-                  onPress={handleStart}
-                >
+                <Button color="primary" size="sm" onPress={handleStart}>
                   Fund
                 </Button>
               )}
@@ -343,7 +356,8 @@ export function ProjectPhaseDetails({
   const statusConfig = STATUS_CONFIG[status];
   const StatusIcon = statusConfig.Icon;
 
-  const phaseIndex = project.phases?.findIndex((p) => p.slug === phaseSlug) ?? 0;
+  const phaseIndex =
+    project.phases?.findIndex((p) => p.slug === phaseSlug) ?? 0;
   const needs = phase.needs ?? [];
   const hasMedia = phase.media && phase.media.length > 0;
 
@@ -373,10 +387,11 @@ export function ProjectPhaseDetails({
                 </div>
 
                 {phase.description && (
-                  <p className="text-sm text-default-600">{phase.description}</p>
+                  <p className="text-sm text-default-600">
+                    {phase.description}
+                  </p>
                 )}
               </div>
-
 
               {/* Timeline */}
               {(phase.startDate ?? phase.endDate) && (
@@ -388,14 +403,22 @@ export function ProjectPhaseDetails({
                   <div className="grid grid-cols-2 gap-4">
                     {phase.startDate && (
                       <div>
-                        <p className="text-xs text-default-500 mb-1">Start Date</p>
-                        <p className="text-sm font-medium">{formatDate(phase.startDate)}</p>
+                        <p className="text-xs text-default-500 mb-1">
+                          Start Date
+                        </p>
+                        <p className="text-sm font-medium">
+                          {formatDate(phase.startDate)}
+                        </p>
                       </div>
                     )}
                     {phase.endDate && (
                       <div>
-                        <p className="text-xs text-default-500 mb-1">End Date</p>
-                        <p className="text-sm font-medium">{formatDate(phase.endDate)}</p>
+                        <p className="text-xs text-default-500 mb-1">
+                          End Date
+                        </p>
+                        <p className="text-sm font-medium">
+                          {formatDate(phase.endDate)}
+                        </p>
                       </div>
                     )}
                   </div>
@@ -450,7 +473,9 @@ export function ProjectPhaseDetails({
               {/* Empty State */}
               {needs.length === 0 && !hasMedia && !phase.description && (
                 <Alert color="default" variant="flat">
-                  <p className="text-sm">No additional details available for this phase.</p>
+                  <p className="text-sm">
+                    No additional details available for this phase.
+                  </p>
                 </Alert>
               )}
             </div>
@@ -460,4 +485,3 @@ export function ProjectPhaseDetails({
     </DrawerContent>
   );
 }
-

@@ -37,5 +37,3 @@ export const SVN_ORG: OrgInstance = {
   workforceModule: null,
   scoringModule: null,
 };
-
-

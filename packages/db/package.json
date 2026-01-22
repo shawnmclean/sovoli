@@ -1,26 +1,26 @@
 {
-	"name": "@sovoli/db",
-	"version": "0.1.0",
-	"private": true,
-	"type": "module",
-	"exports": {
-		".": "./src/index.ts",
-		"./schema": "./src/schema/index.ts"
-	},
-	"scripts": {
-		"build": "tsc",
-		"clean": "git clean -xdf node_modules dist .turbo",
-		"format": "prettier --check . --ignore-path ../../.gitignore",
-		"lint": "eslint",
-		"typecheck": "tsc --noEmit --emitDeclarationOnly false"
-	},
-	"devDependencies": {
-		"@sovoli/eslint-config": "workspace:*",
-		"@sovoli/typescript-config": "workspace:*",
-		"@sovoli/prettier-config": "workspace:*",
-		"eslint": "catalog:",
-		"prettier": "catalog:",
-		"typescript": "catalog:"
-	},
-	"prettier": "@sovoli/prettier-config"
+  "name": "@sovoli/db",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./schema": "./src/schema/index.ts"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "git clean -xdf node_modules dist .turbo",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "devDependencies": {
+    "@sovoli/eslint-config": "workspace:*",
+    "@sovoli/typescript-config": "workspace:*",
+    "@sovoli/prettier-config": "workspace:*",
+    "eslint": "catalog:",
+    "prettier": "catalog:",
+    "typescript": "catalog:"
+  },
+  "prettier": "@sovoli/prettier-config"
 }

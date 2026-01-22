@@ -1,17 +1,17 @@
 "use server";
 
 import fs from "fs";
-import path from "path";
 import { revalidatePath } from "next/cache";
-import { getChangedFields } from "./utils/change-tracking";
+import path from "path";
+import type { ProgramEvidence } from "./types/lead-extraction-schema";
 import type { ChangeMetadata } from "./utils/change-tracking";
+import { getChangedFields } from "./utils/change-tracking";
 import {
-  extractStartDate,
   calculateEndDate,
+  extractStartDate,
   generateCycleId,
   transformPricingToPackage,
 } from "./utils/cycle-utils";
-import type { ProgramEvidence } from "./types/lead-extraction-schema";
 
 // In Next.js, process.cwd() points to the project root (apps/sovoli.com)
 // We need to go up two levels to get to the monorepo root
@@ -97,8 +97,7 @@ function findProgramFile(
         }
       }
     } catch {
-      // Continue to next file
-      continue;
+      /* ignore missing or invalid files */
     }
   }
 
@@ -365,10 +364,7 @@ export async function saveProgramChanges(
         : { ...existingProgram, ...programData };
 
     // Track changes
-    const updatedFields = getChangedFields(
-      existingProgram,
-      mergedProgram,
-    );
+    const updatedFields = getChangedFields(existingProgram, mergedProgram);
     const isNew = Object.keys(existingProgram).length === 0;
 
     const changes: ChangeMetadata = {

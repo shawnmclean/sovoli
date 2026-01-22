@@ -55,12 +55,8 @@
     "socialLinks": [],
     "urls": [],
     "locations": [],
-    "platformSignals": [
-      "Sponsored"
-    ]
+    "platformSignals": ["Sponsored"]
   },
-  "business": [
-    "Rainbow Academy Online School"
-  ],
+  "business": ["Rainbow Academy Online School"],
   "matchedOrgs": null
 }

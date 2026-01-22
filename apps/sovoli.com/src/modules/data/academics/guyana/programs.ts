@@ -1,10 +1,10 @@
 import type {
+  Course,
   ProgramAssessment,
   ProgramAssessmentVersion,
+  ProgramGroup,
   StandardProgram,
   StandardProgramVersion,
-  Course,
-  ProgramGroup,
 } from "~/modules/academics/types";
 import { hydrateProgramCategory } from "~/modules/data/academics/categories";
 

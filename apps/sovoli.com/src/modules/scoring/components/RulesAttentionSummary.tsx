@@ -1,28 +1,26 @@
 "use client";
 
-import React, { useState } from "react";
 import { Alert } from "@sovoli/ui/components/alert";
 import { Button } from "@sovoli/ui/components/button";
+import { Chip } from "@sovoli/ui/components/chip";
 import { Link } from "@sovoli/ui/components/link";
 import {
+  AlertTriangleIcon,
   ChevronDownIcon,
   ChevronUpIcon,
-  WrenchIcon,
   ClipboardListIcon,
-  ShieldCheckIcon,
-  AlertTriangleIcon,
   RocketIcon,
+  ShieldCheckIcon,
+  WrenchIcon,
 } from "lucide-react";
-
-import type { RuleScoreMap } from "../types";
-import type { RuleKey } from "../rules";
-import { pluralize } from "~/utils/pluralize";
-import { Chip } from "@sovoli/ui/components/chip";
+import React, { useState } from "react";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
-import { OrgRuleGroupIcon } from "./OrgRuleGroupIcon";
-import { categoryRuleSets } from "../ruleSets";
 import type { OrgInstance } from "~/modules/organisations/types";
-import type { ScoredRule } from "../types";
+import { pluralize } from "~/utils/pluralize";
+import { categoryRuleSets } from "../ruleSets";
+import type { RuleKey } from "../rules";
+import type { RuleScoreMap, ScoredRule } from "../types";
+import { OrgRuleGroupIcon } from "./OrgRuleGroupIcon";
 
 export interface RulesAttentionSummaryProps {
   orgInstance: OrgInstance;

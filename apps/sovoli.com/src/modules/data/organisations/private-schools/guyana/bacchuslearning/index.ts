@@ -2,11 +2,11 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import { OrgLocationFeature } from "~/modules/organisations/types";
 import { BACCHUS_LEARNING_ACADEMIC } from "./academic";
 import { ORG_USERNAME } from "./constants";
-import { BACCHUS_LEARNING_OFFERINGS } from "./offering";
-import { BACCHUS_LEARNING_WORKFORCE } from "./workforce";
-import { BACCHUS_LEARNING_WEBSITE } from "./website";
 import { BACCHUS_LEARNING_EVENTS } from "./events";
+import { BACCHUS_LEARNING_OFFERINGS } from "./offering";
 import { BACCHUS_LEARNING_PHOTOS } from "./photos";
+import { BACCHUS_LEARNING_WEBSITE } from "./website";
+import { BACCHUS_LEARNING_WORKFORCE } from "./workforce";
 
 export const BACCHUS_LEARNING_ORG: OrgInstance = {
   org: {

@@ -1,13 +1,12 @@
 "use client";
 
 import { Button } from "@sovoli/ui/components/button";
+import { Skeleton } from "@sovoli/ui/components/skeleton";
+import { UserPlus } from "lucide-react";
 import Link from "next/link";
-
 import type { Program, ProgramCycle } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
-import { UserPlus } from "lucide-react";
 import { useProgramCycleSelection } from "../../context/ProgramCycleSelectionContext";
-import { Skeleton } from "@sovoli/ui/components/skeleton";
 import { PriceButton } from "../price/PriceButton";
 
 export interface ProgramDetailMobileFooterProps {

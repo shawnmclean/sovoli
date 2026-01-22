@@ -1,17 +1,16 @@
 "use client";
 
-import { useMemo } from "react";
-import { PartyPopperIcon } from "lucide-react";
-import type { Program } from "~/modules/academics/types";
-import { trackProgramAnalytics } from "../../lib/programAnalytics";
-import { useEffect } from "react";
 import {
+  DrawerBody,
   DrawerContent,
   DrawerHeader,
-  DrawerBody,
 } from "@sovoli/ui/components/drawer";
-import { SubscribeProgramButton } from "../SubscribeProgramButton";
+import { PartyPopperIcon } from "lucide-react";
+import { useEffect, useMemo } from "react";
 import { ShareButton } from "~/app/[username]/(profile)/components/OrgNavbar/ShareButton";
+import type { Program } from "~/modules/academics/types";
+import { trackProgramAnalytics } from "../../lib/programAnalytics";
+import { SubscribeProgramButton } from "../SubscribeProgramButton";
 
 interface ActivitiesDetailsProps {
   program: Program;

@@ -3,13 +3,13 @@
 import { Card } from "@sovoli/ui/components/card";
 import { Checkbox } from "@sovoli/ui/components/checkbox";
 import { Select, SelectItem } from "@sovoli/ui/components/select";
-import { DiffField } from "./DiffField";
-import { CycleScheduleField } from "./CycleScheduleField";
-import { CyclePricingField } from "./CyclePricingField";
+import { useEffect, useState } from "react";
+import type { ProgramEvidence } from "../../types/lead-extraction-schema";
 import { useProgramDiff } from "../hooks/useProgramDiff";
 import { getNestedValue } from "../utils/object-utils";
-import { useState, useEffect } from "react";
-import type { ProgramEvidence } from "../../types/lead-extraction-schema";
+import { CyclePricingField } from "./CyclePricingField";
+import { CycleScheduleField } from "./CycleScheduleField";
+import { DiffField } from "./DiffField";
 
 interface ProgramDiffViewProps {
   programId: string;

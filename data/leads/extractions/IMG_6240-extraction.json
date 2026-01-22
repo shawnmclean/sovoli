@@ -64,17 +64,10 @@
       ]
     },
     "socialLinks": [],
-    "urls": [
-      "www.thebeautyinstituteja.com"
-    ],
-    "locations": [
-      "7 Barbados Avenue, New Kingston"
-    ],
+    "urls": ["www.thebeautyinstituteja.com"],
+    "locations": ["7 Barbados Avenue, New Kingston"],
     "platformSignals": []
   },
-  "business": [
-    "The Beauty Institute of Ja",
-    "The Beauty Institute"
-  ],
+  "business": ["The Beauty Institute of Ja", "The Beauty Institute"],
   "matchedOrgs": null
 }

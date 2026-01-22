@@ -213,8 +213,7 @@ export function transformPricingToPackage(
             | "annual"
             | "term"
             | "program"
-            | undefined) ??
-          "one-time";
+            | undefined) ?? "one-time";
         pricingItems.push({
           id: `tuition-${i + 1}`,
           label: item.label ?? "Tuition",

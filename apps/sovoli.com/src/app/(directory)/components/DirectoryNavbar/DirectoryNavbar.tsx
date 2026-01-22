@@ -1,9 +1,9 @@
-import Link from "next/link";
 import {
-  NavbarBrand,
   Navbar,
+  NavbarBrand,
   NavbarContent,
 } from "@sovoli/ui/components/navbar";
+import Link from "next/link";
 
 import { Logo } from "~/components/Logo/Logo";
 import { SearchBar } from "./SearchBar";

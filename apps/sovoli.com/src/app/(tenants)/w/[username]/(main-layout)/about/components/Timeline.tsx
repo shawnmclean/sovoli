@@ -34,14 +34,12 @@ export const Timeline = () => {
     {
       year: "2020",
       title: "On-line Classes",
-      description:
-        "COVID-19 pandemic forced us to move to online classes.",
+      description: "COVID-19 pandemic forced us to move to online classes.",
     },
     {
       year: "2023",
       title: "Accepted PreNursery",
-      description:
-        "We are now accepting PreNursery students.",
+      description: "We are now accepting PreNursery students.",
     },
     {
       year: "2025",

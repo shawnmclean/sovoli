@@ -1,5 +1,22 @@
 "use client";
 
+import { Button } from "@sovoli/ui/components/button";
+import type { CarouselApi } from "@sovoli/ui/components/carousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@sovoli/ui/components/carousel";
+import {
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalHeader,
+  useDisclosure,
+} from "@sovoli/ui/components/dialog";
+import { AlertCircle, CloudUpload, Loader2, Play, X } from "lucide-react";
+import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import {
   useCallback,
   useEffect,
@@ -8,27 +25,9 @@ import {
   useState,
   useTransition,
 } from "react";
-import Image from "next/image";
-import { CloudUpload, X, Loader2, AlertCircle, Play } from "lucide-react";
 import { useDropzone } from "react-dropzone";
-import { Button } from "@sovoli/ui/components/button";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@sovoli/ui/components/carousel";
-import type { CarouselApi } from "@sovoli/ui/components/carousel";
-import {
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalHeader,
-  useDisclosure,
-} from "@sovoli/ui/components/dialog";
-import { CldImage } from "next-cloudinary";
-
-import { uploadToCloudinary } from "~/core/cloudinary/uploadToCloudinary";
 import type { UploadSignature } from "~/core/cloudinary/generateUploadSignatures";
+import { uploadToCloudinary } from "~/core/cloudinary/uploadToCloudinary";
 import { processImage } from "~/core/image/processImage";
 
 import type { Media } from "~/modules/core/media/types";

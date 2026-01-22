@@ -2,12 +2,12 @@
 
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody } from "@sovoli/ui/components/card";
-import { Link } from "@sovoli/ui/components/link";
 import { Image } from "@sovoli/ui/components/image";
+import { Link } from "@sovoli/ui/components/link";
 import type { GrowthSystemContent } from "../../categories";
 
 interface CustomersProps {
-	content: GrowthSystemContent["customers"];
+  content: GrowthSystemContent["customers"];
 }
 
 export function Customers({ content }: CustomersProps) {
@@ -15,9 +15,7 @@ export function Customers({ content }: CustomersProps) {
     <section className="py-6 px-4 sm:py-12">
       <div className="mx-auto max-w-6xl">
         <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl font-bold">
-            {content.title}
-          </h2>
+          <h2 className="text-2xl sm:text-3xl font-bold">{content.title}</h2>
         </div>
 
         <div className="space-y-4">
@@ -86,4 +84,3 @@ export function Customers({ content }: CustomersProps) {
     </section>
   );
 }
-

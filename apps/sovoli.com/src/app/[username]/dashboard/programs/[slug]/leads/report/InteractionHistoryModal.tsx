@@ -1,14 +1,14 @@
 "use client";
 
-import React from "react";
-import { useDisclosure } from "@sovoli/ui/components/dialog";
 import { Button } from "@sovoli/ui/components/button";
 import {
   Modal,
+  ModalBody,
   ModalContent,
   ModalHeader,
-  ModalBody,
+  useDisclosure,
 } from "@sovoli/ui/components/dialog";
+import React from "react";
 
 export interface InteractionHistory {
   timestamp: string;
@@ -104,7 +104,9 @@ export function InteractionHistoryModal({
                         )}
                         {interaction.notReachedReason && (
                           <div>
-                            <span className="font-medium">Not Reached Reason:</span>{" "}
+                            <span className="font-medium">
+                              Not Reached Reason:
+                            </span>{" "}
                             <span className="capitalize">
                               {interaction.notReachedReason.replace(/_/g, " ")}
                             </span>

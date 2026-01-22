@@ -26,9 +26,7 @@
         ],
         "whatYouWillLearn": [],
         "schedule": {
-          "times": [
-            "2-5 PM"
-          ],
+          "times": ["2-5 PM"],
           "duration": "12 Weeks"
         },
         "matchedPrograms": null
@@ -45,18 +43,10 @@
         "value": "www.thebeautyinstituteja.com"
       }
     ],
-    "urls": [
-      "thebeautyinstituteja.com"
-    ],
-    "locations": [
-      "7 Barbados Avenue, New Kingston"
-    ],
-    "platformSignals": [
-      "Sponsored"
-    ]
+    "urls": ["thebeautyinstituteja.com"],
+    "locations": ["7 Barbados Avenue, New Kingston"],
+    "platformSignals": ["Sponsored"]
   },
-  "business": [
-    "The Beauty Institute of Jamaica"
-  ],
+  "business": ["The Beauty Institute of Jamaica"],
   "matchedOrgs": null
 }

@@ -11,21 +11,21 @@ import {
 import { Link } from "@sovoli/ui/components/link";
 import {
   BookOpenIcon,
-  HomeIcon,
-  MenuIcon,
-  PhoneIcon,
-  UsersIcon,
   BriefcaseIcon,
-  InfoIcon,
-  ShoppingBagIcon,
-  MessagesSquareIcon,
   CalendarIcon,
+  HomeIcon,
+  InfoIcon,
+  MenuIcon,
+  MessagesSquareIcon,
+  PhoneIcon,
+  ShoppingBagIcon,
+  UsersIcon,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { tv } from "tailwind-variants";
 import type {
-  OrgInstance,
   OrgCategoryKeys,
+  OrgInstance,
 } from "~/modules/organisations/types";
 import type { NavItem } from "~/modules/websites/types";
 

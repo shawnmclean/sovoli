@@ -1,8 +1,8 @@
 "use client";
 
 import { Drawer } from "@sovoli/ui/components/drawer";
-import { ChatDialog } from "~/modules/chat/components/ChatDialog";
 import { useRouter } from "next/navigation";
+import { ChatDialog } from "~/modules/chat/components/ChatDialog";
 
 export default function ChatPage() {
   const router = useRouter();

@@ -1,6 +1,6 @@
 import Image from "next/image";
-import type { OrgInstance } from "~/modules/organisations/types";
 import type { Program } from "~/modules/academics/types";
+import type { OrgInstance } from "~/modules/organisations/types";
 
 interface SupplyListHeaderProps {
   school: OrgInstance;

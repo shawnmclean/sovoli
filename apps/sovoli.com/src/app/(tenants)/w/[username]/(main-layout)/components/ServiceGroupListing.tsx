@@ -1,15 +1,15 @@
 "use client";
 
-import type { OrgInstance } from "~/modules/organisations/types";
+import { Badge } from "@sovoli/ui/components/badge";
+import { Card, CardBody } from "@sovoli/ui/components/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@sovoli/ui/components/carousel";
-import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
-import { Badge } from "@sovoli/ui/components/badge";
 import { ClockIcon } from "lucide-react";
+import type { OrgInstance } from "~/modules/organisations/types";
 
 export interface ServiceGroupListingProps {
   orgInstance: OrgInstance;
@@ -72,9 +72,7 @@ const FITRIGHT_SERVICES: Service[] = [
   },
 ];
 
-export function ServiceGroupListing({
-  orgInstance,
-}: ServiceGroupListingProps) {
+export function ServiceGroupListing({ orgInstance }: ServiceGroupListingProps) {
   const username = orgInstance.org.username;
   let services: Service[] = [];
   let bookingUrl: string | undefined;
@@ -110,7 +108,9 @@ export function ServiceGroupListing({
     <div className="space-y-8">
       <div className="space-y-4">
         <div>
-          <h2 className="text-xl font-bold text-foreground mb-1">Featured Services</h2>
+          <h2 className="text-xl font-bold text-foreground mb-1">
+            Featured Services
+          </h2>
         </div>
 
         <div className="relative">

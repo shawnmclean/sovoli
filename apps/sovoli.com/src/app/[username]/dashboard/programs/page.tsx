@@ -1,9 +1,9 @@
-import { notFound } from "next/navigation";
-import { bus } from "~/services/core/bus";
-import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
+import { notFound } from "next/navigation";
 import type { Program } from "~/modules/academics/types";
+import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
+import { bus } from "~/services/core/bus";
 import { getLeadsForOrg } from "../_lib/getLeadsForOrg";
 
 const retreiveOrgInstance = async (username: string) => {
@@ -83,4 +83,3 @@ export default async function DashboardProgramsPage({
     </div>
   );
 }
-

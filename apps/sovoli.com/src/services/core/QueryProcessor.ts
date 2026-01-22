@@ -2,16 +2,17 @@
 import type { Attributes, Exception } from "@opentelemetry/api";
 import { trace } from "@opentelemetry/api";
 import { flatten } from "flat";
-
+import { Logger } from "~/core/logger/Logger";
 import type { Query } from "./Query";
 import type { QueryHandler } from "./QueryHandler";
-import { Logger } from "~/core/logger/Logger";
 
 const tracer = trace.getTracer("sovoli-query-processor");
 
 export class QueryProcessor {
   private handlers = new Map<
-    new (...args: any[]) => Query<any>,
+    new (
+      ...args: any[]
+    ) => Query<any>,
     QueryHandler<any, any>
   >();
 
@@ -40,7 +41,9 @@ export class QueryProcessor {
           span.setAttributes(serializedOptions);
 
           const handler = this.handlers.get(
-            query.constructor as new (...args: any[]) => Query<TResult>,
+            query.constructor as new (
+              ...args: any[]
+            ) => Query<TResult>,
           ) as QueryHandler<Query<TResult>, TResult> | undefined;
           if (!handler) {
             throw new Error(

@@ -1,16 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { PhoneNumberForm } from "./PhoneNumberForm";
-import { PhoneOTPVerifyForm } from "./PhoneOTPVerifyForm";
 import { sendOTPAction } from "../../actions/sendOTPAction";
-import type { VerifyState } from "../../actions/verifyOTPAction";
-import { verifyOTPAction } from "../../actions/verifyOTPAction";
-import type { SignupWizardMode } from "../types";
 import type {
   LeadPhoneActionState,
   SendOTPActionState,
 } from "../../actions/states";
+import type { VerifyState } from "../../actions/verifyOTPAction";
+import { verifyOTPAction } from "../../actions/verifyOTPAction";
+import type { SignupWizardMode } from "../types";
+import { PhoneNumberForm } from "./PhoneNumberForm";
+import { PhoneOTPVerifyForm } from "./PhoneOTPVerifyForm";
 
 export interface PhoneNumberStepProps {
   mode: SignupWizardMode;

@@ -35,10 +35,11 @@ export function filterWorkforceMembers(
       : true;
 
     const matchesDepartment = selectedDepartment
-      ? member.roleAssignments.some((r) => r.department?.name === selectedDepartment)
+      ? member.roleAssignments.some(
+          (r) => r.department?.name === selectedDepartment,
+        )
       : true;
 
     return matchesSearch && matchesRole && matchesDepartment;
   });
 }
-

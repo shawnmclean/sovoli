@@ -1,16 +1,16 @@
 "use client";
 
-import type { OrgInstance } from "~/modules/organisations/types";
-import type { CatalogOffer } from "~/modules/catalogs/types";
+import { Card, CardBody } from "@sovoli/ui/components/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@sovoli/ui/components/carousel";
-import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
 import { PackageIcon } from "lucide-react";
 import { CldImage } from "next-cloudinary";
+import type { CatalogOffer } from "~/modules/catalogs/types";
+import type { OrgInstance } from "~/modules/organisations/types";
 
 export interface CatalogGroupListingProps {
   orgInstance: OrgInstance;
@@ -51,11 +51,7 @@ const getCategoryOrder = (category: string) => {
 };
 
 // Helper function to format price (checks all currencies: JMD, GYD, USD)
-const formatPrice = (price: {
-  JMD?: number;
-  GYD?: number;
-  USD?: number;
-}) => {
+const formatPrice = (price: { JMD?: number; GYD?: number; USD?: number }) => {
   const prices: string[] = [];
   if (typeof price.JMD === "number") {
     prices.push(`JMD $${price.JMD.toLocaleString()}`);

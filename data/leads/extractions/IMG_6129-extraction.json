@@ -45,16 +45,9 @@
       }
     ],
     "urls": [],
-    "locations": [
-      "Shop 24 Washington Plaza Boulevard, Kingston"
-    ],
-    "platformSignals": [
-      "Sponsored"
-    ]
+    "locations": ["Shop 24 Washington Plaza Boulevard, Kingston"],
+    "platformSignals": ["Sponsored"]
   },
-  "business": [
-    "Sheleen's School of Beauty",
-    "Stashalee Beauty and More"
-  ],
+  "business": ["Sheleen's School of Beauty", "Stashalee Beauty and More"],
   "matchedOrgs": null
 }

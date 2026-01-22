@@ -1,482 +1,482 @@
 {
-	"id": "electrical-supplies",
-	"name": "Electrical Supplies",
-	"gpcCode": "78000000",
-	"children": [
-		{
-			"id": "electrical-cabling-wiring",
-			"name": "Electrical Cabling/Wiring",
-			"gpcCode": "78040000",
-			"parentId": "electrical-supplies",
-			"children": [
-				{
-					"id": "cabling-wiring-management-control",
-					"name": "Cabling/Wiring Management/Control",
-					"gpcCode": "78040100",
-					"parentId": "electrical-cabling-wiring",
-					"children": [
-						{
-							"id": "cable-clips-grommets-ties",
-							"name": "Cable Clips/Grommets/Ties",
-							"gpcCode": "10005651",
-							"gpcDescription": "Includes any products that can be described/observed as a clip, grommet or tie that is used to fix cables in place or secure multiple cables together in a bundle. Includes products such as tie wraps and grommet edging.",
-							"parentId": "cabling-wiring-management-control"
-						},
-						{
-							"id": "cable-conduit-fittings",
-							"name": "Cable Conduit Fittings",
-							"gpcCode": "10005660",
-							"gpcDescription": "Includes any products that can be described/observed as a fitting specifically designed for use with electrical conduit. Includes products such as conduit couplings, expansion fittings, locknuts and cable boxes.",
-							"parentId": "cabling-wiring-management-control"
-						},
-						{
-							"id": "cable-markers",
-							"name": "Cable Markers",
-							"gpcCode": "10005648",
-							"gpcDescription": "Includes any products that can be described/observed as a means of identifying and marking a cable or wire for the purpose of security, traceability and maintenance. Includes products such as heat shrinkable sleeve markers and tie-on cable markers.",
-							"parentId": "cabling-wiring-management-control"
-						},
-						{
-							"id": "cable-marking-accessories",
-							"name": "Cable Marking Accessories",
-							"gpcCode": "10005674",
-							"gpcDescription": "Includes any products that can be described/observed as a tool or accessory used when cable marking. Includes products such as printers used specifically for cable labels, labelling tools such as an indent embosser and a wire marker book.",
-							"parentId": "cabling-wiring-management-control"
-						},
-						{
-							"id": "cable-reels-pullers",
-							"name": "Cable Reels/Pullers",
-							"gpcCode": "10005649",
-							"gpcDescription": "Includes any products that can be described/observed as a reel that holds cable or wire. The reel is used to help organise both the dispatch and return of wire or cable in an orderly fashion. Includes products that have a thermal cut-out/re-set facility, a locking brake and/or an adjustable cable guide.",
-							"parentId": "cabling-wiring-management-control"
-						},
-						{
-							"id": "cable-wire-conduit-ducting-raceways",
-							"name": "Cable/Wire Conduit/Ducting/Raceways",
-							"gpcCode": "10005647",
-							"gpcDescription": "Includes any products that can be described/observed as an enclosure for wires and cables, generally formed with hard/solid materials. Includes products such as a surface raceway, a floor moulding wire track, a cable conduit, a wire duct, a cable tray and a strut channel. In the office, cord organisers and routers are particularly useful for the orderly realignment and consolidation of tangling wires, which exist with most electronic equipment.",
-							"parentId": "cabling-wiring-management-control"
-						},
-						{
-							"id": "cabling-wiring-protection-wrapping",
-							"name": "Cabling/Wiring Protection/Wrapping",
-							"gpcCode": "10005650",
-							"gpcDescription": "Includes any products that can be described/observed as a protective sheath or tube, generally formed with soft materials. These products are normally made of a protective material that offers safety properties such as heat, flame and abrasion resistance and in certain circumstances could also claim to be waterproof. Includes products such as spiral wrap, corrugated loom tubing and expandable sleeving and heat shrink tubing.",
-							"parentId": "cabling-wiring-management-control"
-						}
-					]
-				},
-				{
-					"id": "electrical-cables",
-					"name": "Electrical Cables",
-					"gpcCode": "78040300",
-					"parentId": "electrical-cabling-wiring",
-					"children": [
-						{
-							"id": "audio-visual-cables",
-							"name": "Audio Visual Cables",
-							"gpcCode": "10005757",
-							"gpcDescription": "Includes any products that can be described/observed as wires or optical fibres bound or twisted together into a single piece of cable that is used to carry an electrical current, audio and visual data to and from audio visual equipment. These products may or may not have a protective jacket or sheath for insulation.Includes products such as scart cables, s-video cables, speaker cables, and jack cables.",
-							"parentId": "electrical-cables"
-						},
-						{
-							"id": "computer-cables",
-							"name": "Computer Cables",
-							"gpcCode": "10005754",
-							"gpcDescription": "Includes any products that can be described/observed as wires or optical fibres bound or twisted together into a single piece of cable that is used to carry an electrical current, data or information to and from a computer. These products may or may not have a protective jacket or sheath for insulation. Includes products such as PC connecting cables, network cables and USB cables. ",
-							"parentId": "electrical-cables"
-						},
-						{
-							"id": "satellite-installation-cables",
-							"name": "Satellite Installation Cables",
-							"gpcCode": "10005759",
-							"gpcDescription": "Includes any products that can be described/observed as wires or optical fibres bound or twisted together into a single piece of cable that is used to carry an electrical current and satellite signals from satellite equipment. These products may or may not have a protective jacket or sheath for insulation. Includes products such as satellite aerial cables. ",
-							"parentId": "electrical-cables"
-						},
-						{
-							"id": "telecommunication-cables",
-							"name": "Telecommunication Cables",
-							"gpcCode": "10005758",
-							"gpcDescription": "Includes any products that can be described/observed as wires or optical fibres bound or twisted together into a single piece of cable that is used to carry an electrical current, audio and visual data to and from telecommunication equipment. These products may or may not have a protective jacket or sheath for insulation. Includes products such as telephone cables and fax/modem cables. ",
-							"parentId": "electrical-cables"
-						}
-					]
-				},
-				{
-					"id": "electrical-wiring",
-					"name": "Electrical Wiring",
-					"gpcCode": "78040400",
-					"parentId": "electrical-cabling-wiring",
-					"children": [
-						{
-							"id": "electrical-wires",
-							"name": "Electrical Wires",
-							"gpcCode": "10005541",
-							"gpcDescription": "Includes any products that can be described/observed as a conducting wire, made from one or more cylindrical strands/threads of elongated or drawn out metal. These products are used to carry an electrical current from one location to another. These products may or may not have a protective jacket or sheath for insulation, and can range in length from a short piece of wire used in fuses, to wire that is many meters long. Includes products such as bare wire and insulated copper wire. ",
-							"parentId": "electrical-wiring"
-						}
-					]
-				}
-			]
-		},
-		{
-			"id": "electrical-connection-distribution",
-			"name": "Electrical Connection/Distribution",
-			"gpcCode": "78020000",
-			"parentId": "electrical-supplies",
-			"children": [
-				{
-					"id": "batteries-chargers",
-					"name": "Batteries/Chargers",
-					"gpcCode": "78021100",
-					"parentId": "electrical-connection-distribution",
-					"children": [
-						{
-							"id": "batteries",
-							"name": "Batteries",
-							"gpcCode": "10000546",
-							"gpcDescription": "Includes any products that can be described/observed as small electro-chemical cells specifically designed to produce an electrical current that can act as a conveniently sized portable power source for a range of electronic devices. Includes products such as rechargeable and non-rechargeable Battery Cells that come in different sizes dependent on power output.",
-							"parentId": "batteries-chargers"
-						},
-						{
-							"id": "batteries-chargers-variety-packs",
-							"name": "Batteries/Chargers Variety Packs",
-							"gpcCode": "10000704",
-							"gpcDescription": "Includes any products that can be described/observed as two or more distinct Batteries and Chargers sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Batteries and Chargers class. Includes products such as Rechargeable Batteries and Chargers sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
-							"parentId": "batteries-chargers"
-						},
-						{
-							"id": "battery-boxes",
-							"name": "Battery Boxes",
-							"gpcCode": "10005764",
-							"gpcDescription": "Includes any products that can be described/observed as a container or cover specifically designed for carrying and protecting batteries for a range of electronic devices. Includes products such as a battery box that can carry rechargeable and non-rechargeable batteries. ",
-							"parentId": "batteries-chargers"
-						},
-						{
-							"id": "chargers",
-							"name": "Chargers",
-							"gpcCode": "10000548",
-							"gpcDescription": "Includes any products that can be described/observed as an electrical device specifically designed to replenish the power supply of rechargeable batteries. Products available will recharge a range of battery cell types at various rates.",
-							"parentId": "batteries-chargers"
-						}
-					]
-				},
-				{
-					"id": "electrical-connection",
-					"name": "Electrical Connection",
-					"gpcCode": "78020500",
-					"parentId": "electrical-connection-distribution",
-					"children": [
-						{
-							"id": "connectors-electrical",
-							"name": "Connectors (Electrical)",
-							"gpcCode": "10005573",
-							"gpcDescription": "Includes any products that can be described/observed as a coupling device for joining conductors of one electrical circuit together with those of another circuit. Connectors may facilitate a connection that can be easy established and separated or be a permanent fixture. Typically these products are either female or male, or in some case may comprise of both female and male parts.",
-							"parentId": "electrical-connection"
-						},
-						{
-							"id": "electrical-connection-variety-packs",
-							"name": "Electrical Connection Variety Packs",
-							"gpcCode": "10005572",
-							"gpcDescription": "Includes any products than can be described/observed as two or more distinct Electrical Connection products sold together which exist within the schema but belong to different bricks, that is two or more products contained within the same pack which cross bricks within the Electrical Connection class. Includes products such as Plugs and Socket variety packs. Items that are received free with purchases should be removed from the classification decision-making process.",
-							"parentId": "electrical-connection"
-						},
-						{
-							"id": "plugs",
-							"name": "Plugs",
-							"gpcCode": "10000551",
-							"gpcDescription": "Includes any products that can be described/observed as an electrical device specifically designed to connect an electrical appliance to a fixed electrical power supply socket. These products have male features (contact/pins) that are designed to mate with the female features of an electrical socket/receptacle/outlet that is permanently connected to the mains/live electricity supply. A cable is also attached to the plug to carry the electricity into the electrical appliance. Includes products such as two and three pin plugs and grounded and ungrounded plugs. ",
-							"parentId": "electrical-connection"
-						},
-						{
-							"id": "sockets-receptacles-outlets",
-							"name": "Sockets/Receptacles/Outlets",
-							"gpcCode": "10005567",
-							"gpcDescription": "Includes any products that can be described/observed as a connection point that delivers mains/live electricity through a plug when the plug is inserted into it. It is normally a permanent connection to the \"hot side\" of an electrical circuit and has female features, which are designed to mate with a male contact or pin. Includes products such as two and three pin accommodating sockets and switched and unswitched sockets. ",
-							"parentId": "electrical-connection"
-						}
-					]
-				},
-				{
-					"id": "electrical-distribution",
-					"name": "Electrical Distribution",
-					"gpcCode": "78020600",
-					"parentId": "electrical-connection-distribution",
-					"children": [
-						{
-							"id": "adaptors-electrical",
-							"name": "Adaptors (Electrical)",
-							"gpcCode": "10005496",
-							"gpcDescription": "Includes any products that can be described/observed as a device that is used to match the physical and electrical characteristics of a socket/receptacle/outlet with that of a plug with a different configuration, allowing two disparate devices with different connections to connect. These products enable electrical appliances from one country to be used internationally, however they do not alter or change the voltage from the mains/live electricity supply. Includes products such as grounded and ungrounded adapters. ",
-							"parentId": "electrical-distribution"
-						},
-						{
-							"id": "busbars-busways",
-							"name": "Busbars/Busways",
-							"gpcCode": "10005575",
-							"gpcDescription": "Includes any products that can be described/observed as strips of copper or aluminium that conduct/distribute electricity around a circuit board, switchboard, distribution board or other electrical apparatus. The electrical current that is carried through a busbar/busway is determined by its size, the larger the size the greater the current. Includes products that are insulated and uninsulated.",
-							"parentId": "electrical-distribution"
-						},
-						{
-							"id": "capacitors",
-							"name": "Capacitors",
-							"gpcCode": "10005622",
-							"gpcDescription": "Includes any products that can be described/observed as a device that stores and discharges energy in the electric field created between two conductors and delivers a stable voltage for a wide variety of functions, including power conversion, DC-linking, frequency conversion, bypass, decoupling and filtering. Includes products made from tantalum, ceramic and aluminium and that range from low voltage products to high voltage products. They may or may not be electrolytic.",
-							"parentId": "electrical-distribution"
-						},
-						{
-							"id": "circuit-breakers",
-							"name": "Circuit Breakers",
-							"gpcCode": "10005576",
-							"gpcDescription": "Includes any products that can be described/observed as a piece of electrical equipment that is designed to protect electrical systems from overloads or short circuits by either disconnection and reconnection, or isolation. Within the home or office these items are normally fitted within an electrical distribution box. Includes products such as electrical disconnects, incomers and isolators.",
-							"parentId": "electrical-distribution"
-						},
-						{
-							"id": "converters-transformers",
-							"name": "Converters/Transformers",
-							"gpcCode": "10000547",
-							"gpcDescription": "Includes any products that can be described/observed as an electrical apparatus designed to alter, convert, stabilise, regulate or transform an electric power supply characteristic, such as the voltage, current or phase. Includes products such as signal converters, power regulators and distribution power transformers.",
-							"parentId": "electrical-distribution"
-						},
-						{
-							"id": "distribution-boards-boxes",
-							"name": "Distribution Boards/Boxes",
-							"gpcCode": "10005583",
-							"gpcDescription": "Includes any products that can be described/observed as an enclosure used to secure electrical and/or network equipment. Includes products that require assembly or come pre-assembled with circuit breakers and isolators. ",
-							"parentId": "electrical-distribution"
-						},
-						{
-							"id": "electrical-distribution-accessories-fittings",
-							"name": "Electrical Distribution Accessories/Fittings",
-							"gpcCode": "10005577",
-							"gpcDescription": "Includes any products that can be described/observed as an accessory or fitting used to assist or enhance the installation of electrical distribution products. Includes products such as wire terminal kits, terminal block covers and terminal block separators.",
-							"parentId": "electrical-distribution"
-						},
-						{
-							"id": "fuses",
-							"name": "Fuses",
-							"gpcCode": "10000549",
-							"gpcDescription": "Includes any products that can be described/observed as a wire, bar, or strip of fusible metal inserted for safety in an electric circuit. When the current increases beyond a certain safe strength, the metal melts, interrupting the circuit and thereby preventing possibility of damage. Includes plug fuses and power circuit fuses; time delay fuses and fast acting fuses; low voltage fuses and high voltage fuses.",
-							"parentId": "electrical-distribution"
-						},
-						{
-							"id": "multi-use-universal-electrical-timers-controllers",
-							"name": "Multi-use/Universal Electrical Timers/Controllers",
-							"gpcCode": "10005682",
-							"gpcDescription": "Includes any products that can be described/observed as an electrical device that automates/controls the operational timing of a number of different home systems such as electrical lighting, central heating, water heating, security systems and audio visual equipment. Includes products with a plug-in connection as well as wireless digital, programmable switches and touch pads.",
-							"parentId": "electrical-distribution"
-						},
-						{
-							"id": "relays-contactors",
-							"name": "Relays/Contactors",
-							"gpcCode": "10005570",
-							"gpcDescription": "Includes any products that can be described/observed as an electrical switching device that opens and closes under control of another electrical circuit. Relays are designed for switching loads on or off, whereas contactors are designed to \"break\" a high current load and are commonly fitted with overload protection. Includes products such as power relays, socket relays and alternating voltage relays, as well as vacuum contactors.",
-							"parentId": "electrical-distribution"
-						},
-						{
-							"id": "splitters",
-							"name": "Splitters",
-							"gpcCode": "10005568",
-							"gpcDescription": "Includes any product that can be described/observed as a device that separates an electronic signal into two or more smaller and approximately equal signals and distributes them to a number of receivers simultaneously. Includes products such as power splitters, RF (radio frequency) signal splitters and microphone splitters.",
-							"parentId": "electrical-distribution"
-						},
-						{
-							"id": "surge-suppressors-protectors",
-							"name": "Surge Suppressors/Protectors",
-							"gpcCode": "10005585",
-							"gpcDescription": "Includes any products that can be described/observed as a device used to protect electrical appliances and electronic equipment. Surge protectors regulate the voltage supplied to an electric device by either blocking, or shorting to ground, voltage above a safe threshold. Includes products such as external surge suppressors, which are installed on the electrical panel to protect home appliances such as refrigerators and washing machines, or point-of-use surge suppressors, which are connected to individual pieces of home electronic equipment such as computers and televisions.",
-							"parentId": "electrical-distribution"
-						},
-						{
-							"id": "switches",
-							"name": "Switches",
-							"gpcCode": "10005586",
-							"gpcDescription": "Includes any products that can be described/observed as a circuit interruption device used to control the flow of electricity to electrical lights, appliances, and outlets. The flow is controlled by either turning the electricity on or off or by changing the path along which it flows and can be managed mechanically, electronically by remote control or via an app (smarthome).",
-							"parentId": "electrical-distribution"
-						},
-						{
-							"id": "terminal-blocks-strips",
-							"name": "Terminal Blocks/Strips",
-							"gpcCode": "10005588",
-							"gpcDescription": "Includes any products that can be described/observed as an insulating mounting for terminal connections. These products provide a convenient way to make temporary but secure electrical connections between wire and components. A raised ridge between the terminal points prevents arc-over between wires, as it ensures the frayed ends of stranded wires are kept in their proper place. ",
-							"parentId": "electrical-distribution"
-						}
-					]
-				},
-				{
-					"id": "electrical-generation",
-					"name": "Electrical Generation",
-					"gpcCode": "78021200",
-					"parentId": "electrical-connection-distribution",
-					"children": [
-						{
-							"id": "charge-voltage-regulators",
-							"name": "Charge/Voltage Regulators",
-							"gpcCode": "10008391",
-							"gpcDescription": "Includes any products that can be described/observed as a device that regulates the voltage and current coming from solar panels or other renewable energy sources to prevent damage to batteries and other energy storage systems. Charge controllers are typically used in off-grid or hybrid systems, where energy is generated from solar panels or wind turbines and stored in batteries for later use. The charge controller is responsible for managing the flow of energy between the renewable energy source, the battery bank, and the load to ensure that the battery is charged efficiently and effectively while also preventing overcharging and undercharging.",
-							"parentId": "electrical-generation"
-						},
-						{
-							"id": "electrical-generation-accessories-fittings",
-							"name": "Electrical Generation Accessories/Fittings",
-							"gpcCode": "10008395",
-							"gpcDescription": "Includes any products that can be described/observed as an accessory or fitting used to assist or enhance the installation of electrical generation products. Includes products such as solar racking systems.",
-							"parentId": "electrical-generation"
-						},
-						{
-							"id": "generators",
-							"name": "Generators",
-							"gpcCode": "10005211",
-							"gpcDescription": "Includes any products that may be described/observed as a machine that transforms mechanical energy into electricity. It consists of a magnet rotating in a coil wire, which frees electrons and pushes them along the wire.",
-							"parentId": "electrical-generation"
-						},
-						{
-							"id": "inverters",
-							"name": "Inverters",
-							"gpcCode": "10008390",
-							"gpcDescription": "Includes any products that can be described/observed as an electronic device that converts direct current (DC) electricity into alternating current (AC) electricity. In renewable energy systems, inverters are commonly used to convert the DC electricity produced by solar panels or wind turbines into AC electricity that can be used to power homes and businesses. Inverters are essential for renewable energy systems, as most electrical devices require AC power to function. In addition to converting DC to AC, inverters may also perform other functions, such as regulating the voltage and frequency of the AC output, providing grid-tie capabilities, and managing power quality.",
-							"parentId": "electrical-generation"
-						},
-						{
-							"id": "power-generator-set",
-							"name": "Power Generator Set",
-							"gpcCode": "10008394",
-							"gpcDescription": "Includes any products that can be described/observed as a device which includes a power generator, an engine or motor that drives the generator, and any necessary ancillary equipment such as fuel tanks, control systems, and cooling systems. The system is designed to convert the chemical energy stored in a fuel source, such as diesel, natural gas, or gasoline, into electrical energy through a generator. Generator sets are commonly used for backup power, primary power, and mobile power applications in a wide range of industries and settings, including commercial, industrial, residential, and remote or off-grid locations. The size and configuration of a generator set can vary widely, from small portable units that can power a single device or system to large stationary units that can power entire buildings or facilities.",
-							"parentId": "electrical-generation"
-						},
-						{
-							"id": "solar-panels",
-							"name": "Solar Panels",
-							"gpcCode": "10008389",
-							"gpcDescription": "Includes any products that can be described/observed as a device that converts sunlight into electricity through the photovoltaic effect. It is typically made up of multiple solar cells that are connected together and encased in a protective material, such as glass or plastic. The solar panel is designed to capture the energy from the sun's rays and transform it into electrical energy, which can be used to power a variety of devices.",
-							"parentId": "electrical-generation"
-						},
-						{
-							"id": "solar-power-stations",
-							"name": "Solar Power Stations",
-							"gpcCode": "10005875",
-							"gpcDescription": "Includes any products that can be described/obseved as an easy to install kit consisting of a high power solar panel, battery, charge controller and inverter. The power station can power most appliances found in the home, office and workplace - such as TV's, stereo's, games consoles, lap top's, fax and power tools.",
-							"parentId": "electrical-generation"
-						},
-						{
-							"id": "water-turbines",
-							"name": "Water Turbines",
-							"gpcCode": "10008393",
-							"gpcDescription": "Includes any products that can be described/observed as a device that converts the potential energy of water into mechanical energy, which can be used to drive a generator that produces electrical energy. Water turbines are typically used in hydroelectric power plants, where they are placed in the flow of a river or other body of water to harness the energy of falling or flowing water. Water turbines can vary in size, from small turbines that are used to power individual homes or small businesses to large turbines that are part of hydroelectric dams that generate electricity for the grid.",
-							"parentId": "electrical-generation"
-						},
-						{
-							"id": "wind-turbines",
-							"name": "Wind Turbines",
-							"gpcCode": "10008392",
-							"gpcDescription": "Includes any products that can be described/observed as a device that converts the kinetic energy of wind into electrical energy. Wind turbines consist of rotor blades attached to a central hub, which is connected to a generator that produces electricity. As the wind blows, the rotor blades spin, which in turn rotates the generator, producing electrical energy. Wind turbines can vary in size, from small turbines that are used to power individual homes or small businesses to large turbines that are part of wind farms that generate electricity for the grid.",
-							"parentId": "electrical-generation"
-						}
-					]
-				}
-			]
-		},
-		{
-			"id": "electronic-communication-components",
-			"name": "Electronic Communication Components",
-			"gpcCode": "78050000",
-			"parentId": "electrical-supplies",
-			"children": [
-				{
-					"id": "electronic-communication-components",
-					"name": "Electronic Communication Components",
-					"gpcCode": "78050100",
-					"parentId": "electronic-communication-components",
-					"children": [
-						{
-							"id": "circuit-assemblies-integrated-circuits",
-							"name": "Circuit Assemblies/Integrated Circuits",
-							"gpcCode": "10005661",
-							"gpcDescription": "Includes any products that can be described/observed as an assembly of electronic components containing many circuits built into a single device capable of many functions such as the controlling, processing and distribution of information and the conversion and distribution of electric power. Includes analogue and digital circuits.",
-							"parentId": "electronic-communication-components"
-						},
-						{
-							"id": "discreet-components",
-							"name": "Discreet Components",
-							"gpcCode": "10005662",
-							"gpcDescription": "Includes any products that can be described/observed as an individual electronic device or indivisible building block with two or more connecting leads. Includes passive components such as a resistor, inductor or diode, or active components such as a transistor or vacuum tube.",
-							"parentId": "electronic-communication-components"
-						},
-						{
-							"id": "electronic-circuit-accessories",
-							"name": "Electronic Circuit Accessories",
-							"gpcCode": "10005667",
-							"gpcDescription": "Includes any products that can be described/observed as an accessory used in the construction of electronic circuits that aids the function of the circuit. Includes products such as heat sinks and bare printed circuit boards.",
-							"parentId": "electronic-communication-components"
-						}
-					]
-				}
-			]
-		},
-		{
-			"id": "general-electrical-hardware",
-			"name": "General Electrical Hardware",
-			"gpcCode": "78060000",
-			"parentId": "electrical-supplies",
-			"children": [
-				{
-					"id": "general-electrical-hardware-class",
-					"name": "General Electrical Hardware",
-					"gpcCode": "78060100",
-					"parentId": "general-electrical-hardware",
-					"children": [
-						{
-							"id": "bonding-grounding-braid",
-							"name": "Bonding/Grounding Braid",
-							"gpcCode": "10005546",
-							"gpcDescription": "Includes any products that can be described/observed as a conducting strip made from woven metal, such as tinned copper or nickel-plated copper. These products provide a current return path from an electrical device to the ground, closing the current loop. Includes products with eyelets at either end of the strip.",
-							"parentId": "general-electrical-hardware-class"
-						},
-						{
-							"id": "cable-wire-pullers",
-							"name": "Cable/Wire Pullers",
-							"gpcCode": "10005571",
-							"gpcDescription": "Includes any products that can be described/observed as a device that is used for the retrieval or installation of cables/wires in hard to reach places, such as through/behind walls, ceilings, under carpets and through plastic or metal conduit or piping. In some cases these products are also used to increases the tension in the cable or wire. Includes products such as fish tape.",
-							"parentId": "general-electrical-hardware-class"
-						},
-						{
-							"id": "electronic-testers",
-							"name": "Electronic Testers",
-							"gpcCode": "10005742",
-							"gpcDescription": "Includes any products that can be described/observed as an electrical device to test the functionality/power/voltage of an electricity outlet or electrical products such as batteries and lamps.",
-							"parentId": "general-electrical-hardware-class"
-						},
-						{
-							"id": "extension-power-supply-cords",
-							"name": "Extension/Power Supply Cords",
-							"gpcCode": "10005559",
-							"gpcDescription": "Includes any products that can be described/observed as a length of flexible power cable, that is equipped with a plug at one end and one or multiple sockets at the other end. These products are used to extend the reach of a mains supply of electrical current from its normal terminal point to where it is required. Includes products such as extension reels, where the power cable rolls up/into a device that usually houses the socket/s.",
-							"parentId": "general-electrical-hardware-class"
-						},
-						{
-							"id": "monitors-screens",
-							"name": "Monitors/Screens",
-							"gpcCode": "10008363",
-							"gpcDescription": "Includes any products that can be described/observed as a monitor/screen in which images or text are displayed that provides guidance and monitoring about the specific appliance to the user. Includes products that use digital and analogue displays.",
-							"parentId": "general-electrical-hardware-class"
-						},
-						{
-							"id": "voltmeters-multimeters",
-							"name": "Voltmeters/Multimeters",
-							"gpcCode": "10005599",
-							"gpcDescription": "Includes any products that can be described/observed as a measuring instrument, used to measure electrical currents, voltage (potential difference between two points) or to measure currents, voltage and resistance. Typically these products are used for basic fault finding in electrical circuits. Includes products that use digital and analogue displays.",
-							"parentId": "general-electrical-hardware-class"
-						},
-						{
-							"id": "wall-plates-electrical",
-							"name": "Wall Plates (Electrical)",
-							"gpcCode": "10005505",
-							"gpcDescription": "Includes any products that can be described/observed as a cover for sockets and switches. These products may have numerous gangs or holes to allow plugs to be connected into the sockets, or they may be blank, without gangs preventing sockets from being used. Includes both metallic and non-metallic products.",
-							"parentId": "general-electrical-hardware-class"
-						}
-					]
-				}
-			]
-		}
-	]
+  "id": "electrical-supplies",
+  "name": "Electrical Supplies",
+  "gpcCode": "78000000",
+  "children": [
+    {
+      "id": "electrical-cabling-wiring",
+      "name": "Electrical Cabling/Wiring",
+      "gpcCode": "78040000",
+      "parentId": "electrical-supplies",
+      "children": [
+        {
+          "id": "cabling-wiring-management-control",
+          "name": "Cabling/Wiring Management/Control",
+          "gpcCode": "78040100",
+          "parentId": "electrical-cabling-wiring",
+          "children": [
+            {
+              "id": "cable-clips-grommets-ties",
+              "name": "Cable Clips/Grommets/Ties",
+              "gpcCode": "10005651",
+              "gpcDescription": "Includes any products that can be described/observed as a clip, grommet or tie that is used to fix cables in place or secure multiple cables together in a bundle. Includes products such as tie wraps and grommet edging.",
+              "parentId": "cabling-wiring-management-control"
+            },
+            {
+              "id": "cable-conduit-fittings",
+              "name": "Cable Conduit Fittings",
+              "gpcCode": "10005660",
+              "gpcDescription": "Includes any products that can be described/observed as a fitting specifically designed for use with electrical conduit. Includes products such as conduit couplings, expansion fittings, locknuts and cable boxes.",
+              "parentId": "cabling-wiring-management-control"
+            },
+            {
+              "id": "cable-markers",
+              "name": "Cable Markers",
+              "gpcCode": "10005648",
+              "gpcDescription": "Includes any products that can be described/observed as a means of identifying and marking a cable or wire for the purpose of security, traceability and maintenance. Includes products such as heat shrinkable sleeve markers and tie-on cable markers.",
+              "parentId": "cabling-wiring-management-control"
+            },
+            {
+              "id": "cable-marking-accessories",
+              "name": "Cable Marking Accessories",
+              "gpcCode": "10005674",
+              "gpcDescription": "Includes any products that can be described/observed as a tool or accessory used when cable marking. Includes products such as printers used specifically for cable labels, labelling tools such as an indent embosser and a wire marker book.",
+              "parentId": "cabling-wiring-management-control"
+            },
+            {
+              "id": "cable-reels-pullers",
+              "name": "Cable Reels/Pullers",
+              "gpcCode": "10005649",
+              "gpcDescription": "Includes any products that can be described/observed as a reel that holds cable or wire. The reel is used to help organise both the dispatch and return of wire or cable in an orderly fashion. Includes products that have a thermal cut-out/re-set facility, a locking brake and/or an adjustable cable guide.",
+              "parentId": "cabling-wiring-management-control"
+            },
+            {
+              "id": "cable-wire-conduit-ducting-raceways",
+              "name": "Cable/Wire Conduit/Ducting/Raceways",
+              "gpcCode": "10005647",
+              "gpcDescription": "Includes any products that can be described/observed as an enclosure for wires and cables, generally formed with hard/solid materials. Includes products such as a surface raceway, a floor moulding wire track, a cable conduit, a wire duct, a cable tray and a strut channel. In the office, cord organisers and routers are particularly useful for the orderly realignment and consolidation of tangling wires, which exist with most electronic equipment.",
+              "parentId": "cabling-wiring-management-control"
+            },
+            {
+              "id": "cabling-wiring-protection-wrapping",
+              "name": "Cabling/Wiring Protection/Wrapping",
+              "gpcCode": "10005650",
+              "gpcDescription": "Includes any products that can be described/observed as a protective sheath or tube, generally formed with soft materials. These products are normally made of a protective material that offers safety properties such as heat, flame and abrasion resistance and in certain circumstances could also claim to be waterproof. Includes products such as spiral wrap, corrugated loom tubing and expandable sleeving and heat shrink tubing.",
+              "parentId": "cabling-wiring-management-control"
+            }
+          ]
+        },
+        {
+          "id": "electrical-cables",
+          "name": "Electrical Cables",
+          "gpcCode": "78040300",
+          "parentId": "electrical-cabling-wiring",
+          "children": [
+            {
+              "id": "audio-visual-cables",
+              "name": "Audio Visual Cables",
+              "gpcCode": "10005757",
+              "gpcDescription": "Includes any products that can be described/observed as wires or optical fibres bound or twisted together into a single piece of cable that is used to carry an electrical current, audio and visual data to and from audio visual equipment. These products may or may not have a protective jacket or sheath for insulation.Includes products such as scart cables, s-video cables, speaker cables, and jack cables.",
+              "parentId": "electrical-cables"
+            },
+            {
+              "id": "computer-cables",
+              "name": "Computer Cables",
+              "gpcCode": "10005754",
+              "gpcDescription": "Includes any products that can be described/observed as wires or optical fibres bound or twisted together into a single piece of cable that is used to carry an electrical current, data or information to and from a computer. These products may or may not have a protective jacket or sheath for insulation. Includes products such as PC connecting cables, network cables and USB cables. ",
+              "parentId": "electrical-cables"
+            },
+            {
+              "id": "satellite-installation-cables",
+              "name": "Satellite Installation Cables",
+              "gpcCode": "10005759",
+              "gpcDescription": "Includes any products that can be described/observed as wires or optical fibres bound or twisted together into a single piece of cable that is used to carry an electrical current and satellite signals from satellite equipment. These products may or may not have a protective jacket or sheath for insulation. Includes products such as satellite aerial cables. ",
+              "parentId": "electrical-cables"
+            },
+            {
+              "id": "telecommunication-cables",
+              "name": "Telecommunication Cables",
+              "gpcCode": "10005758",
+              "gpcDescription": "Includes any products that can be described/observed as wires or optical fibres bound or twisted together into a single piece of cable that is used to carry an electrical current, audio and visual data to and from telecommunication equipment. These products may or may not have a protective jacket or sheath for insulation. Includes products such as telephone cables and fax/modem cables. ",
+              "parentId": "electrical-cables"
+            }
+          ]
+        },
+        {
+          "id": "electrical-wiring",
+          "name": "Electrical Wiring",
+          "gpcCode": "78040400",
+          "parentId": "electrical-cabling-wiring",
+          "children": [
+            {
+              "id": "electrical-wires",
+              "name": "Electrical Wires",
+              "gpcCode": "10005541",
+              "gpcDescription": "Includes any products that can be described/observed as a conducting wire, made from one or more cylindrical strands/threads of elongated or drawn out metal. These products are used to carry an electrical current from one location to another. These products may or may not have a protective jacket or sheath for insulation, and can range in length from a short piece of wire used in fuses, to wire that is many meters long. Includes products such as bare wire and insulated copper wire. ",
+              "parentId": "electrical-wiring"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "electrical-connection-distribution",
+      "name": "Electrical Connection/Distribution",
+      "gpcCode": "78020000",
+      "parentId": "electrical-supplies",
+      "children": [
+        {
+          "id": "batteries-chargers",
+          "name": "Batteries/Chargers",
+          "gpcCode": "78021100",
+          "parentId": "electrical-connection-distribution",
+          "children": [
+            {
+              "id": "batteries",
+              "name": "Batteries",
+              "gpcCode": "10000546",
+              "gpcDescription": "Includes any products that can be described/observed as small electro-chemical cells specifically designed to produce an electrical current that can act as a conveniently sized portable power source for a range of electronic devices. Includes products such as rechargeable and non-rechargeable Battery Cells that come in different sizes dependent on power output.",
+              "parentId": "batteries-chargers"
+            },
+            {
+              "id": "batteries-chargers-variety-packs",
+              "name": "Batteries/Chargers Variety Packs",
+              "gpcCode": "10000704",
+              "gpcDescription": "Includes any products that can be described/observed as two or more distinct Batteries and Chargers sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Batteries and Chargers class. Includes products such as Rechargeable Batteries and Chargers sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "batteries-chargers"
+            },
+            {
+              "id": "battery-boxes",
+              "name": "Battery Boxes",
+              "gpcCode": "10005764",
+              "gpcDescription": "Includes any products that can be described/observed as a container or cover specifically designed for carrying and protecting batteries for a range of electronic devices. Includes products such as a battery box that can carry rechargeable and non-rechargeable batteries. ",
+              "parentId": "batteries-chargers"
+            },
+            {
+              "id": "chargers",
+              "name": "Chargers",
+              "gpcCode": "10000548",
+              "gpcDescription": "Includes any products that can be described/observed as an electrical device specifically designed to replenish the power supply of rechargeable batteries. Products available will recharge a range of battery cell types at various rates.",
+              "parentId": "batteries-chargers"
+            }
+          ]
+        },
+        {
+          "id": "electrical-connection",
+          "name": "Electrical Connection",
+          "gpcCode": "78020500",
+          "parentId": "electrical-connection-distribution",
+          "children": [
+            {
+              "id": "connectors-electrical",
+              "name": "Connectors (Electrical)",
+              "gpcCode": "10005573",
+              "gpcDescription": "Includes any products that can be described/observed as a coupling device for joining conductors of one electrical circuit together with those of another circuit. Connectors may facilitate a connection that can be easy established and separated or be a permanent fixture. Typically these products are either female or male, or in some case may comprise of both female and male parts.",
+              "parentId": "electrical-connection"
+            },
+            {
+              "id": "electrical-connection-variety-packs",
+              "name": "Electrical Connection Variety Packs",
+              "gpcCode": "10005572",
+              "gpcDescription": "Includes any products than can be described/observed as two or more distinct Electrical Connection products sold together which exist within the schema but belong to different bricks, that is two or more products contained within the same pack which cross bricks within the Electrical Connection class. Includes products such as Plugs and Socket variety packs. Items that are received free with purchases should be removed from the classification decision-making process.",
+              "parentId": "electrical-connection"
+            },
+            {
+              "id": "plugs",
+              "name": "Plugs",
+              "gpcCode": "10000551",
+              "gpcDescription": "Includes any products that can be described/observed as an electrical device specifically designed to connect an electrical appliance to a fixed electrical power supply socket. These products have male features (contact/pins) that are designed to mate with the female features of an electrical socket/receptacle/outlet that is permanently connected to the mains/live electricity supply. A cable is also attached to the plug to carry the electricity into the electrical appliance. Includes products such as two and three pin plugs and grounded and ungrounded plugs. ",
+              "parentId": "electrical-connection"
+            },
+            {
+              "id": "sockets-receptacles-outlets",
+              "name": "Sockets/Receptacles/Outlets",
+              "gpcCode": "10005567",
+              "gpcDescription": "Includes any products that can be described/observed as a connection point that delivers mains/live electricity through a plug when the plug is inserted into it. It is normally a permanent connection to the \"hot side\" of an electrical circuit and has female features, which are designed to mate with a male contact or pin. Includes products such as two and three pin accommodating sockets and switched and unswitched sockets. ",
+              "parentId": "electrical-connection"
+            }
+          ]
+        },
+        {
+          "id": "electrical-distribution",
+          "name": "Electrical Distribution",
+          "gpcCode": "78020600",
+          "parentId": "electrical-connection-distribution",
+          "children": [
+            {
+              "id": "adaptors-electrical",
+              "name": "Adaptors (Electrical)",
+              "gpcCode": "10005496",
+              "gpcDescription": "Includes any products that can be described/observed as a device that is used to match the physical and electrical characteristics of a socket/receptacle/outlet with that of a plug with a different configuration, allowing two disparate devices with different connections to connect. These products enable electrical appliances from one country to be used internationally, however they do not alter or change the voltage from the mains/live electricity supply. Includes products such as grounded and ungrounded adapters. ",
+              "parentId": "electrical-distribution"
+            },
+            {
+              "id": "busbars-busways",
+              "name": "Busbars/Busways",
+              "gpcCode": "10005575",
+              "gpcDescription": "Includes any products that can be described/observed as strips of copper or aluminium that conduct/distribute electricity around a circuit board, switchboard, distribution board or other electrical apparatus. The electrical current that is carried through a busbar/busway is determined by its size, the larger the size the greater the current. Includes products that are insulated and uninsulated.",
+              "parentId": "electrical-distribution"
+            },
+            {
+              "id": "capacitors",
+              "name": "Capacitors",
+              "gpcCode": "10005622",
+              "gpcDescription": "Includes any products that can be described/observed as a device that stores and discharges energy in the electric field created between two conductors and delivers a stable voltage for a wide variety of functions, including power conversion, DC-linking, frequency conversion, bypass, decoupling and filtering. Includes products made from tantalum, ceramic and aluminium and that range from low voltage products to high voltage products. They may or may not be electrolytic.",
+              "parentId": "electrical-distribution"
+            },
+            {
+              "id": "circuit-breakers",
+              "name": "Circuit Breakers",
+              "gpcCode": "10005576",
+              "gpcDescription": "Includes any products that can be described/observed as a piece of electrical equipment that is designed to protect electrical systems from overloads or short circuits by either disconnection and reconnection, or isolation. Within the home or office these items are normally fitted within an electrical distribution box. Includes products such as electrical disconnects, incomers and isolators.",
+              "parentId": "electrical-distribution"
+            },
+            {
+              "id": "converters-transformers",
+              "name": "Converters/Transformers",
+              "gpcCode": "10000547",
+              "gpcDescription": "Includes any products that can be described/observed as an electrical apparatus designed to alter, convert, stabilise, regulate or transform an electric power supply characteristic, such as the voltage, current or phase. Includes products such as signal converters, power regulators and distribution power transformers.",
+              "parentId": "electrical-distribution"
+            },
+            {
+              "id": "distribution-boards-boxes",
+              "name": "Distribution Boards/Boxes",
+              "gpcCode": "10005583",
+              "gpcDescription": "Includes any products that can be described/observed as an enclosure used to secure electrical and/or network equipment. Includes products that require assembly or come pre-assembled with circuit breakers and isolators. ",
+              "parentId": "electrical-distribution"
+            },
+            {
+              "id": "electrical-distribution-accessories-fittings",
+              "name": "Electrical Distribution Accessories/Fittings",
+              "gpcCode": "10005577",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory or fitting used to assist or enhance the installation of electrical distribution products. Includes products such as wire terminal kits, terminal block covers and terminal block separators.",
+              "parentId": "electrical-distribution"
+            },
+            {
+              "id": "fuses",
+              "name": "Fuses",
+              "gpcCode": "10000549",
+              "gpcDescription": "Includes any products that can be described/observed as a wire, bar, or strip of fusible metal inserted for safety in an electric circuit. When the current increases beyond a certain safe strength, the metal melts, interrupting the circuit and thereby preventing possibility of damage. Includes plug fuses and power circuit fuses; time delay fuses and fast acting fuses; low voltage fuses and high voltage fuses.",
+              "parentId": "electrical-distribution"
+            },
+            {
+              "id": "multi-use-universal-electrical-timers-controllers",
+              "name": "Multi-use/Universal Electrical Timers/Controllers",
+              "gpcCode": "10005682",
+              "gpcDescription": "Includes any products that can be described/observed as an electrical device that automates/controls the operational timing of a number of different home systems such as electrical lighting, central heating, water heating, security systems and audio visual equipment. Includes products with a plug-in connection as well as wireless digital, programmable switches and touch pads.",
+              "parentId": "electrical-distribution"
+            },
+            {
+              "id": "relays-contactors",
+              "name": "Relays/Contactors",
+              "gpcCode": "10005570",
+              "gpcDescription": "Includes any products that can be described/observed as an electrical switching device that opens and closes under control of another electrical circuit. Relays are designed for switching loads on or off, whereas contactors are designed to \"break\" a high current load and are commonly fitted with overload protection. Includes products such as power relays, socket relays and alternating voltage relays, as well as vacuum contactors.",
+              "parentId": "electrical-distribution"
+            },
+            {
+              "id": "splitters",
+              "name": "Splitters",
+              "gpcCode": "10005568",
+              "gpcDescription": "Includes any product that can be described/observed as a device that separates an electronic signal into two or more smaller and approximately equal signals and distributes them to a number of receivers simultaneously. Includes products such as power splitters, RF (radio frequency) signal splitters and microphone splitters.",
+              "parentId": "electrical-distribution"
+            },
+            {
+              "id": "surge-suppressors-protectors",
+              "name": "Surge Suppressors/Protectors",
+              "gpcCode": "10005585",
+              "gpcDescription": "Includes any products that can be described/observed as a device used to protect electrical appliances and electronic equipment. Surge protectors regulate the voltage supplied to an electric device by either blocking, or shorting to ground, voltage above a safe threshold. Includes products such as external surge suppressors, which are installed on the electrical panel to protect home appliances such as refrigerators and washing machines, or point-of-use surge suppressors, which are connected to individual pieces of home electronic equipment such as computers and televisions.",
+              "parentId": "electrical-distribution"
+            },
+            {
+              "id": "switches",
+              "name": "Switches",
+              "gpcCode": "10005586",
+              "gpcDescription": "Includes any products that can be described/observed as a circuit interruption device used to control the flow of electricity to electrical lights, appliances, and outlets. The flow is controlled by either turning the electricity on or off or by changing the path along which it flows and can be managed mechanically, electronically by remote control or via an app (smarthome).",
+              "parentId": "electrical-distribution"
+            },
+            {
+              "id": "terminal-blocks-strips",
+              "name": "Terminal Blocks/Strips",
+              "gpcCode": "10005588",
+              "gpcDescription": "Includes any products that can be described/observed as an insulating mounting for terminal connections. These products provide a convenient way to make temporary but secure electrical connections between wire and components. A raised ridge between the terminal points prevents arc-over between wires, as it ensures the frayed ends of stranded wires are kept in their proper place. ",
+              "parentId": "electrical-distribution"
+            }
+          ]
+        },
+        {
+          "id": "electrical-generation",
+          "name": "Electrical Generation",
+          "gpcCode": "78021200",
+          "parentId": "electrical-connection-distribution",
+          "children": [
+            {
+              "id": "charge-voltage-regulators",
+              "name": "Charge/Voltage Regulators",
+              "gpcCode": "10008391",
+              "gpcDescription": "Includes any products that can be described/observed as a device that regulates the voltage and current coming from solar panels or other renewable energy sources to prevent damage to batteries and other energy storage systems. Charge controllers are typically used in off-grid or hybrid systems, where energy is generated from solar panels or wind turbines and stored in batteries for later use. The charge controller is responsible for managing the flow of energy between the renewable energy source, the battery bank, and the load to ensure that the battery is charged efficiently and effectively while also preventing overcharging and undercharging.",
+              "parentId": "electrical-generation"
+            },
+            {
+              "id": "electrical-generation-accessories-fittings",
+              "name": "Electrical Generation Accessories/Fittings",
+              "gpcCode": "10008395",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory or fitting used to assist or enhance the installation of electrical generation products. Includes products such as solar racking systems.",
+              "parentId": "electrical-generation"
+            },
+            {
+              "id": "generators",
+              "name": "Generators",
+              "gpcCode": "10005211",
+              "gpcDescription": "Includes any products that may be described/observed as a machine that transforms mechanical energy into electricity. It consists of a magnet rotating in a coil wire, which frees electrons and pushes them along the wire.",
+              "parentId": "electrical-generation"
+            },
+            {
+              "id": "inverters",
+              "name": "Inverters",
+              "gpcCode": "10008390",
+              "gpcDescription": "Includes any products that can be described/observed as an electronic device that converts direct current (DC) electricity into alternating current (AC) electricity. In renewable energy systems, inverters are commonly used to convert the DC electricity produced by solar panels or wind turbines into AC electricity that can be used to power homes and businesses. Inverters are essential for renewable energy systems, as most electrical devices require AC power to function. In addition to converting DC to AC, inverters may also perform other functions, such as regulating the voltage and frequency of the AC output, providing grid-tie capabilities, and managing power quality.",
+              "parentId": "electrical-generation"
+            },
+            {
+              "id": "power-generator-set",
+              "name": "Power Generator Set",
+              "gpcCode": "10008394",
+              "gpcDescription": "Includes any products that can be described/observed as a device which includes a power generator, an engine or motor that drives the generator, and any necessary ancillary equipment such as fuel tanks, control systems, and cooling systems. The system is designed to convert the chemical energy stored in a fuel source, such as diesel, natural gas, or gasoline, into electrical energy through a generator. Generator sets are commonly used for backup power, primary power, and mobile power applications in a wide range of industries and settings, including commercial, industrial, residential, and remote or off-grid locations. The size and configuration of a generator set can vary widely, from small portable units that can power a single device or system to large stationary units that can power entire buildings or facilities.",
+              "parentId": "electrical-generation"
+            },
+            {
+              "id": "solar-panels",
+              "name": "Solar Panels",
+              "gpcCode": "10008389",
+              "gpcDescription": "Includes any products that can be described/observed as a device that converts sunlight into electricity through the photovoltaic effect. It is typically made up of multiple solar cells that are connected together and encased in a protective material, such as glass or plastic. The solar panel is designed to capture the energy from the sun's rays and transform it into electrical energy, which can be used to power a variety of devices.",
+              "parentId": "electrical-generation"
+            },
+            {
+              "id": "solar-power-stations",
+              "name": "Solar Power Stations",
+              "gpcCode": "10005875",
+              "gpcDescription": "Includes any products that can be described/obseved as an easy to install kit consisting of a high power solar panel, battery, charge controller and inverter. The power station can power most appliances found in the home, office and workplace - such as TV's, stereo's, games consoles, lap top's, fax and power tools.",
+              "parentId": "electrical-generation"
+            },
+            {
+              "id": "water-turbines",
+              "name": "Water Turbines",
+              "gpcCode": "10008393",
+              "gpcDescription": "Includes any products that can be described/observed as a device that converts the potential energy of water into mechanical energy, which can be used to drive a generator that produces electrical energy. Water turbines are typically used in hydroelectric power plants, where they are placed in the flow of a river or other body of water to harness the energy of falling or flowing water. Water turbines can vary in size, from small turbines that are used to power individual homes or small businesses to large turbines that are part of hydroelectric dams that generate electricity for the grid.",
+              "parentId": "electrical-generation"
+            },
+            {
+              "id": "wind-turbines",
+              "name": "Wind Turbines",
+              "gpcCode": "10008392",
+              "gpcDescription": "Includes any products that can be described/observed as a device that converts the kinetic energy of wind into electrical energy. Wind turbines consist of rotor blades attached to a central hub, which is connected to a generator that produces electricity. As the wind blows, the rotor blades spin, which in turn rotates the generator, producing electrical energy. Wind turbines can vary in size, from small turbines that are used to power individual homes or small businesses to large turbines that are part of wind farms that generate electricity for the grid.",
+              "parentId": "electrical-generation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "electronic-communication-components",
+      "name": "Electronic Communication Components",
+      "gpcCode": "78050000",
+      "parentId": "electrical-supplies",
+      "children": [
+        {
+          "id": "electronic-communication-components",
+          "name": "Electronic Communication Components",
+          "gpcCode": "78050100",
+          "parentId": "electronic-communication-components",
+          "children": [
+            {
+              "id": "circuit-assemblies-integrated-circuits",
+              "name": "Circuit Assemblies/Integrated Circuits",
+              "gpcCode": "10005661",
+              "gpcDescription": "Includes any products that can be described/observed as an assembly of electronic components containing many circuits built into a single device capable of many functions such as the controlling, processing and distribution of information and the conversion and distribution of electric power. Includes analogue and digital circuits.",
+              "parentId": "electronic-communication-components"
+            },
+            {
+              "id": "discreet-components",
+              "name": "Discreet Components",
+              "gpcCode": "10005662",
+              "gpcDescription": "Includes any products that can be described/observed as an individual electronic device or indivisible building block with two or more connecting leads. Includes passive components such as a resistor, inductor or diode, or active components such as a transistor or vacuum tube.",
+              "parentId": "electronic-communication-components"
+            },
+            {
+              "id": "electronic-circuit-accessories",
+              "name": "Electronic Circuit Accessories",
+              "gpcCode": "10005667",
+              "gpcDescription": "Includes any products that can be described/observed as an accessory used in the construction of electronic circuits that aids the function of the circuit. Includes products such as heat sinks and bare printed circuit boards.",
+              "parentId": "electronic-communication-components"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "general-electrical-hardware",
+      "name": "General Electrical Hardware",
+      "gpcCode": "78060000",
+      "parentId": "electrical-supplies",
+      "children": [
+        {
+          "id": "general-electrical-hardware-class",
+          "name": "General Electrical Hardware",
+          "gpcCode": "78060100",
+          "parentId": "general-electrical-hardware",
+          "children": [
+            {
+              "id": "bonding-grounding-braid",
+              "name": "Bonding/Grounding Braid",
+              "gpcCode": "10005546",
+              "gpcDescription": "Includes any products that can be described/observed as a conducting strip made from woven metal, such as tinned copper or nickel-plated copper. These products provide a current return path from an electrical device to the ground, closing the current loop. Includes products with eyelets at either end of the strip.",
+              "parentId": "general-electrical-hardware-class"
+            },
+            {
+              "id": "cable-wire-pullers",
+              "name": "Cable/Wire Pullers",
+              "gpcCode": "10005571",
+              "gpcDescription": "Includes any products that can be described/observed as a device that is used for the retrieval or installation of cables/wires in hard to reach places, such as through/behind walls, ceilings, under carpets and through plastic or metal conduit or piping. In some cases these products are also used to increases the tension in the cable or wire. Includes products such as fish tape.",
+              "parentId": "general-electrical-hardware-class"
+            },
+            {
+              "id": "electronic-testers",
+              "name": "Electronic Testers",
+              "gpcCode": "10005742",
+              "gpcDescription": "Includes any products that can be described/observed as an electrical device to test the functionality/power/voltage of an electricity outlet or electrical products such as batteries and lamps.",
+              "parentId": "general-electrical-hardware-class"
+            },
+            {
+              "id": "extension-power-supply-cords",
+              "name": "Extension/Power Supply Cords",
+              "gpcCode": "10005559",
+              "gpcDescription": "Includes any products that can be described/observed as a length of flexible power cable, that is equipped with a plug at one end and one or multiple sockets at the other end. These products are used to extend the reach of a mains supply of electrical current from its normal terminal point to where it is required. Includes products such as extension reels, where the power cable rolls up/into a device that usually houses the socket/s.",
+              "parentId": "general-electrical-hardware-class"
+            },
+            {
+              "id": "monitors-screens",
+              "name": "Monitors/Screens",
+              "gpcCode": "10008363",
+              "gpcDescription": "Includes any products that can be described/observed as a monitor/screen in which images or text are displayed that provides guidance and monitoring about the specific appliance to the user. Includes products that use digital and analogue displays.",
+              "parentId": "general-electrical-hardware-class"
+            },
+            {
+              "id": "voltmeters-multimeters",
+              "name": "Voltmeters/Multimeters",
+              "gpcCode": "10005599",
+              "gpcDescription": "Includes any products that can be described/observed as a measuring instrument, used to measure electrical currents, voltage (potential difference between two points) or to measure currents, voltage and resistance. Typically these products are used for basic fault finding in electrical circuits. Includes products that use digital and analogue displays.",
+              "parentId": "general-electrical-hardware-class"
+            },
+            {
+              "id": "wall-plates-electrical",
+              "name": "Wall Plates (Electrical)",
+              "gpcCode": "10005505",
+              "gpcDescription": "Includes any products that can be described/observed as a cover for sockets and switches. These products may have numerous gangs or holes to allow plugs to be connected into the sockets, or they may be blank, without gangs preventing sockets from being used. Includes both metallic and non-metallic products.",
+              "parentId": "general-electrical-hardware-class"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

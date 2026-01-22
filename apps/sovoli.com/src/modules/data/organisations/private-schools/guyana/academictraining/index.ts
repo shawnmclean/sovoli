@@ -15,9 +15,7 @@ export const ACADEMIC_TRAINING_ORG: OrgInstance = {
           city: "Georgetown",
           countryCode: "GY",
         },
-        contacts: [
-          { type: "phone", value: "+592-225-1585", isPublic: true },
-        ],
+        contacts: [{ type: "phone", value: "+592-225-1585", isPublic: true }],
         isPrimary: true,
       },
     ],

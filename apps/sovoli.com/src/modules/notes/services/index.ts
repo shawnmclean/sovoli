@@ -1,11 +1,5 @@
 // Export types
-export type { KnowledgeFile, UserKnowledge, UserSlug } from "./types";
 
-// Export services
-export {
-  GetUserKnowledgeByUsernameQuery,
-  GetUserKnowledgeByUsernameQueryHandler,
-} from "./GetUserKnowledgeByUsername";
 export {
   GetAllUsersAndSlugsQuery,
   GetAllUsersAndSlugsQueryHandler,
@@ -14,3 +8,9 @@ export {
   GetKnowledgeBySlugQuery,
   GetKnowledgeBySlugQueryHandler,
 } from "./GetKnowledgeBySlug";
+// Export services
+export {
+  GetUserKnowledgeByUsernameQuery,
+  GetUserKnowledgeByUsernameQueryHandler,
+} from "./GetUserKnowledgeByUsername";
+export type { KnowledgeFile, UserKnowledge, UserSlug } from "./types";

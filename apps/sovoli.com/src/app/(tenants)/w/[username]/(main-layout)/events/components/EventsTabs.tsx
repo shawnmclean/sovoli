@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { Tab, Tabs } from "@sovoli/ui/components/tabs";
 import type { Key } from "react";
-import { Tabs, Tab } from "@sovoli/ui/components/tabs";
-import type { OrgInstance } from "~/modules/organisations/types";
+import { useState } from "react";
 import type { Event } from "~/modules/events/types";
+import type { OrgInstance } from "~/modules/organisations/types";
 import { EventCard } from "./EventCard";
 import { SubscribeAllEventsButton } from "./SubscribeAllEventsButton";
 

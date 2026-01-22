@@ -1,15 +1,15 @@
 "use client";
 
-import { useState } from "react";
-import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
-import { TimeAgo } from "@sovoli/ui/components/time-ago";
 import { Button } from "@sovoli/ui/components/button";
+import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
-import { MessageCircleIcon, PhoneIcon, EditIcon } from "lucide-react";
 import { useDisclosure } from "@sovoli/ui/components/dialog";
-import type { OrgInstance } from "~/modules/organisations/types";
+import { TimeAgo } from "@sovoli/ui/components/time-ago";
+import { EditIcon, MessageCircleIcon, PhoneIcon } from "lucide-react";
+import { useState } from "react";
 import type { Program, ProgramCycle } from "~/modules/academics/types";
 import type { Lead, LeadInteraction } from "~/modules/leads/types";
+import type { OrgInstance } from "~/modules/organisations/types";
 import { LeadInteractionModal } from "./LeadInteractionModal";
 
 interface LeadsTableProps {

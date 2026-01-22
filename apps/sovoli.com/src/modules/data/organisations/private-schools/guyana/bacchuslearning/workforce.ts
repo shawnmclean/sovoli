@@ -4,9 +4,9 @@ import type {
 } from "~/modules/workforce/types";
 import {
   ADMIN,
+  DEPUTY_PRINCIPAL,
   FACULTY,
   PRINCIPAL,
-  DEPUTY_PRINCIPAL,
   TEACHER,
 } from "./workforceMeta";
 

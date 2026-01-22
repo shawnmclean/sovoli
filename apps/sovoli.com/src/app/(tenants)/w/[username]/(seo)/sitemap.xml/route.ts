@@ -1,8 +1,8 @@
-import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
-import type { OrgInstance } from "~/modules/organisations/types";
-import type { WorkforceMember } from "~/modules/workforce/types";
 import type { Program } from "~/modules/academics/types";
 import type { Event } from "~/modules/events/types";
+import type { OrgInstance } from "~/modules/organisations/types";
+import type { WorkforceMember } from "~/modules/workforce/types";
+import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
 
 interface SitemapUrl {
   loc: string;

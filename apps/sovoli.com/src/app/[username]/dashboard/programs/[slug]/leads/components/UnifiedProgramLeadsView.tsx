@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import type { OrgInstance } from "~/modules/organisations/types";
+import { useMemo, useState } from "react";
 import type { Lead } from "~/modules/leads/types";
+import type { OrgInstance } from "~/modules/organisations/types";
 import { LeadInteractionModal } from "../../../../components/LeadInteractionModal";
+import type { LeadInteraction } from "../utils/leadCategorization";
+import { categorizeLead } from "../utils/leadCategorization";
 import type { LeadsSummaryStats } from "./LeadsSummaryCards";
 import { LeadsSummaryCards } from "./LeadsSummaryCards";
 import { ProgramLeadCard } from "./ProgramLeadCard";
-import type { LeadInteraction } from "../utils/leadCategorization";
-import { categorizeLead } from "../utils/leadCategorization";
 
 interface UnifiedProgramLeadsViewProps {
   initialLeads: Lead[];

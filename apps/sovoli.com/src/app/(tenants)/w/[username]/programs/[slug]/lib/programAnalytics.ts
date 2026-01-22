@@ -1,9 +1,9 @@
+import posthog from "posthog-js";
 import type {
-  ProgramCycle,
   Program,
+  ProgramCycle,
   ProgramGroup,
 } from "~/modules/academics/types";
-import posthog from "posthog-js";
 import { formatCycleLabel } from "~/utils/dateUtils";
 
 interface PricingData {

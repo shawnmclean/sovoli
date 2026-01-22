@@ -1,17 +1,17 @@
-import type { OrgInstance } from "~/modules/organisations/types";
 import type { Media } from "~/modules/core/media/types";
+//import { CREATIVE_THINKING_STATIONERY_HUB_ORG } from "~/modules/data/organisations/stationary/guyana/creativethinking";
+import { ARGOSY_BOOK_STORE_ORG } from "~/modules/data/organisations/stationary/guyana/argosybookstore";
+import type { OrgInstance } from "~/modules/organisations/types";
 import { OrgLocationFeature } from "~/modules/organisations/types";
 import { MODERN_ACADEMY_ACADEMIC } from "./academic";
 import { ORG_USERNAME } from "./constants";
-import { MODERN_ACADEMY_OFFERINGS } from "./offering";
-import { MODERN_ACADEMY_WORKFORCE } from "./workforce";
-import { MODERN_ACADEMY_WEBSITE } from "./website";
 import { MODERN_ACADEMY_EVENTS } from "./events";
-//import { CREATIVE_THINKING_STATIONERY_HUB_ORG } from "~/modules/data/organisations/stationary/guyana/creativethinking";
-import { ARGOSY_BOOK_STORE_ORG } from "~/modules/data/organisations/stationary/guyana/argosybookstore";
-import { MODERN_ACADEMY_PHOTOS } from "./photos";
 import { MODERN_ACADEMY_NEEDS } from "./needs";
+import { MODERN_ACADEMY_OFFERINGS } from "./offering";
+import { MODERN_ACADEMY_PHOTOS } from "./photos";
 import { MODERN_ACADEMY_PROJECTS } from "./projects";
+import { MODERN_ACADEMY_WEBSITE } from "./website";
+import { MODERN_ACADEMY_WORKFORCE } from "./workforce";
 
 export const MODERN_ACADEMY_ORG: OrgInstance = {
   org: {

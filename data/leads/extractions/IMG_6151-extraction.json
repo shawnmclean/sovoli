@@ -17,15 +17,9 @@
       {
         "id": "001",
         "name": "NCTVET and AMCA Certificate Program",
-        "quickFacts": [
-          "Jamaica's # 1",
-          "AMCA exams APPROVED",
-          "NCTVET"
-        ],
+        "quickFacts": ["Jamaica's # 1", "AMCA exams APPROVED", "NCTVET"],
         "schedule": {
-          "dates": [
-            "January 2026"
-          ]
+          "dates": ["January 2026"]
         },
         "matchedPrograms": null
       }
@@ -40,16 +34,10 @@
       "emails": []
     },
     "socialLinks": [],
-    "urls": [
-      "edunomics.biz/programmes"
-    ],
+    "urls": ["edunomics.biz/programmes"],
     "locations": [],
-    "platformSignals": [
-      "Sponsored"
-    ]
+    "platformSignals": ["Sponsored"]
   },
-  "business": [
-    "Edunomics Limited"
-  ],
+  "business": ["Edunomics Limited"],
   "matchedOrgs": null
 }

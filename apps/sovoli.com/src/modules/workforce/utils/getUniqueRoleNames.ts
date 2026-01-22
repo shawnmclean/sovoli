@@ -9,4 +9,3 @@ export function getUniqueRoleNames(members: WorkforceMember[]): string[] {
   });
   return Array.from(roles).sort((a, b) => a.localeCompare(b));
 }
-

@@ -1,15 +1,14 @@
-import type { OrgInstance } from "~/modules/organisations/types";
-import { parseOrgInstance } from "../../../../utils/parseOrgInstance";
-import { parseMediaModule } from "../../../../utils/parseMediaModule";
 import { EARLY_LEARNERS_BOOKSHELF_ORG } from "~/modules/data/organisations/stationary/jamaica/st-james/earlylearnersbookshelf";
-
+import type { OrgInstance } from "~/modules/organisations/types";
+import { parseMediaModule } from "../../../../utils/parseMediaModule";
+import { parseOrgInstance } from "../../../../utils/parseOrgInstance";
+import cyclesData from "./cycles.json";
+import mediaData from "./media.json";
+import nurseryAcademicData from "./nursery-academic.json";
 // Import JSON files
 import orgData from "./org.json";
-import websiteData from "./website.json";
-import mediaData from "./media.json";
-import cyclesData from "./cycles.json";
 import programGroupsData from "./program-groups.json";
-import nurseryAcademicData from "./nursery-academic.json";
+import websiteData from "./website.json";
 import workforceData from "./workforce.json";
 
 /**

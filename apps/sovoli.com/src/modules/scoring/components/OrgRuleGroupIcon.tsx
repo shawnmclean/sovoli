@@ -1,11 +1,11 @@
 import type { LucideIcon } from "lucide-react";
 import {
-  ShieldCheckIcon, // 🛡️ Safety & Legitimacy
-  MessageCircleIcon, // 💬 Communication
-  GlobeIcon, // 🖥️ Digital Readiness
   BarChartIcon, // 📊 Transparency
   FileTextIcon, // 📄 Enrollment Experience
+  GlobeIcon, // 🖥️ Digital Readiness
   InfoIcon, // ℹ️ Fallback
+  MessageCircleIcon, // 💬 Communication
+  ShieldCheckIcon, // 🛡️ Safety & Legitimacy
 } from "lucide-react";
 
 export const groupIconMap: Record<string, LucideIcon> = {

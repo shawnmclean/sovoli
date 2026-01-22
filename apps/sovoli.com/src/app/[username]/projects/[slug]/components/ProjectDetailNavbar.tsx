@@ -1,13 +1,13 @@
 "use client";
 
-import Link from "next/link";
-import { ChevronLeftIcon } from "lucide-react";
+import { Button } from "@sovoli/ui/components/button";
 import {
   Navbar,
   NavbarContent,
   NavbarItem,
 } from "@sovoli/ui/components/navbar";
-import { Button } from "@sovoli/ui/components/button";
+import { ChevronLeftIcon } from "lucide-react";
+import Link from "next/link";
 import { ShareButton } from "~/app/[username]/(profile)/components/OrgNavbar/ShareButton";
 
 export interface ProjectDetailNavbarProps {

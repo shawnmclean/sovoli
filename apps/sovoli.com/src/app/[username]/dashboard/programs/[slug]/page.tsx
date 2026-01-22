@@ -1,12 +1,10 @@
-import { notFound } from "next/navigation";
-
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
-
-import { bus } from "~/services/core/bus";
-import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
+import { notFound } from "next/navigation";
 import type { Program } from "~/modules/academics/types";
+import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
+import { bus } from "~/services/core/bus";
 
 export default async function ProgramDetailPage({
   params,
@@ -84,4 +82,3 @@ export default async function ProgramDetailPage({
     </div>
   );
 }
-

@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Badge } from "@sovoli/ui/components/badge";
 import { Button } from "@sovoli/ui/components/button";
 import { Checkbox } from "@sovoli/ui/components/checkbox";
-import { Badge } from "@sovoli/ui/components/badge";
 import {
   Dropdown,
   DropdownItem,
@@ -14,6 +13,7 @@ import { Input } from "@sovoli/ui/components/input";
 import { Navbar, NavbarContent } from "@sovoli/ui/components/navbar";
 import { Tooltip } from "@sovoli/ui/components/tooltip";
 import { SearchIcon, SlidersHorizontal } from "lucide-react";
+import { useEffect, useState } from "react";
 
 interface ItemsSearchCategoryOption<TCategory extends string = string> {
   key: TCategory;

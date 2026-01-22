@@ -1,22 +1,22 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Button } from "@sovoli/ui/components/button";
+import { Checkbox } from "@sovoli/ui/components/checkbox";
 import { Input, Textarea } from "@sovoli/ui/components/input";
 import { Select, SelectItem } from "@sovoli/ui/components/select";
-import { Checkbox } from "@sovoli/ui/components/checkbox";
-import { PhoneNumberStep } from "~/modules/auth/components/PhoneNumberStep/PhoneNumberStep";
+import { ArrowLeftIcon, CheckCircle2Icon } from "lucide-react";
+import Link from "next/link";
+import posthog from "posthog-js";
+import { useEffect, useState } from "react";
+import { Logo } from "~/components/Logo/Logo";
 import { NamesForm } from "~/modules/auth/components/NamesForm";
+import { PhoneNumberStep } from "~/modules/auth/components/PhoneNumberStep/PhoneNumberStep";
 import type { BusinessCategory } from "../../../(marketing)/(business)/business/categories";
 import {
   BUSINESS_CATEGORIES,
   isBusinessCategory,
 } from "../../../(marketing)/(business)/business/categories";
 import { submitBusinessLead } from "../actions";
-import posthog from "posthog-js";
-import { CheckCircle2Icon, ArrowLeftIcon } from "lucide-react";
-import { Logo } from "~/components/Logo/Logo";
-import Link from "next/link";
 
 export interface BusinessSignupWizardProps {
   initialCategory?: string;

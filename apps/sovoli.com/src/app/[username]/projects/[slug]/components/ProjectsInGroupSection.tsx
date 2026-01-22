@@ -1,20 +1,20 @@
 "use client";
 
-import type { Project, ProjectGroup } from "~/modules/projects/types";
-import type { OrgInstance } from "~/modules/organisations/types";
-import type { Need, NeedType } from "~/modules/needs/types";
-import type { Item } from "~/modules/core/items/types";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
-import { Link } from "@sovoli/ui/components/link";
 import { Divider } from "@sovoli/ui/components/divider";
-import { CldImage } from "next-cloudinary";
-import { slugify } from "~/utils/slugify";
-import { ArrowRight, FolderOpen } from "lucide-react";
+import { Link } from "@sovoli/ui/components/link";
 import { CircularProgress, Progress } from "@sovoli/ui/components/progress";
+import { ArrowRight, FolderOpen } from "lucide-react";
+import { CldImage } from "next-cloudinary";
+import type { Item } from "~/modules/core/items/types";
 import { ORGS } from "~/modules/data/organisations";
+import type { Need, NeedType } from "~/modules/needs/types";
 import { NEED_TYPE_CONFIG } from "~/modules/needs/utils";
+import type { OrgInstance } from "~/modules/organisations/types";
+import type { Project, ProjectGroup } from "~/modules/projects/types";
 import { pluralize } from "~/utils/pluralize";
+import { slugify } from "~/utils/slugify";
 
 export interface ProjectsInGroupSectionProps {
   orgInstance: OrgInstance;
@@ -31,12 +31,24 @@ function calculateNeedProgress(need: Need): number {
   if (need.quantity && need.fulfillment?.quantityMet !== undefined) {
     return Math.round((need.fulfillment.quantityMet / need.quantity) * 100);
   }
-  if (need.type === "human" && need.headcount && need.fulfillment?.quantityMet !== undefined) {
+  if (
+    need.type === "human" &&
+    need.headcount &&
+    need.fulfillment?.quantityMet !== undefined
+  ) {
     return Math.round((need.fulfillment.quantityMet / need.headcount) * 100);
   }
-  if (need.type === "financial" && need.targetAmount && need.fulfillment?.amountRaised) {
-    const currency = Object.keys(need.targetAmount)[0] as keyof typeof need.targetAmount | undefined;
-    const raisedAmount = currency ? need.fulfillment.amountRaised[currency] : undefined;
+  if (
+    need.type === "financial" &&
+    need.targetAmount &&
+    need.fulfillment?.amountRaised
+  ) {
+    const currency = Object.keys(need.targetAmount)[0] as
+      | keyof typeof need.targetAmount
+      | undefined;
+    const raisedAmount = currency
+      ? need.fulfillment.amountRaised[currency]
+      : undefined;
     if (currency && raisedAmount !== undefined) {
       const target = need.targetAmount[currency] ?? 0;
       if (target > 0) return Math.round((raisedAmount / target) * 100);
@@ -69,7 +81,10 @@ function calculateProjectProgress(project: Project): number {
     return project.status === "completed" ? 100 : 0;
   }
 
-  const totalProgress = allNeeds.reduce((sum, need) => sum + calculateNeedProgress(need), 0);
+  const totalProgress = allNeeds.reduce(
+    (sum, need) => sum + calculateNeedProgress(need),
+    0,
+  );
   return Math.round(totalProgress / allNeeds.length);
 }
 
@@ -110,7 +125,10 @@ function getTotalNeedsCount(counts: Record<NeedType, number>): number {
 }
 
 /** Calculate estimated cost for a project */
-function calculateEstimatedCost(project: Project, orgInstance: OrgInstance): number {
+function calculateEstimatedCost(
+  project: Project,
+  orgInstance: OrgInstance,
+): number {
   const allNeeds: Need[] = [];
 
   if (project.needs) allNeeds.push(...project.needs);
@@ -144,7 +162,10 @@ function calculateEstimatedCost(project: Project, orgInstance: OrgInstance): num
           );
           if (catalogItem) {
             const price =
-              catalogItem.price.JMD ?? catalogItem.price.GYD ?? catalogItem.price.USD ?? 0;
+              catalogItem.price.JMD ??
+              catalogItem.price.GYD ??
+              catalogItem.price.USD ??
+              0;
             totalCost += price * (need.quantity ?? 1);
             break;
           }
@@ -175,7 +196,9 @@ function ProjectCard({
   // Get first image from project or phases
   const firstImage =
     project.media?.find((m) => m.type === "image") ??
-    project.phases?.flatMap((p) => p.media ?? []).find((m) => m.type === "image");
+    project.phases
+      ?.flatMap((p) => p.media ?? [])
+      .find((m) => m.type === "image");
 
   const progress = calculateProjectProgress(project);
   const needsCounts = countNeedsByType(project);
@@ -189,10 +212,7 @@ function ProjectCard({
     .slice(0, 3);
 
   return (
-    <Card
-      as={Link}
-      href={projectHref}
-    >
+    <Card as={Link} href={projectHref}>
       {/* Image Section */}
       <div className="relative aspect-[16/9] bg-default-100">
         {firstImage?.publicId ? (
@@ -300,7 +320,9 @@ function ProjectCard({
 
           <div className="flex items-center gap-2 text-default-400">
             {estimatedCost > 0 && (
-              <span className="text-sm font-medium text-success">{formatCurrency(estimatedCost)}</span>
+              <span className="text-sm font-medium text-success">
+                {formatCurrency(estimatedCost)}
+              </span>
             )}
             <ArrowRight className="h-4 w-4" />
           </div>
@@ -351,4 +373,3 @@ export const ProjectsInGroupSection = ({
     </>
   );
 };
-

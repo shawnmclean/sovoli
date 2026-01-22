@@ -1,8 +1,8 @@
 import { Avatar } from "@sovoli/ui/components/avatar";
 // import { Badge } from "@sovoli/ui/components/badge";
 import { BadgeCheckIcon } from "lucide-react";
-import type { OrgInstance } from "~/modules/organisations/types";
 import { getOrgCategoryDisplay } from "~/modules/organisations/getOrgCategoryDisplay";
+import type { OrgInstance } from "~/modules/organisations/types";
 import { countryCodeToName } from "~/utils/countryUtils";
 
 export interface OrgLandingSectionProps {

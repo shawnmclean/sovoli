@@ -1,6 +1,6 @@
 "use client";
 
-import type { OrgInstance } from "~/modules/organisations/types";
+import { Button } from "@sovoli/ui/components/button";
 import type { CarouselApi } from "@sovoli/ui/components/carousel";
 import {
   Carousel,
@@ -10,17 +10,17 @@ import {
 import { Chip } from "@sovoli/ui/components/chip";
 import {
   Modal,
-  ModalContent,
   ModalBody,
-  useDisclosure,
+  ModalContent,
   ModalHeader,
+  useDisclosure,
 } from "@sovoli/ui/components/dialog";
-import { CldImage } from "next-cloudinary";
-import { useState, useEffect, useTransition } from "react";
-import { Button } from "@sovoli/ui/components/button";
 import { ChevronLeftIcon } from "lucide-react";
+import { CldImage } from "next-cloudinary";
+import { useEffect, useState, useTransition } from "react";
 import type { Media } from "~/modules/core/media/types";
 import { filterVisualMedia } from "~/modules/core/media/types";
+import type { OrgInstance } from "~/modules/organisations/types";
 
 export interface OrgGalleryCarouselProps {
   orgInstance: OrgInstance;

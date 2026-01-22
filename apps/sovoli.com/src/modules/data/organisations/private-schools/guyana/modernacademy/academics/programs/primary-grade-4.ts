@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
-import { GY_PRIMARY_GRADE_4_V1 } from "~/modules/data/academics/guyana/programs";
-import { PRIMARY_PHOTOS, shuffleArray } from "../../photos";
 import type { Program } from "~/modules/academics/types";
+import { GY_PRIMARY_GRADE_4_V1 } from "~/modules/data/academics/guyana/programs";
+import { findItemById } from "~/modules/data/items";
+import { PRIMARY_PHOTOS, shuffleArray } from "../../photos";
 import { MAGY_PRIMARY_GRADE_4_2025_T1 } from "../cycles";
 import { MAGY_SHARED_TESTIMONIALS } from "../testimonials";
 import {
-  primaryProgramHighlights,
   MAGY_PRIMARY_DEPT_ACTIVITIES,
   magyProgramQuickFacts,
+  primaryProgramHighlights,
 } from "./shared";
-import { findItemById } from "~/modules/data/items";
 
 export const MAGY_PRIMARY_GRADE_4_PROGRAM: Program = {
   id: "magy-primary-grade-4",

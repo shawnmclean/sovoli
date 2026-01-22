@@ -1,16 +1,16 @@
-import type { MDXComponents } from "mdx/types";
-import type { AnchorHTMLAttributes, ReactNode } from "react";
-import React from "react";
 import { Alert } from "@sovoli/ui/components/alert";
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
-import { GuideLink } from "~/app/(marketing)/docs/components/GuideLink";
+import type { MDXComponents } from "mdx/types";
+import Link from "next/link";
+import type { AnchorHTMLAttributes, ReactNode } from "react";
+import React from "react";
 import { ButtonLink } from "~/app/(marketing)/docs/components/ButtonLink";
-import { DeviceTabs } from "~/app/(marketing)/docs/components/DeviceTabs";
 import { ClickableImage } from "~/app/(marketing)/docs/components/ClickableImage";
+import { DeviceTabs } from "~/app/(marketing)/docs/components/DeviceTabs";
+import { GuideLink } from "~/app/(marketing)/docs/components/GuideLink";
 import { AppStoreDownload } from "~/components/DownloadOnAppStores/AppStoreDownload";
 import { GooglePlayDownload } from "~/components/DownloadOnAppStores/GooglePlayDownload";
-import Link from "next/link";
 import { slugify } from "~/utils/slugify";
 
 /**

@@ -10,9 +10,7 @@ export const XENON_ACADEMY_ORG: OrgInstance = {
       {
         key: "main",
         address: { countryCode: "GY" },
-        contacts: [
-          { type: "phone", value: "+592-624-4659", isPublic: true },
-        ],
+        contacts: [{ type: "phone", value: "+592-624-4659", isPublic: true }],
         isPrimary: true,
       },
     ],

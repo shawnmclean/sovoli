@@ -1,18 +1,18 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Chip } from "@sovoli/ui/components/chip";
-import { BookOpenIcon, ChevronRightIcon, CheckIcon } from "lucide-react";
-import Markdown from "react-markdown";
-import type { Program, CourseUnit, Course } from "~/modules/academics/types";
-import { trackProgramAnalytics } from "../../lib/programAnalytics";
 import {
+  DrawerBody,
   DrawerContent,
   DrawerHeader,
-  DrawerBody,
 } from "@sovoli/ui/components/drawer";
-import { SubscribeProgramButton } from "../SubscribeProgramButton";
+import { BookOpenIcon, CheckIcon, ChevronRightIcon } from "lucide-react";
+import { useEffect, useState } from "react";
+import Markdown from "react-markdown";
 import { ShareButton } from "~/app/[username]/(profile)/components/OrgNavbar/ShareButton";
+import type { Course, CourseUnit, Program } from "~/modules/academics/types";
+import { trackProgramAnalytics } from "../../lib/programAnalytics";
+import { SubscribeProgramButton } from "../SubscribeProgramButton";
 
 interface CurriculumDetailsProps {
   program: Program;

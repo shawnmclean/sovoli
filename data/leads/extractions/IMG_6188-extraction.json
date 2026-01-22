@@ -55,13 +55,8 @@
     ],
     "urls": [],
     "locations": [],
-    "platformSignals": [
-      "Sponsored",
-      "See more"
-    ]
+    "platformSignals": ["Sponsored", "See more"]
   },
-  "business": [
-    "Musical Prodigies Educational Services"
-  ],
+  "business": ["Musical Prodigies Educational Services"],
   "matchedOrgs": null
 }

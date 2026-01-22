@@ -2,16 +2,15 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import { detectCurrency } from "~/utils/currencyDetection";
-import { getContent } from "../categories";
+import { getContent, isBusinessCategory } from "../categories";
 import { Answers } from "./components/Answers";
 import { CTA } from "./components/CTA";
 import { Customers } from "./components/Customers";
 import { Features } from "./components/Features";
 import { Overview } from "./components/Overview";
 import { Pricing } from "./components/Pricing";
-import { Tracking } from "./components/Tracking";
 import type { TrackingEventProperties } from "./components/Tracking";
-import { isBusinessCategory } from "../categories";
+import { Tracking } from "./components/Tracking";
 
 export async function generateMetadata({
   params,

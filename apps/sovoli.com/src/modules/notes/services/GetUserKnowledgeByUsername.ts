@@ -1,5 +1,5 @@
-import type { UserKnowledge } from "./types";
 import { KnowledgeFileCache } from "./KnowledgeFileCache";
+import type { UserKnowledge } from "./types";
 
 interface Result {
   userKnowledge: UserKnowledge | null;

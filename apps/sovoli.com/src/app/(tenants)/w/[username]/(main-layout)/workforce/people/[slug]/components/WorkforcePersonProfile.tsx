@@ -3,8 +3,8 @@
 import { Button } from "@sovoli/ui/components/button";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
-import type { WorkforceMember } from "~/modules/workforce/types";
 import { MemberDetailsContent } from "~/modules/workforce/components/MemberDetailsContent";
+import type { WorkforceMember } from "~/modules/workforce/types";
 
 interface WorkforcePersonProfileProps {
   member: WorkforceMember;

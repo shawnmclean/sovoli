@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { Button } from "@sovoli/ui/components/button";
 import { ArrowRightIcon } from "lucide-react";
+import Link from "next/link";
 
 export function BusinessStickyFooter() {
   return (

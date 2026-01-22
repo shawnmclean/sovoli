@@ -1,13 +1,13 @@
 "use client";
 
+import { Card } from "@sovoli/ui/components/card";
+import { Chip } from "@sovoli/ui/components/chip";
+import { Progress } from "@sovoli/ui/components/progress";
+import { CircleDot, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Card } from "@sovoli/ui/components/card";
-import { Progress } from "@sovoli/ui/components/progress";
-import { Chip } from "@sovoli/ui/components/chip";
-import { TrendingUp, CircleDot } from "lucide-react";
-import type { Project, ProjectStatus } from "~/modules/projects/types";
 import type { Need } from "~/modules/needs/types";
+import type { Project, ProjectStatus } from "~/modules/projects/types";
 
 interface ProjectMetricsSectionProps {
   project: Project;
@@ -17,7 +17,13 @@ const STATUS_CONFIG: Record<
   ProjectStatus,
   {
     label: string;
-    color: "default" | "primary" | "secondary" | "success" | "warning" | "danger";
+    color:
+      | "default"
+      | "primary"
+      | "secondary"
+      | "success"
+      | "warning"
+      | "danger";
   }
 > = {
   planned: { label: "Planned", color: "default" },
@@ -63,12 +69,12 @@ function calculateProgress(project: Project): number {
     }
   }
 
-  return totalQuantity > 0 ? Math.round((fulfilledQuantity / totalQuantity) * 100) : 0;
+  return totalQuantity > 0
+    ? Math.round((fulfilledQuantity / totalQuantity) * 100)
+    : 0;
 }
 
-export function ProjectMetricsSection({
-  project,
-}: ProjectMetricsSectionProps) {
+export function ProjectMetricsSection({ project }: ProjectMetricsSectionProps) {
   const pathname = usePathname();
   const metricsHref = `${pathname}/metrics`;
 
@@ -103,7 +109,9 @@ export function ProjectMetricsSection({
             </div>
             <div className="flex items-center gap-1.5 text-foreground">
               <TrendingUp className="w-3.5 h-3.5 text-primary" />
-              <span className="text-sm font-semibold tabular-nums">{progress}%</span>
+              <span className="text-sm font-semibold tabular-nums">
+                {progress}%
+              </span>
             </div>
           </div>
         </div>

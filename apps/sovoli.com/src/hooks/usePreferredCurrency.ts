@@ -10,14 +10,14 @@ import { detectCurrencyFromTimezone } from "~/utils/currencyDetection";
  * @returns The preferred currency, enhanced with client-side detection if needed
  */
 export function usePreferredCurrency(
-	serverCurrency: CurrencyCode = "USD",
+  serverCurrency: CurrencyCode = "USD",
 ): CurrencyCode {
-	return useMemo<CurrencyCode>(() => {
-		// If server returned USD (default), try client-side detection
-		if (serverCurrency === "USD") {
-			const clientCurrency = detectCurrencyFromTimezone();
-			return clientCurrency;
-		}
-		return serverCurrency;
-	}, [serverCurrency]);
+  return useMemo<CurrencyCode>(() => {
+    // If server returned USD (default), try client-side detection
+    if (serverCurrency === "USD") {
+      const clientCurrency = detectCurrencyFromTimezone();
+      return clientCurrency;
+    }
+    return serverCurrency;
+  }, [serverCurrency]);
 }

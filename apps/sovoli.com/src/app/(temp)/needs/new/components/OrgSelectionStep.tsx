@@ -1,21 +1,21 @@
 "use client";
 
-import { useState } from "react";
 import { Divider } from "@sovoli/ui/components/divider";
 import { Select, SelectItem } from "@sovoli/ui/components/select";
+import { useState } from "react";
 import { OrganizationAutocomplete } from "~/components/OrganizationAutocomplete";
 import { ORGS } from "~/modules/data/organisations";
-import { LocationInfo } from "./LocationInfo";
-import {
-  CONTACT_ROLE_OPTIONS,
-  ORG_TYPE_OPTIONS,
-  PARISH_OPTIONS,
-} from "./options";
 import { slugify } from "~/utils/slugify";
+import { LocationInfo } from "./LocationInfo";
 import type {
   ContactRoleOptionKey,
   OrgTypeOptionKey,
   ParishOptionKey,
+} from "./options";
+import {
+  CONTACT_ROLE_OPTIONS,
+  ORG_TYPE_OPTIONS,
+  PARISH_OPTIONS,
 } from "./options";
 
 type OrgInstance = (typeof ORGS)[number];

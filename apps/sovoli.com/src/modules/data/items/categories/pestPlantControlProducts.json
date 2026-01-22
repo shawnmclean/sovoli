@@ -1,131 +1,131 @@
 {
-	"id": "pest-plant-control-products-group",
-	"name": "Pest/Plant Control Products",
-	"gpcCode": "13000000",
-	"gpcDescription": "Includes products used to control, repel, or kill pests and products specifically designed to manage plant health, enhance growth, or address plant-related issues.",
-	"children": [
-		{
-			"id": "pest-plant-control-products",
-			"name": "Pest/Plant Control Products",
-			"gpcCode": "13010100",
-			"gpcDescription": "Includes products used to control, repel, or kill pests. This will include insecticides, pesticides, rodenticides.",
-			"parentId": "pest-plant-control-products-group",
-			"children": [
-				{
-					"id": "animal-scarers-deterrents-non-powered",
-					"name": "Animal Scarers/Deterrents (Non Powered)",
-					"gpcCode": "10005362",
-					"gpcDescription": "Includes any products that may be described/observed as direct, non powered deterrent to animals, preventing them from entering or damaging property. These products are suitable for both indoor and outdoor environments. Includes products such as scarecrows, scent sprays, as well as metal figures of predatory animals.",
-					"parentId": "pest-plant-control-products"
-				},
-				{
-					"id": "animal-scarers-deterrents-powered",
-					"name": "Animal Scarers/Deterrents (Powered)",
-					"gpcCode": "10006853",
-					"gpcDescription": "Includes any products that may be described/observed as direct, powered deterrent to animals, preventing them from entering or damaging property. These products are suitable for both indoor and outdoor environments and use batteries or electricity to operate. Includes products such as motion-activated sprinklers, ultrasonic sound emitters, and electronic deterrents that use lights or sounds.",
-					"parentId": "pest-plant-control-products"
-				},
-				{
-					"id": "insect-pest-control-barriers-traps",
-					"name": "Insect/Pest Control - Barriers/Traps",
-					"gpcCode": "10000411",
-					"gpcDescription": "Includes any products that may be observed/described to capture or curtail pests. Examples include: a mesh, net or screen of fine wire, plastic of natural or synthetic cloth specifically designed to protect from mosquitoes and other flying insects. The products also include mechanical or glue based traps specifically designed to catch pest or insects and intended to be located in areas likely to be frequented by such pests or insects in order to control/prevent infestation by fixing them securely in place so that they may be collected and disposed of dead or alive.",
-					"parentId": "pest-plant-control-products"
-				},
-				{
-					"id": "insect-pest-allergen-control-other",
-					"name": "Insect/Pest/Allergen Control Other",
-					"gpcCode": "10000754",
-					"gpcDescription": "Includes any products that can be described/observed as Insect/Pest and Allergen Control products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
-					"parentId": "pest-plant-control-products"
-				},
-				{
-					"id": "insect-pest-allergen-control-variety-packs",
-					"name": "Insect/Pest/Allergen Control Variety Packs",
-					"gpcCode": "10000664",
-					"gpcDescription": "Includes any products that can be described/observed as two or more distinct Insect/Pest and Allergen Control products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Insect/Pest and Allergen Control class. Includes products such as Insect Repellents and Swatters sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
-					"parentId": "pest-plant-control-products"
-				},
-				{
-					"id": "insecticides-pesticides-rodenticides",
-					"name": "Insecticides/Pesticides/Rodenticides",
-					"gpcCode": "10000435",
-					"gpcDescription": "Includes any products that may be observed/described as a preparation, item or appliance specifically designed to kill flying and crawling insects (insecticides), rodents (rodenticides) or animal pests (pesticides). Products include insect, rodent or pest killers in various forms such as liquid, powder, strip or pellet. Including natural control agents like nematodes and insects.",
-					"parentId": "pest-plant-control-products"
-				},
-				{
-					"id": "non-personal-repellents",
-					"name": "Non Personal Repellents",
-					"gpcCode": "10000436",
-					"gpcDescription": "Includes any products that may be observed/described as a preparation, item or appliance specifically designed to repel insects and rodents, typically intended to control both flying and crawling insects and various types or rodents, preventing them from entering an area. These products are intended for use in the environment and cannot be applied directly to the body. Includes products such as liquid, powder, tablet, strip, insect repellent sprays and foams. Also includes electrical devices, containing a replaceable tablet or liquid cartridge (and refills), that when plugged in produces an insect repellent vapour.",
-					"parentId": "pest-plant-control-products"
-				}
-			]
-		},
-		{
-			"id": "plant-chemicals-or-natural-treatments",
-			"name": "Plant Chemicals or Natural/Treatments",
-			"gpcCode": "13010200",
-			"gpcDescription": "Includes products specifically designed to manage plant health, enhance growth, or address plant-related issues.",
-			"parentId": "pest-plant-control-products-group",
-			"children": [
-				{
-					"id": "fungicides",
-					"name": "Fungicides",
-					"gpcCode": "10004109",
-					"gpcDescription": "Includes any products that may be described/observed as a chemical or natural agent which is specifically intended to destroy fungi or inhibit their growth in the garden. Includes products such as aromatic fungicides.",
-					"parentId": "plant-chemicals-or-natural-treatments"
-				},
-				{
-					"id": "leaf-shine-plant-cleaner",
-					"name": "Leaf Shine/Plant Cleaner",
-					"gpcCode": "10005360",
-					"gpcDescription": "Includes any products that may be described/observed as chemicals or natural agent that enhance the appearance of a plant or flower through adding a more healthy shine to the leafs or stem. Includes products such as leafshine spray chemicals.",
-					"parentId": "plant-chemicals-or-natural-treatments"
-				},
-				{
-					"id": "plant-chemicals-or-natural-treatments-other",
-					"name": "Plant Chemicals or Natural/Treatments Other",
-					"gpcCode": "10003240",
-					"gpcDescription": "Includes any products that may be described/observed as plant chemicals or natural/treatments products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
-					"parentId": "plant-chemicals-or-natural-treatments"
-				},
-				{
-					"id": "plant-chemicals-or-natural-treatments-variety-packs",
-					"name": "Plant Chemicals or Natural/Treatments Variety Packs",
-					"gpcCode": "10003239",
-					"gpcDescription": "Includes any products that may be described/observed as two or more distinct plant chemicals or natural/treatments products sold together, i.e. that are contained in the same package, and that exist within the schema belonging to different bricks but to the same class, i.e. within the class plant chemicals or natural/treatments. Includes products such as weedkiller sold with fertilizer. Items that are received free with purchases should be removed from the classification decision-making process.",
-					"parentId": "plant-chemicals-or-natural-treatments"
-				},
-				{
-					"id": "plant-growth-regulators",
-					"name": "Plant Growth Regulators",
-					"gpcCode": "10006733",
-					"gpcDescription": "Includes any products that may be described/observed as plant growth regulators which are specifically plant hormones (also known as phytohormones) that are chemicals that regulate plant growth.",
-					"parentId": "plant-chemicals-or-natural-treatments"
-				},
-				{
-					"id": "plant-soil-fertilizer-food",
-					"name": "Plant/Soil Fertilizer/Food",
-					"gpcCode": "10003234",
-					"gpcDescription": "Includes any products that may be described/observed as a substance to provide nutrients to soil or plants to increase their productivity. These products may be designed to nourish particular trees or types of trees. These products may be available in liquid, solid or powder form. Includes products such as fruit-tree fertilizer, ornamental-tree fertilizer.",
-					"parentId": "plant-chemicals-or-natural-treatments"
-				},
-				{
-					"id": "seed-protection-mordants",
-					"name": "Seed Protection/ Mordants",
-					"gpcCode": "10006734",
-					"gpcDescription": "Includes any products that may be described/observed as mordants, chemical or biological pesticides that encases the seed to protect the seed from the start against soil pests and fungal pathogens.",
-					"parentId": "plant-chemicals-or-natural-treatments"
-				},
-				{
-					"id": "weed-killer-herbicide",
-					"name": "Weed-Killer/ Herbicide",
-					"gpcCode": "10003227",
-					"gpcDescription": "Includes any products that may be described/observed as a chemical or natural agent which is specifically intended to destroy plants or inhibit their growth. Includes products such as liquid, solid, pellet and powder weedkiller.",
-					"parentId": "plant-chemicals-or-natural-treatments"
-				}
-			]
-		}
-	]
+  "id": "pest-plant-control-products-group",
+  "name": "Pest/Plant Control Products",
+  "gpcCode": "13000000",
+  "gpcDescription": "Includes products used to control, repel, or kill pests and products specifically designed to manage plant health, enhance growth, or address plant-related issues.",
+  "children": [
+    {
+      "id": "pest-plant-control-products",
+      "name": "Pest/Plant Control Products",
+      "gpcCode": "13010100",
+      "gpcDescription": "Includes products used to control, repel, or kill pests. This will include insecticides, pesticides, rodenticides.",
+      "parentId": "pest-plant-control-products-group",
+      "children": [
+        {
+          "id": "animal-scarers-deterrents-non-powered",
+          "name": "Animal Scarers/Deterrents (Non Powered)",
+          "gpcCode": "10005362",
+          "gpcDescription": "Includes any products that may be described/observed as direct, non powered deterrent to animals, preventing them from entering or damaging property. These products are suitable for both indoor and outdoor environments. Includes products such as scarecrows, scent sprays, as well as metal figures of predatory animals.",
+          "parentId": "pest-plant-control-products"
+        },
+        {
+          "id": "animal-scarers-deterrents-powered",
+          "name": "Animal Scarers/Deterrents (Powered)",
+          "gpcCode": "10006853",
+          "gpcDescription": "Includes any products that may be described/observed as direct, powered deterrent to animals, preventing them from entering or damaging property. These products are suitable for both indoor and outdoor environments and use batteries or electricity to operate. Includes products such as motion-activated sprinklers, ultrasonic sound emitters, and electronic deterrents that use lights or sounds.",
+          "parentId": "pest-plant-control-products"
+        },
+        {
+          "id": "insect-pest-control-barriers-traps",
+          "name": "Insect/Pest Control - Barriers/Traps",
+          "gpcCode": "10000411",
+          "gpcDescription": "Includes any products that may be observed/described to capture or curtail pests. Examples include: a mesh, net or screen of fine wire, plastic of natural or synthetic cloth specifically designed to protect from mosquitoes and other flying insects. The products also include mechanical or glue based traps specifically designed to catch pest or insects and intended to be located in areas likely to be frequented by such pests or insects in order to control/prevent infestation by fixing them securely in place so that they may be collected and disposed of dead or alive.",
+          "parentId": "pest-plant-control-products"
+        },
+        {
+          "id": "insect-pest-allergen-control-other",
+          "name": "Insect/Pest/Allergen Control Other",
+          "gpcCode": "10000754",
+          "gpcDescription": "Includes any products that can be described/observed as Insect/Pest and Allergen Control products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+          "parentId": "pest-plant-control-products"
+        },
+        {
+          "id": "insect-pest-allergen-control-variety-packs",
+          "name": "Insect/Pest/Allergen Control Variety Packs",
+          "gpcCode": "10000664",
+          "gpcDescription": "Includes any products that can be described/observed as two or more distinct Insect/Pest and Allergen Control products sold together, which exist within the schema belonging to different bricks but to the same class, that is two or more products contained within the same pack which cross bricks within the Insect/Pest and Allergen Control class. Includes products such as Insect Repellents and Swatters sold together. Items that are received free with purchases should be removed from the classification decision-making process.",
+          "parentId": "pest-plant-control-products"
+        },
+        {
+          "id": "insecticides-pesticides-rodenticides",
+          "name": "Insecticides/Pesticides/Rodenticides",
+          "gpcCode": "10000435",
+          "gpcDescription": "Includes any products that may be observed/described as a preparation, item or appliance specifically designed to kill flying and crawling insects (insecticides), rodents (rodenticides) or animal pests (pesticides). Products include insect, rodent or pest killers in various forms such as liquid, powder, strip or pellet. Including natural control agents like nematodes and insects.",
+          "parentId": "pest-plant-control-products"
+        },
+        {
+          "id": "non-personal-repellents",
+          "name": "Non Personal Repellents",
+          "gpcCode": "10000436",
+          "gpcDescription": "Includes any products that may be observed/described as a preparation, item or appliance specifically designed to repel insects and rodents, typically intended to control both flying and crawling insects and various types or rodents, preventing them from entering an area. These products are intended for use in the environment and cannot be applied directly to the body. Includes products such as liquid, powder, tablet, strip, insect repellent sprays and foams. Also includes electrical devices, containing a replaceable tablet or liquid cartridge (and refills), that when plugged in produces an insect repellent vapour.",
+          "parentId": "pest-plant-control-products"
+        }
+      ]
+    },
+    {
+      "id": "plant-chemicals-or-natural-treatments",
+      "name": "Plant Chemicals or Natural/Treatments",
+      "gpcCode": "13010200",
+      "gpcDescription": "Includes products specifically designed to manage plant health, enhance growth, or address plant-related issues.",
+      "parentId": "pest-plant-control-products-group",
+      "children": [
+        {
+          "id": "fungicides",
+          "name": "Fungicides",
+          "gpcCode": "10004109",
+          "gpcDescription": "Includes any products that may be described/observed as a chemical or natural agent which is specifically intended to destroy fungi or inhibit their growth in the garden. Includes products such as aromatic fungicides.",
+          "parentId": "plant-chemicals-or-natural-treatments"
+        },
+        {
+          "id": "leaf-shine-plant-cleaner",
+          "name": "Leaf Shine/Plant Cleaner",
+          "gpcCode": "10005360",
+          "gpcDescription": "Includes any products that may be described/observed as chemicals or natural agent that enhance the appearance of a plant or flower through adding a more healthy shine to the leafs or stem. Includes products such as leafshine spray chemicals.",
+          "parentId": "plant-chemicals-or-natural-treatments"
+        },
+        {
+          "id": "plant-chemicals-or-natural-treatments-other",
+          "name": "Plant Chemicals or Natural/Treatments Other",
+          "gpcCode": "10003240",
+          "gpcDescription": "Includes any products that may be described/observed as plant chemicals or natural/treatments products, where the user of the schema is not able to classify the products in existing bricks within the schema.",
+          "parentId": "plant-chemicals-or-natural-treatments"
+        },
+        {
+          "id": "plant-chemicals-or-natural-treatments-variety-packs",
+          "name": "Plant Chemicals or Natural/Treatments Variety Packs",
+          "gpcCode": "10003239",
+          "gpcDescription": "Includes any products that may be described/observed as two or more distinct plant chemicals or natural/treatments products sold together, i.e. that are contained in the same package, and that exist within the schema belonging to different bricks but to the same class, i.e. within the class plant chemicals or natural/treatments. Includes products such as weedkiller sold with fertilizer. Items that are received free with purchases should be removed from the classification decision-making process.",
+          "parentId": "plant-chemicals-or-natural-treatments"
+        },
+        {
+          "id": "plant-growth-regulators",
+          "name": "Plant Growth Regulators",
+          "gpcCode": "10006733",
+          "gpcDescription": "Includes any products that may be described/observed as plant growth regulators which are specifically plant hormones (also known as phytohormones) that are chemicals that regulate plant growth.",
+          "parentId": "plant-chemicals-or-natural-treatments"
+        },
+        {
+          "id": "plant-soil-fertilizer-food",
+          "name": "Plant/Soil Fertilizer/Food",
+          "gpcCode": "10003234",
+          "gpcDescription": "Includes any products that may be described/observed as a substance to provide nutrients to soil or plants to increase their productivity. These products may be designed to nourish particular trees or types of trees. These products may be available in liquid, solid or powder form. Includes products such as fruit-tree fertilizer, ornamental-tree fertilizer.",
+          "parentId": "plant-chemicals-or-natural-treatments"
+        },
+        {
+          "id": "seed-protection-mordants",
+          "name": "Seed Protection/ Mordants",
+          "gpcCode": "10006734",
+          "gpcDescription": "Includes any products that may be described/observed as mordants, chemical or biological pesticides that encases the seed to protect the seed from the start against soil pests and fungal pathogens.",
+          "parentId": "plant-chemicals-or-natural-treatments"
+        },
+        {
+          "id": "weed-killer-herbicide",
+          "name": "Weed-Killer/ Herbicide",
+          "gpcCode": "10003227",
+          "gpcDescription": "Includes any products that may be described/observed as a chemical or natural agent which is specifically intended to destroy plants or inhibit their growth. Includes products such as liquid, solid, pellet and powder weedkiller.",
+          "parentId": "plant-chemicals-or-natural-treatments"
+        }
+      ]
+    }
+  ]
 }

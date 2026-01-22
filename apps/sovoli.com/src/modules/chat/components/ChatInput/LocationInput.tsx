@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
 import { SendIcon } from "lucide-react";
+import { useState } from "react";
 
 interface LocationInputProps {
   onSubmit: (value: string) => void;

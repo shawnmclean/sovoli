@@ -1,21 +1,21 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import Link from "next/link";
+import { SiWhatsapp } from "@icons-pack/react-simple-icons";
+import { Alert } from "@sovoli/ui/components/alert";
 import { Button } from "@sovoli/ui/components/button";
 import { Checkbox } from "@sovoli/ui/components/checkbox";
-import { Alert } from "@sovoli/ui/components/alert";
 import {
-  PackageIcon,
   BookOpenIcon,
   DropletsIcon,
+  PackageIcon,
   ShirtIcon,
 } from "lucide-react";
-import { SiWhatsapp } from "@icons-pack/react-simple-icons";
+import Link from "next/link";
+import { useMemo, useState } from "react";
+import { WhatsAppLink } from "~/components/WhatsAppLink";
 import type { RequirementList } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { pluralize } from "~/utils/pluralize";
-import { WhatsAppLink } from "~/components/WhatsAppLink";
 import type { CatalogMatch } from "../lib/getProgramRequirements";
 
 interface SupplyListResultsProps {

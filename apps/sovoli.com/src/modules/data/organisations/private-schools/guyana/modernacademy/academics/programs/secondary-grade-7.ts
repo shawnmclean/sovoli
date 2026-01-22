@@ -1,11 +1,11 @@
-import { SECONDARY_PHOTOS, shuffleArray } from "../../photos";
 import type { Program } from "~/modules/academics/types";
-import { MAGY_SHARED_TESTIMONIALS } from "../testimonials";
 import { hydrateProgramCategory } from "~/modules/data/academics/categories";
+import { SECONDARY_PHOTOS, shuffleArray } from "../../photos";
+import { MAGY_SHARED_TESTIMONIALS } from "../testimonials";
 import {
-  secondaryProgramHighlights,
   MAGY_SECONDARY_DEPT_ACTIVITIES,
   magyProgramQuickFacts,
+  secondaryProgramHighlights,
 } from "./shared";
 
 export const MAGY_SECONDARY_GRADE_7_PROGRAM: Program = {

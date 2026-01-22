@@ -1,4 +1,3 @@
-import React from "react";
 import {
   SiFacebook,
   SiInstagram,
@@ -7,6 +6,7 @@ import {
 } from "@icons-pack/react-simple-icons";
 import { Link } from "@sovoli/ui/components/link";
 import { EarthIcon } from "lucide-react";
+import React from "react";
 
 import type { SocialLink as SocialLinkType } from "~/modules/core/types";
 

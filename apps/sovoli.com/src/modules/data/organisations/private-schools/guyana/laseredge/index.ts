@@ -15,9 +15,7 @@ export const LASER_EDGE_ORG: OrgInstance = {
           countryCode: "GY",
         },
         placeId: "ChIJfSbC5Rvtr40ROAuXJUFPm4Q",
-        contacts: [
-          { type: "phone", value: "+592-625-3753", isPublic: true },
-        ],
+        contacts: [{ type: "phone", value: "+592-625-3753", isPublic: true }],
         isPrimary: true,
       },
     ],

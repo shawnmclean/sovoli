@@ -1,9 +1,9 @@
 import { useState } from "react";
-import {
-  trackProgramAnalytics,
-  setPersonProperties,
-} from "../../lib/programAnalytics";
 import type { Program, ProgramCycle } from "~/modules/academics/types";
+import {
+  setPersonProperties,
+  trackProgramAnalytics,
+} from "../../lib/programAnalytics";
 
 interface ChatMessage {
   id: string;

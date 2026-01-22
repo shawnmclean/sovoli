@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { SiFacebook, SiGoogle } from "@icons-pack/react-simple-icons";
 
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Button } from "@sovoli/ui/components/button";
@@ -9,12 +9,10 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@sovoli/ui/components/carousel";
-import { StarIcon, QuoteIcon } from "lucide-react";
 import { format } from "date-fns";
-
-import type { ProgramTestimonial } from "~/modules/academics/types";
-import { SiFacebook, SiGoogle } from "@icons-pack/react-simple-icons";
-import type { Program } from "~/modules/academics/types";
+import { QuoteIcon, StarIcon } from "lucide-react";
+import { useState } from "react";
+import type { Program, ProgramTestimonial } from "~/modules/academics/types";
 
 interface ProgramTestimonialsSectionProps {
   testimonials?: ProgramTestimonial[];

@@ -1,10 +1,10 @@
 import { cache } from "react";
 import "server-only";
-import { bus } from "~/services/core/bus";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
-import { slugify } from "~/utils/slugify";
-import type { Project, ProjectGroup } from "~/modules/projects/types";
 import type { OrgInstance } from "~/modules/organisations/types";
+import type { Project, ProjectGroup } from "~/modules/projects/types";
+import { bus } from "~/services/core/bus";
+import { slugify } from "~/utils/slugify";
 
 const getCachedOrgInstanceWithProject = async (
   username: string,

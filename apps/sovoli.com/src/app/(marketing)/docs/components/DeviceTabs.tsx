@@ -1,8 +1,7 @@
 "use client";
 
-import { Tabs, Tab } from "@sovoli/ui/components/tabs";
-import type { ComponentProps } from "react";
-import type { ReactNode } from "react";
+import { Tab, Tabs } from "@sovoli/ui/components/tabs";
+import type { ComponentProps, ReactNode } from "react";
 
 interface DeviceTabsProps
   extends Omit<ComponentProps<typeof Tabs>, "children"> {

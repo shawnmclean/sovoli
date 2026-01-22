@@ -1,6 +1,6 @@
-import { getOrgInstanceByUsername } from "../../../lib/getOrgInstanceByUsername";
-import type { OrgInstance } from "~/modules/organisations/types";
 import type { CatalogOffer } from "~/modules/catalogs/types";
+import type { OrgInstance } from "~/modules/organisations/types";
+import { getOrgInstanceByUsername } from "../../../lib/getOrgInstanceByUsername";
 
 export interface OrgInstanceWithCatalogItem {
   orgInstance: OrgInstance;

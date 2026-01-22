@@ -1,6 +1,6 @@
-import { getOrgInstanceWithProgram } from "../../lib/getOrgInstanceWithProgram";
-import { TeachersDetails } from "../../components/teachers/TeachersDetails";
 import { parseISO } from "date-fns";
+import { TeachersDetails } from "../../components/teachers/TeachersDetails";
+import { getOrgInstanceWithProgram } from "../../lib/getOrgInstanceWithProgram";
 
 interface Props {
   params: Promise<{ username: string; slug: string }>;

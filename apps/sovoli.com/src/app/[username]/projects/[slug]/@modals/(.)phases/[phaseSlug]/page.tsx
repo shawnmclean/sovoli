@@ -1,5 +1,5 @@
-import { getOrgInstanceWithProject } from "../../../lib/getOrgInstanceWithProject";
 import { ProjectPhaseDetails } from "../../../components/phases/ProjectPhaseDetails";
+import { getOrgInstanceWithProject } from "../../../lib/getOrgInstanceWithProject";
 
 interface Props {
   params: Promise<{ username: string; slug: string; phaseSlug: string }>;
@@ -15,4 +15,3 @@ export default async function PhaseIntercept({ params }: Props) {
 
   return <ProjectPhaseDetails project={result.project} phaseSlug={phaseSlug} />;
 }
-

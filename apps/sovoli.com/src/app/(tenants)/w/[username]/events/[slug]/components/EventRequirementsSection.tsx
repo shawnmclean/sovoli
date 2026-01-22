@@ -1,5 +1,5 @@
+import { Info, Package, Shirt, Wrench } from "lucide-react";
 import type { Event } from "~/modules/events/types";
-import { Package, Shirt, Wrench, Info } from "lucide-react";
 
 interface EventRequirementsSectionProps {
   event: Event;

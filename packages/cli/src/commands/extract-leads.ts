@@ -1,11 +1,11 @@
-import { Command } from "commander";
-import path from "path";
-import fs from "fs";
-import { fileURLToPath } from "url";
-import { generateText, Output, NoObjectGeneratedError } from "ai";
 import { google } from "@ai-sdk/google";
-import { validateExtraction } from "../validation/validate-extraction.js";
+import { generateText, NoObjectGeneratedError, Output } from "ai";
+import { Command } from "commander";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 import { leadExtractionDocumentSchema } from "../validation/schemas/lead-extraction-schema.js";
+import { validateExtraction } from "../validation/validate-extraction.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -320,7 +320,7 @@ async function processImageWithRetry(
       result.error?.toLowerCase().includes("rate");
 
     if (isRateLimit && attempt < maxRetries) {
-      const delay = Math.pow(2, attempt) * 1000; // Exponential backoff: 2s, 4s, 8s
+      const delay = 2 ** attempt * 1000; // Exponential backoff: 2s, 4s, 8s
       console.log(
         `⏳ Rate limited. Retrying in ${delay / 1000}s... (attempt ${attempt + 1}/${maxRetries})`,
       );

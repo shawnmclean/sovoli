@@ -1,7 +1,7 @@
 "use client";
 
-import { CldImage } from "next-cloudinary";
 import { Card, CardBody } from "@sovoli/ui/components/card";
+import { CldImage } from "next-cloudinary";
 import type { Media } from "~/modules/core/media/types";
 
 // Type guard for inline photo (only images for inline display)

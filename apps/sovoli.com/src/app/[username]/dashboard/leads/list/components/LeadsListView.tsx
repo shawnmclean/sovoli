@@ -1,17 +1,21 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Input } from "@sovoli/ui/components/input";
 import { Select, SelectItem } from "@sovoli/ui/components/select";
-import { Card, CardBody } from "@sovoli/ui/components/card";
-import type { OrgInstance } from "~/modules/organisations/types";
+import { useMemo, useState } from "react";
 import type { Lead } from "~/modules/leads/types";
-
-import { categorizeLead } from "../../../programs/[slug]/leads/utils/leadCategorization";
-import type { LeadInteraction } from "../../../programs/[slug]/leads/utils/leadCategorization";
+import type { OrgInstance } from "~/modules/organisations/types";
 import { UnifiedProgramLeadsView } from "../../../programs/[slug]/leads/components/UnifiedProgramLeadsView";
+import type { LeadInteraction } from "../../../programs/[slug]/leads/utils/leadCategorization";
+import { categorizeLead } from "../../../programs/[slug]/leads/utils/leadCategorization";
 
-type CategoryFilter = "all" | "strong" | "uncertain" | "lowIntent" | "noVisibility";
+type CategoryFilter =
+  | "all"
+  | "strong"
+  | "uncertain"
+  | "lowIntent"
+  | "noVisibility";
 
 export function LeadsListView({
   initialLeads,
@@ -157,4 +161,3 @@ export function LeadsListView({
     </div>
   );
 }
-

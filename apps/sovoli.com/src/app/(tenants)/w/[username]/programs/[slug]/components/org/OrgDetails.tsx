@@ -1,19 +1,19 @@
 "use client";
 
-import { useEffect } from "react";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Card, CardBody } from "@sovoli/ui/components/card";
-import type { OrgInstance } from "~/modules/organisations/types";
-import type { Program } from "~/modules/academics/types";
-import { trackProgramAnalytics } from "../../lib/programAnalytics";
 import {
+  DrawerBody,
   DrawerContent,
   DrawerHeader,
-  DrawerBody,
 } from "@sovoli/ui/components/drawer";
-import { SubscribeProgramButton } from "../SubscribeProgramButton";
+import { useEffect } from "react";
 import { ShareButton } from "~/app/[username]/(profile)/components/OrgNavbar/ShareButton";
+import type { Program } from "~/modules/academics/types";
 import { getOrgCategoryDisplay } from "~/modules/organisations/getOrgCategoryDisplay";
+import type { OrgInstance } from "~/modules/organisations/types";
+import { trackProgramAnalytics } from "../../lib/programAnalytics";
+import { SubscribeProgramButton } from "../SubscribeProgramButton";
 
 interface OrgDetailsProps {
   orgInstance: OrgInstance;
@@ -77,7 +77,9 @@ export function OrgDetails({ orgInstance, program }: OrgDetailsProps) {
                   {/* Category */}
                   {categoryText ? (
                     <div className="text-center">
-                      <span className="text-sm text-foreground-500">{categoryText}</span>
+                      <span className="text-sm text-foreground-500">
+                        {categoryText}
+                      </span>
                     </div>
                   ) : null}
                 </CardBody>

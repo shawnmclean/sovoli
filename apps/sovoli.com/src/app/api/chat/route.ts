@@ -1,10 +1,10 @@
 import type { UIMessage } from "ai";
 import { convertToModelMessages, streamText } from "ai";
 import { withOrgInstance } from "~/app/api/lib/withOrgInstance";
-import { tools } from "~/modules/chat/types";
-import { getProgramSuggestions } from "~/modules/chat/lib/getProgramSuggestions";
-import type { OrgInstanceWithWebsite } from "~/modules/organisations/types";
 import type { Program } from "~/modules/academics/types";
+import { getProgramSuggestions } from "~/modules/chat/lib/getProgramSuggestions";
+import { tools } from "~/modules/chat/types";
+import type { OrgInstanceWithWebsite } from "~/modules/organisations/types";
 import type { WorkforceMember } from "~/modules/workforce/types";
 
 export const maxDuration = 30;

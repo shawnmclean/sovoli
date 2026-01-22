@@ -1,6 +1,6 @@
+import { Link } from "@sovoli/ui/components/link";
 import type { Program } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
-import { Link } from "@sovoli/ui/components/link";
 
 export interface ProgramsInGroupSectionProps {
   orgInstance: OrgInstance;

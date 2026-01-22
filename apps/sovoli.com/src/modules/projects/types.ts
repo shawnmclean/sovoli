@@ -1,6 +1,6 @@
-import type { OrgLocation } from "../organisations/types";
-import type { Need } from "../needs/types";
 import type { Media } from "../core/media/types";
+import type { Need } from "../needs/types";
+import type { OrgLocation } from "../organisations/types";
 
 /** Standardized project lifecycle states */
 export type ProjectStatus = "planned" | "active" | "completed" | "cancelled";

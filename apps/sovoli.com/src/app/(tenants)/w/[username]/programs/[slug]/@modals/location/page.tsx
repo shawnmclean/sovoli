@@ -1,5 +1,5 @@
-import { getOrgInstanceWithProgram } from "../../lib/getOrgInstanceWithProgram";
 import { LocationDetails } from "../../components/location/LocationDetails";
+import { getOrgInstanceWithProgram } from "../../lib/getOrgInstanceWithProgram";
 
 interface Props {
   params: Promise<{ username: string; slug: string }>;
@@ -19,8 +19,5 @@ export default async function LocationPage({ params }: Props) {
     return null;
   }
 
-  return (
-    <LocationDetails orgInstance={result.orgInstance} program={program} />
-  );
+  return <LocationDetails orgInstance={result.orgInstance} program={program} />;
 }
-

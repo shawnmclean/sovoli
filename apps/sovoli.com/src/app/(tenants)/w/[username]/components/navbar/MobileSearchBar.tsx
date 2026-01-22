@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import {
   Drawer,
@@ -10,6 +9,7 @@ import {
   DrawerHeader,
 } from "@sovoli/ui/components/drawer";
 import { SearchIcon } from "lucide-react";
+import { useState } from "react";
 import { PrivateSchoolSearchContent } from "../search/PrivateSchoolSearchContent";
 
 export function MobileSearchBar() {

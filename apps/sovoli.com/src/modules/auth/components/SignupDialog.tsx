@@ -1,16 +1,16 @@
 "use client";
 
+import { Button } from "@sovoli/ui/components/button";
 import {
   Drawer,
   DrawerBody,
   DrawerContent,
   DrawerHeader,
 } from "@sovoli/ui/components/drawer";
+import { XIcon } from "lucide-react";
+import type { Program, ProgramCycle } from "~/modules/academics/types";
 import { SignupWizard } from "./SignupWizard";
 import type { SignupWizardMode } from "./types";
-import type { Program, ProgramCycle } from "~/modules/academics/types";
-import { XIcon } from "lucide-react";
-import { Button } from "@sovoli/ui/components/button";
 
 export interface SignupDialogProps {
   isOpen: boolean;

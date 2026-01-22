@@ -1,17 +1,17 @@
 "use client";
 
-import { useState } from "react";
-import { NamesForm } from "./NamesForm";
-import type { SignupWizardMode } from "./types";
-import { PhoneNumberStep } from "./PhoneNumberStep/PhoneNumberStep";
-import type { Program, ProgramCycle } from "~/modules/academics/types";
-import { trackProgramAnalytics } from "~/app/(tenants)/w/[username]/programs/[slug]/lib/programAnalytics";
-import { Button } from "@sovoli/ui/components/button";
-import { WhatsAppLink } from "~/components/WhatsAppLink";
-import { ProgramPriceCard } from "~/app/(tenants)/w/[username]/(main-layout)/programs/components/ProgramPriceCard";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
+import { Button } from "@sovoli/ui/components/button";
 import posthog from "posthog-js";
+import { useState } from "react";
+import { ProgramPriceCard } from "~/app/(tenants)/w/[username]/(main-layout)/programs/components/ProgramPriceCard";
+import { trackProgramAnalytics } from "~/app/(tenants)/w/[username]/programs/[slug]/lib/programAnalytics";
+import { WhatsAppLink } from "~/components/WhatsAppLink";
+import type { Program, ProgramCycle } from "~/modules/academics/types";
 import { formatCycleLabel } from "~/utils/dateUtils";
+import { NamesForm } from "./NamesForm";
+import { PhoneNumberStep } from "./PhoneNumberStep/PhoneNumberStep";
+import type { SignupWizardMode } from "./types";
 
 export interface SignupWizardProps {
   whatsappNumber?: string;

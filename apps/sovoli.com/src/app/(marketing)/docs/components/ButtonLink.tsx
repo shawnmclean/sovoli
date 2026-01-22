@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { Button } from "@sovoli/ui/components/button";
+import Link from "next/link";
 import type { ComponentProps } from "react";
 
 interface ButtonLinkProps
@@ -16,7 +16,5 @@ interface ButtonLinkProps
  * passing functions to Client Components from Server Components.
  */
 export function ButtonLink({ href, ...buttonProps }: ButtonLinkProps) {
-  return (
-    <Button as={Link} href={href} {...buttonProps} />
-  );
+  return <Button as={Link} href={href} {...buttonProps} />;
 }

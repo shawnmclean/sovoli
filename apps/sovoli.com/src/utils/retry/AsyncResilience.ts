@@ -52,7 +52,7 @@ export class AsyncResilience {
     return {
       retry: retry,
       delay(s: RetryStatus) {
-        const exponentialDelay = baseDelay * Math.pow(2, s.index); // 1s, 2s, 4s, 8s, 16s
+        const exponentialDelay = baseDelay * 2 ** s.index; // 1s, 2s, 4s, 8s, 16s
         const jitter = Math.random() * 500; // Add a jitter of up to 500ms
         return exponentialDelay + jitter;
       },

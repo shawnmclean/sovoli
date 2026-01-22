@@ -1,4 +1,4 @@
-import type { Position, Department } from "~/modules/workforce/types";
+import type { Department, Position } from "~/modules/workforce/types";
 
 // === Departments ===
 export const ADMIN: Department = {

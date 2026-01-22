@@ -1,18 +1,15 @@
+import { SiWhatsapp } from "@icons-pack/react-simple-icons";
+import { Link } from "@sovoli/ui/components/link";
+import { GlobeIcon, MailIcon, MapPinIcon, PhoneIcon } from "lucide-react";
 import { notFound } from "next/navigation";
-
-import { GetAllWebsiteUsernamesQuery } from "~/modules/websites/services/queries/GetAllWebsiteUsernames";
-import { bus } from "~/services/core/bus";
-
-import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
 import {
   GetUserKnowledgeByUsernameQuery,
   GetUserKnowledgeByUsernameQueryHandler,
 } from "~/modules/notes/services/GetUserKnowledgeByUsername";
-
-import { Link } from "@sovoli/ui/components/link";
-import { GlobeIcon, PhoneIcon, MailIcon, MapPinIcon } from "lucide-react";
+import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
+import { GetAllWebsiteUsernamesQuery } from "~/modules/websites/services/queries/GetAllWebsiteUsernames";
+import { bus } from "~/services/core/bus";
 import { countryCodeToName } from "~/utils/countryUtils";
-import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 import { UserKnowledgeProfile } from "./components/UserKnowledgeProfile";
 
 const retreiveOrgInstance = async (username: string) => {

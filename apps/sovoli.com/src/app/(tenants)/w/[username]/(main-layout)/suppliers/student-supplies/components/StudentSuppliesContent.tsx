@@ -1,18 +1,18 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Checkbox } from "@sovoli/ui/components/checkbox";
+import { Chip } from "@sovoli/ui/components/chip";
 import {
   BookOpenIcon,
-  PackageIcon,
   DropletsIcon,
-  ShirtIcon,
   GraduationCapIcon,
+  PackageIcon,
+  ShirtIcon,
 } from "lucide-react";
-import { Chip } from "@sovoli/ui/components/chip";
-import { Checkbox } from "@sovoli/ui/components/checkbox";
+import { useMemo, useState } from "react";
 import type { Program, RequirementList } from "~/modules/academics/types";
-import type { OrgInstanceWithWebsite } from "~/modules/organisations/types";
 import type { Item } from "~/modules/core/items/types";
+import type { OrgInstanceWithWebsite } from "~/modules/organisations/types";
 
 interface StudentSuppliesContentProps {
   orgInstance: OrgInstanceWithWebsite;

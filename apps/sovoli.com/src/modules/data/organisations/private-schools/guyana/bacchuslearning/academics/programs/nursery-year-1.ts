@@ -1,14 +1,15 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { GY_NURSERY_YEAR_1_V1 } from "~/modules/data/academics/guyana/programs";
-import { NURSERY_YEAR_1_PHOTOS } from "../../photos";
+
 import type { Program } from "~/modules/academics/types";
+import { GY_NURSERY_YEAR_1_V1 } from "~/modules/data/academics/guyana/programs";
+import { findItemById } from "~/modules/data/items";
+import { NURSERY_YEAR_1_PHOTOS } from "../../photos";
 import { BLCGY_NURSERY_YEAR_1_2025_T1 } from "../cycles";
 import { BLCGY_SHARED_TESTIMONIALS } from "../testimonials";
-import { findItemById } from "~/modules/data/items";
 import {
   BLCGY_NURSERY_DEPT_ACTIVITIES,
-  nurseryProgramHighlights,
   blcgyProgramQuickFacts,
+  nurseryProgramHighlights,
 } from "./shared";
 
 export const BLCGY_NURSERY_YEAR_1_PROGRAM: Program = {

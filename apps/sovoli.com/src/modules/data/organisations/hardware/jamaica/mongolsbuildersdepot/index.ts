@@ -1,9 +1,9 @@
 import type { OrgInstance } from "~/modules/organisations/types";
+import { MONGOLS_BUILDERS_DEPOT_CATALOG } from "./catalog";
 import { ORG_USERNAME } from "./constants";
+import { MONGOLS_BUILDERS_DEPOT_PHOTOS } from "./photos";
 import { MONGOLS_BUILDERS_DEPOT_WEBSITE } from "./website";
 import { MONGOLS_BUILDERS_DEPOT_WORKFORCE } from "./workforce";
-import { MONGOLS_BUILDERS_DEPOT_CATALOG } from "./catalog";
-import { MONGOLS_BUILDERS_DEPOT_PHOTOS } from "./photos";
 
 export const MONGOLS_BUILDERS_DEPOT_ORG: OrgInstance = {
   org: {
@@ -62,4 +62,3 @@ export const MONGOLS_BUILDERS_DEPOT_ORG: OrgInstance = {
   scoringModule: null,
   catalogModule: MONGOLS_BUILDERS_DEPOT_CATALOG,
 };
-

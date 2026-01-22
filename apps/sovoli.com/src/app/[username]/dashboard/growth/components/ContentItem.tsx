@@ -11,9 +11,9 @@ import {
 } from "@sovoli/ui/components/dialog";
 import type { SliderValue } from "@sovoli/ui/components/slider";
 import { Slider } from "@sovoli/ui/components/slider";
-import { useState, useRef } from "react";
-import { useReactToPrint } from "react-to-print";
 import { PrinterIcon } from "lucide-react";
+import { useRef, useState } from "react";
+import { useReactToPrint } from "react-to-print";
 
 export type ContentType = "print" | "social";
 export interface ContentConfig {

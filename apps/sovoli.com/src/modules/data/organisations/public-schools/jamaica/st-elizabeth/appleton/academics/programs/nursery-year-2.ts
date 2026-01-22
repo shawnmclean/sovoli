@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { NURSERY_YEAR_2_PHOTOS } from "../../photos";
+
 import type { Program } from "~/modules/academics/types";
 import { findItemById } from "~/modules/data/items";
+import { NURSERY_YEAR_2_PHOTOS } from "../../photos";
 import {
   APPLETON_NURSERY_DEPT_ACTIVITIES,
-  nurseryProgramHighlights,
   appletonProgramQuickFacts,
+  nurseryProgramHighlights,
 } from "./shared";
 
 export const APPLETON_NURSERY_YEAR_2_PROGRAM: Program = {

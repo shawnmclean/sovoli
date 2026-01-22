@@ -1,20 +1,17 @@
 "use client";
 
-import React from "react";
+import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
+import { Alert } from "@sovoli/ui/components/alert";
+import { Button } from "@sovoli/ui/components/button";
 import { Card } from "@sovoli/ui/components/card";
 import { CircularProgress } from "@sovoli/ui/components/progress";
-import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
-
 import { CheckCircleIcon, XCircleIcon } from "lucide-react";
-
-import { OrgRuleGroupIcon } from "./OrgRuleGroupIcon";
-
-import type { OrgInstance } from "~/modules/organisations/types";
-import { categoryRuleSets } from "../ruleSets";
-import { Button } from "@sovoli/ui/components/button";
-import { Alert } from "@sovoli/ui/components/alert";
+import React from "react";
 import { WhatsAppLink } from "~/components/WhatsAppLink";
+import type { OrgInstance } from "~/modules/organisations/types";
 import { config } from "~/utils/config";
+import { categoryRuleSets } from "../ruleSets";
+import { OrgRuleGroupIcon } from "./OrgRuleGroupIcon";
 
 export interface PublicScoreBreakdownProps {
   orgInstance: OrgInstance;

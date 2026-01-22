@@ -1,13 +1,13 @@
 "use client";
 
 import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
+import { Chip } from "@sovoli/ui/components/chip";
+import { BarChartIcon, BookOpenIcon } from "lucide-react";
 import type {
   OrgCategoryKeys,
   OrgInstance,
 } from "~/modules/organisations/types";
 import { ScoringSection } from "~/modules/scoring/components/ScoringSection";
-import { BarChartIcon, BookOpenIcon } from "lucide-react";
-import { Chip } from "@sovoli/ui/components/chip";
 
 export interface OrgListItemBreakdownProps {
   orgInstance: OrgInstance;

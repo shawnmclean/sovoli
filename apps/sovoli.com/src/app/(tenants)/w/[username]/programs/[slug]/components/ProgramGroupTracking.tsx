@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { trackProgramGroupAnalytics } from "../lib/programAnalytics";
-
 import type { ProgramGroup } from "~/modules/academics/types";
+import { trackProgramGroupAnalytics } from "../lib/programAnalytics";
 
 interface ProgramGroupTrackingProps {
   group: ProgramGroup;

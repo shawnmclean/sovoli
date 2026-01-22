@@ -1,13 +1,12 @@
 "use client";
 
 import { Card, CardBody } from "@sovoli/ui/components/card";
-
-import { MapView } from "./MapView";
+import type { ProjectDirectoryEntry } from "../types";
 import { ListView } from "./ListView";
+import { MapView } from "./MapView";
+import { ProjectsPagination } from "./ProjectsPagination";
 import { ProjectsSearch } from "./ProjectsSearch";
 import { ProjectsViewTabs } from "./ProjectsViewTabs";
-import { ProjectsPagination } from "./ProjectsPagination";
-import type { ProjectDirectoryEntry } from "../types";
 
 interface ProjectsDirectoryContentProps {
   projects: ProjectDirectoryEntry[];

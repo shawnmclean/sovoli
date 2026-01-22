@@ -1,5 +1,5 @@
-import type { Need, NeedsModule } from "~/modules/needs/types";
 import { findItemById } from "~/modules/data/items";
+import type { Need, NeedsModule } from "~/modules/needs/types";
 import { PRIMARY_TEACHER } from "./workforceMeta";
 
 const AC_UNIT_ITEM = findItemById("equipment-ac-unit");

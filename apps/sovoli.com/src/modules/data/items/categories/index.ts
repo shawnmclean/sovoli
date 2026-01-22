@@ -1,3 +1,5 @@
+import type { CategoryDefinition } from "~/modules/core/items/types";
+import { categoryDefinitionSchema } from "~/modules/core/items/types";
 import artsCraftsNeedleworkData from "./artsCraftsNeedlework.json";
 import audioVisualPhotographyData from "./audioVisualPhotography.json";
 import beautyPersonalCareHygieneData from "./beautyPersonalCareHygiene.json";
@@ -43,9 +45,6 @@ import toolStorageWorkshopAidsData from "./toolStorageWorkshopAids.json";
 import toolsEquipmentData from "./toolsEquipment.json";
 import toysGamesData from "./toysGames.json";
 import vehicleData from "./vehicle.json";
-
-import type { CategoryDefinition } from "~/modules/core/items/types";
-import { categoryDefinitionSchema } from "~/modules/core/items/types";
 
 const categoryData = [
   artsCraftsNeedleworkData,

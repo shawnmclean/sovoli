@@ -1,8 +1,8 @@
 import type { OrgInstance } from "~/modules/organisations/types";
+import { CREATIVE_THINKING_STATIONERY_HUB_CATALOG } from "./catalog";
 import { ORG_USERNAME } from "./constants";
 import { CREATIVE_THINKING_STATIONERY_HUB_WEBSITE } from "./website";
 import { CREATIVE_THINKING_STATIONERY_HUB_WORKFORCE } from "./workforce";
-import { CREATIVE_THINKING_STATIONERY_HUB_CATALOG } from "./catalog";
 
 export const CREATIVE_THINKING_STATIONERY_HUB_ORG: OrgInstance = {
   org: {

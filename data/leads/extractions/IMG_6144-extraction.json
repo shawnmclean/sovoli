@@ -17,40 +17,22 @@
       {
         "id": "6369",
         "name": "Brow Lamination",
-        "quickFacts": [
-          "Full Kit",
-          "Certificate of Completion"
-        ],
-        "whatYouWillLearn": [
-          "Brief Tinting Knowledge",
-          "Mapping"
-        ],
+        "quickFacts": ["Full Kit", "Certificate of Completion"],
+        "whatYouWillLearn": ["Brief Tinting Knowledge", "Mapping"],
         "matchedPrograms": null
       },
       {
         "id": "9296",
         "name": "Workshop",
-        "quickFacts": [
-          "Full Kit",
-          "Certificate of Completion"
-        ],
-        "whatYouWillLearn": [
-          "Brief Tinting Knowledge",
-          "Mapping"
-        ],
+        "quickFacts": ["Full Kit", "Certificate of Completion"],
+        "whatYouWillLearn": ["Brief Tinting Knowledge", "Mapping"],
         "matchedPrograms": null
       },
       {
         "id": "9297",
         "name": "Brow Lamination Workshop",
-        "quickFacts": [
-          "Full Kit",
-          "Certificate of Completion"
-        ],
-        "whatYouWillLearn": [
-          "Brief Tinting Knowledge",
-          "Mapping"
-        ],
+        "quickFacts": ["Full Kit", "Certificate of Completion"],
+        "whatYouWillLearn": ["Brief Tinting Knowledge", "Mapping"],
         "matchedPrograms": null
       }
     ],
@@ -75,15 +57,9 @@
       }
     ],
     "urls": [],
-    "locations": [
-      "Kingston"
-    ],
-    "platformSignals": [
-      "Sponsored"
-    ]
+    "locations": ["Kingston"],
+    "platformSignals": ["Sponsored"]
   },
-  "business": [
-    "The Lash Academy"
-  ],
+  "business": ["The Lash Academy"],
   "matchedOrgs": null
 }

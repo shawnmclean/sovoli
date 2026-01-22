@@ -1,5 +1,5 @@
-import type { ProgramInfo, ProgramCycleInfo } from "./program-discovery.js";
 import { calculateSimilarity, type ScoredMatch } from "./org-matcher.js";
+import type { ProgramCycleInfo, ProgramInfo } from "./program-discovery.js";
 
 /**
  * Find all potential program matches for a program name

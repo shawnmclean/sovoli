@@ -1,11 +1,9 @@
-import { notFound } from "next/navigation";
-
-import { bus } from "~/services/core/bus";
-import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
-
 import { Alert } from "@sovoli/ui/components/alert";
 import { Button } from "@sovoli/ui/components/button";
 import { Link } from "@sovoli/ui/components/link";
+import { notFound } from "next/navigation";
+import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
+import { bus } from "~/services/core/bus";
 
 const retrieveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -27,7 +25,6 @@ export default async function ProgramsPage({
 
   return (
     <div className="space-y-4 p-2 sm:p-4 max-w-4xl mx-auto">
-
       <Alert
         hideIcon
         variant="faded"

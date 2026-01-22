@@ -1,8 +1,8 @@
 "use client";
 
 import type { OrgInstance } from "~/modules/organisations/types";
-import { ProgramGroupListing } from "./ProgramGroupListing";
 import { CatalogGroupListing } from "./CatalogGroupListing";
+import { ProgramGroupListing } from "./ProgramGroupListing";
 import { ServiceGroupListing } from "./ServiceGroupListing";
 
 interface OfferingContentProps {
@@ -33,7 +33,9 @@ export function OfferingContent({ orgInstance }: OfferingContentProps) {
   const content: React.ReactNode[] = [];
 
   if (hasServices) {
-    content.push(<ServiceGroupListing key="services" orgInstance={orgInstance} />);
+    content.push(
+      <ServiceGroupListing key="services" orgInstance={orgInstance} />,
+    );
   }
 
   if (hasProgramCategories) {

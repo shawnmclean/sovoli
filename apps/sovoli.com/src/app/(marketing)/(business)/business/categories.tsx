@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
 import type { StaticImageData } from "next/image";
+import type { ReactNode } from "react";
 import bingResultImage from "./[category]/components/bing-result.png";
 import googleResultImage from "./[category]/components/google-maps.png";
 import sovoliDirectoryImage from "./[category]/components/sovoli-directory.png";

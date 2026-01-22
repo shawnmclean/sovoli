@@ -1,18 +1,18 @@
 "use client";
 
+import { Button } from "@sovoli/ui/components/button";
+import { Form } from "@sovoli/ui/components/form";
+import { InputOtp } from "@sovoli/ui/components/input-otp";
+import { ArrowLeft } from "lucide-react";
 import {
-  useState,
+  startTransition,
   useActionState,
   useEffect,
   useRef,
-  startTransition,
+  useState,
 } from "react";
-import { Button } from "@sovoli/ui/components/button";
-import { InputOtp } from "@sovoli/ui/components/input-otp";
-import type { VerifyState } from "../../actions/verifyOTPAction";
 import type { PhoneActionStates } from "../../actions/states";
-import { Form } from "@sovoli/ui/components/form";
-import { ArrowLeft } from "lucide-react";
+import type { VerifyState } from "../../actions/verifyOTPAction";
 
 export interface PhoneOTPVerifyFormProps {
   phone: string;

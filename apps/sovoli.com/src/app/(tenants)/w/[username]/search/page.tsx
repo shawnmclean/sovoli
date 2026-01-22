@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { ChevronLeftIcon } from "lucide-react";
+import Link from "next/link";
 import { PrivateSchoolSearchContent } from "../components/search/PrivateSchoolSearchContent";
 
 export default function SearchPage() {

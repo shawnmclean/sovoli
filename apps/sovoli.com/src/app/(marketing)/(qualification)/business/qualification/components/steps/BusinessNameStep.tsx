@@ -15,11 +15,12 @@ export function BusinessNameStep({
   onNext,
   error,
 }: BusinessNameStepProps) {
-
   return (
     <div className="space-y-6">
       <div className="text-left">
-        <h1 className="text-3xl font-bold mb-2">What's the name of your business?</h1>
+        <h1 className="text-3xl font-bold mb-2">
+          What's the name of your business?
+        </h1>
       </div>
 
       <Input

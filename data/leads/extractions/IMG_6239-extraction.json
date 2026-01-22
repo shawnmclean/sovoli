@@ -25,13 +25,9 @@
           "Limited Seats Available",
           "ONLY 3 SPACES LEFT"
         ],
-        "whatYouWillLearn": [
-          "Nail Techniques"
-        ],
+        "whatYouWillLearn": ["Nail Techniques"],
         "schedule": {
-          "times": [
-            "2-5 PM"
-          ],
+          "times": ["2-5 PM"],
           "duration": "12 Weeks"
         },
         "matchedPrograms": null
@@ -48,16 +44,9 @@
       }
     ],
     "urls": [],
-    "locations": [
-      "Barbados Avenue, New Kingston"
-    ],
-    "platformSignals": [
-      "Sponsored"
-    ]
+    "locations": ["Barbados Avenue, New Kingston"],
+    "platformSignals": ["Sponsored"]
   },
-  "business": [
-    "The Beauty Institute of Jamaica",
-    "The Beauty Institute"
-  ],
+  "business": ["The Beauty Institute of Jamaica", "The Beauty Institute"],
   "matchedOrgs": null
 }

@@ -2,46 +2,45 @@
 
 import { Button } from "@sovoli/ui/components/button";
 import {
-  Shield,
-  Car,
-  PartyPopper,
-  Camera,
-  Building,
-  Users,
-  Heart,
-  Stethoscope,
-  Sparkles,
-  DoorOpen,
-  UserCheck,
-  Calendar,
-  MapPin,
-  Bus,
-  Landmark,
-  Snowflake,
-  Droplets,
-  Sofa,
-  Play,
-  BookOpenCheck,
-  Monitor,
-  Pill,
-  Apple as AppleIcon,
-  Sandwich,
   AlertTriangle,
-  Syringe,
+  Apple as AppleIcon,
   Award,
   Bell,
+  BookOpenCheck,
+  Building,
+  Bus,
+  Calendar,
+  Camera,
+  Car,
   Car as CarIcon,
+  DoorOpen,
+  Droplets,
   GraduationCap as GraduationCapIcon,
+  Heart,
   Image,
   Image as ImageIcon,
   Image as ImageIcon2,
   Image as ImageIcon3,
+  Landmark,
+  MapPin,
+  Monitor,
+  PartyPopper,
+  Pill,
+  Play,
+  Sandwich,
+  Shield,
+  Snowflake,
+  Sofa,
+  Sparkles,
+  Stethoscope,
+  Syringe,
+  UserCheck,
+  Users,
 } from "lucide-react";
-
+import Link from "next/link";
+import type { Program } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { OrgLocationFeature } from "~/modules/organisations/types";
-import type { Program } from "~/modules/academics/types";
-import Link from "next/link";
 
 interface LocationFeaturesSectionProps {
   orgInstance: OrgInstance;

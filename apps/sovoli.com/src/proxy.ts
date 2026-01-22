@@ -86,9 +86,12 @@ export async function proxy(request: NextRequest) {
 }
 
 function isStaticAsset(path: string): boolean {
-  return (path.startsWith("/_next/") ||
-  path.startsWith("/ingest/") ||
-  path.startsWith("/images/") || /\.(png|jpg|jpeg|svg|gif|ico|webp|avif|js|css|map|json)$/i.test(path));
+  return (
+    path.startsWith("/_next/") ||
+    path.startsWith("/ingest/") ||
+    path.startsWith("/images/") ||
+    /\.(png|jpg|jpeg|svg|gif|ico|webp|avif|js|css|map|json)$/i.test(path)
+  );
 }
 
 function isLocalhost(host: string): boolean {

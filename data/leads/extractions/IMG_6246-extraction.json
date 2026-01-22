@@ -41,9 +41,7 @@
           ]
         },
         "schedule": {
-          "dates": [
-            "Start feb 2nd 2026"
-          ]
+          "dates": ["Start feb 2nd 2026"]
         },
         "matchedPrograms": null
       }
@@ -66,13 +64,8 @@
     ],
     "urls": [],
     "locations": [],
-    "platformSignals": [
-      "Sponsored"
-    ]
+    "platformSignals": ["Sponsored"]
   },
-  "business": [
-    "Fabulouz Nails by Angel",
-    "Fabulouz Beauty Kingdom"
-  ],
+  "business": ["Fabulouz Nails by Angel", "Fabulouz Beauty Kingdom"],
   "matchedOrgs": null
 }

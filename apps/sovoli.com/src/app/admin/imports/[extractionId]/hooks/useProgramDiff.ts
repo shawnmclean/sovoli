@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { computeDiff } from "../../utils/diff-compute";
 
 interface UseProgramDiffProps {

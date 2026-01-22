@@ -34,5 +34,3 @@ export const GEORGETOWN_SDA_ACADEMY_ORG: OrgInstance = {
   workforceModule: null,
   scoringModule: null,
 };
-
-

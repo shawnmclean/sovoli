@@ -1,15 +1,15 @@
 import { z } from "zod";
+import type { AmountByCurrency } from "~/modules/core/economics/types";
 import { findItemById } from "~/modules/data/items";
 import type {
-  NeedsModule,
-  MaterialNeed,
-  HumanNeed,
-  ServiceNeed,
   FinancialNeed,
+  HumanNeed,
   JobNeed,
+  MaterialNeed,
   Need,
+  NeedsModule,
+  ServiceNeed,
 } from "~/modules/needs/types";
-import type { AmountByCurrency } from "~/modules/core/economics/types";
 import type { WorkforceModule } from "~/modules/workforce/types";
 
 /**
@@ -18,7 +18,9 @@ import type { WorkforceModule } from "~/modules/workforce/types";
 const needFulfillmentSchema = z
   .object({
     quantityMet: z.number().optional(),
-    amountRaised: z.record(z.enum(["GYD", "USD", "JMD"]), z.number()).optional(),
+    amountRaised: z
+      .record(z.enum(["GYD", "USD", "JMD"]), z.number())
+      .optional(),
     progress: z.number().optional(),
   })
   .optional();
@@ -195,11 +197,13 @@ export function parseNeedsModule(
       createdAt: needJson.createdAt,
       updatedAt: needJson.updatedAt,
       procurement: needJson.procurement,
-      fulfillment: needJson.fulfillment as {
-        quantityMet?: number;
-        amountRaised?: AmountByCurrency;
-        progress?: number;
-      } | undefined,
+      fulfillment: needJson.fulfillment as
+        | {
+            quantityMet?: number;
+            amountRaised?: AmountByCurrency;
+            progress?: number;
+          }
+        | undefined,
       totalBudget: needJson.totalBudget as AmountByCurrency | undefined,
     };
 

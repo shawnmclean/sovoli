@@ -1,7 +1,7 @@
 import { z } from "zod";
-import type { WorkforceModule } from "~/modules/workforce/types";
 import type { AmountByCurrency } from "~/modules/core/economics/types";
 import type { Contact } from "~/modules/core/types";
+import type { WorkforceModule } from "~/modules/workforce/types";
 import type { MediaMap } from "./parseMediaModule";
 import { getMediaByIdOptional, getMediaByIds } from "./parseMediaModule";
 
@@ -239,13 +239,14 @@ export function parseWorkforceModule(
     // Resolve credentials with media
     const credentials = memberJson.credentials
       ? memberJson.credentials.map((credJson) => {
-          const media = mediaMap && credJson.mediaIds
-            ? getMediaByIds(
-                mediaMap,
-                credJson.mediaIds,
-                `credential "${credJson.name}" for workforce member "${memberJson.slug}"`,
-              )
-            : undefined;
+          const media =
+            mediaMap && credJson.mediaIds
+              ? getMediaByIds(
+                  mediaMap,
+                  credJson.mediaIds,
+                  `credential "${credJson.name}" for workforce member "${memberJson.slug}"`,
+                )
+              : undefined;
 
           return {
             type: credJson.type,

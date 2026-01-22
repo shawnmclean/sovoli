@@ -1,19 +1,19 @@
 "use client";
 
-import { useEffect } from "react";
 import { Button } from "@sovoli/ui/components/button";
-import { MapPinIcon, MapIcon } from "lucide-react";
-import type { OrgInstance } from "~/modules/organisations/types";
-import { countryCodeToName } from "~/utils/countryUtils";
-import type { Program } from "~/modules/academics/types";
-import { trackProgramAnalytics } from "../../lib/programAnalytics";
 import {
+  DrawerBody,
   DrawerContent,
   DrawerHeader,
-  DrawerBody,
 } from "@sovoli/ui/components/drawer";
-import { SubscribeProgramButton } from "../SubscribeProgramButton";
+import { MapIcon, MapPinIcon } from "lucide-react";
+import { useEffect } from "react";
 import { ShareButton } from "~/app/[username]/(profile)/components/OrgNavbar/ShareButton";
+import type { Program } from "~/modules/academics/types";
+import type { OrgInstance } from "~/modules/organisations/types";
+import { countryCodeToName } from "~/utils/countryUtils";
+import { trackProgramAnalytics } from "../../lib/programAnalytics";
+import { SubscribeProgramButton } from "../SubscribeProgramButton";
 
 interface LocationDetailsProps {
   orgInstance: OrgInstance;
@@ -137,4 +137,3 @@ export function LocationDetails({
     </DrawerContent>
   );
 }
-

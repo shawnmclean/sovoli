@@ -10,9 +10,7 @@ export const LESLYNS_ACADEMY_ORG: OrgInstance = {
       {
         key: "main",
         address: { countryCode: "GY" },
-        contacts: [
-          { type: "phone", value: "+592-225-7654", isPublic: true },
-        ],
+        contacts: [{ type: "phone", value: "+592-225-7654", isPublic: true }],
         isPrimary: true,
       },
     ],

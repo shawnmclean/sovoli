@@ -2,55 +2,54 @@
 
 import { Badge } from "@sovoli/ui/components/badge";
 import {
-  Shield,
-  Car,
-  PartyPopper,
-  Camera,
-  Building,
-  Users,
-  Heart,
-  Stethoscope,
-  Sparkles,
-  DoorOpen,
-  UserCheck,
-  Calendar,
-  MapPin,
-  Bus,
-  Landmark,
-  Snowflake,
-  Droplets,
-  Sofa,
-  Play,
-  BookOpenCheck,
-  Monitor,
-  Pill,
-  Apple as AppleIcon,
-  Sandwich,
+  DrawerBody,
+  DrawerContent,
+  DrawerHeader,
+} from "@sovoli/ui/components/drawer";
+import {
   AlertTriangle,
-  Syringe,
+  Apple as AppleIcon,
   Award,
   Bell,
+  BookOpenCheck,
+  Building,
+  Bus,
+  Calendar,
+  Camera,
+  Car,
   Car as CarIcon,
+  DoorOpen,
+  Droplets,
   GraduationCap as GraduationCapIcon,
+  Heart,
   Image,
   Image as ImageIcon,
   Image as ImageIcon2,
   Image as ImageIcon3,
+  Landmark,
+  MapPin,
+  Monitor,
+  PartyPopper,
+  Pill,
+  Play,
+  Sandwich,
+  Shield,
+  Snowflake,
+  Sofa,
+  Sparkles,
+  Stethoscope,
+  Syringe,
+  UserCheck,
+  Users,
 } from "lucide-react";
-
+import { useEffect } from "react";
+import { ShareButton } from "~/app/[username]/(profile)/components/OrgNavbar/ShareButton";
+import type { Program } from "~/modules/academics/types";
+import { ORG_LOCATION_FEATURE_GROUPS } from "~/modules/organisations/locationFeatures";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { OrgLocationFeature } from "~/modules/organisations/types";
-import { ORG_LOCATION_FEATURE_GROUPS } from "~/modules/organisations/locationFeatures";
-import type { Program } from "~/modules/academics/types";
 import { trackProgramAnalytics } from "../../lib/programAnalytics";
-import { useEffect } from "react";
-import {
-  DrawerContent,
-  DrawerHeader,
-  DrawerBody,
-} from "@sovoli/ui/components/drawer";
 import { SubscribeProgramButton } from "../SubscribeProgramButton";
-import { ShareButton } from "~/app/[username]/(profile)/components/OrgNavbar/ShareButton";
 
 interface LocationFeaturesDetailsProps {
   orgInstance: OrgInstance;

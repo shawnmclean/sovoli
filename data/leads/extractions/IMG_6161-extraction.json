@@ -20,15 +20,11 @@
         "quickFacts": [],
         "whatYouWillLearn": [],
         "pricing": {
-          "other": [
-            "Cost $28,500...."
-          ]
+          "other": ["Cost $28,500...."]
         },
         "schedule": {},
         "location": "Kingston",
-        "callsToAction": [
-          "REGISTER NOW!"
-        ],
+        "callsToAction": ["REGISTER NOW!"],
         "matchedPrograms": null
       }
     ],
@@ -49,17 +45,9 @@
       }
     ],
     "urls": [],
-    "locations": [
-      "Kingston",
-      "St. Ann",
-      "Montego Bay"
-    ],
-    "platformSignals": [
-      "Sponsored"
-    ]
+    "locations": ["Kingston", "St. Ann", "Montego Bay"],
+    "platformSignals": ["Sponsored"]
   },
-  "business": [
-    "Skills Academy Jamaica"
-  ],
+  "business": ["Skills Academy Jamaica"],
   "matchedOrgs": null
 }

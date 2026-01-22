@@ -1,9 +1,9 @@
 "use client";
+import { DesktopGallery } from "~/components/DesktopGallery";
+import { GalleryCarousel } from "~/components/GalleryCarousel";
 import type { Program } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { countryCodeToName } from "~/utils/countryUtils";
-import { GalleryCarousel } from "~/components/GalleryCarousel";
-import { DesktopGallery } from "~/components/DesktopGallery";
 
 export interface ProgramHeroSectionProps {
   orgInstance: OrgInstance;

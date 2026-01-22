@@ -3,11 +3,11 @@
 import type { ReactNode } from "react";
 import {
   createContext,
+  startTransition,
   useContext,
-  useState,
   useEffect,
   useRef,
-  startTransition,
+  useState,
 } from "react";
 import type { Program, ProgramCycle } from "~/modules/academics/types";
 import type { ProgramSelectionState } from "./types";

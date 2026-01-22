@@ -1,5 +1,5 @@
-import React from "react";
 import { CircularProgress } from "@sovoli/ui/components/progress";
+import React from "react";
 import type { RuleSet, ScoringModule } from "~/modules/scoring/types";
 
 import { OrgRuleGroupIcon } from "./OrgRuleGroupIcon";

@@ -15,9 +15,7 @@ export const MET_PRIDE_ORG: OrgInstance = {
           countryCode: "GY",
         },
         placeId: "ChIJuYZv3VLvr40RzkXUTs7fOfg",
-        contacts: [
-          { type: "phone", value: "+592-227-2013", isPublic: true },
-        ],
+        contacts: [{ type: "phone", value: "+592-227-2013", isPublic: true }],
         isPrimary: true,
       },
     ],

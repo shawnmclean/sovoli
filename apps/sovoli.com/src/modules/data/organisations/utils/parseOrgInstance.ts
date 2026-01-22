@@ -1,19 +1,19 @@
 import { z } from "zod";
+import type { ProgramGroup } from "~/modules/academics/types";
+import { findItemById } from "~/modules/data/items";
 import type { OrgInstance } from "~/modules/organisations/types";
-import { parseOrgModule } from "./parseOrgModule";
+import { parseAcademicModule } from "./parseAcademicModule";
+import { parseCatalogModule } from "./parseCatalogModule";
+import {
+  type ParsedCyclesModule,
+  parseCyclesModule,
+} from "./parseCyclesModule";
+import { type MediaMap, parseMediaModule } from "./parseMediaModule";
 import { parseNeedsModule } from "./parseNeedsModule";
+import { parseOrgModule } from "./parseOrgModule";
 import { parseProjectsModule } from "./parseProjectsModule";
 import { parseWebsiteModule } from "./parseWebsiteModule";
-import { parseCatalogModule } from "./parseCatalogModule";
 import { parseWorkforceModule } from "./parseWorkforceModule";
-import { parseMediaModule, type MediaMap } from "./parseMediaModule";
-import {
-  parseCyclesModule,
-  type ParsedCyclesModule,
-} from "./parseCyclesModule";
-import { parseAcademicModule } from "./parseAcademicModule";
-import { findItemById } from "~/modules/data/items";
-import type { ProgramGroup } from "~/modules/academics/types";
 
 /**
  * JSON data for parsing an organization instance
@@ -123,10 +123,7 @@ export function parseOrgInstance(
     });
 
     const validatedGroups = programGroupsSchema.parse(jsonData.programGroups);
-    const groupsMap = new Map<
-      string,
-      ProgramGroup & { order?: number }
-    >();
+    const groupsMap = new Map<string, ProgramGroup & { order?: number }>();
 
     for (const groupJson of validatedGroups.groups) {
       groupsMap.set(groupJson.id, {

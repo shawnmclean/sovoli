@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { BusinessSignupWizard } from "./components/BusinessSignupWizard";
 import { isBusinessCategory } from "../../(marketing)/(business)/business/categories";
+import { BusinessSignupWizard } from "./components/BusinessSignupWizard";
 
 export const metadata: Metadata = {
   title: "Sign Up for Sovoli",

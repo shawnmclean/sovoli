@@ -1,6 +1,6 @@
-import { GY_CYCLE_2025_T1 } from "~/modules/data/academics/guyana/cycles";
 import type { OrgAcademicCycle, ProgramCycle } from "~/modules/academics/types";
 import type { Discount, PricingItem } from "~/modules/core/economics/types";
+import { GY_CYCLE_2025_T1 } from "~/modules/data/academics/guyana/cycles";
 import {
   ANITA_DHANIRAM,
   MOLTA_MCRAE,

@@ -1,19 +1,14 @@
 "use client";
 
-import { useEffect, useState, startTransition } from "react";
-import { AwardIcon, ExternalLinkIcon, ChevronLeftIcon } from "lucide-react";
-import { CldImage } from "next-cloudinary";
-import type { Credential } from "~/modules/workforce/types";
-import type { Media, VisualMediaType } from "~/modules/core/media/types";
-import { filterVisualMedia } from "~/modules/core/media/types";
 import { Badge } from "@sovoli/ui/components/badge";
+import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody } from "@sovoli/ui/components/card";
+import type { CarouselApi } from "@sovoli/ui/components/carousel";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@sovoli/ui/components/carousel";
-import type { CarouselApi } from "@sovoli/ui/components/carousel";
 import {
   Modal,
   ModalBody,
@@ -21,7 +16,12 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@sovoli/ui/components/dialog";
-import { Button } from "@sovoli/ui/components/button";
+import { AwardIcon, ChevronLeftIcon, ExternalLinkIcon } from "lucide-react";
+import { CldImage } from "next-cloudinary";
+import { startTransition, useEffect, useState } from "react";
+import type { Media, VisualMediaType } from "~/modules/core/media/types";
+import { filterVisualMedia } from "~/modules/core/media/types";
+import type { Credential } from "~/modules/workforce/types";
 
 interface CredentialsSectionProps {
   credentials: Credential[];
@@ -342,4 +342,3 @@ function FullScreenGallery({
     </Modal>
   );
 }
-

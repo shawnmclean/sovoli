@@ -1,8 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, startTransition } from "react";
-import { CldImage } from "next-cloudinary";
-import posthog from "posthog-js";
+import { Button } from "@sovoli/ui/components/button";
 import type { CarouselApi } from "@sovoli/ui/components/carousel";
 import {
   Carousel,
@@ -17,8 +15,10 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@sovoli/ui/components/dialog";
-import { Button } from "@sovoli/ui/components/button";
 import { ChevronLeftIcon } from "lucide-react";
+import { CldImage } from "next-cloudinary";
+import posthog from "posthog-js";
+import { startTransition, useEffect, useRef, useState } from "react";
 
 import type { Media } from "~/modules/core/media/types";
 import { filterVisualMedia } from "~/modules/core/media/types";

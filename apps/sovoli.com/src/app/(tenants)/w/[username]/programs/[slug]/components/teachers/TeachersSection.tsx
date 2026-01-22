@@ -1,6 +1,5 @@
 "use client";
 
-import { useMemo } from "react";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import {
@@ -8,12 +7,13 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@sovoli/ui/components/carousel";
-import { UserIcon, ChevronRight } from "lucide-react";
+import { ChevronRight, UserIcon } from "lucide-react";
+import Link from "next/link";
+import { useMemo } from "react";
+import type { Program } from "~/modules/academics/types";
 import type { WorkforceMember } from "~/modules/workforce/types";
 import { getMemberDisplayTitle } from "~/modules/workforce/utils";
 import { useProgramCycleSelection } from "../../context/ProgramCycleSelectionContext";
-import type { Program } from "~/modules/academics/types";
-import Link from "next/link";
 
 interface TeachersSectionProps {
   defaultTeachers?: WorkforceMember[] | null;

@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
-
-import { bus } from "~/services/core/bus";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
+import { bus } from "~/services/core/bus";
 
 import { getLeadsForOrg } from "../../_lib/getLeadsForOrg";
 import { LeadDetailView } from "./components/LeadDetailView";
@@ -29,4 +28,3 @@ export default async function LeadDetailPage({
     </div>
   );
 }
-

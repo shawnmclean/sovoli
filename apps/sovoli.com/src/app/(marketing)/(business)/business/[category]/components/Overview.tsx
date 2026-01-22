@@ -1,17 +1,17 @@
 "use client";
 
-import { ChevronLeftIcon } from "lucide-react";
-import Image from "next/image";
-import overviewImage from "./overview.webp";
+import { Button } from "@sovoli/ui/components/button";
 import {
   Modal,
-  ModalContent,
   ModalBody,
-  useDisclosure,
+  ModalContent,
   ModalHeader,
+  useDisclosure,
 } from "@sovoli/ui/components/dialog";
-import { Button } from "@sovoli/ui/components/button";
+import { ChevronLeftIcon } from "lucide-react";
+import Image from "next/image";
 import type { GrowthSystemContent } from "../../categories";
+import overviewImage from "./overview.webp";
 
 interface OverviewProps {
   content: GrowthSystemContent["overview"];

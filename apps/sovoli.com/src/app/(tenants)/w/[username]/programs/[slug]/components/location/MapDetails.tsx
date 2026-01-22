@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { Button } from "@sovoli/ui/components/button";
-import { XIcon, ExternalLinkIcon } from "lucide-react";
-import type { OrgInstance } from "~/modules/organisations/types";
+import { ExternalLinkIcon, XIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import type { Program } from "~/modules/academics/types";
+import type { OrgInstance } from "~/modules/organisations/types";
 import { trackProgramAnalytics } from "../../lib/programAnalytics";
 import { ProgramMap } from "./ProgramMap";
 

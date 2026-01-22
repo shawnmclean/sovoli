@@ -1,9 +1,9 @@
-import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { config } from "~/utils/config";
-import { DocsNavbar } from "../components/DocsNavbar";
 import { AIButton } from "../components/AIButton";
+import { DocsNavbar } from "../components/DocsNavbar";
 
 interface Props {
   params: Promise<{ slug?: string[] }>;

@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-
-import { NeedsExplorer } from "./components/NeedsExplorer";
-import type { NeedsExplorerEntry } from "./components/NeedsExplorer";
-import { ORGS } from "~/modules/data/organisations";
 import { formatItemCategoryLabel } from "~/modules/core/items/utils";
-import { formatNeedTypeLabel } from "~/modules/needs/utils";
+import { ORGS } from "~/modules/data/organisations";
 import { isMaterialNeed } from "~/modules/needs/types";
+import { formatNeedTypeLabel } from "~/modules/needs/utils";
+import type { NeedsExplorerEntry } from "./components/NeedsExplorer";
+import { NeedsExplorer } from "./components/NeedsExplorer";
 
 export const metadata: Metadata = {
   title: "Hurricane Relief Needs Directory",

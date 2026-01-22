@@ -17,20 +17,14 @@
       {
         "id": "6e9d90c0-a5c3-4e72-976c-b5140a55dd2f",
         "name": "Visceral Manipulation Massage",
-        "quickFacts": [
-          "4-DAY WORKSHOP"
-        ],
+        "quickFacts": ["4-DAY WORKSHOP"],
         "whatYouWillLearn": [],
         "pricing": {},
         "schedule": {
-          "dates": [
-            "JULY 10-13, 2026"
-          ]
+          "dates": ["JULY 10-13, 2026"]
         },
         "location": "Rockley Golf & Country Club, Christ Church, Barbados",
-        "callsToAction": [
-          "PRE-REGISTER NOW"
-        ],
+        "callsToAction": ["PRE-REGISTER NOW"],
         "matchedPrograms": null
       }
     ],
@@ -44,14 +38,9 @@
       "emails": []
     },
     "socialLinks": [],
-    "urls": [
-      "www.schoolofholistictherapies.com"
-    ],
+    "urls": ["www.schoolofholistictherapies.com"],
     "locations": [],
-    "platformSignals": [
-      "Sponsored",
-      "See more"
-    ]
+    "platformSignals": ["Sponsored", "See more"]
   },
   "business": [
     "Caribbean School of Holistic Therapies Health & Wellness",

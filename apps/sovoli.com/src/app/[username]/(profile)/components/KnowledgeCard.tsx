@@ -1,11 +1,11 @@
 "use client";
 
-import { CldImage } from "next-cloudinary";
-import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Badge } from "@sovoli/ui/components/badge";
+import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
-import type { KnowledgeFile } from "~/modules/notes/services/types";
+import { CldImage } from "next-cloudinary";
 import type { Media } from "~/modules/core/media/types";
+import type { KnowledgeFile } from "~/modules/notes/services/types";
 
 // Type guard for cover photo
 function hasCoverPhoto(knowledge: KnowledgeFile): knowledge is KnowledgeFile & {

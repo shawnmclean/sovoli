@@ -1,26 +1,23 @@
-import { getOrgInstanceWithProgram } from "../../lib/getOrgInstanceWithProgram";
 import { EnrollDetails } from "../../components/enroll/EnrollDetails";
+import { getOrgInstanceWithProgram } from "../../lib/getOrgInstanceWithProgram";
 
 interface Props {
-	params: Promise<{ username: string; slug: string }>;
+  params: Promise<{ username: string; slug: string }>;
 }
 
 export default async function EnrollIntercept({ params }: Props) {
-	const { username, slug } = await params;
-	const result = await getOrgInstanceWithProgram(username, slug);
+  const { username, slug } = await params;
+  const result = await getOrgInstanceWithProgram(username, slug);
 
-	if (!result) {
-		return null;
-	}
+  if (!result) {
+    return null;
+  }
 
-	const program = result.program ?? result.group?.programs?.[0];
+  const program = result.program ?? result.group?.programs?.[0];
 
-	if (!program) {
-		return null;
-	}
+  if (!program) {
+    return null;
+  }
 
-	return (
-		<EnrollDetails orgInstance={result.orgInstance} program={program} />
-	);
+  return <EnrollDetails orgInstance={result.orgInstance} program={program} />;
 }
-

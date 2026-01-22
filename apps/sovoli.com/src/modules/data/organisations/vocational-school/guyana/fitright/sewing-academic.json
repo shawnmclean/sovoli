@@ -6,10 +6,7 @@
       "name": "Sewing Class",
       "audience": "student",
       "categoryId": "fashion-sewing",
-      "quickFacts": [
-        "Certificate Included",
-        "Expert Instructor"
-      ],
+      "quickFacts": ["Certificate Included", "Expert Instructor"],
       "highlights": [
         {
           "icon": "hammer",
@@ -125,9 +122,7 @@
         ]
       },
       "groupId": "sewing",
-      "cycleIds": [
-        "fr-sewing-2026-01-05"
-      ]
+      "cycleIds": ["fr-sewing-2026-01-05"]
     }
   ]
 }

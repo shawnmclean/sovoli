@@ -1,11 +1,11 @@
-import type { NeedPriority, NeedStatus, NeedType } from "~/modules/needs/types";
+import type { Item } from "~/modules/core/items/types";
 import type { Media } from "~/modules/core/media/types";
+import type { NeedPriority, NeedStatus, NeedType } from "~/modules/needs/types";
 import type {
   ProjectCategory,
   ProjectPriority,
   ProjectStatus,
 } from "~/modules/projects/types";
-import type { Item } from "~/modules/core/items/types";
 
 export interface ProjectNeedSummary {
   slug: string;

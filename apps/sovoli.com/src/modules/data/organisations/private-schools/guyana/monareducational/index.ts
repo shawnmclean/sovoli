@@ -10,9 +10,7 @@ export const MONAR_EDUCATIONAL_ORG: OrgInstance = {
       {
         key: "main",
         address: { countryCode: "GY" },
-        contacts: [
-          { type: "phone", value: "+592-223-7226", isPublic: true },
-        ],
+        contacts: [{ type: "phone", value: "+592-223-7226", isPublic: true }],
         isPrimary: true,
       },
     ],

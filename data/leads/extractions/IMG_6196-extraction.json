@@ -18,9 +18,7 @@
         "id": "867",
         "name": "Dining Room & Bartending",
         "schedule": {
-          "dates": [
-            "January 5th"
-          ]
+          "dates": ["January 5th"]
         },
         "matchedPrograms": null
       },
@@ -28,9 +26,7 @@
         "id": "991",
         "name": "Housekeeping",
         "schedule": {
-          "dates": [
-            "January 5th"
-          ]
+          "dates": ["January 5th"]
         },
         "matchedPrograms": null
       },
@@ -38,10 +34,7 @@
         "id": "438",
         "name": "Spa Massage",
         "schedule": {
-          "dates": [
-            "January 5th",
-            "February 25th"
-          ]
+          "dates": ["January 5th", "February 25th"]
         },
         "matchedPrograms": null
       },
@@ -49,9 +42,7 @@
         "id": "622",
         "name": "Cosmetology",
         "schedule": {
-          "dates": [
-            "January 5th"
-          ]
+          "dates": ["January 5th"]
         },
         "matchedPrograms": null
       },
@@ -59,9 +50,7 @@
         "id": "235",
         "name": "Advanced Nails",
         "schedule": {
-          "dates": [
-            "January 5th"
-          ]
+          "dates": ["January 5th"]
         },
         "matchedPrograms": null
       },
@@ -69,9 +58,7 @@
         "id": "532",
         "name": "Barbering",
         "schedule": {
-          "dates": [
-            "January 5th"
-          ]
+          "dates": ["January 5th"]
         },
         "matchedPrograms": null
       },
@@ -79,9 +66,7 @@
         "id": "963",
         "name": "Food Preparation with Baking",
         "schedule": {
-          "dates": [
-            "January 10th"
-          ]
+          "dates": ["January 10th"]
         },
         "matchedPrograms": null
       },
@@ -89,9 +74,7 @@
         "id": "984",
         "name": "Front Office with Computing",
         "schedule": {
-          "dates": [
-            "January 26th"
-          ]
+          "dates": ["January 26th"]
         },
         "matchedPrograms": null
       },
@@ -99,9 +82,7 @@
         "id": "793",
         "name": "Customer Service",
         "schedule": {
-          "dates": [
-            "January 27th"
-          ]
+          "dates": ["January 27th"]
         },
         "matchedPrograms": null
       },
@@ -109,9 +90,7 @@
         "id": "672",
         "name": "Business Computing",
         "schedule": {
-          "dates": [
-            "January 27th"
-          ]
+          "dates": ["January 27th"]
         },
         "matchedPrograms": null
       },
@@ -119,9 +98,7 @@
         "id": "123",
         "name": "Graphic Designing",
         "schedule": {
-          "dates": [
-            "February 24th"
-          ]
+          "dates": ["February 24th"]
         },
         "matchedPrograms": null
       }
@@ -142,12 +119,8 @@
     "socialLinks": [],
     "urls": [],
     "locations": [],
-    "platformSignals": [
-      "Sponsored"
-    ]
+    "platformSignals": ["Sponsored"]
   },
-  "business": [
-    "St. Monica's College"
-  ],
+  "business": ["St. Monica's College"],
   "matchedOrgs": null
 }

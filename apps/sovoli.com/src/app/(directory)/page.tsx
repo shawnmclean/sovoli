@@ -1,8 +1,8 @@
 import { config } from "~/utils/config";
-import { TrendingSection } from "../(marketing)/components/TrendingSection";
-import { SovoliBusinessSection } from "../(marketing)/components/SovoliBusinessSection";
-import { HurricaneMelissaSection } from "../(marketing)/components/HurricaneMelissaSection";
 import { FindSchoolsSection } from "../(marketing)/components/FindSchoolsSection";
+import { HurricaneMelissaSection } from "../(marketing)/components/HurricaneMelissaSection";
+import { SovoliBusinessSection } from "../(marketing)/components/SovoliBusinessSection";
+import { TrendingSection } from "../(marketing)/components/TrendingSection";
 
 export function generateMetadata() {
   return {

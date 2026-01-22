@@ -1,5 +1,5 @@
-import { getOrgInstanceWithProject } from "../../lib/getOrgInstanceWithProject";
 import { ProjectMetricsDetails } from "../../components/metrics/ProjectMetricsDetails";
+import { getOrgInstanceWithProject } from "../../lib/getOrgInstanceWithProject";
 
 interface Props {
   params: Promise<{ username: string; slug: string }>;

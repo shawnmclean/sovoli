@@ -12,7 +12,12 @@
     "name": "Circular Power Saw - Medium Size",
     "category": "circular-saws-powered",
     "unitLabel": "tool",
-    "tags": ["agriculture", "construction", "tree-cutting", "pasture-restoration"],
+    "tags": [
+      "agriculture",
+      "construction",
+      "tree-cutting",
+      "pasture-restoration"
+    ],
     "description": "Medium size circular power saw for cutting tree branches, limbs, and logs. Essential for clearing fallen trees in pastures and agricultural areas."
   },
   {

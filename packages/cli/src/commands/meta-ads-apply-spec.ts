@@ -3,8 +3,8 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { metaApiRequest } from "../utils/meta-api.js";
-import { metaAdsCampaignSpecSchema } from "../validation/schemas/meta-ads-campaign-spec.js";
 import type { MetaAdsCampaignSpec } from "../validation/schemas/meta-ads-campaign-spec.js";
+import { metaAdsCampaignSpecSchema } from "../validation/schemas/meta-ads-campaign-spec.js";
 
 type CreatedCampaign = { id: string };
 type CreatedAdSet = { id: string };
@@ -93,7 +93,9 @@ function requireEnvVar(name: string): string {
 function normalizeTextVariants(input: string | string[]): string[] {
   if (Array.isArray(input)) {
     if (input.length === 0) {
-      throw new Error("Invalid creative text variants: array must not be empty");
+      throw new Error(
+        "Invalid creative text variants: array must not be empty",
+      );
     }
     return input;
   }
@@ -104,7 +106,9 @@ function firstVariant(input: string | string[]): string {
   if (Array.isArray(input)) {
     const first = input[0];
     if (!first) {
-      throw new Error("Invalid creative text variants: array must not be empty");
+      throw new Error(
+        "Invalid creative text variants: array must not be empty",
+      );
     }
     return first;
   }
@@ -200,7 +204,10 @@ function assertSpecIntegrity(spec: MetaAdsCampaignSpec): void {
           `Ad "${ad.name}" uses text arrays, but dynamic creative ad set "${ad.adSetRef}" has ${adCount} ads. Meta requires 1 ad per dynamic creative ad set.`,
         );
       }
-      if (ad.creative.placementImages && ad.creative.placementImages.length > 0) {
+      if (
+        ad.creative.placementImages &&
+        ad.creative.placementImages.length > 0
+      ) {
         throw new Error(
           `Ad "${ad.name}" uses text arrays and placementImages together; split into separate creatives (Meta dynamic rules).`,
         );
@@ -215,7 +222,8 @@ function assertSpecIntegrity(spec: MetaAdsCampaignSpec): void {
 
   // Ensure there is a budget somewhere
   const campaignHasBudget =
-    !!spec.campaign.budget?.dailyBudget || !!spec.campaign.budget?.lifetimeBudget;
+    !!spec.campaign.budget?.dailyBudget ||
+    !!spec.campaign.budget?.lifetimeBudget;
 
   const allAdSetsHaveBudgets = spec.adSets.every(
     (a) => !!a.budget?.dailyBudget || !!a.budget?.lifetimeBudget,
@@ -232,17 +240,16 @@ export const metaAdsApplySpecCommand = new Command("meta-ads-apply-spec")
   .description(
     "Create a PAUSED Meta campaign + ad sets + ads from a JSON spec file",
   )
-  .requiredOption("--file <file>", "Path to spec JSON (repo-relative or absolute)")
+  .requiredOption(
+    "--file <file>",
+    "Path to spec JSON (repo-relative or absolute)",
+  )
   .option("--dry-run", "Validate spec and files (no API calls)", false)
   .option(
     "--api-version <apiVersion>",
     "Override Graph API version (e.g., v24.0)",
   )
-  .option(
-    "--write-results",
-    "Write results.json next to the spec file",
-    false,
-  )
+  .option("--write-results", "Write results.json next to the spec file", false)
   .action(
     async (options: {
       file: string;
@@ -306,7 +313,9 @@ export const metaAdsApplySpecCommand = new Command("meta-ads-apply-spec")
         console.log(`   Spec: ${specFilePath}`);
         console.log(`   API Version: ${apiVersion}`);
         console.log(`   Ad Account: ${adAccountId}`);
-        console.log(`   Campaign: ${spec.campaign.name} (${spec.campaign.objective})`);
+        console.log(
+          `   Campaign: ${spec.campaign.name} (${spec.campaign.objective})`,
+        );
         console.log(`   Ad Sets: ${spec.adSets.length}`);
         console.log(`   Ads: ${spec.ads.length}`);
         console.log(`   Images: ${resolvedImages.length}`);
@@ -355,7 +364,9 @@ export const metaAdsApplySpecCommand = new Command("meta-ads-apply-spec")
           new Set(
             spec.ads
               .map((a) => getInstagramUserId(a.creative))
-              .filter((v): v is string => typeof v === "string" && v.length > 0),
+              .filter(
+                (v): v is string => typeof v === "string" && v.length > 0,
+              ),
           ),
         );
 
@@ -365,15 +376,16 @@ export const metaAdsApplySpecCommand = new Command("meta-ads-apply-spec")
             `   Spec requests instagram_user_id: ${instagramUserIdsInSpec.join(", ")}`,
           );
 
-          const instagramAccounts = await metaApiRequest<InstagramAccountsResponse>(
-            `${adAccountId}/instagram_accounts`,
-            {
-              method: "GET",
-              accessToken,
-              apiVersion,
-              params: { fields: "id,username" },
-            },
-          );
+          const instagramAccounts =
+            await metaApiRequest<InstagramAccountsResponse>(
+              `${adAccountId}/instagram_accounts`,
+              {
+                method: "GET",
+                accessToken,
+                apiVersion,
+                params: { fields: "id,username" },
+              },
+            );
 
           const available = instagramAccounts.data || [];
           if (available.length === 0) {
@@ -426,7 +438,8 @@ export const metaAdsApplySpecCommand = new Command("meta-ads-apply-spec")
           objective: spec.campaign.objective,
           status: "PAUSED",
           special_ad_categories:
-            spec.campaign.specialAdCategories && spec.campaign.specialAdCategories.length > 0
+            spec.campaign.specialAdCategories &&
+            spec.campaign.specialAdCategories.length > 0
               ? spec.campaign.specialAdCategories
               : [],
         };
@@ -513,7 +526,9 @@ export const metaAdsApplySpecCommand = new Command("meta-ads-apply-spec")
         ): Promise<void> => {
           const adSetId = adSetRefToId.get(ad.adSetRef);
           if (!adSetId) {
-            throw new Error(`Internal error: missing created ad set for ${ad.adSetRef}`);
+            throw new Error(
+              `Internal error: missing created ad set for ${ad.adSetRef}`,
+            );
           }
 
           const callToActionType = ad.creative.callToActionType || "LEARN_MORE";
@@ -531,9 +546,7 @@ export const metaAdsApplySpecCommand = new Command("meta-ads-apply-spec")
 
           const baseObjectStorySpec: Record<string, unknown> = {
             page_id: ad.creative.pageId,
-            ...(instagramUserId
-              ? { instagram_user_id: instagramUserId }
-              : {}),
+            ...(instagramUserId ? { instagram_user_id: instagramUserId } : {}),
           };
 
           const creativeBody: Record<string, unknown> = (() => {
@@ -552,7 +565,9 @@ export const metaAdsApplySpecCommand = new Command("meta-ads-apply-spec")
                   link: card.linkUrl || ad.creative.linkUrl,
                   image_hash: cardHash,
                   ...(card.headline ? { name: card.headline } : {}),
-                  ...(card.description ? { description: card.description } : {}),
+                  ...(card.description
+                    ? { description: card.description }
+                    : {}),
                 };
               });
 
@@ -571,10 +586,16 @@ export const metaAdsApplySpecCommand = new Command("meta-ads-apply-spec")
                 },
                 child_attachments: childAttachments,
                 ...(ad.creative.carousel?.multiShareEndCard !== undefined
-                  ? { multi_share_end_card: ad.creative.carousel.multiShareEndCard }
+                  ? {
+                      multi_share_end_card:
+                        ad.creative.carousel.multiShareEndCard,
+                    }
                   : {}),
                 ...(ad.creative.carousel?.multiShareOptimized !== undefined
-                  ? { multi_share_optimized: ad.creative.carousel.multiShareOptimized }
+                  ? {
+                      multi_share_optimized:
+                        ad.creative.carousel.multiShareOptimized,
+                    }
                   : {}),
               };
 
@@ -584,7 +605,9 @@ export const metaAdsApplySpecCommand = new Command("meta-ads-apply-spec")
                   ...baseObjectStorySpec,
                   link_data: linkData,
                 },
-                ...(ad.creative.urlTags ? { url_tags: ad.creative.urlTags } : {}),
+                ...(ad.creative.urlTags
+                  ? { url_tags: ad.creative.urlTags }
+                  : {}),
               };
             }
 
@@ -614,28 +637,37 @@ export const metaAdsApplySpecCommand = new Command("meta-ads-apply-spec")
               const assetFeedSpec: Record<string, unknown> = {
                 ad_formats: ["SINGLE_IMAGE"],
                 images: [{ hash: imageHash }],
-                bodies: normalizeTextVariants(ad.creative.message).map((text) => ({ text })),
-                titles: normalizeTextVariants(ad.creative.headline).map((text) => ({ text })),
+                bodies: normalizeTextVariants(ad.creative.message).map(
+                  (text) => ({ text }),
+                ),
+                titles: normalizeTextVariants(ad.creative.headline).map(
+                  (text) => ({ text }),
+                ),
                 link_urls: [{ website_url: ad.creative.linkUrl }],
                 call_to_action_types: [callToActionType],
               };
 
               if (ad.creative.description) {
-                assetFeedSpec.descriptions = normalizeTextVariants(ad.creative.description).map(
-                  (text) => ({ text }),
-                );
+                assetFeedSpec.descriptions = normalizeTextVariants(
+                  ad.creative.description,
+                ).map((text) => ({ text }));
               }
 
               return {
                 name: creativeName,
                 object_story_spec: baseObjectStorySpec,
                 asset_feed_spec: assetFeedSpec,
-                ...(ad.creative.urlTags ? { url_tags: ad.creative.urlTags } : {}),
+                ...(ad.creative.urlTags
+                  ? { url_tags: ad.creative.urlTags }
+                  : {}),
               };
             }
 
             // Placement-customized single image (asset_feed_spec + asset_customization_rules)
-            if (ad.creative.placementImages && ad.creative.placementImages.length > 0) {
+            if (
+              ad.creative.placementImages &&
+              ad.creative.placementImages.length > 0
+            ) {
               if (hasMultipleTextVariants) {
                 throw new Error(
                   `placementImages does not support message/headline/description arrays. Create multiple ads instead (ad: ${ad.name}).`,
@@ -660,23 +692,28 @@ export const metaAdsApplySpecCommand = new Command("meta-ads-apply-spec")
                 { hash: defaultHash, adlabels: [{ name: "img_default" }] },
               ];
 
-              const assetCustomizationRules = ad.creative.placementImages.map((rule, idx) => {
-                const ruleHash = imagePathToHash.get(rule.imagePath);
-                if (!ruleHash) {
-                  throw new Error(
-                    `Internal error: missing uploaded image hash for placement image ${rule.imagePath}`,
-                  );
-                }
+              const assetCustomizationRules = ad.creative.placementImages.map(
+                (rule, idx) => {
+                  const ruleHash = imagePathToHash.get(rule.imagePath);
+                  if (!ruleHash) {
+                    throw new Error(
+                      `Internal error: missing uploaded image hash for placement image ${rule.imagePath}`,
+                    );
+                  }
 
-                const labelName = `img_rule_${idx + 1}`;
-                images.push({ hash: ruleHash, adlabels: [{ name: labelName }] });
+                  const labelName = `img_rule_${idx + 1}`;
+                  images.push({
+                    hash: ruleHash,
+                    adlabels: [{ name: labelName }],
+                  });
 
-                return {
-                  customization_spec: rule.customizationSpec,
-                  image_label: { name: labelName },
-                  priority: rule.priority ?? idx + 1,
-                };
-              });
+                  return {
+                    customization_spec: rule.customizationSpec,
+                    image_label: { name: labelName },
+                    priority: rule.priority ?? idx + 1,
+                  };
+                },
+              );
 
               // Default rule required by Meta (empty customization_spec, lowest priority).
               assetCustomizationRules.push({
@@ -696,14 +733,18 @@ export const metaAdsApplySpecCommand = new Command("meta-ads-apply-spec")
               };
 
               if (ad.creative.description) {
-                assetFeedSpec.descriptions = [{ text: firstVariant(ad.creative.description) }];
+                assetFeedSpec.descriptions = [
+                  { text: firstVariant(ad.creative.description) },
+                ];
               }
 
               return {
                 name: creativeName,
                 object_story_spec: baseObjectStorySpec,
                 asset_feed_spec: assetFeedSpec,
-                ...(ad.creative.urlTags ? { url_tags: ad.creative.urlTags } : {}),
+                ...(ad.creative.urlTags
+                  ? { url_tags: ad.creative.urlTags }
+                  : {}),
               };
             }
 
@@ -845,4 +886,3 @@ export const metaAdsApplySpecCommand = new Command("meta-ads-apply-spec")
       }
     },
   );
-

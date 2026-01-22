@@ -1,8 +1,8 @@
-import type { ChatMessage } from "../types";
-import { AgeChatInput } from "./ChatInput/AgeChatInput";
 import { Button } from "@sovoli/ui/components/button";
 import { ExternalLinkIcon } from "lucide-react";
 import { useEffect } from "react";
+import type { ChatMessage } from "../types";
+import { AgeChatInput } from "./ChatInput/AgeChatInput";
 import type { FamilyMember } from "./FamilyDrawer";
 
 // Message bubble component

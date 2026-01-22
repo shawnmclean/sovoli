@@ -17,7 +17,12 @@ export const ANAIS_PRIVATE_SCHOOL_ORG: OrgInstance = {
         },
         contacts: [
           { type: "phone", value: "+592-227-7757", isPublic: true },
-          { type: "phone", value: "+592-667-2965", label: "Facebook", isPublic: true },
+          {
+            type: "phone",
+            value: "+592-667-2965",
+            label: "Facebook",
+            isPublic: true,
+          },
           { type: "email", value: "amsteron@yahoo.com", isPublic: true },
         ],
         isPrimary: true,
@@ -36,5 +41,3 @@ export const ANAIS_PRIVATE_SCHOOL_ORG: OrgInstance = {
   workforceModule: null,
   scoringModule: null,
 };
-
-

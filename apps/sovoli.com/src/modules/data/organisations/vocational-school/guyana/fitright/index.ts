@@ -1,16 +1,15 @@
 import type { OrgInstance } from "~/modules/organisations/types";
+import { parseMediaModule } from "../../../utils/parseMediaModule";
 import { parseOrgInstance } from "../../../utils/parseOrgInstance";
 import { parseWebsiteModule } from "../../../utils/parseWebsiteModule";
-import { parseMediaModule } from "../../../utils/parseMediaModule";
-
+import cyclesData from "./cycles.json";
+import mediaData from "./media.json";
 // Import JSON files
 import orgData from "./org.json";
-import websiteData from "./website.json";
-import mediaData from "./media.json";
-import workforceData from "./workforce.json";
-import cyclesData from "./cycles.json";
 import programGroupsData from "./program-groups.json";
 import sewingAcademicData from "./sewing-academic.json";
+import websiteData from "./website.json";
+import workforceData from "./workforce.json";
 import workshopsAcademicData from "./workshops-academic.json";
 
 /**

@@ -1,6 +1,6 @@
 import { ORGS } from "~/modules/data/organisations";
-import type { OrgLocation } from "~/modules/organisations/types";
 import type { Need } from "~/modules/needs/types";
+import type { OrgLocation } from "~/modules/organisations/types";
 
 import type { ProjectDirectoryEntry, ProjectNeedSummary } from "../types";
 
@@ -41,7 +41,10 @@ function buildProjectDirectoryEntries(): ProjectDirectoryEntry[] {
     // Group projects by their group ID
     const projectsByGroup = new Map<
       string,
-      { project: (typeof projectModule.projects)[number]; location: OrgLocation | undefined }[]
+      {
+        project: (typeof projectModule.projects)[number];
+        location: OrgLocation | undefined;
+      }[]
     >();
     const ungroupedProjects: {
       project: (typeof projectModule.projects)[number];
@@ -76,15 +79,18 @@ function buildProjectDirectoryEntries(): ProjectDirectoryEntry[] {
       const firstProjectData = sortedGroupProjects[0];
       if (!firstProjectData) continue;
 
-      const { project: firstProject, location: firstLocation } = firstProjectData;
+      const { project: firstProject, location: firstLocation } =
+        firstProjectData;
       const group = firstProject.group;
       if (!group) continue;
 
       // Aggregate data from all projects in the group
       const allNeeds: Need[] = [];
       const allTags = new Set<string>();
-      let highestPriority: ProjectDirectoryEntry["priority"] = firstProject.priority;
-      let mostActiveStatus: ProjectDirectoryEntry["status"] = firstProject.status;
+      let highestPriority: ProjectDirectoryEntry["priority"] =
+        firstProject.priority;
+      let mostActiveStatus: ProjectDirectoryEntry["status"] =
+        firstProject.status;
       let earliestStartDate = firstProject.startDate;
       let latestEndDate = firstProject.endDate;
       let latestUpdatedAt = firstProject.updatedAt;
@@ -115,7 +121,10 @@ function buildProjectDirectoryEntries(): ProjectDirectoryEntry[] {
           const highestIndex = highestPriority
             ? priorityOrder.indexOf(highestPriority)
             : -1;
-          if (currentIndex >= 0 && (highestIndex < 0 || currentIndex < highestIndex)) {
+          if (
+            currentIndex >= 0 &&
+            (highestIndex < 0 || currentIndex < highestIndex)
+          ) {
             highestPriority = project.priority;
           }
         }
@@ -132,7 +141,10 @@ function buildProjectDirectoryEntries(): ProjectDirectoryEntry[] {
           const mostActiveIndex = mostActiveStatus
             ? statusOrder.indexOf(mostActiveStatus)
             : -1;
-          if (currentIndex >= 0 && (mostActiveIndex < 0 || currentIndex < mostActiveIndex)) {
+          if (
+            currentIndex >= 0 &&
+            (mostActiveIndex < 0 || currentIndex < mostActiveIndex)
+          ) {
             mostActiveStatus = project.status;
           }
         }

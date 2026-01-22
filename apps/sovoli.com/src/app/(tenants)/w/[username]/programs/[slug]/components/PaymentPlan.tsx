@@ -1,13 +1,13 @@
 "use client";
 
+import { Divider } from "@sovoli/ui/components/divider";
+import { addDays, addMonths, addWeeks, addYears, parseISO } from "date-fns";
 import type {
-  PricingPackage,
   PaymentSplit,
+  PricingPackage,
 } from "~/modules/core/economics/types";
 import type { CurrencyCode } from "~/utils/currencyDetection";
 import { formatDate } from "~/utils/dateUtils";
-import { parseISO, addDays, addWeeks, addMonths, addYears } from "date-fns";
-import { Divider } from "@sovoli/ui/components/divider";
 
 interface PaymentPlanProps {
   pricingPackage: PricingPackage;

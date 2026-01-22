@@ -1,14 +1,14 @@
+import { Badge } from "@sovoli/ui/components/badge";
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody, CardFooter } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
+import { Image } from "@sovoli/ui/components/image";
 import { Link } from "@sovoli/ui/components/link";
-import { Badge } from "@sovoli/ui/components/badge";
+import { ArrowRightIcon, UserIcon } from "lucide-react";
+import { getProgramImageUrl } from "~/modules/academics/getProgramImage";
 import type { Program } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { displayAgeRange } from "../utils";
-import { Image } from "@sovoli/ui/components/image";
-import { ArrowRightIcon, UserIcon } from "lucide-react";
-import { getProgramImageUrl } from "~/modules/academics/getProgramImage";
 
 export interface ProgramCardProps {
   orgInstance: OrgInstance;

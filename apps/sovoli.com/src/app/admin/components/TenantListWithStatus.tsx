@@ -1,14 +1,9 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Spinner } from "@sovoli/ui/components/spinner";
-import {
-  CheckCircle2,
-  XCircle,
-  Loader2,
-  ExternalLink,
-} from "lucide-react";
+import { CheckCircle2, ExternalLink, Loader2, XCircle } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
 
 interface TenantWithDomain {
   username: string;
@@ -83,8 +78,7 @@ export function TenantListWithStatus({ tenants }: TenantListWithStatusProps) {
   const [isChecking, setIsChecking] = useState(false);
 
   const stats = useMemo(() => {
-    const accessible = statuses.filter((s) => s.status === "accessible")
-      .length;
+    const accessible = statuses.filter((s) => s.status === "accessible").length;
     const inaccessible = statuses.filter(
       (s) => s.status === "inaccessible",
     ).length;
@@ -140,9 +134,7 @@ export function TenantListWithStatus({ tenants }: TenantListWithStatusProps) {
   }
 
   // Create a map for quick status lookup
-  const statusMap = new Map(
-    statuses.map((s) => [s.tenant.username, s]),
-  );
+  const statusMap = new Map(statuses.map((s) => [s.tenant.username, s]));
 
   return (
     <div className="space-y-6">
@@ -241,4 +233,3 @@ export function TenantListWithStatus({ tenants }: TenantListWithStatusProps) {
     </div>
   );
 }
-

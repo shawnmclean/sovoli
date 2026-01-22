@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
-import { ITEM_CATEGORY_TREE } from "~/modules/data/items/categories/index";
+import { useState } from "react";
 import type { CategoryDefinition } from "~/modules/core/items/types";
+import { ITEM_CATEGORY_TREE } from "~/modules/data/items/categories/index";
 
 function getCategoryDepth(category: CategoryDefinition): number {
   if (!category.children || category.children.length === 0) {

@@ -1,10 +1,4 @@
-import {
-  Package,
-  Wrench,
-  Users,
-  DollarSign,
-  Briefcase,
-} from "lucide-react";
+import { Briefcase, DollarSign, Package, Users, Wrench } from "lucide-react";
 import type { NeedType } from "./types";
 
 /** Configuration shape for a need type */

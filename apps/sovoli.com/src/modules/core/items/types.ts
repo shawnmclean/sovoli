@@ -1,5 +1,5 @@
-import type { Media } from "../media/types";
 import { z } from "zod";
+import type { Media } from "../media/types";
 
 export interface CategoryDefinition {
   id: string;

@@ -1,12 +1,10 @@
 "use client";
 
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
-
+import type { Program, ProgramCycle } from "~/modules/academics/types";
+import type { PricingItem } from "~/modules/core/economics/types";
 import { ProgramPriceCard } from "../../../(main-layout)/programs/components/ProgramPriceCard";
 import { useProgramCycleSelection } from "../context/ProgramCycleSelectionContext";
-import type { ProgramCycle } from "~/modules/academics/types";
-import type { PricingItem } from "~/modules/core/economics/types";
-import type { Program } from "~/modules/academics/types";
 
 interface PricingSectionProps {
   defaultCycle?: ProgramCycle;

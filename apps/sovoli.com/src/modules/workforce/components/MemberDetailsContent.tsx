@@ -1,16 +1,19 @@
 "use client";
 
-import { useState } from "react";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import {
-  MailIcon,
-  PhoneIcon,
-  GraduationCapIcon,
   ChevronDownIcon,
   ChevronUpIcon,
+  GraduationCapIcon,
+  MailIcon,
+  PhoneIcon,
 } from "lucide-react";
+import { useState } from "react";
 import type { WorkforceMember } from "~/modules/workforce/types";
-import { getMemberDisplayTitle, getPublicContactValue } from "~/modules/workforce/utils";
+import {
+  getMemberDisplayTitle,
+  getPublicContactValue,
+} from "~/modules/workforce/utils";
 import { CredentialsSection } from "./CredentialsSection";
 
 export function MemberDetailsContent({ member }: { member: WorkforceMember }) {
@@ -66,7 +69,9 @@ export function MemberDetailsContent({ member }: { member: WorkforceMember }) {
 
       {(email || phone) && (
         <div>
-          <h3 className="text-lg font-semibold text-foreground mb-2">Contact</h3>
+          <h3 className="text-lg font-semibold text-foreground mb-2">
+            Contact
+          </h3>
           <div className="space-y-2">
             {email && (
               <div className="flex items-center gap-2">
@@ -120,7 +125,9 @@ export function MemberDetailsContent({ member }: { member: WorkforceMember }) {
                     </span>
                   )}
                 </div>
-                {edu.field && <div className="text-foreground-600">{edu.field}</div>}
+                {edu.field && (
+                  <div className="text-foreground-600">{edu.field}</div>
+                )}
                 {edu.institution && (
                   <div className="text-foreground-500 text-xs">
                     {edu.institution}
@@ -147,4 +154,3 @@ export function MemberDetailsContent({ member }: { member: WorkforceMember }) {
     </div>
   );
 }
-

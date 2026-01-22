@@ -1,13 +1,13 @@
-import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import type { CatalogOffer as ModuleCatalogItem } from "~/modules/catalogs/types";
 import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
 import { ProductCatalogListing } from "./components/ProductCatalogListing";
 import { SupplyListHeader } from "./components/SupplyListHeader";
 import { SupplyListResults } from "./components/SupplyListResults";
 import { getProgramRequirements } from "./lib/getProgramRequirements";
-import { mapRequirementsToCatalog } from "./lib/mapRequirementsToCatalog";
 import type { CatalogItem as LocalCatalogItem } from "./lib/mapRequirementsToCatalog";
+import { mapRequirementsToCatalog } from "./lib/mapRequirementsToCatalog";
 
 const retrieveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);

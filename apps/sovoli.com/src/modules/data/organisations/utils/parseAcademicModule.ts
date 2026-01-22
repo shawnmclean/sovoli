@@ -1,30 +1,27 @@
 import { z } from "zod";
 import type {
   AcademicModule,
-  Program,
-  ProgramMedia,
-  ProgramHighlight,
-  ProgramHighlightIcon,
-  ProgramWYLGroup,
-  ProgramTestimonial,
-  Course,
   Activity,
   AdmissionPolicy,
+  Capability,
+  Course,
+  Program,
+  ProgramCertification,
+  ProgramGroup,
+  ProgramHighlight,
+  ProgramHighlightIcon,
+  ProgramMedia,
+  ProgramTestimonial,
+  ProgramWYLGroup,
   RequirementList,
   RequirementListEntry,
-  ProgramGroup,
-  Capability,
-  ProgramCertification,
 } from "~/modules/academics/types";
 import type { Item } from "~/modules/core/items/types";
-import type { MediaMap } from "./parseMediaModule";
-import {
-  getMediaByIds,
-  getMediaByIdOptional,
-} from "./parseMediaModule";
+import { hydrateProgramCategory } from "~/modules/data/academics/categories";
 import type { ParsedCyclesModule } from "./parseCyclesModule";
 import { getProgramCyclesByIds } from "./parseCyclesModule";
-import { hydrateProgramCategory } from "~/modules/data/academics/categories";
+import type { MediaMap } from "./parseMediaModule";
+import { getMediaByIdOptional, getMediaByIds } from "./parseMediaModule";
 
 // Zod schemas for nested program types
 
@@ -259,10 +256,10 @@ export function parseAcademicModule(
       );
       const gallery = programJson.media.galleryIds
         ? getMediaByIds(
-          mediaMap,
-          programJson.media.galleryIds,
-          `program "${programJson.slug}"`,
-        )
+            mediaMap,
+            programJson.media.galleryIds,
+            `program "${programJson.slug}"`,
+          )
         : undefined;
 
       if (cover || gallery) {
@@ -274,10 +271,10 @@ export function parseAcademicModule(
     const cycles =
       programJson.cycleIds && cyclesModule
         ? getProgramCyclesByIds(
-          cyclesModule,
-          programJson.cycleIds,
-          `program "${programJson.slug}"`,
-        )
+            cyclesModule,
+            programJson.cycleIds,
+            `program "${programJson.slug}"`,
+          )
         : undefined;
 
     // Resolve requirement item references
@@ -361,9 +358,7 @@ export function parseAcademicModule(
       whatYouWillLearn: programJson.whatYouWillLearn as
         | ProgramWYLGroup[]
         | undefined,
-      capabilities: programJson.capabilities as
-        | Capability[]
-        | undefined,
+      capabilities: programJson.capabilities as Capability[] | undefined,
       certification: programJson.certification as
         | ProgramCertification
         | undefined,

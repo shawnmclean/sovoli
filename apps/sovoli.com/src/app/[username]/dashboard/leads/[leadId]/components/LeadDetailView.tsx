@@ -1,19 +1,21 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
 import { Link } from "@sovoli/ui/components/link";
 import { TimeAgo } from "@sovoli/ui/components/time-ago";
-
-import type { OrgInstance } from "~/modules/organisations/types";
+import { useMemo, useState } from "react";
 import type { Lead } from "~/modules/leads/types";
+import type { OrgInstance } from "~/modules/organisations/types";
 import { LeadInteractionModal } from "../../../components/LeadInteractionModal";
-import { categorizeLead } from "../../../programs/[slug]/leads/utils/leadCategorization";
 import type { LeadInteraction } from "../../../programs/[slug]/leads/utils/leadCategorization";
+import { categorizeLead } from "../../../programs/[slug]/leads/utils/leadCategorization";
 
-function getProgramAndCycleLabel(orgInstance: OrgInstance, lead: Lead): {
+function getProgramAndCycleLabel(
+  orgInstance: OrgInstance,
+  lead: Lead,
+): {
   programName: string;
   cycleLabel: string;
 } {
@@ -28,7 +30,10 @@ function getProgramAndCycleLabel(orgInstance: OrgInstance, lead: Lead): {
       return { programName: program.name ?? "Program", cycleLabel: label };
     }
     if (lead.programId && lead.programId === program.id) {
-      return { programName: program.name ?? "Program", cycleLabel: lead.cycleId };
+      return {
+        programName: program.name ?? "Program",
+        cycleLabel: lead.cycleId,
+      };
     }
   }
   return { programName: "Unknown Program", cycleLabel: lead.cycleId };
@@ -210,4 +215,3 @@ export function LeadDetailView({
     </div>
   );
 }
-

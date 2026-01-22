@@ -9,4 +9,3 @@ export function getUniqueDepartmentNames(members: WorkforceMember[]): string[] {
   });
   return Array.from(departments).sort((a, b) => a.localeCompare(b));
 }
-

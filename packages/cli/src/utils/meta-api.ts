@@ -15,7 +15,11 @@ function isMetaApiError(value: unknown): value is MetaApiError {
   if (!value || typeof value !== "object") return false;
   const maybe = value as { error?: unknown };
   if (!maybe.error || typeof maybe.error !== "object") return false;
-  const err = maybe.error as { message?: unknown; type?: unknown; code?: unknown };
+  const err = maybe.error as {
+    message?: unknown;
+    type?: unknown;
+    code?: unknown;
+  };
   return (
     typeof err.message === "string" &&
     typeof err.type === "string" &&
@@ -44,7 +48,9 @@ export async function metaApiRequest<T>(
   } = options;
 
   if (body && formData) {
-    throw new Error("metaApiRequest: provide either body or formData, not both");
+    throw new Error(
+      "metaApiRequest: provide either body or formData, not both",
+    );
   }
 
   let url = `https://graph.facebook.com/${apiVersion}/${endpoint}`;
@@ -85,7 +91,9 @@ export async function metaApiRequest<T>(
       })();
       throw new Error(
         `Meta API Error (${data.error.code}): ${data.error.message}${
-          data.error.error_subcode ? ` (subcode: ${data.error.error_subcode})` : ""
+          data.error.error_subcode
+            ? ` (subcode: ${data.error.error_subcode})`
+            : ""
         }${trace}.${userMsg}${details}`,
       );
     }

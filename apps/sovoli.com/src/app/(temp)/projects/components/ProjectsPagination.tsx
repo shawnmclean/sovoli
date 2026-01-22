@@ -1,7 +1,7 @@
 "use client";
 
-import { usePathname, useSearchParams } from "next/navigation";
 import { Link } from "@sovoli/ui/components/link";
+import { usePathname, useSearchParams } from "next/navigation";
 
 interface ProjectsPaginationProps {
   page: number;

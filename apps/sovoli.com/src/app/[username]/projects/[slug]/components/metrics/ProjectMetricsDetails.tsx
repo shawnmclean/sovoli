@@ -1,15 +1,15 @@
 "use client";
 
-import { useEffect } from "react";
+import { Alert } from "@sovoli/ui/components/alert";
+import { Card } from "@sovoli/ui/components/card";
 import {
+  DrawerBody as DrawerBodyComponent,
   DrawerContent,
   DrawerHeader as DrawerHeaderComponent,
-  DrawerBody as DrawerBodyComponent,
 } from "@sovoli/ui/components/drawer";
-import { Card } from "@sovoli/ui/components/card";
 import { Progress } from "@sovoli/ui/components/progress";
-import { Alert } from "@sovoli/ui/components/alert";
-import { DollarSign, Package, Users, TrendingUp } from "lucide-react";
+import { DollarSign, Package, TrendingUp, Users } from "lucide-react";
+import { useEffect } from "react";
 import type { Project } from "~/modules/projects/types";
 import { trackProjectAnalytics } from "../../lib/projectAnalytics";
 

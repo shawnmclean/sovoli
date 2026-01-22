@@ -1,17 +1,17 @@
 import { notFound } from "next/navigation";
 import { Footer } from "~/components/footer/Footer";
-import { bus } from "~/services/core/bus";
-import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
+import { MobileOnlyAlert } from "~/components/MobileOnlyAlert";
 import {
   GetUserKnowledgeByUsernameQuery,
   GetUserKnowledgeByUsernameQueryHandler,
 } from "~/modules/notes/services/GetUserKnowledgeByUsername";
+import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
+import { bus } from "~/services/core/bus";
+import { config } from "~/utils/config";
+import { OrgDetailMobileFooter } from "./components/OrgFooter/OrgDetailMobileFooter";
+import { OrgNavbar } from "./components/OrgNavbar/OrgNavbar";
 import { SchoolHeader } from "./components/SchoolHeader";
 import { SchoolNavigation } from "./components/SchoolNavigation";
-import { config } from "~/utils/config";
-import { OrgNavbar } from "./components/OrgNavbar/OrgNavbar";
-import { MobileOnlyAlert } from "~/components/MobileOnlyAlert";
-import { OrgDetailMobileFooter } from "./components/OrgFooter/OrgDetailMobileFooter";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(

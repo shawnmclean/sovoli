@@ -10,4 +10,3 @@ export function getMemberDisplayTitle(
   const primaryRole = getPrimaryRoleAssignment(member);
   return primaryRole?.titleOverride ?? primaryRole?.position.name;
 }
-

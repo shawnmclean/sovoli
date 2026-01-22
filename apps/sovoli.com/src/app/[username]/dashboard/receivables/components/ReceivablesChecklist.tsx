@@ -1,14 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Checkbox } from "@sovoli/ui/components/checkbox";
-import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
-import type { OrgInstance } from "~/modules/organisations/types";
+import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
+import { Checkbox } from "@sovoli/ui/components/checkbox";
+import { useEffect, useState } from "react";
+import type { ProgramMedia } from "~/modules/academics/types";
 import type { Media } from "~/modules/core/media/types";
 import { filterVisualMedia } from "~/modules/core/media/types";
-import type { OrgLocation } from "~/modules/organisations/types";
-import type { ProgramMedia } from "~/modules/academics/types";
+import type { OrgInstance, OrgLocation } from "~/modules/organisations/types";
 
 interface ReceivableItem {
   id: string;

@@ -1,7 +1,6 @@
 "use client";
 
-import { RadioGroup } from "@sovoli/ui/components/radio";
-import { CustomRadio } from "@sovoli/ui/components/radio";
+import { CustomRadio, RadioGroup } from "@sovoli/ui/components/radio";
 
 export interface AdSpendStepProps {
   value: string | null;

@@ -10,9 +10,7 @@ export const EBASCOL_EDUCATION_ORG: OrgInstance = {
       {
         key: "main",
         address: { countryCode: "GY" },
-        contacts: [
-          { type: "phone", value: "+592-256-3176", isPublic: true },
-        ],
+        contacts: [{ type: "phone", value: "+592-256-3176", isPublic: true }],
         isPrimary: true,
       },
     ],

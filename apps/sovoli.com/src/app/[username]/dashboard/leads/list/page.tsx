@@ -1,11 +1,9 @@
 import { notFound } from "next/navigation";
-
-import { bus } from "~/services/core/bus";
+import type { Lead } from "~/modules/leads/types";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
-
+import { bus } from "~/services/core/bus";
 import { getLeadsForOrg } from "../../_lib/getLeadsForOrg";
 import { LeadsListView } from "./components/LeadsListView";
-import type { Lead } from "~/modules/leads/types";
 
 export default async function LeadsListPage({
   params,
@@ -71,4 +69,3 @@ export default async function LeadsListPage({
     </div>
   );
 }
-

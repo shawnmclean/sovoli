@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import posthog from "posthog-js";
+import { useEffect, useRef, useState } from "react";
 import { AgeChatInput } from "~/modules/chat/components/ChatInput/AgeChatInput";
 import type { AgeSelection } from "~/modules/chat/components/ChatInput/AgePickerDrawer";
 import type { ProgramSuggestion } from "~/modules/chat/lib/getProgramSuggestions";
-import { useTenant } from "../TenantProvider";
 import { ProgramSearchItem } from "../navbar/ProgramSearchItem";
+import { useTenant } from "../TenantProvider";
 
 interface ProgramSuggestionsResponse {
   suggestions: ProgramSuggestion[];
@@ -180,4 +180,4 @@ export function PrivateSchoolSearchContent({
   );
 }
 
-export { type LoadingState };
+export type { LoadingState };

@@ -1,10 +1,10 @@
 "use client";
-import { useProgramCycleSelection } from "../../context/ProgramCycleSelectionContext";
 import { Button } from "@sovoli/ui/components/button";
 import { Skeleton } from "@sovoli/ui/components/skeleton";
+import Link from "next/link";
 import type { Program, ProgramCycle } from "~/modules/academics/types";
 import { formatCycleLabel } from "~/utils/dateUtils";
-import Link from "next/link";
+import { useProgramCycleSelection } from "../../context/ProgramCycleSelectionContext";
 
 export interface PriceButtonProps {
   defaultCycle?: ProgramCycle;

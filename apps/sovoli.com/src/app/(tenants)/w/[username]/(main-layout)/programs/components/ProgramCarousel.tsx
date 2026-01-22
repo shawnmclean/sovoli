@@ -1,15 +1,15 @@
 "use client";
 
-import type { Program } from "~/modules/academics/types";
 import type { CarouselApi } from "@sovoli/ui/components/carousel";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@sovoli/ui/components/carousel";
-import { useState, useEffect, startTransition } from "react";
 import Link from "next/link";
 import { CldImage } from "next-cloudinary";
+import { startTransition, useEffect, useState } from "react";
+import type { Program } from "~/modules/academics/types";
 
 export interface ProgramCarouselProps {
   href: string;

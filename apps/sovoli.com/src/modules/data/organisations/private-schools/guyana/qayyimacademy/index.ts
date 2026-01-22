@@ -15,9 +15,7 @@ export const QAYYIM_ACADEMY_ORG: OrgInstance = {
           countryCode: "GY",
         },
         placeId: "ChIJeXWvEjbhr40RCWsn8lquJN8",
-        contacts: [
-          { type: "phone", value: "+592-622-5121", isPublic: true },
-        ],
+        contacts: [{ type: "phone", value: "+592-622-5121", isPublic: true }],
         isPrimary: true,
       },
     ],

@@ -1,7 +1,7 @@
-import Image from "next/image";
 import type { StaticImageData } from "next/image";
-import appStoreBadgeLight from "./app-store-badge-light.svg";
+import Image from "next/image";
 import appStoreBadgeDark from "./app-store-badge-dark.svg";
+import appStoreBadgeLight from "./app-store-badge-light.svg";
 import googlePlayBadgeLight from "./google-play-badge-light.svg";
 
 interface BadgeProps {

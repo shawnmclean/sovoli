@@ -5,4 +5,3 @@ export const ORG_DOMAIN =
   env.NODE_ENV === "development"
     ? "bezer-basic-school.localhost:3000"
     : "bezer-basic-school.sovoli.com";
-

@@ -1,5 +1,5 @@
-import { getOrgInstanceWithProgram } from "../../lib/getOrgInstanceWithProgram";
 import { MapDetails } from "../../components/location/MapDetails";
+import { getOrgInstanceWithProgram } from "../../lib/getOrgInstanceWithProgram";
 
 interface Props {
   params: Promise<{ username: string; slug: string }>;
@@ -19,8 +19,5 @@ export default async function MapIntercept({ params }: Props) {
     return null;
   }
 
-  return (
-    <MapDetails orgInstance={result.orgInstance} program={program} />
-  );
+  return <MapDetails orgInstance={result.orgInstance} program={program} />;
 }
-

@@ -11,7 +11,8 @@ export const HIDDEN_TREASURES_ORG: OrgInstance = {
         key: "main",
         address: {
           line1: "204 East Half Charlotte Street",
-          line2: "between Camp & Alexander (3 buildings away from Kester D music house)",
+          line2:
+            "between Camp & Alexander (3 buildings away from Kester D music house)",
           city: "georgetown",
           countryCode: "GY",
         },

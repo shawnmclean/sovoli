@@ -1,41 +1,41 @@
 "use client";
 
-import { useState, useEffect, useTransition } from "react";
-import Image from "next/image";
-import { Tabs, Tab } from "@sovoli/ui/components/tabs";
+import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
+import type { CarouselApi } from "@sovoli/ui/components/carousel";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@sovoli/ui/components/carousel";
-import type { CarouselApi } from "@sovoli/ui/components/carousel";
-import {
-  SearchIcon,
-  TargetIcon,
-  GlobeIcon,
-  MessageCircleIcon,
-  ChevronRightIcon,
-} from "lucide-react";
-import type { StaticImageData } from "next/image";
-import { Button } from "@sovoli/ui/components/button";
 import {
   Modal,
-  ModalContent,
   ModalBody,
-  useDisclosure,
+  ModalContent,
   ModalHeader,
+  useDisclosure,
 } from "@sovoli/ui/components/dialog";
-import { ChevronLeftIcon } from "lucide-react";
+import { Tab, Tabs } from "@sovoli/ui/components/tabs";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  GlobeIcon,
+  MessageCircleIcon,
+  SearchIcon,
+  TargetIcon,
+} from "lucide-react";
+import type { StaticImageData } from "next/image";
+import Image from "next/image";
+import { useEffect, useState, useTransition } from "react";
 import type { GrowthSystemContent, IconName } from "../../categories";
 
 type FeatureKey = string;
 
 const iconMap: Record<IconName, React.ComponentType<{ className?: string }>> = {
-	search: SearchIcon,
-	target: TargetIcon,
-	globe: GlobeIcon,
-	"message-circle": MessageCircleIcon,
+  search: SearchIcon,
+  target: TargetIcon,
+  globe: GlobeIcon,
+  "message-circle": MessageCircleIcon,
 };
 
 interface Screenshot {
@@ -44,7 +44,7 @@ interface Screenshot {
 }
 
 interface FeaturesProps {
-	content: GrowthSystemContent["features"];
+  content: GrowthSystemContent["features"];
 }
 
 // Modal Component for full-screen image viewing
@@ -238,7 +238,9 @@ function FeatureImageCarousel({
 
 export function Features({ content }: FeaturesProps) {
   const featureKeys = Object.keys(content.features);
-  const [selectedTab, setSelectedTab] = useState<FeatureKey>(featureKeys[0] ?? "");
+  const [selectedTab, setSelectedTab] = useState<FeatureKey>(
+    featureKeys[0] ?? "",
+  );
 
   const currentFeature = content.features[selectedTab];
   const nextFeatureKey = currentFeature?.nextFeature ?? null;
@@ -301,17 +303,20 @@ export function Features({ content }: FeaturesProps) {
                         alt={feature.headline}
                       />
                     )}
-                    {isCurrentTab && currentNextKey && content.features[currentNextKey] && (
-                      <div className="mt-6 flex justify-end">
-                        <Button
-                          onPress={() => setSelectedTab(currentNextKey)}
-                          className="gap-2"
-                        >
-                          Next: Learn about {content.features[currentNextKey].title}
-                          <ChevronRightIcon className="h-4 w-4" />
-                        </Button>
-                      </div>
-                    )}
+                    {isCurrentTab &&
+                      currentNextKey &&
+                      content.features[currentNextKey] && (
+                        <div className="mt-6 flex justify-end">
+                          <Button
+                            onPress={() => setSelectedTab(currentNextKey)}
+                            className="gap-2"
+                          >
+                            Next: Learn about{" "}
+                            {content.features[currentNextKey].title}
+                            <ChevronRightIcon className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      )}
                   </CardBody>
                 </Card>
               </Tab>
@@ -322,4 +327,3 @@ export function Features({ content }: FeaturesProps) {
     </section>
   );
 }
-

@@ -23,4 +23,3 @@ export interface ProgramCategory {
   name: string;
   parent?: ProgramCategory; // recursive chain
 }
-

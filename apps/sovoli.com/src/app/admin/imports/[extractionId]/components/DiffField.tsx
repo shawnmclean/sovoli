@@ -1,8 +1,8 @@
 "use client";
 
-import { useId } from "react";
-import { Input } from "@sovoli/ui/components/input";
 import { Checkbox } from "@sovoli/ui/components/checkbox";
+import { Input } from "@sovoli/ui/components/input";
+import { useId } from "react";
 import type { DiffEntry } from "../../utils/diff-compute";
 
 interface DiffFieldProps {
@@ -71,7 +71,11 @@ export function DiffField({
   // Helper to safely stringify oldValue
   const getOldValuePlaceholder = () => {
     if (diff.oldValue === null || diff.oldValue === undefined) return "";
-    if (typeof diff.oldValue === "string" || typeof diff.oldValue === "number" || typeof diff.oldValue === "boolean") {
+    if (
+      typeof diff.oldValue === "string" ||
+      typeof diff.oldValue === "number" ||
+      typeof diff.oldValue === "boolean"
+    ) {
       return String(diff.oldValue);
     }
     return "";

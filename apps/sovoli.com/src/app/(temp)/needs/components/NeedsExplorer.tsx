@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useMemo, useState, useTransition } from "react";
-import Link from "next/link";
 import { Badge } from "@sovoli/ui/components/badge";
 import { Button } from "@sovoli/ui/components/button";
 import { Checkbox } from "@sovoli/ui/components/checkbox";
@@ -15,11 +13,8 @@ import {
 import { Input } from "@sovoli/ui/components/input";
 import { Navbar, NavbarContent } from "@sovoli/ui/components/navbar";
 import { SearchIcon, SlidersHorizontal } from "lucide-react";
-
-import type { Need } from "~/modules/needs/types";
-import { isMaterialNeed } from "~/modules/needs/types";
-import { formatItemCategoryLabel } from "~/modules/core/items/utils";
-import { formatNeedTypeLabel } from "~/modules/needs/utils";
+import Link from "next/link";
+import { useEffect, useMemo, useState, useTransition } from "react";
 import {
   formatPriority,
   formatStatus,
@@ -27,6 +22,10 @@ import {
   getPriorityChipColor,
   getStatusChipColor,
 } from "~/app/(tenants)/w/[username]/(main-layout)/needs/components/needFormatters";
+import { formatItemCategoryLabel } from "~/modules/core/items/utils";
+import type { Need } from "~/modules/needs/types";
+import { isMaterialNeed } from "~/modules/needs/types";
+import { formatNeedTypeLabel } from "~/modules/needs/utils";
 
 export interface NeedsExplorerEntry {
   id: string;
@@ -232,7 +231,9 @@ function createSearchText(entry: NeedsExplorerEntry): string {
   return textFragments.join(" ").toLowerCase();
 }
 
-function getNeedTypeChipColor(type: Need["type"]): "default" | "primary" | "secondary" | "warning" {
+function getNeedTypeChipColor(
+  type: Need["type"],
+): "default" | "primary" | "secondary" | "warning" {
   switch (type) {
     case "material":
       return "primary";
@@ -320,7 +321,11 @@ export function NeedsExplorer({ entries }: { entries: NeedsExplorerEntry[] }) {
   }, [defaultActiveCategoryKeys]);
 
   const searchableEntries = useMemo<SearchableEntry[]>(
-    () => entries.map((entry) => ({ ...entry, searchText: createSearchText(entry) })),
+    () =>
+      entries.map((entry) => ({
+        ...entry,
+        searchText: createSearchText(entry),
+      })),
     [entries],
   );
 
@@ -344,15 +349,13 @@ export function NeedsExplorer({ entries }: { entries: NeedsExplorerEntry[] }) {
 
       return entry.searchText.includes(trimmedQuery);
     });
-  }, [
-    activeCategories,
-    allCategoriesActive,
-    searchableEntries,
-    trimmedQuery,
-  ]);
+  }, [activeCategories, allCategoriesActive, searchableEntries, trimmedQuery]);
 
   const groupedEntries = useMemo(() => {
-    const groups = new Map<string, { label: string; entries: SearchableEntry[] }>();
+    const groups = new Map<
+      string,
+      { label: string; entries: SearchableEntry[] }
+    >();
 
     for (const category of categorySummaries) {
       groups.set(category.key, { label: category.label, entries: [] });
@@ -370,8 +373,14 @@ export function NeedsExplorer({ entries }: { entries: NeedsExplorerEntry[] }) {
         const group = groups.get(category.key);
         return group ? { key: category.key, ...group } : null;
       })
-      .filter((group): group is { key: string; label: string; entries: SearchableEntry[] } =>
-        Boolean(group && group.entries.length > 0),
+      .filter(
+        (
+          group,
+        ): group is {
+          key: string;
+          label: string;
+          entries: SearchableEntry[];
+        } => Boolean(group && group.entries.length > 0),
       );
   }, [categorySummaries, filteredEntries]);
 
@@ -425,7 +434,9 @@ export function NeedsExplorer({ entries }: { entries: NeedsExplorerEntry[] }) {
       if (allCategoriesActive) {
         setActiveCategories(new Set());
       } else {
-        setActiveCategories(new Set(categorySummaries.map((category) => category.key)));
+        setActiveCategories(
+          new Set(categorySummaries.map((category) => category.key)),
+        );
       }
       return;
     }
@@ -453,8 +464,8 @@ export function NeedsExplorer({ entries }: { entries: NeedsExplorerEntry[] }) {
           No needs have been published yet
         </h2>
         <p className="max-w-2xl text-sm text-muted-foreground">
-          Check back soon — organisations will share their relief needs here as they
-          are verified.
+          Check back soon — organisations will share their relief needs here as
+          they are verified.
         </p>
       </div>
     );
@@ -474,14 +485,19 @@ export function NeedsExplorer({ entries }: { entries: NeedsExplorerEntry[] }) {
       <section className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 py-10">
         <header className="space-y-2">
           <p className="text-sm text-muted-foreground">
-            Showing <span className="font-semibold text-foreground">{visibleNeedCount}</span>
-            {" "}of {" "}
-            <span className="font-semibold text-foreground">{totalNeedCount}</span> needs
-            across {uniqueOrgCount} organisations.
+            Showing{" "}
+            <span className="font-semibold text-foreground">
+              {visibleNeedCount}
+            </span>{" "}
+            of{" "}
+            <span className="font-semibold text-foreground">
+              {totalNeedCount}
+            </span>{" "}
+            needs across {uniqueOrgCount} organisations.
           </p>
           <p className="text-xs text-muted-foreground">
-            Relief-focused categories are pre-selected. Use the filters to explore all
-            categories or search for a specific need.
+            Relief-focused categories are pre-selected. Use the filters to
+            explore all categories or search for a specific need.
           </p>
         </header>
 
@@ -493,7 +509,8 @@ export function NeedsExplorer({ entries }: { entries: NeedsExplorerEntry[] }) {
                   {group.label}
                 </h2>
                 <span className="text-sm text-muted-foreground">
-                  {group.entries.length} need{group.entries.length === 1 ? "" : "s"}
+                  {group.entries.length} need
+                  {group.entries.length === 1 ? "" : "s"}
                 </span>
               </div>
 
@@ -504,7 +521,8 @@ export function NeedsExplorer({ entries }: { entries: NeedsExplorerEntry[] }) {
                   const formattedPriority = formatPriority(need.priority);
                   const formattedStatus = formatStatus(need.status);
                   const quantityLabel = formatQuantityLabel(need);
-                  const title = need.title.trim().length > 0 ? need.title : "Untitled need";
+                  const title =
+                    need.title.trim().length > 0 ? need.title : "Untitled need";
                   const locationSummary = entry.locationLabel
                     ? entry.locationAddressLine1
                       ? `${entry.locationLabel} • ${entry.locationAddressLine1}`
@@ -538,11 +556,18 @@ export function NeedsExplorer({ entries }: { entries: NeedsExplorerEntry[] }) {
                             </div>
                             <p className="text-sm text-muted-foreground">
                               {entry.orgSiteName ?? entry.orgName}
-                              {entry.orgSiteName && entry.orgSiteName !== entry.orgName ? (
-                                <span className="text-muted-foreground"> · {entry.orgName}</span>
+                              {entry.orgSiteName &&
+                              entry.orgSiteName !== entry.orgName ? (
+                                <span className="text-muted-foreground">
+                                  {" "}
+                                  · {entry.orgName}
+                                </span>
                               ) : null}
                               {locationSummary ? (
-                                <span className="text-muted-foreground"> · {locationSummary}</span>
+                                <span className="text-muted-foreground">
+                                  {" "}
+                                  · {locationSummary}
+                                </span>
                               ) : null}
                             </p>
                           </div>
@@ -579,7 +604,9 @@ export function NeedsExplorer({ entries }: { entries: NeedsExplorerEntry[] }) {
                             <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                               Quantity
                             </p>
-                            <p className="text-sm text-foreground">{quantityLabel}</p>
+                            <p className="text-sm text-foreground">
+                              {quantityLabel}
+                            </p>
                           </div>
                           <div className="space-y-1">
                             <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
@@ -602,12 +629,16 @@ export function NeedsExplorer({ entries }: { entries: NeedsExplorerEntry[] }) {
                         {isMaterialNeed(need) ? (
                           <div className="space-y-1 text-sm text-muted-foreground">
                             <p>
-                              <span className="font-medium text-foreground">Item: </span>
+                              <span className="font-medium text-foreground">
+                                Item:{" "}
+                              </span>
                               {need.item.name}
                               {need.item.brand ? ` • ${need.item.brand}` : ""}
                             </p>
                             <p>
-                              <span className="font-medium text-foreground">Category: </span>
+                              <span className="font-medium text-foreground">
+                                Category:{" "}
+                              </span>
                               {formatItemCategoryLabel(need.item.category)}
                             </p>
                           </div>
@@ -615,7 +646,8 @@ export function NeedsExplorer({ entries }: { entries: NeedsExplorerEntry[] }) {
 
                         <div className="flex flex-wrap items-center justify-between gap-3">
                           <div className="text-xs text-muted-foreground">
-                            Last updated {need.updatedAt ?? need.createdAt ?? "recently"}
+                            Last updated{" "}
+                            {need.updatedAt ?? need.createdAt ?? "recently"}
                           </div>
                           <Button
                             as={Link}
@@ -636,8 +668,8 @@ export function NeedsExplorer({ entries }: { entries: NeedsExplorerEntry[] }) {
           ))
         ) : (
           <div className="rounded-xl border border-default-200 bg-default-50 px-5 py-12 text-center text-sm text-muted-foreground">
-            No needs match your filters yet. Try a different search or enable more
-            categories.
+            No needs match your filters yet. Try a different search or enable
+            more categories.
           </div>
         )}
       </section>

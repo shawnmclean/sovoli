@@ -20,9 +20,7 @@
         { "key": "workforce", "label": "Our Team" },
         { "key": "contact", "label": "Contact" }
       ],
-      "actions": [
-        { "key": "apply", "label": "Enroll Now" }
-      ]
+      "actions": [{ "key": "apply", "label": "Enroll Now" }]
     },
     "footer": {
       "layout": "default",
@@ -65,4 +63,3 @@
     ]
   }
 }
-

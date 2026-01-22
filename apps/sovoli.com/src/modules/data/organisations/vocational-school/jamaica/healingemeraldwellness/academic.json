@@ -163,10 +163,7 @@
         "hew-massage-20260603"
       ],
       "media": {
-        "galleryIds": [
-          "hew-massage-model",
-          "hew-reception-area"
-        ]
+        "galleryIds": ["hew-massage-model", "hew-reception-area"]
       }
     }
   ]

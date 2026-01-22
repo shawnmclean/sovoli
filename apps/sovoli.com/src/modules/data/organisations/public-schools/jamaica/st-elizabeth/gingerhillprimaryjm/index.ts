@@ -61,5 +61,3 @@ export const GINGER_HILL_PRIMARY_ORG: OrgInstance = {
   needsModule: GINGER_HILL_PRIMARY_NEEDS,
   projectsModule: GINGER_HILL_PRIMARY_PROJECTS,
 };
-
-

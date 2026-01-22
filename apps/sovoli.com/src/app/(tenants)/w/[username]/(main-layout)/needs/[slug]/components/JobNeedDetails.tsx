@@ -1,26 +1,26 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@sovoli/ui/components/button";
 import {
   BriefcaseIcon,
-  GraduationCapIcon,
-  UsersIcon,
   DollarSignIcon,
+  GraduationCapIcon,
   MapPinIcon,
   MessageCircleIcon,
+  UsersIcon,
 } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import type { ReactNode } from "react";
 import { useMemo } from "react";
-import { useTenant } from "../../../../components/TenantProvider";
 
 import { gradientBorderButton } from "~/components/GradientBorderButton";
+import type { JobNeed } from "~/modules/needs/types";
+import { useTenant } from "../../../../components/TenantProvider";
 import {
   formatEmploymentType,
   formatTimeline,
 } from "../../components/needFormatters";
-import type { JobNeed } from "~/modules/needs/types";
-import type { ReactNode } from "react";
 
 interface JobNeedDetailsProps {
   need: JobNeed;

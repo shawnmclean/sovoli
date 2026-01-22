@@ -54,7 +54,7 @@ export const resolveOrgCategoryFilter = (
     return [];
   }
 
-  if (Object.prototype.hasOwnProperty.call(ORG_CATEGORY_GROUPS, normalized)) {
+  if (Object.hasOwn(ORG_CATEGORY_GROUPS, normalized)) {
     const groupKey = normalized as OrgCategoryGroupKey;
     return [...ORG_CATEGORY_GROUPS[groupKey]];
   }

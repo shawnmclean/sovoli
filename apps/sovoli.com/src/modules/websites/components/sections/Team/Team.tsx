@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Button } from "@sovoli/ui/components/button";
 import { Link } from "@sovoli/ui/components/link";
 import { motion, useAnimation } from "framer-motion";
+import { useEffect, useMemo, useRef } from "react";
 
 import type { OrgInstanceWithWebsite } from "~/modules/organisations/types";
 import type { PageSection } from "~/modules/websites/types";

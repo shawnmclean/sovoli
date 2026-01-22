@@ -2,9 +2,9 @@ import { ORGS } from "~/modules/data/organisations";
 import { resolveOrgCategoryFilter } from "~/modules/organisations/lib/categoryHierarchy";
 import { doesLocationValueMatchSegment } from "~/modules/organisations/lib/locationSegments";
 import type { OrgInstance } from "~/modules/organisations/types";
+import { computeOrgScoring } from "~/modules/scoring/lib/computeOrgScoring";
 import type { Query } from "~/services/core/Query";
 import type { QueryHandler } from "~/services/core/QueryHandler";
-import { computeOrgScoring } from "~/modules/scoring/lib/computeOrgScoring";
 
 export interface GetOrgsByCategoryAndLocationQueryParams {
   category: string;

@@ -1,14 +1,14 @@
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
 import type { CarouselApi } from "@sovoli/ui/components/carousel";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@sovoli/ui/components/carousel";
-import { CldImage } from "next-cloudinary";
 import Link from "next/link";
+import { CldImage } from "next-cloudinary";
+import { useEffect, useState, useTransition } from "react";
 
 import type { Media } from "~/modules/core/media/types";
 

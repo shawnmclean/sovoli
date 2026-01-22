@@ -10,9 +10,7 @@
       "locationKey": "main-campus",
       "startDate": "2025-11-26",
       "internal": false,
-      "needSlugs": [
-        "williams-elite-academy-generator-2025"
-      ],
+      "needSlugs": ["williams-elite-academy-generator-2025"],
       "photos": [
         {
           "url": "https://res.cloudinary.com/dipyku9mn/image/upload/v1764153461/o/williams-elite-academy/projects/l0mejjdm1k9hnwb9n2ya6ztk.png",
@@ -67,4 +65,3 @@
     }
   ]
 }
-

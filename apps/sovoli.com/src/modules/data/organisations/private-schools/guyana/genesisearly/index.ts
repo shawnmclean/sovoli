@@ -15,9 +15,7 @@ export const GENESIS_EARLY_ORG: OrgInstance = {
           countryCode: "GY",
         },
         placeId: "ChIJF_btS2n7r40RJUJiXqgLfw0",
-        contacts: [
-          { type: "phone", value: "+592-604-9091", isPublic: true },
-        ],
+        contacts: [{ type: "phone", value: "+592-604-9091", isPublic: true }],
         isPrimary: true,
       },
     ],

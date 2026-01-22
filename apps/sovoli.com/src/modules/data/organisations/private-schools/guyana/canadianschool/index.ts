@@ -15,9 +15,7 @@ export const CANADIAN_SCHOOL_ORG: OrgInstance = {
           countryCode: "GY",
         },
         placeId: "ChIJG8zzLtvxr40Rf-M_7ARM11c",
-        contacts: [
-          { type: "phone", value: "+592-216-6921", isPublic: true },
-        ],
+        contacts: [{ type: "phone", value: "+592-216-6921", isPublic: true }],
         isPrimary: true,
       },
     ],

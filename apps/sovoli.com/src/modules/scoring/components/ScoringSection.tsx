@@ -1,12 +1,12 @@
-import React from "react";
 import { Link } from "@sovoli/ui/components/link";
 import { Info } from "lucide-react";
+import React from "react";
 import type {
   OrgCategoryKeys,
   OrgInstance,
 } from "~/modules/organisations/types";
-import { categoryRuleSets } from "~/modules/scoring/ruleSets";
 import { ScoringProgress } from "~/modules/scoring/components/ScoringProgress";
+import { categoryRuleSets } from "~/modules/scoring/ruleSets";
 
 interface ScoringSectionProps {
   orgInstance: OrgInstance;

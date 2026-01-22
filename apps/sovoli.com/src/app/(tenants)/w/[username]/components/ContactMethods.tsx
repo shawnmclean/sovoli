@@ -1,14 +1,13 @@
 "use client";
 
-import React from "react";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
 import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
 import { Button } from "@sovoli/ui/components/button";
+import { Divider } from "@sovoli/ui/components/divider";
 import { Link } from "@sovoli/ui/components/link";
 import { MailIcon, MapIcon, MapPinIcon, PhoneIcon } from "lucide-react";
-
+import React from "react";
 import type { OrgLocation } from "~/modules/organisations/types";
-import { Divider } from "@sovoli/ui/components/divider";
 import { countryCodeToName } from "~/utils/countryUtils";
 
 interface ContactMethodsProps {

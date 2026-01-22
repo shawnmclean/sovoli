@@ -1,6 +1,6 @@
 import type { Program, RequirementList } from "~/modules/academics/types";
-import type { OrgInstance } from "~/modules/organisations/types";
 import { ORGS } from "~/modules/data/organisations";
+import type { OrgInstance } from "~/modules/organisations/types";
 
 export interface ProgramRequirementsResult {
   school: OrgInstance | null;

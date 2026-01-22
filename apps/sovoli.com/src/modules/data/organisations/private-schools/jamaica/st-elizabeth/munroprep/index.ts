@@ -37,4 +37,3 @@ export const MUNRO_PREPARATORY_SCHOOL_ORG: OrgInstance = {
   workforceModule: null,
   scoringModule: null,
 };
-

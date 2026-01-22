@@ -1,30 +1,30 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
-import { Button } from "@sovoli/ui/components/button";
-import { Input } from "@sovoli/ui/components/input";
 import { useChat } from "@ai-sdk/react";
-import {
-  EllipsisIcon,
-  SendIcon,
-  UsersIcon,
-  ChevronDownIcon,
-} from "lucide-react";
 import { Avatar } from "@sovoli/ui/components/avatar";
+import { Badge } from "@sovoli/ui/components/badge";
+import { Button } from "@sovoli/ui/components/button";
 import {
   DrawerBody,
   DrawerContent,
   DrawerFooter,
   DrawerHeader,
 } from "@sovoli/ui/components/drawer";
-import { Badge } from "@sovoli/ui/components/badge";
-import Image from "next/image";
-import { FamilyDrawer } from "./FamilyDrawer";
-import type { FamilyMember } from "./FamilyDrawer";
-import type { ChatMessage } from "../types";
+import { Input } from "@sovoli/ui/components/input";
 import { DefaultChatTransport } from "ai";
-import { MessageRenderer } from "./MessageRenderer";
+import {
+  ChevronDownIcon,
+  EllipsisIcon,
+  SendIcon,
+  UsersIcon,
+} from "lucide-react";
+import Image from "next/image";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTenant } from "~/app/(tenants)/w/[username]/components/TenantProvider";
+import type { ChatMessage } from "../types";
+import type { FamilyMember } from "./FamilyDrawer";
+import { FamilyDrawer } from "./FamilyDrawer";
+import { MessageRenderer } from "./MessageRenderer";
 
 export interface ChatDialogProps {
   placeholder?: string;

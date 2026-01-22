@@ -13,7 +13,9 @@ export function HeroSection({ title, subtitle }: HeroSectionProps) {
         </span>
       </h1>
       {subtitle && (
-        <p className="text-lg text-center text-foreground/60 my-4">{subtitle}</p>
+        <p className="text-lg text-center text-foreground/60 my-4">
+          {subtitle}
+        </p>
       )}
     </section>
   );

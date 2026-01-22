@@ -1,7 +1,7 @@
-import { notFound } from "next/navigation";
-import { WorkforcePersonProfile } from "./components/WorkforcePersonProfile";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { getOrgInstanceByUsername } from "../../../../lib/getOrgInstanceByUsername";
+import { WorkforcePersonProfile } from "./components/WorkforcePersonProfile";
 
 const retrieveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);

@@ -1,14 +1,13 @@
-import React from "react";
 import { Link } from "@sovoli/ui/components/link";
 import { MailIcon, MapPinIcon, PhoneIcon } from "lucide-react";
-
-import type { OrgInstanceWithWebsite } from "../../lib/types";
-import type { FooterLink, FooterSection } from "~/modules/websites/types";
-import { SocialLink } from "../SocialLink";
+import React from "react";
 import { LogoSVG } from "~/components/Logo/LogoSVG";
 import { ThemeSwitch } from "~/components/ThemeSwitch";
-import { countryCodeToName } from "~/utils/countryUtils";
 import type { Program } from "~/modules/academics/types";
+import type { FooterLink, FooterSection } from "~/modules/websites/types";
+import { countryCodeToName } from "~/utils/countryUtils";
+import type { OrgInstanceWithWebsite } from "../../lib/types";
+import { SocialLink } from "../SocialLink";
 
 interface FooterProps {
   orgInstance: OrgInstanceWithWebsite;

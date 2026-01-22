@@ -61,4 +61,3 @@ export const WILLIAMS_ELITE_ACADEMY_ORG: OrgInstance = {
   needsModule: WILLIAMS_ELITE_ACADEMY_NEEDS,
   projectsModule: WILLIAMS_ELITE_ACADEMY_PROJECTS,
 };
-

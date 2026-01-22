@@ -1,20 +1,20 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
 import { Avatar } from "@sovoli/ui/components/avatar";
-import type { WorkforceMember } from "~/modules/workforce/types";
-import type { Program } from "~/modules/academics/types";
-import { trackProgramAnalytics } from "../../lib/programAnalytics";
-import { useProgramCycleSelection } from "../../context/ProgramCycleSelectionContext";
 import {
+  DrawerBody,
   DrawerContent,
   DrawerHeader,
-  DrawerBody,
 } from "@sovoli/ui/components/drawer";
-import { SubscribeProgramButton } from "../SubscribeProgramButton";
+import { useEffect, useMemo, useState } from "react";
 import { ShareButton } from "~/app/[username]/(profile)/components/OrgNavbar/ShareButton";
+import type { Program } from "~/modules/academics/types";
 import { MemberDetailsContent } from "~/modules/workforce/components/MemberDetailsContent";
+import type { WorkforceMember } from "~/modules/workforce/types";
 import { getMemberDisplayTitle } from "~/modules/workforce/utils";
+import { useProgramCycleSelection } from "../../context/ProgramCycleSelectionContext";
+import { trackProgramAnalytics } from "../../lib/programAnalytics";
+import { SubscribeProgramButton } from "../SubscribeProgramButton";
 
 interface TeachersDetailsProps {
   defaultTeachers?: WorkforceMember[] | null;
@@ -106,22 +106,24 @@ function MultipleTeachersDetails({
                     {(() => {
                       const displayTitle = getMemberDisplayTitle(teacher);
                       return (
-                    <div className="flex items-center gap-4">
-                      <Avatar
-                        src={teacher.photo?.url}
-                        name={teacher.name}
-                        className="h-16 w-16"
-                        isBordered
-                      />
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-foreground text-lg">
-                          {teacher.name}
-                        </h3>
-                        {displayTitle ? (
-                          <p className="text-foreground-600">{displayTitle}</p>
-                        ) : null}
-                      </div>
-                    </div>
+                        <div className="flex items-center gap-4">
+                          <Avatar
+                            src={teacher.photo?.url}
+                            name={teacher.name}
+                            className="h-16 w-16"
+                            isBordered
+                          />
+                          <div className="flex-1">
+                            <h3 className="font-semibold text-foreground text-lg">
+                              {teacher.name}
+                            </h3>
+                            {displayTitle ? (
+                              <p className="text-foreground-600">
+                                {displayTitle}
+                              </p>
+                            ) : null}
+                          </div>
+                        </div>
                       );
                     })()}
                   </button>

@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
-import { forwardRef } from "@heroui/system";
 import { useDOMRef } from "@heroui/react-utils";
-import { tv } from "tailwind-variants";
+import { forwardRef } from "@heroui/system";
 import { ChevronLeftIcon } from "lucide-react";
+import type React from "react";
+import { tv } from "tailwind-variants";
 
 const drawerHeader = tv({
   slots: {

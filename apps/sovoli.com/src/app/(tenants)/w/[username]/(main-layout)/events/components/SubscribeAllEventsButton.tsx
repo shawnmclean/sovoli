@@ -1,18 +1,18 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
+import { useDisclosure } from "@sovoli/ui/components/dialog";
 import {
   Drawer,
+  DrawerBody,
   DrawerContent,
   DrawerHeader,
-  DrawerBody,
 } from "@sovoli/ui/components/drawer";
-import { useDisclosure } from "@sovoli/ui/components/dialog";
-import type { OrgInstance } from "~/modules/organisations/types";
 import { BellIcon, CheckCircleIcon } from "lucide-react";
-import { SignupDialog } from "~/modules/auth/components/SignupDialog";
 import posthog from "posthog-js";
+import { useState } from "react";
+import { SignupDialog } from "~/modules/auth/components/SignupDialog";
+import type { OrgInstance } from "~/modules/organisations/types";
 
 export interface SubscribeAllEventsButtonProps {
   orgInstance: OrgInstance;

@@ -1,8 +1,13 @@
 import { z } from "zod";
-import type { Org, OrgLocation, OrgVerification, OrgTechStack } from "~/modules/organisations/types";
-import { OrgLocationFeature } from "~/modules/organisations/types";
-import type { Contact, SocialLink } from "~/modules/core/types";
 import type { Media } from "~/modules/core/media/types";
+import type { Contact, SocialLink } from "~/modules/core/types";
+import type {
+  Org,
+  OrgLocation,
+  OrgTechStack,
+  OrgVerification,
+} from "~/modules/organisations/types";
+import { OrgLocationFeature } from "~/modules/organisations/types";
 import type { MediaMap } from "./parseMediaModule";
 import { getMediaByIdOptional } from "./parseMediaModule";
 
@@ -191,18 +196,42 @@ const enrollmentPlatformJsonSchema = platformInfoJsonSchema.extend({
  */
 const orgTechStackJsonSchema = z
   .object({
-    website: z.union([platformInfoJsonSchema, z.array(platformInfoJsonSchema)]).optional(),
-    sis: z.union([platformInfoJsonSchema, z.array(platformInfoJsonSchema)]).optional(),
-    lms: z.union([platformInfoJsonSchema, z.array(platformInfoJsonSchema)]).optional(),
-    parentPortal: z.union([platformInfoJsonSchema, z.array(platformInfoJsonSchema)]).optional(),
-    billing: z.union([platformInfoJsonSchema, z.array(platformInfoJsonSchema)]).optional(),
-    messaging: z.union([platformInfoJsonSchema, z.array(platformInfoJsonSchema)]).optional(),
-    hr: z.union([platformInfoJsonSchema, z.array(platformInfoJsonSchema)]).optional(),
-    security: z.union([platformInfoJsonSchema, z.array(platformInfoJsonSchema)]).optional(),
-    transport: z.union([platformInfoJsonSchema, z.array(platformInfoJsonSchema)]).optional(),
-    library: z.union([platformInfoJsonSchema, z.array(platformInfoJsonSchema)]).optional(),
-    analytics: z.union([platformInfoJsonSchema, z.array(platformInfoJsonSchema)]).optional(),
-    compliance: z.union([platformInfoJsonSchema, z.array(platformInfoJsonSchema)]).optional(),
+    website: z
+      .union([platformInfoJsonSchema, z.array(platformInfoJsonSchema)])
+      .optional(),
+    sis: z
+      .union([platformInfoJsonSchema, z.array(platformInfoJsonSchema)])
+      .optional(),
+    lms: z
+      .union([platformInfoJsonSchema, z.array(platformInfoJsonSchema)])
+      .optional(),
+    parentPortal: z
+      .union([platformInfoJsonSchema, z.array(platformInfoJsonSchema)])
+      .optional(),
+    billing: z
+      .union([platformInfoJsonSchema, z.array(platformInfoJsonSchema)])
+      .optional(),
+    messaging: z
+      .union([platformInfoJsonSchema, z.array(platformInfoJsonSchema)])
+      .optional(),
+    hr: z
+      .union([platformInfoJsonSchema, z.array(platformInfoJsonSchema)])
+      .optional(),
+    security: z
+      .union([platformInfoJsonSchema, z.array(platformInfoJsonSchema)])
+      .optional(),
+    transport: z
+      .union([platformInfoJsonSchema, z.array(platformInfoJsonSchema)])
+      .optional(),
+    library: z
+      .union([platformInfoJsonSchema, z.array(platformInfoJsonSchema)])
+      .optional(),
+    analytics: z
+      .union([platformInfoJsonSchema, z.array(platformInfoJsonSchema)])
+      .optional(),
+    compliance: z
+      .union([platformInfoJsonSchema, z.array(platformInfoJsonSchema)])
+      .optional(),
     enrollment: enrollmentPlatformJsonSchema.optional(),
     notes: z.string().optional(),
   })
@@ -272,7 +301,11 @@ export function parseOrgModule(
       ? location.features
           .map((featureStr) => {
             // Validate that the string is a valid enum value
-            if (Object.values(OrgLocationFeature).includes(featureStr as OrgLocationFeature)) {
+            if (
+              Object.values(OrgLocationFeature).includes(
+                featureStr as OrgLocationFeature,
+              )
+            ) {
               return featureStr as OrgLocationFeature;
             }
             // Log warning for invalid feature strings but don't throw

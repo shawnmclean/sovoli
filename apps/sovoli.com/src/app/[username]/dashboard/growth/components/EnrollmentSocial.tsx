@@ -1,6 +1,6 @@
-import { Image } from "@sovoli/ui/components/image";
 import { SiWhatsapp } from "@icons-pack/react-simple-icons";
-import { Globe, RocketIcon, Bell, CheckCircle } from "lucide-react";
+import { Image } from "@sovoli/ui/components/image";
+import { Bell, CheckCircle, Globe, RocketIcon } from "lucide-react";
 import type { OrgInstance } from "~/modules/organisations/types";
 
 export interface EnrollmentSocialProps {

@@ -1,17 +1,17 @@
-import { notFound } from "next/navigation";
-
 import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
-
-import { bus } from "~/services/core/bus";
+import { notFound } from "next/navigation";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
-
-import { LeadsSummaryCards } from "../programs/[slug]/leads/components/LeadsSummaryCards";
+import { bus } from "~/services/core/bus";
+import {
+  getLeadsForOrg,
+  isLeadsConfiguredForOrg,
+} from "../_lib/getLeadsForOrg";
 import type { LeadsSummaryStats } from "../programs/[slug]/leads/components/LeadsSummaryCards";
-import { categorizeLead } from "../programs/[slug]/leads/utils/leadCategorization";
+import { LeadsSummaryCards } from "../programs/[slug]/leads/components/LeadsSummaryCards";
 import type { LeadInteraction } from "../programs/[slug]/leads/utils/leadCategorization";
-import { getLeadsForOrg, isLeadsConfiguredForOrg } from "../_lib/getLeadsForOrg";
+import { categorizeLead } from "../programs/[slug]/leads/utils/leadCategorization";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await bus.queryProcessor.execute(
@@ -136,4 +136,3 @@ export default async function LeadsDashboardPage({
     </div>
   );
 }
-

@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState, useMemo, startTransition } from "react";
+import { startTransition, useEffect, useMemo, useState } from "react";
 import type { Program, RequirementList } from "~/modules/academics/types";
 import type { Item } from "~/modules/core/items/types";
-import type { OrgInstance } from "~/modules/organisations/types";
 import { ORGS } from "~/modules/data/organisations";
+import type { OrgInstance } from "~/modules/organisations/types";
 
 export interface Supplier {
   name: string;

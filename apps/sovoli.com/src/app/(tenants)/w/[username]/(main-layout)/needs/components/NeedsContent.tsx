@@ -1,6 +1,5 @@
 "use client";
 
-import type { OrgInstanceWithWebsite } from "~/modules/organisations/types";
 import {
   isFinancialNeed,
   isHumanNeed,
@@ -8,6 +7,7 @@ import {
   isMaterialNeed,
   isServiceNeed,
 } from "~/modules/needs/types";
+import type { OrgInstanceWithWebsite } from "~/modules/organisations/types";
 import {
   FinancialNeedsList,
   HumanNeedsList,

@@ -167,8 +167,7 @@ export function parseWebsiteModule(
 
   // Generate domain if not provided
   const domain = validated.website.domain ?? generateDomain(username);
-  const url =
-    validated.website.url ?? `https://${domain}`;
+  const url = validated.website.url ?? `https://${domain}`;
 
   const websiteModule: WebsiteModule = {
     website: {

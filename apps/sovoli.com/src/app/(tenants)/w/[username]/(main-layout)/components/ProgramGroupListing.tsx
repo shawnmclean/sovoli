@@ -1,17 +1,17 @@
 "use client";
 
-import type { Program, AgeEligibility } from "~/modules/academics/types";
-import type { OrgInstance } from "~/modules/organisations/types";
+import { Card, CardBody } from "@sovoli/ui/components/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@sovoli/ui/components/carousel";
-import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Link } from "@sovoli/ui/components/link";
 import { UserIcon } from "lucide-react";
 import { CldImage } from "next-cloudinary";
 import { getProgramImage } from "~/modules/academics/getProgramImage";
+import type { AgeEligibility, Program } from "~/modules/academics/types";
+import type { OrgInstance } from "~/modules/organisations/types";
 
 export interface ProgramGroupListingProps {
   orgInstance: OrgInstance;
@@ -90,7 +90,8 @@ const getAgeGroupOrder = (ageGroupName: string) => {
 function getProgramCategoryChain(program: Program) {
   const chain: NonNullable<Program["category"]>[] = [];
   // Check program.category first, then fall back to standardProgramVersion.program.category
-  let current = program.category ?? program.standardProgramVersion?.program.category;
+  let current =
+    program.category ?? program.standardProgramVersion?.program.category;
 
   while (current) {
     chain.push(current);
@@ -107,8 +108,10 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
     return null;
   }
 
-  const hasCategories = programs.some((program) => 
-    Boolean(program.category ?? program.standardProgramVersion?.program.category)
+  const hasCategories = programs.some((program) =>
+    Boolean(
+      program.category ?? program.standardProgramVersion?.program.category,
+    ),
   );
   const hasProgramGroups = programs.some((program) =>
     Boolean(getProgramGroup(program)),
@@ -132,7 +135,8 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
       // Use the parent category (one level up from leaf) for grouping
       // If chain has 2+ levels, use the parent (second-to-last)
       // If chain has only 1 level, use the leaf category
-      const category = chain.length >= 2 ? chain[chain.length - 2] : chain[chain.length - 1];
+      const category =
+        chain.length >= 2 ? chain[chain.length - 2] : chain[chain.length - 1];
       const categoryKey = category?.id ?? "other";
       const categoryTitle = category?.name ?? "Other Programs";
 
@@ -164,12 +168,12 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
           programs: category.programs.sort((a, b) => {
             const minAgeA = getMinAgeForSorting(a);
             const minAgeB = getMinAgeForSorting(b);
-            
+
             // Primary sort: by minimum age
             if (minAgeA !== minAgeB) {
               return minAgeA - minAgeB;
             }
-            
+
             // Secondary sort: by name (for programs with same age)
             const nameA =
               a.name ?? a.standardProgramVersion?.program.name ?? a.slug;
@@ -195,12 +199,12 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
         programs: singleProgramCategories.sort((a, b) => {
           const minAgeA = getMinAgeForSorting(a);
           const minAgeB = getMinAgeForSorting(b);
-          
+
           // Primary sort: by minimum age
           if (minAgeA !== minAgeB) {
             return minAgeA - minAgeB;
           }
-          
+
           // Secondary sort: by name
           const nameA =
             a.name ?? a.standardProgramVersion?.program.name ?? a.slug;
@@ -295,7 +299,9 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-xl font-bold text-foreground mb-1">Featured Programs</h2>
+        <h2 className="text-xl font-bold text-foreground mb-1">
+          Featured Programs
+        </h2>
       </div>
       {categorySections
         ? categorySections.map((category) => {
@@ -384,7 +390,8 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
           })
         : fallbackGroups.map((group, idx) => {
             const shouldShowHeader =
-              hasProgramGroups || (isPrivateSchool && fallbackGroups.length > 1);
+              hasProgramGroups ||
+              (isPrivateSchool && fallbackGroups.length > 1);
 
             return (
               <div key={`${group.title}-${idx}`} className="space-y-4">

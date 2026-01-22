@@ -1,11 +1,11 @@
-import { notFound, permanentRedirect } from "next/navigation";
 import { headers } from "next/headers";
-import { env } from "~/env";
-import { getOrgInstanceByUsername } from "./lib/getOrgInstanceByUsername";
+import { notFound, permanentRedirect } from "next/navigation";
 import type { Organization, WithContext } from "schema-dts";
+import { env } from "~/env";
 import { NavigationDrawer } from "./components/NavigationDrawer";
-import { TenantProvider } from "./components/TenantProvider";
 import { TenantNavbar } from "./components/navbar/TenantNavbar";
+import { TenantProvider } from "./components/TenantProvider";
+import { getOrgInstanceByUsername } from "./lib/getOrgInstanceByUsername";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);

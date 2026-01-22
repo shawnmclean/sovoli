@@ -1,12 +1,13 @@
 "use client";
 
-import React from "react";
 import { Avatar } from "@sovoli/ui/components/avatar";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Divider } from "@sovoli/ui/components/divider";
 import { Input } from "@sovoli/ui/components/input";
+import { Link } from "@sovoli/ui/components/link";
 import { Select, SelectItem } from "@sovoli/ui/components/select";
-
+import { MailIcon, PhoneIcon } from "lucide-react";
+import React from "react";
 import type { OrgInstance } from "~/modules/organisations/types";
 import type { WorkforceMember } from "~/modules/workforce/types";
 import {
@@ -16,8 +17,6 @@ import {
   getUniqueDepartmentNames,
   getUniqueRoleNames,
 } from "~/modules/workforce/utils";
-import { Link } from "@sovoli/ui/components/link";
-import { MailIcon, PhoneIcon } from "lucide-react";
 
 interface TeamDirectoryProps {
   orgInstance: OrgInstance;
@@ -52,10 +51,7 @@ function FacultyCard({ member }: { member: WorkforceMember }) {
             {email && (
               <p className="flex items-center gap-1 text-xs text-default-500">
                 <MailIcon className="h-3 w-3" />
-                <a
-                  href={`mailto:${email}`}
-                  className="hover:underline"
-                >
+                <a href={`mailto:${email}`} className="hover:underline">
                   {email}
                 </a>
               </p>
@@ -63,10 +59,7 @@ function FacultyCard({ member }: { member: WorkforceMember }) {
             {phone && (
               <p className="flex items-center gap-1 text-xs text-default-500">
                 <PhoneIcon className="h-3 w-3" />
-                <a
-                  href={`tel:${phone}`}
-                  className="hover:underline"
-                >
+                <a href={`tel:${phone}`} className="hover:underline">
                   {phone}
                 </a>
               </p>
@@ -103,7 +96,10 @@ export function TeamDirectory({ orgInstance }: TeamDirectoryProps) {
     [orgInstance.workforceModule?.members],
   );
 
-  const uniqueRoles = React.useMemo(() => getUniqueRoleNames(members), [members]);
+  const uniqueRoles = React.useMemo(
+    () => getUniqueRoleNames(members),
+    [members],
+  );
 
   const uniqueDepartments = React.useMemo(
     () => getUniqueDepartmentNames(members),
@@ -129,7 +125,10 @@ export function TeamDirectory({ orgInstance }: TeamDirectoryProps) {
 
       <div className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-3">
         <div className="space-y-2">
-          <label htmlFor="team-directory-search" className="text-small font-medium">
+          <label
+            htmlFor="team-directory-search"
+            className="text-small font-medium"
+          >
             Search
           </label>
           <Input
@@ -140,7 +139,10 @@ export function TeamDirectory({ orgInstance }: TeamDirectoryProps) {
           />
         </div>
         <div className="space-y-2">
-          <label htmlFor="team-directory-role" className="text-small font-medium">
+          <label
+            htmlFor="team-directory-role"
+            className="text-small font-medium"
+          >
             Role
           </label>
           <Select
@@ -157,7 +159,10 @@ export function TeamDirectory({ orgInstance }: TeamDirectoryProps) {
           </Select>
         </div>
         <div className="space-y-2">
-          <label htmlFor="team-directory-department" className="text-small font-medium">
+          <label
+            htmlFor="team-directory-department"
+            className="text-small font-medium"
+          >
             Department
           </label>
           <Select

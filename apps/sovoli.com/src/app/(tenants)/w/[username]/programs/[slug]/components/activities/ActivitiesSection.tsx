@@ -1,11 +1,11 @@
 "use client";
 
-import { useMemo } from "react";
-import { Chip } from "@sovoli/ui/components/chip";
 import { Button } from "@sovoli/ui/components/button";
+import { Chip } from "@sovoli/ui/components/chip";
 import { PartyPopperIcon } from "lucide-react";
-import type { Program } from "~/modules/academics/types";
 import Link from "next/link";
+import { useMemo } from "react";
+import type { Program } from "~/modules/academics/types";
 
 interface ActivitiesSectionProps {
   program: Program;

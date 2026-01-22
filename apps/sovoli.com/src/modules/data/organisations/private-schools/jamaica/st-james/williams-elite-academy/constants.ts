@@ -5,4 +5,3 @@ export const ORG_DOMAIN =
   env.NODE_ENV === "development"
     ? "williams-elite-academy.localhost:3000"
     : "williams-elite-academy.sovoli.com";
-

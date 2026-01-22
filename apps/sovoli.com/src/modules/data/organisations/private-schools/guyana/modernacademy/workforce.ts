@@ -1,15 +1,15 @@
+import type { Media } from "~/modules/core/media/types";
 import type {
   WorkforceMember,
   WorkforceModule,
 } from "~/modules/workforce/types";
-import type { Media } from "~/modules/core/media/types";
 import {
   ADMIN,
+  DIRECTOR_OF_STUDIES,
   FACULTY,
   PRINCIPAL,
-  TEACHER,
   SECRETARY,
-  DIRECTOR_OF_STUDIES,
+  TEACHER,
 } from "./workforceMeta";
 
 export const SIR_CHABEERAJ_FRANCIS: WorkforceMember = {

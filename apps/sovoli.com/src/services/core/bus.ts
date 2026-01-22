@@ -1,7 +1,15 @@
 import {
+  GetAllCategoryAddressesQuery,
+  GetAllCategoryAddressesQueryHandler,
+} from "~/modules/organisations/services/queries/GetAllCategoryAddresses";
+import {
   GetOrgInstanceByUsernameQuery,
   GetOrgInstanceByUsernameQueryHandler,
 } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
+import {
+  GetOrgsByCategoryAndLocationQuery,
+  GetOrgsByCategoryAndLocationQueryHandler,
+} from "~/modules/organisations/services/queries/GetOrgsByCategoryAndLocation";
 import {
   GetAllWebsiteUsernamesQuery,
   GetAllWebsiteUsernamesQueryHandler,
@@ -11,14 +19,6 @@ import {
   GetUsernameByDomainQueryHandler,
 } from "~/modules/websites/services/queries/GetUsernameByDomainQuery";
 import { QueryProcessor } from "./QueryProcessor";
-import {
-  GetAllCategoryAddressesQuery,
-  GetAllCategoryAddressesQueryHandler,
-} from "~/modules/organisations/services/queries/GetAllCategoryAddresses";
-import {
-  GetOrgsByCategoryAndLocationQuery,
-  GetOrgsByCategoryAndLocationQueryHandler,
-} from "~/modules/organisations/services/queries/GetOrgsByCategoryAndLocation";
 
 export class Bus {
   public readonly queryProcessor: QueryProcessor;

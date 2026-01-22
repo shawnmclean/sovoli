@@ -15,9 +15,7 @@ export const PURE_MASTERS_ACADEMY_ORG: OrgInstance = {
           countryCode: "GY",
         },
         placeId: "ChIJj2Ap0ubvr40RMkhZ-HxfTIk",
-        contacts: [
-          { type: "phone", value: "+592-642-8567", isPublic: true },
-        ],
+        contacts: [{ type: "phone", value: "+592-642-8567", isPublic: true }],
         isPrimary: true,
       },
     ],

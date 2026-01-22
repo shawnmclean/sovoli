@@ -1,15 +1,15 @@
-import { notFound } from "next/navigation";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
-import { InteractionHistoryModal } from "./InteractionHistoryModal";
-import type { InteractionHistory } from "./InteractionHistoryModal";
+import { notFound } from "next/navigation";
+import type { Program } from "~/modules/academics/types";
+import { parseLeadsModule } from "~/modules/data/organisations/utils/parseLeadsModule";
+import healingEmeraldLeadsData from "~/modules/data/organisations/vocational-school/jamaica/healingemeraldwellness/leads.json";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
 import { bus } from "~/services/core/bus";
-import { parseLeadsModule } from "~/modules/data/organisations/utils/parseLeadsModule";
-import type { Program } from "~/modules/academics/types";
-import { categorizeLead } from "../utils/leadCategorization";
 import type { LeadInteraction } from "../utils/leadCategorization";
-import healingEmeraldLeadsData from "~/modules/data/organisations/vocational-school/jamaica/healingemeraldwellness/leads.json";
+import { categorizeLead } from "../utils/leadCategorization";
+import type { InteractionHistory } from "./InteractionHistoryModal";
+import { InteractionHistoryModal } from "./InteractionHistoryModal";
 
 interface ReportLead {
   name: string;

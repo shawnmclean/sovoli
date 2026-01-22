@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
+import { useEffect, useState } from "react";
 export interface NamesFormProps {
   onSuccess?: (firstName: string, lastName: string) => void;
   onError?: (message: string) => void;

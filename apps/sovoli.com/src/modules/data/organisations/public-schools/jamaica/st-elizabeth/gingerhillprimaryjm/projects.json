@@ -10,9 +10,7 @@
       "locationKey": "main-campus",
       "startDate": "2025-11-27",
       "internal": false,
-      "needSlugs": [
-        "ginger-hill-primary-pencils-pack-2025"
-      ],
+      "needSlugs": ["ginger-hill-primary-pencils-pack-2025"],
       "photos": [],
       "tags": ["hurricane", "relief", "infrastructure"],
       "notes": "Contact: Sherreen Smith (Teacher). Moderate damage - almost complete roof damage to both buildings, total destruction of fencing and water tank covering, partial destruction of bathroom facilities.",
@@ -21,5 +19,3 @@
     }
   ]
 }
-
-

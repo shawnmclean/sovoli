@@ -1,7 +1,7 @@
 import { Button } from "@sovoli/ui/components/button";
-import { Link } from "@sovoli/ui/components/link";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
+import { Link } from "@sovoli/ui/components/link";
 import { ArrowRightIcon } from "lucide-react";
 
 export function HurricaneMelissaSection() {
@@ -32,10 +32,11 @@ export function HurricaneMelissaSection() {
                 </Chip>
               </div>
               <p className="text-sm sm:text-base text-foreground/70 line-clamp-1">
-                View damage assessment and recovery projects from schools affected by Hurricane Melissa.
+                View damage assessment and recovery projects from schools
+                affected by Hurricane Melissa.
               </p>
             </div>
-            
+
             {/* Button */}
             <div className="w-full sm:w-auto shrink-0">
               <Button
@@ -56,4 +57,3 @@ export function HurricaneMelissaSection() {
     </section>
   );
 }
-

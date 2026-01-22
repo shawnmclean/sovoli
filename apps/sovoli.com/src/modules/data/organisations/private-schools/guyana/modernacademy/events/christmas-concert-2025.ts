@@ -1,5 +1,5 @@
+import type { Media } from "~/modules/core/media/types";
 import type { Event } from "~/modules/events/types";
-import { Media } from "~/modules/core/media/types";
 
 const CHRISTMAS_CONCERT_EVENT_PHOTOS: Media[] = [
   {

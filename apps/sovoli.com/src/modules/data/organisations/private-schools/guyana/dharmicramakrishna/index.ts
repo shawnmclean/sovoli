@@ -32,5 +32,3 @@ export const DHARMIC_RAMA_KRISHNA_ORG: OrgInstance = {
   workforceModule: null,
   scoringModule: null,
 };
-
-

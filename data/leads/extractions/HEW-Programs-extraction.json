@@ -18,9 +18,7 @@
         "id": "program-1",
         "name": "Waxing",
         "schedule": {
-          "dates": [
-            "January 19"
-          ]
+          "dates": ["January 19"]
         },
         "matchedPrograms": null
       },
@@ -28,9 +26,7 @@
         "id": "program-2",
         "name": "Threading",
         "schedule": {
-          "dates": [
-            "January 20"
-          ]
+          "dates": ["January 20"]
         },
         "matchedPrograms": null
       },
@@ -38,9 +34,7 @@
         "id": "program-3",
         "name": "Spa Therapy",
         "schedule": {
-          "dates": [
-            "January 21"
-          ]
+          "dates": ["January 21"]
         },
         "matchedPrograms": [
           {
@@ -61,9 +55,7 @@
         "id": "program-4",
         "name": "Skincare",
         "schedule": {
-          "dates": [
-            "January 25"
-          ]
+          "dates": ["January 25"]
         },
         "matchedPrograms": null
       },
@@ -71,9 +63,7 @@
         "id": "program-5",
         "name": "Massage Therapy",
         "schedule": {
-          "dates": [
-            "January 21"
-          ]
+          "dates": ["January 21"]
         },
         "matchedPrograms": [
           {
@@ -105,9 +95,7 @@
     "locations": [],
     "platformSignals": []
   },
-  "business": [
-    "Healing Emerald Wellness Spa & Training Center Ltd."
-  ],
+  "business": ["Healing Emerald Wellness Spa & Training Center Ltd."],
   "matchedOrgs": [
     {
       "id": "healingemeraldwellness",

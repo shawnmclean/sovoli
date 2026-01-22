@@ -1,5 +1,5 @@
-import { getProgramSuggestions } from "~/modules/chat/lib/getProgramSuggestions";
 import { withOrgInstance } from "~/app/api/lib/withOrgInstance";
+import { getProgramSuggestions } from "~/modules/chat/lib/getProgramSuggestions";
 
 export const maxDuration = 30;
 

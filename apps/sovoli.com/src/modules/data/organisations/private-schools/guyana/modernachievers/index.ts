@@ -15,8 +15,17 @@ export const MODERN_ACHIEVERS_ACADEMY_ORG: OrgInstance = {
           countryCode: "GY",
         },
         contacts: [
-          { type: "phone", value: "+592-687-5462", isPublic: true, primary: true },
-          { type: "email", value: "Tameka_crumewing@yahoo.com", isPublic: true },
+          {
+            type: "phone",
+            value: "+592-687-5462",
+            isPublic: true,
+            primary: true,
+          },
+          {
+            type: "email",
+            value: "Tameka_crumewing@yahoo.com",
+            isPublic: true,
+          },
         ],
         isPrimary: true,
       },
@@ -34,4 +43,3 @@ export const MODERN_ACHIEVERS_ACADEMY_ORG: OrgInstance = {
   workforceModule: null,
   scoringModule: null,
 };
-

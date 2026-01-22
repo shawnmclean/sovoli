@@ -4,12 +4,12 @@ import type {
 } from "~/modules/workforce/types";
 import {
   ADMIN,
-  FACULTY,
-  SUPPORT,
-  PRINCIPAL,
-  NURSERY_TEACHER,
-  TEACHING_ASSISTANT,
   CARETAKER,
+  FACULTY,
+  NURSERY_TEACHER,
+  PRINCIPAL,
+  SUPPORT,
+  TEACHING_ASSISTANT,
 } from "./workforceMeta";
 
 export const APPLETON_PRINCIPAL: WorkforceMember = {

@@ -1,9 +1,8 @@
 import { notFound } from "next/navigation";
-
-import { Footer } from "../components/footer/Footer";
-import { getOrgInstanceByUsername } from "../lib/getOrgInstanceByUsername";
-import { MobileFooter } from "../components/footer/MobileFooter";
 import { MobileOnlyAlert } from "~/components/MobileOnlyAlert";
+import { Footer } from "../components/footer/Footer";
+import { MobileFooter } from "../components/footer/MobileFooter";
+import { getOrgInstanceByUsername } from "../lib/getOrgInstanceByUsername";
 
 const retreiveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);

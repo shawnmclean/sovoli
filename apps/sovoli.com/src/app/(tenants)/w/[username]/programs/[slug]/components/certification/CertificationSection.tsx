@@ -1,8 +1,8 @@
 "use client";
 
 import { AwardIcon } from "lucide-react";
-import type { Program } from "~/modules/academics/types";
 import Link from "next/link";
+import type { Program } from "~/modules/academics/types";
 
 interface CertificationSectionProps {
   program: Program;

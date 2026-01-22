@@ -1,39 +1,37 @@
 "use client";
 
+import { SiWhatsapp } from "@icons-pack/react-simple-icons";
+import { Alert } from "@sovoli/ui/components/alert";
+import { Button } from "@sovoli/ui/components/button";
+import { Checkbox } from "@sovoli/ui/components/checkbox";
 import {
-  PackageIcon,
+  Drawer,
+  DrawerBody,
+  DrawerBody as DrawerBodyComponent,
+  DrawerContent,
+  DrawerContent as DrawerContentComponent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerHeader as DrawerHeaderComponent,
+} from "@sovoli/ui/components/drawer";
+import { Switch } from "@sovoli/ui/components/switch";
+import {
   BookOpenIcon,
   DropletsIcon,
+  PackageIcon,
   ShirtIcon,
   ShoppingCartIcon,
 } from "lucide-react";
-import type { Program, RequirementList } from "~/modules/academics/types";
-import { trackProgramAnalytics } from "../../lib/programAnalytics";
 import { useEffect, useState } from "react";
-import { Button } from "@sovoli/ui/components/button";
-import { Checkbox } from "@sovoli/ui/components/checkbox";
-import { Switch } from "@sovoli/ui/components/switch";
-import { Alert } from "@sovoli/ui/components/alert";
-import {
-  Drawer,
-  DrawerContent as DrawerContentComponent,
-  DrawerHeader,
-  DrawerBody,
-  DrawerFooter,
-} from "@sovoli/ui/components/drawer";
-import {
-  DrawerContent,
-  DrawerHeader as DrawerHeaderComponent,
-  DrawerBody as DrawerBodyComponent,
-} from "@sovoli/ui/components/drawer";
-import { SubscribeProgramButton } from "../SubscribeProgramButton";
 import { ShareButton } from "~/app/[username]/(profile)/components/OrgNavbar/ShareButton";
+import { WhatsAppLink } from "~/components/WhatsAppLink";
+import type { Program, RequirementList } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { pluralize } from "~/utils/pluralize";
-import { WhatsAppLink } from "~/components/WhatsAppLink";
-import { SiWhatsapp } from "@icons-pack/react-simple-icons";
-import { useProgramSupplies } from "./useProgramSupplies";
+import { trackProgramAnalytics } from "../../lib/programAnalytics";
+import { SubscribeProgramButton } from "../SubscribeProgramButton";
 import type { Supplier } from "./useProgramSupplies";
+import { useProgramSupplies } from "./useProgramSupplies";
 
 interface SuppliesDetailsProps {
   orgInstance: OrgInstance;
@@ -259,7 +257,10 @@ export function SuppliesDetails({
                       if (supplier) {
                         categoryTotal += supplier.price * (item.quantity ?? 1);
                         // Use first supplier's currency for category (assumes same currency within category)
-                        if (categoryTotal === supplier.price * (item.quantity ?? 1)) {
+                        if (
+                          categoryTotal ===
+                          supplier.price * (item.quantity ?? 1)
+                        ) {
                           categoryCurrency = supplier.currency;
                         }
                       }
@@ -478,4 +479,3 @@ export function SuppliesDetails({
     </DrawerContent>
   );
 }
-

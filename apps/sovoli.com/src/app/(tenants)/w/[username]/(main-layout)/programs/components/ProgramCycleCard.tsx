@@ -3,15 +3,15 @@
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 
 import { Link } from "@sovoli/ui/components/link";
+import { format, parseISO } from "date-fns";
+import {
+  ArrowRightIcon,
+  ClockIcon,
+  GraduationCapIcon,
+  UserIcon,
+} from "lucide-react";
 import type { Program } from "~/modules/academics/types";
 import type { OrgInstance } from "~/modules/organisations/types";
-import {
-  ClockIcon,
-  ArrowRightIcon,
-  UserIcon,
-  GraduationCapIcon,
-} from "lucide-react";
-import { format, parseISO } from "date-fns";
 import { formatCycleLabel } from "~/utils/dateUtils";
 import { ProgramCarousel } from "./ProgramCarousel";
 

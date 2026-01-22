@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { PRE_NURSERY_PHOTOS } from "../../photos";
+
 import type { Program } from "~/modules/academics/types";
+import { hydrateProgramCategory } from "~/modules/data/academics/categories";
+import { findItemById } from "~/modules/data/items";
+import { PRE_NURSERY_PHOTOS } from "../../photos";
 import { MAGY_PRE_NURSERY_2025_T1 } from "../cycles";
 import { MAGY_SHARED_TESTIMONIALS } from "../testimonials";
-import { findItemById } from "~/modules/data/items";
-import { hydrateProgramCategory } from "~/modules/data/academics/categories";
 import {
   MAGY_NURSERY_DEPT_ACTIVITIES,
   magyProgramQuickFacts,

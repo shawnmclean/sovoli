@@ -29,5 +29,3 @@ export const HEAVENLY_SUNLIGHT_ORG: OrgInstance = {
   workforceModule: null,
   scoringModule: null,
 };
-
-

@@ -1,6 +1,6 @@
+import { ORGS } from "~/modules/data/organisations";
 import type { Query } from "~/services/core/Query";
 import type { QueryHandler } from "~/services/core/QueryHandler";
-import { ORGS } from "~/modules/data/organisations";
 
 interface Result {
   usernames: string[];

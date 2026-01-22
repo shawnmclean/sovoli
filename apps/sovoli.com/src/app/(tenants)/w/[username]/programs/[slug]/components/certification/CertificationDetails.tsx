@@ -1,16 +1,16 @@
 "use client";
 
-import { AwardIcon } from "lucide-react";
-import type { Program } from "~/modules/academics/types";
-import { trackProgramAnalytics } from "../../lib/programAnalytics";
-import { useEffect } from "react";
 import {
+  DrawerBody,
   DrawerContent,
   DrawerHeader,
-  DrawerBody,
 } from "@sovoli/ui/components/drawer";
-import { SubscribeProgramButton } from "../SubscribeProgramButton";
+import { AwardIcon } from "lucide-react";
+import { useEffect } from "react";
 import { ShareButton } from "~/app/[username]/(profile)/components/OrgNavbar/ShareButton";
+import type { Program } from "~/modules/academics/types";
+import { trackProgramAnalytics } from "../../lib/programAnalytics";
+import { SubscribeProgramButton } from "../SubscribeProgramButton";
 
 interface CertificationDetailsProps {
   program: Program;

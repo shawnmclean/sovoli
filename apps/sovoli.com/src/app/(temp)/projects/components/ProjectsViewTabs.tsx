@@ -1,11 +1,11 @@
 "use client";
 
-import type { Key } from "react";
-import { useMemo } from "react";
-import posthog from "posthog-js";
-import { Tabs, Tab } from "@sovoli/ui/components/tabs";
+import { Tab, Tabs } from "@sovoli/ui/components/tabs";
 import { ListIcon, MapIcon } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import posthog from "posthog-js";
+import type { Key } from "react";
+import { useMemo } from "react";
 
 type DirectoryView = "list" | "map";
 

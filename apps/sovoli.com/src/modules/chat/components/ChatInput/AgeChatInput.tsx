@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
-import { AgePickerDrawer } from "./AgePickerDrawer";
+import { useState } from "react";
 import type { AgeSelection } from "./AgePickerDrawer";
+import { AgePickerDrawer } from "./AgePickerDrawer";
 
 interface AgeChatInputProps {
   onSubmit: (ageSelection: AgeSelection) => void;

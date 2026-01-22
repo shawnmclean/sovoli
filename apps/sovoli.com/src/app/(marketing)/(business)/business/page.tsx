@@ -1,10 +1,10 @@
-import Link from "next/link";
 import { ArrowRightIcon, Globe, MapPin, Megaphone } from "lucide-react";
+import Link from "next/link";
+import { BUSINESS_CATEGORIES, businessCategoryHref } from "./categories";
 import { BusinessCard } from "./components/BusinessCard";
+import { BusinessHeroSection } from "./components/BusinessHeroSection";
 import type { CapabilityCardData } from "./components/CapabilityCard";
 import { CapabilityCard } from "./components/CapabilityCard";
-import { BusinessHeroSection } from "./components/BusinessHeroSection";
-import { BUSINESS_CATEGORIES, businessCategoryHref } from "./categories";
 
 const capabilities: CapabilityCardData[] = [
   {

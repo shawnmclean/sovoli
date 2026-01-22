@@ -1,7 +1,7 @@
 {
   "extends": "@sovoli/typescript-config/internal-package.json",
   "compilerOptions": {
-    "outDir": "dist",
+    "outDir": "dist"
   },
   "include": ["src"],
   "exclude": ["node_modules"]

@@ -1,18 +1,18 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { useTheme } from "next-themes";
+import { Skeleton } from "@sovoli/ui/components/skeleton";
 import {
+  AdvancedMarker,
   APIProvider,
   Map as GoogleMap,
-  AdvancedMarker,
   useMap,
   useMapsLibrary,
 } from "@vis.gl/react-google-maps";
 import { SchoolIcon } from "lucide-react";
+import { useTheme } from "next-themes";
+import { useEffect, useMemo, useState } from "react";
 import { env } from "~/env";
 import type { OrgInstance } from "~/modules/organisations/types";
-import { Skeleton } from "@sovoli/ui/components/skeleton";
 
 interface LatLngLiteral {
   lat: number;

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { LeadsModule, Lead, LeadSelection } from "~/modules/leads/types";
+import type { Lead, LeadSelection, LeadsModule } from "~/modules/leads/types";
 
 /**
  * Zod schema for LeadSelection enum
@@ -13,23 +13,29 @@ const leadInteractionSchema = z.object({
   loggedAt: z.string(),
   contactOutcome: z.enum(["not_reached", "brief_contact", "conversation"]),
   notReachedReason: z.enum(["try_again_later", "invalid_number"]).optional(),
-  interestLevel: z.enum(["not_interested", "curious", "unsure", "wants_to_proceed"]).optional(),
-  blocker: z.enum([
-    "different_program",
-    "timing",
-    "needs_time",
-    "needs_approval",
-    "needs_visit",
-    "price_uncertainty",
-    "comparing",
-    "not_serious",
-  ]).optional(),
-  nextAction: z.enum([
-    "follow_up_later",
-    "visit_scheduled",
-    "waiting_on_them",
-    "no_followup",
-  ]).optional(),
+  interestLevel: z
+    .enum(["not_interested", "curious", "unsure", "wants_to_proceed"])
+    .optional(),
+  blocker: z
+    .enum([
+      "different_program",
+      "timing",
+      "needs_time",
+      "needs_approval",
+      "needs_visit",
+      "price_uncertainty",
+      "comparing",
+      "not_serious",
+    ])
+    .optional(),
+  nextAction: z
+    .enum([
+      "follow_up_later",
+      "visit_scheduled",
+      "waiting_on_them",
+      "no_followup",
+    ])
+    .optional(),
   notes: z.string().optional(),
 });
 
@@ -82,7 +88,7 @@ export function parseLeadsModule(jsonData: unknown): LeadsModule {
   const leads: Lead[] = validated.leads.map((leadJson) => {
     // Use phone number as fallback name if name is not provided
     const name = leadJson.name ?? leadJson.phone;
-    
+
     const lead: Lead = {
       id: leadJson.id,
       name,

@@ -1,13 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
 import { Minus, Plus, Trash2 } from "lucide-react";
+import { useMemo, useState } from "react";
 import type {
+  CategoryDefinition,
   Item,
   ItemCategory,
-  CategoryDefinition,
 } from "~/modules/core/items/types";
 
 interface ItemsSelectionProps {

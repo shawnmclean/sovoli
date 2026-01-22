@@ -1,13 +1,13 @@
-import { GY_CYCLE_2025_T1 } from "~/modules/data/academics/guyana/cycles";
 import type { OrgAcademicCycle, ProgramCycle } from "~/modules/academics/types";
 import type { Discount, PricingItem } from "~/modules/core/economics/types";
+import { GY_CYCLE_2025_T1 } from "~/modules/data/academics/guyana/cycles";
 import {
   BLOSSOM_JAMES,
-  KISHANA_BECKLES,
   CLEANNA_LONDON,
-  TREVA_MEUSA,
-  RENICIA_THOMAS,
   DENICIA_THOMAS,
+  KISHANA_BECKLES,
+  RENICIA_THOMAS,
+  TREVA_MEUSA,
 } from "../workforce";
 
 // #region academic cycles

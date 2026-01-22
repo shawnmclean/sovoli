@@ -1,9 +1,9 @@
-import type { OrgInstance } from "~/modules/organisations/types";
 import type { Media } from "~/modules/core/media/types";
+import type { OrgInstance } from "~/modules/organisations/types";
+import { ARGOSY_BOOK_STORE_CATALOG } from "./catalog";
 import { ORG_USERNAME } from "./constants";
 import { ARGOSY_BOOK_STORE_WEBSITE } from "./website";
 import { ARGOSY_BOOK_STORE_WORKFORCE } from "./workforce";
-import { ARGOSY_BOOK_STORE_CATALOG } from "./catalog";
 
 const ARGOSY_BOOK_STORE_PHOTOS: Media[] = [
   {

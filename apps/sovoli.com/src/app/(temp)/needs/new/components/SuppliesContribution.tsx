@@ -1,18 +1,18 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { ScrollShadow } from "@heroui/scroll-shadow";
 import { Checkbox } from "@sovoli/ui/components/checkbox";
+import { Chip } from "@sovoli/ui/components/chip";
 import { Input } from "@sovoli/ui/components/input";
 import {
   Listbox,
   ListboxItem,
   ListboxSection,
 } from "@sovoli/ui/components/listbox";
-import { ScrollShadow } from "@heroui/scroll-shadow";
-import { Chip } from "@sovoli/ui/components/chip";
 import { SearchIcon } from "lucide-react";
-import { ALL_ITEMS } from "~/modules/data/items";
+import { useMemo, useState } from "react";
 import type { Item, ItemCategory } from "~/modules/core/items/types";
+import { ALL_ITEMS } from "~/modules/data/items";
 import { getCategoryLabel } from "./ItemsSelection";
 
 interface SuppliesContributionProps {

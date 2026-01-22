@@ -1,11 +1,11 @@
+import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { User } from "@sovoli/ui/components/user";
-import { Button } from "@sovoli/ui/components/button";
-import { WhatsAppLink } from "~/components/WhatsAppLink";
-import { config } from "~/utils/config";
 import { MessageCircleIcon } from "lucide-react";
-import type { Project } from "~/modules/projects/types";
+import { WhatsAppLink } from "~/components/WhatsAppLink";
 import type { OrgInstance } from "~/modules/organisations/types";
+import type { Project } from "~/modules/projects/types";
+import { config } from "~/utils/config";
 
 interface ProjectCoordinatorsProps {
   project: Project;
