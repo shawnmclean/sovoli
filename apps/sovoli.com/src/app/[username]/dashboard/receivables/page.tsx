@@ -11,6 +11,8 @@ const retrieveOrgInstance = async (username: string) => {
   return result.orgInstance;
 };
 
+export const dynamic = "force-dynamic";
+
 export function generateStaticParams() {
   // This will be handled by the parent layout
   return [];
