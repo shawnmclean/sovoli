@@ -145,16 +145,14 @@ export function UnifiedProgramLeadsView({
     <div className="space-y-8">
       {/* Leads Without Activity */}
       <section className="space-y-4">
-        <h2 className="text-lg font-bold text-default-700 px-1">
-          {leadsWithoutActivity.length > 0
-            ? "New / No Activity"
-            : "All leads contacted! 🎉"}
-          {leadsWithoutActivity.length > 0 && (
+        {leadsWithoutActivity.length > 0 && (
+          <h2 className="text-lg font-bold text-default-700 px-1">
+            New / No Activity
             <span className="ml-2 text-sm font-normal text-default-400">
               ({leadsWithoutActivity.length})
             </span>
-          )}
-        </h2>
+          </h2>
+        )}
         {leadsWithoutActivity.length > 0 && (
           <div className="space-y-2 border border-default-200 rounded-lg divide-y divide-default-200">
             {leadsWithoutActivity.map((lead) => (
