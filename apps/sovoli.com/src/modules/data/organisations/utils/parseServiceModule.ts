@@ -9,6 +9,7 @@ import { getMediaByIdOptional } from "./parseMediaModule";
 const serviceJsonSchema = z.object({
   name: z.string(),
   description: z.string(),
+  category: z.string().optional(),
   url: z.string().refine(
     (val) => {
       // Allow full URLs (http:// or https://)
@@ -80,6 +81,7 @@ export function parseServiceModule(
     const service: Service = {
       name: serviceJson.name,
       description: serviceJson.description,
+      category: serviceJson.category,
       url: serviceJson.url,
       image,
       price: serviceJson.price,
