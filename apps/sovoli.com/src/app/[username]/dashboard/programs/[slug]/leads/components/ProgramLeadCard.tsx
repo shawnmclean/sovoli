@@ -1,7 +1,6 @@
 import { Button } from "@sovoli/ui/components/button";
 import {
   ChevronRightIcon,
-  EditIcon,
   MessageCircleIcon,
   PhoneIcon,
 } from "lucide-react";
@@ -22,14 +21,10 @@ function formatPhone(phone: string): string {
 
 function ActionButtons({
   phone,
-  onEdit,
   onLogInteraction,
-  variant = "icon",
 }: {
   phone: string;
-  onEdit: () => void;
   onLogInteraction: () => void;
-  variant?: "icon" | "full";
 }) {
   const cleanedPhone = phone.replace(/\D/g, "");
   const whatsappUrl = `https://wa.me/${cleanedPhone}`;
@@ -46,47 +41,6 @@ function ActionButtons({
     onLogInteraction();
     window.location.href = telUrl;
   };
-
-  const handleEditClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    onEdit();
-  };
-
-  if (variant === "full") {
-    return (
-      <div className="flex flex-col sm:flex-row gap-2 w-full">
-        <Button
-          as="a"
-          variant="solid"
-          color="success"
-          className="flex-1"
-          startContent={<MessageCircleIcon className="w-4 h-4" />}
-          onClick={handleWhatsAppClick}
-        >
-          WhatsApp
-        </Button>
-        <Button
-          as="a"
-          variant="solid"
-          color="primary"
-          className="flex-1"
-          startContent={<PhoneIcon className="w-4 h-4" />}
-          onClick={handleCallClick}
-        >
-          Call
-        </Button>
-        <Button
-          as="a"
-          variant="light"
-          className="flex-1"
-          startContent={<EditIcon className="w-4 h-4" />}
-          onClick={handleEditClick}
-        >
-          Edit
-        </Button>
-      </div>
-    );
-  }
 
   return (
     <div className="flex items-center gap-1">
@@ -112,21 +66,11 @@ function ActionButtons({
       >
         <PhoneIcon className="w-4 h-4" />
       </Button>
-      <Button
-        as="a"
-        isIconOnly
-        variant="light"
-        size="sm"
-        className="text-default-400"
-        onClick={handleEditClick}
-      >
-        <EditIcon className="w-4 h-4" />
-      </Button>
     </div>
   );
 }
 
-function StatusIndicator({ state }: { state: SystemState }) {
+export function StatusIndicator({ state }: { state: SystemState }) {
   const colorMap = {
     "🟢": "bg-success-500",
     "🟡": "bg-warning-500",
@@ -170,7 +114,6 @@ export function LeadCard({
       </div>
       <ActionButtons
         phone={lead.phone}
-        onEdit={() => onUpdateClick(lead.id)}
         onLogInteraction={() => onUpdateClick(lead.id)}
       />
     </button>
@@ -188,7 +131,7 @@ interface LeadDrawerContentProps {
 export function LeadDrawerContent({
   lead,
   interactions,
-  systemState,
+  systemState: _systemState,
   onViewHistory,
   showProgram = false,
 }: LeadDrawerContentProps) {

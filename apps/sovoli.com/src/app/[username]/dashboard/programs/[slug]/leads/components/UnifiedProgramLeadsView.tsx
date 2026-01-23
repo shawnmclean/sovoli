@@ -15,7 +15,7 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import { LeadInteractionModal } from "../../../../components/LeadInteractionModal";
 import type { LeadInteraction } from "../utils/leadCategorization";
 import { categorizeLead } from "../utils/leadCategorization";
-import { LeadCard } from "./ProgramLeadCard";
+import { LeadCard, StatusIndicator } from "./ProgramLeadCard";
 import { LeadDrawerContent, DrawerActionButtons } from "./ProgramLeadCard";
 import { LeadHistoryModal } from "./LeadHistoryModal";
 
@@ -227,7 +227,14 @@ export function UnifiedProgramLeadsView({
             {(onClose) => (
               <>
                 <DrawerHeader
-                  title={drawerLead.name}
+                  startContent={
+                    <div className="flex items-center gap-2">
+                      <StatusIndicator state={drawerLead.systemState} />
+                      <h3 className="text-lg font-bold text-foreground">
+                        {drawerLead.name}
+                      </h3>
+                    </div>
+                  }
                   showBackButton
                   onBackPress={onClose}
                   endContent={
