@@ -11,6 +11,13 @@
       "description": "Custom dressmaking services. From elegant evening wear to casual day dresses, we create beautiful, well-fitted garments tailored to your style and measurements.",
       "url": "/services",
       "price": "Price on request"
+    },
+    {
+      "name": "Custom Tailoring & Alterations",
+      "description": "The right fit starts here. Professional sewing and garment alteration services tailored to individual specifications.\n\nIncluded services:\n- Wedding dress tailoring and alterations\n- Office wear tailoring\n- Everyday clothing custom tailoring\n- Sleeve adjustments\n- Pant/trouser adjustments\n- General sewing and alteration work",
+      "category": "Tailoring & Garment Services",
+      "url": "/services",
+      "price": "Price on request"
     }
   ]
 }
