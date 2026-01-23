@@ -1,0 +1,16 @@
+{
+  "services": [
+    {
+      "name": "Alterations",
+      "description": "Professional alteration services to ensure your garments fit perfectly. We handle hemming, taking in or letting out seams, adjusting sleeves, and more to make your clothes look tailor-made for you.",
+      "url": "/services",
+      "price": "Price on request"
+    },
+    {
+      "name": "Dress",
+      "description": "Custom dressmaking services. From elegant evening wear to casual day dresses, we create beautiful, well-fitted garments tailored to your style and measurements.",
+      "url": "/services",
+      "price": "Price on request"
+    }
+  ]
+}

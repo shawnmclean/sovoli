@@ -25,9 +25,9 @@ export function OfferingContent({ orgInstance }: OfferingContentProps) {
   );
 
   // Check if services are available for this tenant
-  const username = orgInstance.org.username;
   const hasServices =
-    username === "healingemeraldwellness" || username === "fitright";
+    orgInstance.serviceModule?.services &&
+    orgInstance.serviceModule.services.length > 0;
 
   // Build the content array
   const content: React.ReactNode[] = [];

@@ -1,0 +1,28 @@
+{
+  "services": [
+    {
+      "name": "Swedish Massage",
+      "description": "A timeless, soothing massage designed to melt away tension and promote deep relaxation. Gentle, flowing strokes enhance circulation, calm the nervous system, and restore the body's natural balance—leaving you refreshed, renewed, and radiating peace.",
+      "url": "https://www.fresha.com/book-now/healing-emerald-wellness-spa-training-centre-ltd-nwcg3389/all-offer?share=true&pId=2719972",
+      "price": "price varies"
+    },
+    {
+      "name": "Deep Cleansing Facial",
+      "description": "Purity & Balance Renewal, A refreshing, purifying treatment designed to restore balance to tired, congested, or stressed skin.",
+      "url": "https://www.fresha.com/book-now/healing-emerald-wellness-spa-training-centre-ltd-nwcg3389/all-offer?share=true&pId=2719972",
+      "price": "price varies"
+    },
+    {
+      "name": "Microdermabrasion",
+      "description": "Diamond Radiance Facial, Experience gentle resurfacing that polishes away dead skin cells using fine crystals or a diamond tip. This therapy refines texture, reduces fine lines, and enhances natural luminosity. Beyond beauty, it's a mindful moment of self-renewal ,helping you shed not only surface dullness but also the weight of daily stress.",
+      "url": "https://www.fresha.com/book-now/healing-emerald-wellness-spa-training-centre-ltd-nwcg3389/all-offer?share=true&pId=2719972",
+      "price": "price varies"
+    },
+    {
+      "name": "Micro needling",
+      "description": "Cellular Rejuvenation Therapy, a transformative treatment that stimulates collagen production and skin healing through micro-needling technology. This rejuvenation ritual restores firmness, refines pores, and softens scars while fostering inner balance. It's a mindful journey of renewal ,as your skin regenerates, so does your sense of self.",
+      "url": "https://www.fresha.com/book-now/healing-emerald-wellness-spa-training-centre-ltd-nwcg3389/all-offer?share=true&pId=2719972",
+      "price": "price varies"
+    }
+  ]
+}

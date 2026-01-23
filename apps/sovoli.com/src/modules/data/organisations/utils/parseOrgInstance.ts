@@ -12,6 +12,7 @@ import { type MediaMap, parseMediaModule } from "./parseMediaModule";
 import { parseNeedsModule } from "./parseNeedsModule";
 import { parseOrgModule } from "./parseOrgModule";
 import { parseProjectsModule } from "./parseProjectsModule";
+import { parseServiceModule } from "./parseServiceModule";
 import { parseWebsiteModule } from "./parseWebsiteModule";
 import { parseWorkforceModule } from "./parseWorkforceModule";
 
@@ -42,6 +43,8 @@ export interface OrgInstanceJsonData {
   website?: unknown;
   /** Optional: Catalog module data */
   catalog?: unknown;
+  /** Optional: Services module data */
+  services?: unknown;
 }
 
 /**
@@ -189,12 +192,17 @@ export function parseOrgInstance(
     ? parseCatalogModule(jsonData.catalog)
     : (existingInstance?.catalogModule ?? null);
 
+  // Step 10: Parse services module (depends on media for image resolution)
+  const serviceModule = jsonData.services
+    ? parseServiceModule(jsonData.services, { mediaMap })
+    : (existingInstance?.serviceModule ?? null);
+
   // Build and return the complete OrgInstance
   const orgInstance: OrgInstance = {
     org: finalOrg,
     websiteModule,
     academicModule,
-    serviceModule: existingInstance?.serviceModule ?? null,
+    serviceModule,
     workforceModule,
     scoringModule: existingInstance?.scoringModule ?? null,
     catalogModule,

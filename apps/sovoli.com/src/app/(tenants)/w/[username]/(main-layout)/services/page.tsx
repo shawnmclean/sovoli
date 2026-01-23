@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 
 import { getOrgInstanceByUsername } from "../../lib/getOrgInstanceByUsername";
+import { ServiceCard } from "./components/ServiceCard";
 
 const retrieveOrgInstance = async (username: string) => {
   const result = await getOrgInstanceByUsername(username);
@@ -69,27 +70,11 @@ export default async function ServicesPage({
       {services.length ? (
         <div className="grid gap-4 sm:grid-cols-2">
           {services.map((service) => (
-            <Card key={service.url} className="bg-content1">
-              <CardHeader className="flex flex-col items-start gap-1">
-                <div className="text-base font-semibold text-foreground">
-                  {service.name}
-                </div>
-                <div className="text-sm text-foreground-500">
-                  {service.description}
-                </div>
-              </CardHeader>
-              <CardBody className="pt-0">
-                <Button
-                  as={Link}
-                  href={service.url}
-                  color="primary"
-                  variant="flat"
-                  radius="full"
-                >
-                  Book / Learn more
-                </Button>
-              </CardBody>
-            </Card>
+            <ServiceCard
+              key={service.name}
+              service={service}
+              orgInstance={orgInstance}
+            />
           ))}
         </div>
       ) : (

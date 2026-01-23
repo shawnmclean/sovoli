@@ -8,6 +8,7 @@ import mediaData from "./media.json";
 import orgData from "./org.json";
 import programGroupsData from "./program-groups.json";
 import sewingAcademicData from "./sewing-academic.json";
+import servicesData from "./services.json";
 import websiteData from "./website.json";
 import workforceData from "./workforce.json";
 import workshopsAcademicData from "./workshops-academic.json";
@@ -25,6 +26,7 @@ export const FITRIGHT_ORG: OrgInstance = parseOrgInstance({
     programGroups: programGroupsData,
     groupAcademic: [sewingAcademicData, workshopsAcademicData],
     website: websiteData,
+    services: servicesData,
   },
 });
 

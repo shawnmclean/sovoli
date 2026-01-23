@@ -110,7 +110,9 @@ export function SignupWizard({
             });
           }
 
-          if (!program) {
+          // If there's a whatsappNumber, show choice step (for services or general inquiries)
+          // Otherwise, if no program, call onSuccess immediately
+          if (!program && !whatsappNumber) {
             onSuccess?.({ phone, firstName, lastName });
           } else {
             setStep("choice");
@@ -121,23 +123,29 @@ export function SignupWizard({
     );
   }
 
-  if (step === "choice" && phone && firstName && lastName && program) {
+  if (step === "choice" && phone && firstName && lastName) {
     const cycleLabel = getCycleLabel(cycle);
     const programName =
-      program.name ?? program.standardProgramVersion?.program.name;
+      program?.name ?? program?.standardProgramVersion?.program.name;
     const cycleSuffix = cycleLabel ? ` for ${cycleLabel}` : "";
 
     // Prepare event properties for WhatsAppLink to include cycle/program data
-    const whatsappEventProperties = {
-      intent: "Contact" as const,
-      role: "parent" as const,
-      page: "programs" as const,
-      cycleId: cycle?.id,
-      cycleLabel: cycleLabel ?? undefined,
-      programId: program.id,
-      programName: programName ?? undefined,
-      selection: undefined as string | undefined,
-    };
+    const whatsappEventProperties = program
+      ? {
+          intent: "Contact" as const,
+          role: "parent" as const,
+          page: "programs" as const,
+          cycleId: cycle?.id,
+          cycleLabel: cycleLabel ?? undefined,
+          programId: program.id,
+          programName: programName ?? undefined,
+          selection: undefined as string | undefined,
+        }
+      : {
+          intent: "Contact" as const,
+          page: "services" as const,
+          selection: undefined as string | undefined,
+        };
 
     return (
       <div>
@@ -172,68 +180,128 @@ export function SignupWizard({
           </div>
         )}
         <div className="flex flex-col gap-2 w-full">
-          <Button
-            color="primary"
-            as={WhatsAppLink}
-            phoneNumber={whatsappNumber}
-            message={`Hi! My name is ${firstName} ${lastName} and I'm interested in enrolling in ${programName}${cycleSuffix}.`}
-            fullWidth
-            eventProperties={{
-              ...whatsappEventProperties,
-              selection: "enroll",
-            }}
-            onPress={() => {
-              trackProgramAnalytics("Lead", program, cycle, {
-                selection: "enroll",
-              });
+          {program ? (
+            <>
+              <Button
+                color="primary"
+                as={WhatsAppLink}
+                phoneNumber={whatsappNumber}
+                message={`Hi! My name is ${firstName} ${lastName} and I'm interested in enrolling in ${programName}${cycleSuffix}.`}
+                fullWidth
+                eventProperties={{
+                  ...whatsappEventProperties,
+                  selection: "enroll",
+                }}
+                onPress={() => {
+                  trackProgramAnalytics("Lead", program, cycle, {
+                    selection: "enroll",
+                  });
 
-              onSuccess?.({ phone, firstName, lastName });
-            }}
-          >
-            Enroll Now
-          </Button>
-          <Button
-            color="primary"
-            variant="flat"
-            as={WhatsAppLink}
-            phoneNumber={whatsappNumber}
-            message={`Hi! My name is ${firstName} ${lastName} and I'm interested in ${programName}${cycleSuffix}. I would like to schedule a visit.`}
-            fullWidth
-            eventProperties={{
-              ...whatsappEventProperties,
-              selection: "visit",
-            }}
-            onPress={() => {
-              trackProgramAnalytics("Lead", program, cycle, {
-                selection: "visit",
-              });
+                  onSuccess?.({ phone, firstName, lastName });
+                }}
+              >
+                Enroll Now
+              </Button>
+              <Button
+                color="primary"
+                variant="flat"
+                as={WhatsAppLink}
+                phoneNumber={whatsappNumber}
+                message={`Hi! My name is ${firstName} ${lastName} and I'm interested in ${programName}${cycleSuffix}. I would like to schedule a visit.`}
+                fullWidth
+                eventProperties={{
+                  ...whatsappEventProperties,
+                  selection: "visit",
+                }}
+                onPress={() => {
+                  trackProgramAnalytics("Lead", program, cycle, {
+                    selection: "visit",
+                  });
 
-              onSuccess?.({ phone, firstName, lastName });
-            }}
-          >
-            Schedule a Visit
-          </Button>
-          <Button
-            color="default"
-            as={WhatsAppLink}
-            phoneNumber={whatsappNumber}
-            message={`Hi! My name is ${firstName} ${lastName} and I'm interested in ${programName}${cycleSuffix}. I would like more information.`}
-            fullWidth
-            eventProperties={{
-              ...whatsappEventProperties,
-              selection: "more_information",
-            }}
-            onPress={() => {
-              trackProgramAnalytics("Lead", program, cycle, {
-                selection: "more_information",
-              });
+                  onSuccess?.({ phone, firstName, lastName });
+                }}
+              >
+                Schedule a Visit
+              </Button>
+              <Button
+                color="default"
+                as={WhatsAppLink}
+                phoneNumber={whatsappNumber}
+                message={`Hi! My name is ${firstName} ${lastName} and I'm interested in ${programName}${cycleSuffix}. I would like more information.`}
+                fullWidth
+                eventProperties={{
+                  ...whatsappEventProperties,
+                  selection: "more_information",
+                }}
+                onPress={() => {
+                  trackProgramAnalytics("Lead", program, cycle, {
+                    selection: "more_information",
+                  });
 
-              onSuccess?.({ phone, firstName, lastName });
-            }}
-            startContent={<SiWhatsapp size={16} />}
-          >
-            Message Us
-          </Button>
+                  onSuccess?.({ phone, firstName, lastName });
+                }}
+                startContent={<SiWhatsapp size={16} />}
+              >
+                Message Us
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button
+                color="primary"
+                as={WhatsAppLink}
+                phoneNumber={whatsappNumber}
+                message={`Hi! My name is ${firstName} ${lastName}. I'm interested in learning more about your services.`}
+                fullWidth
+                eventProperties={{
+                  ...whatsappEventProperties,
+                  selection: "book",
+                }}
+                onPress={() => {
+                  posthog.capture("ServiceLead", {
+                    $set: {
+                      phone: phone,
+                      first_name: firstName,
+                      last_name: lastName,
+                      name: `${firstName} ${lastName}`,
+                    },
+                    selection: "book",
+                  });
+
+                  onSuccess?.({ phone, firstName, lastName });
+                }}
+              >
+                Book Now
+              </Button>
+              <Button
+                color="default"
+                as={WhatsAppLink}
+                phoneNumber={whatsappNumber}
+                message={`Hi! My name is ${firstName} ${lastName}. I would like more information about your services.`}
+                fullWidth
+                eventProperties={{
+                  ...whatsappEventProperties,
+                  selection: "more_information",
+                }}
+                onPress={() => {
+                  posthog.capture("ServiceLead", {
+                    $set: {
+                      phone: phone,
+                      first_name: firstName,
+                      last_name: lastName,
+                      name: `${firstName} ${lastName}`,
+                    },
+                    selection: "more_information",
+                  });
+
+                  onSuccess?.({ phone, firstName, lastName });
+                }}
+                startContent={<SiWhatsapp size={16} />}
+              >
+                Message Us
+              </Button>
+            </>
+          )}
         </div>
       </div>
     );
