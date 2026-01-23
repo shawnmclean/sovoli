@@ -615,6 +615,140 @@
       "currency": "JMD",
       "programName": "Massage Therapy Program",
       "cycleLabel": "Apr 15-Jun 3"
+    },
+    {
+      "id": "lead-14",
+      "name": "Ana Foxton",
+      "phone": "+18765186700",
+      "programId": "hew-massage-therapy",
+      "cycleId": "hew-massage-20260225",
+      "selection": "enroll",
+      "submittedAt": "2026-01-22T00:00:00Z",
+      "interactions": [
+        {
+          "loggedAt": "2026-01-22T00:00:00Z",
+          "contactOutcome": "not_reached",
+          "notReachedReason": "try_again_later"
+        }
+      ],
+      "committed": true,
+      "type": "program",
+      "content_category": "Massage Therapy",
+      "content_name": "Massage Therapy Program - Feb 25-Apr 15",
+      "content_type": "product",
+      "content_ids": ["hew-massage-20260225"],
+      "value": 103000,
+      "currency": "JMD",
+      "programName": "Massage Therapy Program",
+      "cycleLabel": "Feb 25-Apr 15"
+    },
+    {
+      "id": "lead-15",
+      "name": "Stephanie",
+      "phone": "+18767900587",
+      "programId": "hew-massage-therapy",
+      "cycleId": "hew-massage-20260225",
+      "selection": "enroll",
+      "submittedAt": "2026-01-22T00:00:00Z",
+      "interactions": [
+        {
+          "loggedAt": "2026-01-22T00:00:00Z",
+          "contactOutcome": "conversation",
+          "interestLevel": "wants_to_proceed",
+          "nextAction": "follow_up_later",
+          "notes": "Updated for February intake"
+        }
+      ],
+      "committed": true,
+      "type": "program",
+      "content_category": "Massage Therapy",
+      "content_name": "Massage Therapy Program - Feb 25-Apr 15",
+      "content_type": "product",
+      "content_ids": ["hew-massage-20260225"],
+      "value": 103000,
+      "currency": "JMD",
+      "programName": "Massage Therapy Program",
+      "cycleLabel": "Feb 25-Apr 15"
+    },
+    {
+      "id": "lead-16",
+      "name": "Taylor",
+      "phone": "+18764294323",
+      "programId": "hew-massage-therapy",
+      "cycleId": "hew-massage-20260225",
+      "selection": "enroll",
+      "submittedAt": "2026-01-22T00:00:00Z",
+      "interactions": [
+        {
+          "loggedAt": "2026-01-22T00:00:00Z",
+          "contactOutcome": "not_reached",
+          "notReachedReason": "try_again_later"
+        }
+      ],
+      "committed": true,
+      "type": "program",
+      "content_category": "Massage Therapy",
+      "content_name": "Massage Therapy Program - Feb 25-Apr 15",
+      "content_type": "product",
+      "content_ids": ["hew-massage-20260225"],
+      "value": 103000,
+      "currency": "JMD",
+      "programName": "Massage Therapy Program",
+      "cycleLabel": "Feb 25-Apr 15"
+    },
+    {
+      "id": "lead-17",
+      "name": "Zoe",
+      "phone": "+18765091348",
+      "programId": "hew-massage-therapy",
+      "cycleId": "hew-massage-20260225",
+      "selection": "enroll",
+      "submittedAt": "2026-01-22T00:00:00Z",
+      "interactions": [
+        {
+          "loggedAt": "2026-01-22T00:00:00Z",
+          "contactOutcome": "not_reached",
+          "notReachedReason": "try_again_later"
+        }
+      ],
+      "committed": true,
+      "type": "program",
+      "content_category": "Massage Therapy",
+      "content_name": "Massage Therapy Program - Feb 25-Apr 15",
+      "content_type": "product",
+      "content_ids": ["hew-massage-20260225"],
+      "value": 103000,
+      "currency": "JMD",
+      "programName": "Massage Therapy Program",
+      "cycleLabel": "Feb 25-Apr 15"
+    },
+    {
+      "id": "lead-18",
+      "name": "Lorraine",
+      "phone": "+18768280387",
+      "programId": "hew-massage-therapy",
+      "cycleId": "hew-massage-20260415",
+      "selection": "enroll",
+      "submittedAt": "2026-01-22T00:00:00Z",
+      "interactions": [
+        {
+          "loggedAt": "2026-01-22T00:00:00Z",
+          "contactOutcome": "conversation",
+          "interestLevel": "wants_to_proceed",
+          "nextAction": "follow_up_later",
+          "notes": "Change to April intake"
+        }
+      ],
+      "committed": true,
+      "type": "program",
+      "content_category": "Massage Therapy",
+      "content_name": "Massage Therapy Program - Apr 15-Jun 3",
+      "content_type": "product",
+      "content_ids": ["hew-massage-20260415"],
+      "value": 103000,
+      "currency": "JMD",
+      "programName": "Massage Therapy Program",
+      "cycleLabel": "Apr 15-Jun 3"
     }
   ]
 }
