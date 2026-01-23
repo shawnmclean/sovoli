@@ -16,7 +16,7 @@ import { RotateCcw, Search, SlidersHorizontal } from "lucide-react";
 import { useMemo } from "react";
 import type { OrgInstance } from "~/modules/organisations/types";
 
-type CategoryFilter =
+export type CategoryFilter =
   | "all"
   | "strong"
   | "uncertain"
