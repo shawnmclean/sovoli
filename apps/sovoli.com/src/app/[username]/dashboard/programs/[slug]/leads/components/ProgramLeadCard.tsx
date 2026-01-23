@@ -1,23 +1,14 @@
 import { Button } from "@sovoli/ui/components/button";
-import { Card, CardBody } from "@sovoli/ui/components/card";
 import {
   ChevronRightIcon,
   EditIcon,
   MessageCircleIcon,
   PhoneIcon,
 } from "lucide-react";
-import { useState } from "react";
 import type { Lead } from "~/modules/leads/types";
 import type { LeadInteraction, SystemState } from "../utils/leadCategorization";
-import { LeadHistoryModal } from "./LeadHistoryModal";
 
 // --- Helpers ---
-
-function abbreviateName(fullName: string): string {
-  const parts = fullName.trim().split(/\s+/);
-  if (parts.length === 0) return fullName;
-  return parts[0] ?? fullName;
-}
 
 function formatPhone(phone: string): string {
   const cleaned = phone.replace(/[^\d+]/g, "");
@@ -31,64 +22,105 @@ function formatPhone(phone: string): string {
 
 function ActionButtons({
   phone,
-  isRevealed,
-  onReveal,
+  onEdit,
   onLogInteraction,
+  variant = "icon",
 }: {
   phone: string;
-  isRevealed: boolean;
-  onReveal: () => void;
+  onEdit: () => void;
   onLogInteraction: () => void;
+  variant?: "icon" | "full";
 }) {
   const cleanedPhone = phone.replace(/\D/g, "");
   const whatsappUrl = `https://wa.me/${cleanedPhone}`;
   const telUrl = `tel:${phone.replace(/[^\d+]/g, "")}`;
 
-  const handleWhatsAppClick = () => {
+  const handleWhatsAppClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
     onLogInteraction();
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
   };
 
-  const handleCallClick = () => {
+  const handleCallClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
     onLogInteraction();
     window.location.href = telUrl;
   };
 
-  if (!isRevealed) {
+  const handleEditClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onEdit();
+  };
+
+  if (variant === "full") {
     return (
-      <Button
-        className="w-full font-medium shadow-sm transition-transform active:scale-[0.98]"
-        size="lg"
-        color="primary"
-        variant="solid"
-        onPress={onReveal}
-      >
-        Reveal Contact Info
-      </Button>
+      <div className="flex flex-col sm:flex-row gap-2 w-full">
+        <Button
+          as="a"
+          variant="solid"
+          color="success"
+          className="flex-1"
+          startContent={<MessageCircleIcon className="w-4 h-4" />}
+          onClick={handleWhatsAppClick}
+        >
+          WhatsApp
+        </Button>
+        <Button
+          as="a"
+          variant="solid"
+          color="primary"
+          className="flex-1"
+          startContent={<PhoneIcon className="w-4 h-4" />}
+          onClick={handleCallClick}
+        >
+          Call
+        </Button>
+        <Button
+          as="a"
+          variant="light"
+          className="flex-1"
+          startContent={<EditIcon className="w-4 h-4" />}
+          onClick={handleEditClick}
+        >
+          Edit
+        </Button>
+      </div>
     );
   }
 
   return (
-    <div className="grid grid-cols-2 gap-3 w-full animate-in fade-in slide-in-from-bottom-2 duration-300">
+    <div className="flex items-center gap-1">
       <Button
-        className="w-full font-medium shadow-sm"
-        size="lg"
+        as="a"
+        isIconOnly
+        variant="light"
+        size="sm"
         color="success"
-        variant="solid"
-        startContent={<MessageCircleIcon className="w-5 h-5" />}
-        onPress={handleWhatsAppClick}
+        className="text-success-600"
+        onClick={handleWhatsAppClick}
       >
-        WhatsApp
+        <MessageCircleIcon className="w-4 h-4" />
       </Button>
       <Button
-        className="w-full font-medium shadow-sm"
-        size="lg"
+        as="a"
+        isIconOnly
+        variant="light"
+        size="sm"
         color="primary"
-        variant="solid"
-        startContent={<PhoneIcon className="w-5 h-5" />}
-        onPress={handleCallClick}
+        className="text-primary-600"
+        onClick={handleCallClick}
       >
-        Call
+        <PhoneIcon className="w-4 h-4" />
+      </Button>
+      <Button
+        as="a"
+        isIconOnly
+        variant="light"
+        size="sm"
+        className="text-default-400"
+        onClick={handleEditClick}
+      >
+        <EditIcon className="w-4 h-4" />
       </Button>
     </div>
   );
@@ -105,35 +137,61 @@ function StatusIndicator({ state }: { state: SystemState }) {
   const bgColor = colorMap[state.emoji] || "bg-default-300";
 
   return (
-    <div className="flex items-center gap-1.5">
-      <div className={`w-2 h-2 rounded-full ${bgColor} shadow-sm`} />
-      <span className="text-xs font-medium text-default-600 uppercase tracking-tight">
-        {state.label}
-      </span>
-    </div>
+    <div className={`w-2 h-2 rounded-full ${bgColor} shadow-sm flex-shrink-0`} />
   );
 }
 
 // --- Main Component ---
 
-interface ProgramLeadCardProps {
+interface LeadCardProps {
+  lead: Lead;
+  systemState: SystemState;
+  onCardClick: () => void;
+  onUpdateClick: (leadId: string) => void;
+}
+
+export function LeadCard({
+  lead,
+  systemState,
+  onCardClick,
+  onUpdateClick,
+}: LeadCardProps) {
+  return (
+    <button
+      type="button"
+      onClick={onCardClick}
+      className="w-full px-3 sm:px-4 py-3 flex items-center justify-between gap-2 hover:bg-default-50 transition-colors text-left"
+    >
+      <div className="flex items-center gap-2 flex-1 min-w-0">
+        <StatusIndicator state={systemState} />
+        <span className="text-lg font-bold text-foreground truncate">
+          {lead.name}
+        </span>
+      </div>
+      <ActionButtons
+        phone={lead.phone}
+        onEdit={() => onUpdateClick(lead.id)}
+        onLogInteraction={() => onUpdateClick(lead.id)}
+      />
+    </button>
+  );
+}
+
+interface LeadDrawerContentProps {
   lead: Lead;
   interactions: LeadInteraction[];
   systemState: SystemState;
-  onUpdateClick: (leadId: string) => void;
+  onViewHistory?: (leadId: string) => void;
   showProgram?: boolean;
 }
 
-export function ProgramLeadCard({
+export function LeadDrawerContent({
   lead,
   interactions,
   systemState,
-  onUpdateClick,
+  onViewHistory,
   showProgram = false,
-}: ProgramLeadCardProps) {
-  const [isRevealed, setIsRevealed] = useState(false);
-  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
-
+}: LeadDrawerContentProps) {
   // Get latest interaction
   const latestInteraction = interactions[0];
 
@@ -149,123 +207,121 @@ export function ProgramLeadCard({
   const shouldShowProgram = showProgram && !!lead.programName;
 
   return (
-    <Card className="w-full border-b border-default-100 shadow-none rounded-none sm:rounded-medium sm:border bg-background sm:shadow-sm">
-      <CardBody className="p-4 sm:p-5 space-y-5">
-        {/* Header: Name & Status */}
-        <div className="flex items-start justify-between">
-          <div className="space-y-1">
-            <button
-              type="button"
-              className="flex items-center gap-2 text-left active:opacity-70 transition-opacity"
-              onClick={() => {
-                if (!isRevealed) setIsRevealed(true);
-              }}
-            >
-              <h3 className="text-xl font-bold text-foreground">
-                {isRevealed ? lead.name : abbreviateName(lead.name)}
-              </h3>
-              {!isRevealed && (
-                <span className="text-default-300 text-lg select-none">
-                  •••••
-                </span>
-              )}
-            </button>
-            <StatusIndicator state={systemState} />
-          </div>
-
-          <Button
-            isIconOnly
-            variant="light"
-            className="text-default-400 -mr-2 -mt-2"
-            onPress={() => onUpdateClick(lead.id)}
-          >
-            <EditIcon className="w-5 h-5" />
-          </Button>
-        </div>
-
-        {/* Main Actions */}
-        <div className="pt-1">
-          <ActionButtons
-            phone={lead.phone}
-            isRevealed={isRevealed}
-            onReveal={() => setIsRevealed(true)}
-            onLogInteraction={() => onUpdateClick(lead.id)}
-          />
-        </div>
-
-        {/* Context Info (Always Visible) */}
-        <div
-          className={`grid grid-cols-2 gap-y-2 text-sm text-default-500 ${shouldShowProgram ? "sm:grid-cols-3" : ""}`}
-        >
-          {shouldShowProgram && (
-            <div>
-              <span className="block text-[10px] font-semibold uppercase tracking-wider text-default-400">
-                Program
-              </span>
-              <span className="text-foreground">{lead.programName}</span>
-            </div>
-          )}
+    <div className="space-y-6">
+      {/* Context Info */}
+      <div
+        className={`grid grid-cols-2 gap-y-3 gap-x-4 text-sm ${shouldShowProgram ? "sm:grid-cols-3" : ""}`}
+      >
+        {shouldShowProgram && (
           <div>
-            <span className="block text-[10px] font-semibold uppercase tracking-wider text-default-400">
-              Cycle
+            <span className="block text-xs font-semibold uppercase tracking-wider text-default-400 mb-1">
+              Program
             </span>
-            <span className="text-foreground">
-              {lead.cycleLabel ?? "Unknown"}
-            </span>
-          </div>
-          <div>
-            <span className="block text-[10px] font-semibold uppercase tracking-wider text-default-400">
-              Submitted
-            </span>
-            <span>{submissionDate}</span>
-          </div>
-          {isRevealed && (
-            <div className="col-span-2">
-              <span className="block text-[10px] font-semibold uppercase tracking-wider text-default-400">
-                Phone
-              </span>
-              <span className="font-mono">{formatPhone(lead.phone)}</span>
-            </div>
-          )}
-        </div>
-
-        {/* Latest Activity Preview */}
-        {latestInteraction && (
-          <div className="relative bg-default-50 rounded-lg p-3 text-sm">
-            <div className="font-medium text-foreground mb-1">
-              {latestInteraction.contactOutcome === "not_reached"
-                ? "Did not reach"
-                : latestInteraction.contactOutcome === "conversation"
-                  ? "Conversation"
-                  : "Brief contact"}
-            </div>
-            <div className="text-default-500 line-clamp-2">
-              {latestInteraction.notes ??
-                (latestInteraction.blocker
-                  ? `Blocker: ${latestInteraction.blocker.replace(/_/g, " ")}`
-                  : "No notes logged.")}
-            </div>
-
-            {interactions.length > 1 && (
-              <button
-                type="button"
-                onClick={() => setIsHistoryOpen(true)}
-                className="absolute bottom-3 right-3 text-primary text-xs font-semibold flex items-center gap-0.5 hover:underline"
-              >
-                View History ({interactions.length})
-                <ChevronRightIcon className="w-3 h-3" />
-              </button>
-            )}
+            <span className="text-foreground">{lead.programName}</span>
           </div>
         )}
+        <div>
+          <span className="block text-xs font-semibold uppercase tracking-wider text-default-400 mb-1">
+            Cycle
+          </span>
+          <span className="text-foreground">
+            {lead.cycleLabel ?? "Unknown"}
+          </span>
+        </div>
+        <div>
+          <span className="block text-xs font-semibold uppercase tracking-wider text-default-400 mb-1">
+            Submitted
+          </span>
+          <span>{submissionDate}</span>
+        </div>
+        <div className="col-span-2 sm:col-span-1">
+          <span className="block text-xs font-semibold uppercase tracking-wider text-default-400 mb-1">
+            Phone
+          </span>
+          <span className="font-mono text-foreground">{formatPhone(lead.phone)}</span>
+        </div>
+      </div>
 
-        <LeadHistoryModal
-          interactions={interactions}
-          isOpen={isHistoryOpen}
-          onOpenChange={setIsHistoryOpen}
-          leadName={lead.name}
-        />
-      </CardBody>
-    </Card>
+      {/* Latest Activity Preview */}
+      {latestInteraction && (
+        <div className="relative bg-default-50 rounded-lg p-4">
+          <div className="font-medium text-foreground mb-2">
+            {latestInteraction.contactOutcome === "not_reached"
+              ? "Did not reach"
+              : latestInteraction.contactOutcome === "conversation"
+                ? "Conversation"
+                : "Brief contact"}
+          </div>
+          <div className="text-default-600">
+            {latestInteraction.notes ??
+              (latestInteraction.blocker
+                ? `Blocker: ${latestInteraction.blocker.replace(/_/g, " ")}`
+                : "No notes logged.")}
+          </div>
+
+          {interactions.length > 1 && onViewHistory && (
+            <button
+              type="button"
+              onClick={() => onViewHistory(lead.id)}
+              className="mt-3 text-primary text-sm font-semibold flex items-center gap-1 hover:underline"
+            >
+              View History ({interactions.length})
+              <ChevronRightIcon className="w-4 h-4" />
+            </button>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+interface DrawerActionButtonsProps {
+  phone: string;
+  onLogInteraction: () => void;
+}
+
+export function DrawerActionButtons({
+  phone,
+  onLogInteraction,
+}: DrawerActionButtonsProps) {
+  const cleanedPhone = phone.replace(/\D/g, "");
+  const whatsappUrl = `https://wa.me/${cleanedPhone}`;
+  const telUrl = `tel:${phone.replace(/[^\d+]/g, "")}`;
+
+  const handleWhatsAppClick = () => {
+    onLogInteraction();
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+  };
+
+  const handleCallClick = () => {
+    onLogInteraction();
+    window.location.href = telUrl;
+  };
+
+  return (
+    <div className="flex gap-3 w-full">
+      <Button
+        as="a"
+        variant="solid"
+        color="success"
+        size="lg"
+        className="flex-1"
+        startContent={<MessageCircleIcon className="w-5 h-5" />}
+        onClick={handleWhatsAppClick}
+      >
+        WhatsApp
+      </Button>
+      <Button
+        as="a"
+        variant="solid"
+        color="primary"
+        size="lg"
+        className="flex-1"
+        startContent={<PhoneIcon className="w-5 h-5" />}
+        onClick={handleCallClick}
+      >
+        Call
+      </Button>
+    </div>
   );
 }
