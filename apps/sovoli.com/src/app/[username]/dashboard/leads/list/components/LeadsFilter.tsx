@@ -23,11 +23,19 @@ export type CategoryFilter =
   | "lowIntent"
   | "noVisibility";
 
+export interface LeadsSummaryStats {
+  strong: number;
+  uncertain: number;
+  lowIntent: number;
+  noVisibility: number;
+}
+
 export interface LeadsFilterProps {
   orgInstance: OrgInstance;
   query: string;
   selectedProgramId: string;
   selectedCategory: CategoryFilter;
+  stats: LeadsSummaryStats;
   onQueryChange: (query: string) => void;
   onProgramChange: (programId: string) => void;
   onCategoryChange: (category: CategoryFilter) => void;
@@ -38,6 +46,7 @@ export function LeadsFilter({
   query,
   selectedProgramId,
   selectedCategory,
+  stats,
   onQueryChange,
   onProgramChange,
   onCategoryChange,
@@ -83,33 +92,63 @@ export function LeadsFilter({
 
   return (
     <>
-      <div className="sticky top-14 z-[5] border-b border-default-200 bg-background">
-        <div className="flex gap-3 px-4 py-4">
-          <Input
-            placeholder="Search leads..."
-            value={query}
-            onValueChange={onQueryChange}
-            variant="bordered"
-            className="flex-1"
-            startContent={<Search size={16} />}
-          />
+      <div className="sticky top-11 z-[5] border-b border-default-200 bg-background">
+        <div className="flex flex-col">
+          <div className="flex gap-3 px-4 py-4">
+            <Input
+              placeholder="Search leads..."
+              value={query}
+              onValueChange={onQueryChange}
+              variant="bordered"
+              className="flex-1"
+              startContent={<Search size={16} />}
+            />
 
-          <Button
-            isIconOnly
-            variant="bordered"
-            onPress={onOpen}
-            aria-label="Open filters"
-          >
-            <Badge
-              color="primary"
-              content=""
-              size="sm"
-              placement="top-right"
-              isInvisible={!hasActiveFilters}
+            <Button
+              isIconOnly
+              variant="bordered"
+              onPress={onOpen}
+              aria-label="Open filters"
             >
-              <SlidersHorizontal size={20} />
-            </Badge>
-          </Button>
+              <Badge
+                color="primary"
+                content=""
+                size="sm"
+                placement="top-right"
+                isInvisible={!hasActiveFilters}
+              >
+                <SlidersHorizontal size={20} />
+              </Badge>
+            </Button>
+          </div>
+
+          {/* Stats Row */}
+          <div className="flex gap-2 px-4 pb-3 overflow-x-auto scrollbar-hide">
+            <div className="flex items-center gap-1.5 shrink-0">
+              <span className="text-sm font-semibold text-success">
+                {stats.strong}
+              </span>
+              <span className="text-xs text-default-500">Strong</span>
+            </div>
+            <div className="flex items-center gap-1.5 shrink-0">
+              <span className="text-sm font-semibold text-warning">
+                {stats.uncertain}
+              </span>
+              <span className="text-xs text-default-500">Uncertain</span>
+            </div>
+            <div className="flex items-center gap-1.5 shrink-0">
+              <span className="text-sm font-semibold text-default-600">
+                {stats.lowIntent}
+              </span>
+              <span className="text-xs text-default-500">Low Intent</span>
+            </div>
+            <div className="flex items-center gap-1.5 shrink-0">
+              <span className="text-sm font-semibold text-danger">
+                {stats.noVisibility}
+              </span>
+              <span className="text-xs text-default-500">No Visibility</span>
+            </div>
+          </div>
         </div>
       </div>
 

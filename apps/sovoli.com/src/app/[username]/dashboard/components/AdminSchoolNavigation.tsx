@@ -25,7 +25,7 @@ export function AdminSchoolNavigation({
       variant="underlined"
       selectedKey={selectedKey}
       fullWidth
-      className="sticky top-0 z-10 border-t border-default-200 bg-background py-2"
+      className="sticky top-0 z-10 border-b border-default-200 bg-background py-1"
     >
       <Tab key={baseDashboardPath} title="Overview" href={baseDashboardPath} />
       <Tab

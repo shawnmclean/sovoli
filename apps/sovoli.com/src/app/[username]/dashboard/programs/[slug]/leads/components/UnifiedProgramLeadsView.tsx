@@ -6,8 +6,6 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import { LeadInteractionModal } from "../../../../components/LeadInteractionModal";
 import type { LeadInteraction } from "../utils/leadCategorization";
 import { categorizeLead } from "../utils/leadCategorization";
-import type { LeadsSummaryStats } from "./LeadsSummaryCards";
-import { LeadsSummaryCards } from "./LeadsSummaryCards";
 import { ProgramLeadCard } from "./ProgramLeadCard";
 
 interface UnifiedProgramLeadsViewProps {
@@ -58,26 +56,6 @@ export function UnifiedProgramLeadsView({
     });
   }, [initialLeads, leadInteractions]);
 
-  // Derived Stats
-  const stats: LeadsSummaryStats = useMemo(() => {
-    const s = {
-      strong: 0,
-      uncertain: 0,
-      lowIntent: 0,
-      noVisibility: 0,
-    };
-
-    for (const lead of processedLeads) {
-      const category = lead.systemState.category;
-      if (category === "strong") s.strong++;
-      else if (category === "uncertain") s.uncertain++;
-      else if (category === "lowIntent") s.lowIntent++;
-      else s.noVisibility++;
-      // All categories are handled above, this is exhaustive
-    }
-
-    return s;
-  }, [processedLeads]);
 
   // Separate leads into lists (Active/Touched vs Untouched/NoVisibility)
   // Or just one big list sorted by importance?
@@ -128,11 +106,6 @@ export function UnifiedProgramLeadsView({
 
   return (
     <div className="space-y-8">
-      {/* Summary Cards */}
-      <section>
-        <LeadsSummaryCards stats={stats} />
-      </section>
-
       {/* Leads Without Activity */}
       <section className="space-y-4">
         <h2 className="text-lg font-bold text-default-700 px-1">

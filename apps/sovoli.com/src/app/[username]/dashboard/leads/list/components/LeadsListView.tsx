@@ -6,7 +6,11 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import { UnifiedProgramLeadsView } from "../../../programs/[slug]/leads/components/UnifiedProgramLeadsView";
 import type { LeadInteraction } from "../../../programs/[slug]/leads/utils/leadCategorization";
 import { categorizeLead } from "../../../programs/[slug]/leads/utils/leadCategorization";
-import { LeadsFilter, type CategoryFilter } from "./LeadsFilter";
+import {
+  LeadsFilter,
+  type CategoryFilter,
+  type LeadsSummaryStats,
+} from "./LeadsFilter";
 
 export function LeadsListView({
   initialLeads,
@@ -67,6 +71,28 @@ export function LeadsListView({
     selectedProgramId,
   ]);
 
+  // Compute stats from filtered leads
+  const stats: LeadsSummaryStats = useMemo(() => {
+    const s = {
+      strong: 0,
+      uncertain: 0,
+      lowIntent: 0,
+      noVisibility: 0,
+    };
+
+    for (const lead of filteredLeads) {
+      const interactions = (lead.interactions ?? []) as LeadInteraction[];
+      const systemState = categorizeLead(lead, interactions);
+      const category = systemState.category;
+      if (category === "strong") s.strong++;
+      else if (category === "uncertain") s.uncertain++;
+      else if (category === "lowIntent") s.lowIntent++;
+      else s.noVisibility++;
+    }
+
+    return s;
+  }, [filteredLeads]);
+
   return (
     <div className="flex flex-col">
       <LeadsFilter
@@ -74,6 +100,7 @@ export function LeadsListView({
         query={query}
         selectedProgramId={selectedProgramId}
         selectedCategory={selectedCategory}
+        stats={stats}
         onQueryChange={setQuery}
         onProgramChange={setSelectedProgramId}
         onCategoryChange={setSelectedCategory}
