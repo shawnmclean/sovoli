@@ -66,6 +66,124 @@
       "media": {
         "galleryIds": ["fitright-bag-workshop-1", "fitright-bag-workshop-2"]
       }
+    },
+    {
+      "id": "fr-sewing-fundamentals-workshop",
+      "slug": "sewing-fundamentals-workshop",
+      "name": "Sewing Fundamentals Workshop",
+      "audience": "student",
+      "categoryId": "fashion-workshops",
+      "highlights": [
+        {
+          "icon": "hammer",
+          "label": "Hands-On Practice",
+          "description": "6 hours of real skills with hands-on practice and a supportive instructor."
+        },
+        {
+          "icon": "clock",
+          "label": "One Day Intensive",
+          "description": "Complete workshop in a single day from 10:00 AM to 4:00 PM."
+        },
+        {
+          "icon": "graduation-cap",
+          "label": "Build Fundamentals",
+          "description": "Develop the fundamentals of sewing before taking your next big step."
+        },
+        {
+          "icon": "users",
+          "label": "Supportive Environment",
+          "description": "Learn in a small group with personalized attention from your instructor."
+        }
+      ],
+      "tagline": "Develop the fundamentals of sewing before taking your next big step",
+      "description": "This program at FitRight helps you develop the fundamentals of sewing before taking your next big step. In this intensive one-day workshop, you'll learn essential sewing machine skills, pattern reading, and fabric handling techniques. Perfect for beginners who want to build a solid foundation in sewing.",
+      "quickFacts": [
+        "1 day workshop",
+        "6 hours of hands-on practice",
+        "10:00 AM – 4:00 PM",
+        "No prerequisites required"
+      ],
+      "capabilities": [
+        {
+          "outcome": "Operate a sewing machine confidently and safely",
+          "competencies": [
+            {
+              "statement": "Thread and operate a sewing machine"
+            },
+            {
+              "statement": "Fill and insert the bobbin correctly"
+            },
+            {
+              "statement": "Control machine speed and stitch settings"
+            }
+          ]
+        },
+        {
+          "outcome": "Understand and work with commercial patterns",
+          "competencies": [
+            {
+              "statement": "Read commercial shirt patterns"
+            },
+            {
+              "statement": "Understand grain line and fabric direction"
+            },
+            {
+              "statement": "Lay and cut fabric according to pattern instructions"
+            }
+          ]
+        },
+        {
+          "outcome": "Complete basic sewing projects",
+          "competencies": [
+              {
+                "statement": "Sew a pocket skirt or a tank top"
+              },
+              {
+                "statement": "Apply different stitches and seam finishes"
+              },
+              {
+                "statement": "Understand and apply shaped facing techniques"
+              }
+          ]
+        }
+      ],
+      "groupId": "workshops",
+      "cycleIds": [
+        "fr-sewing-fundamentals-2026-01-28",
+        "fr-sewing-fundamentals-2026-01-29",
+        "fr-sewing-fundamentals-2026-01-30",
+        "fr-sewing-fundamentals-2026-01-31",
+        "fr-sewing-fundamentals-2026-02-03",
+        "fr-sewing-fundamentals-2026-02-04",
+        "fr-sewing-fundamentals-2026-02-05",
+        "fr-sewing-fundamentals-2026-02-06",
+        "fr-sewing-fundamentals-2026-02-07",
+        "fr-sewing-fundamentals-2026-02-08"
+      ],
+      "media": {
+        "coverId": "fitright-elementary-sewing-1",
+        "galleryIds": [
+          "fitright-elementary-sewing-1",
+          "fitright-elementary-sewing-2",
+          "fitright-elementary-sewing-3",
+          "fitright-elementary-sewing-4"
+        ]
+      },
+      "requirements": [
+        {
+          "name": "Materials You Will Need",
+          "category": "materials",
+          "audience": "student",
+          "items": [
+            {
+              "itemId": "supply-cotton-fabric-2-yards",
+              "quantity": 1,
+              "notes": "Non-stretch fabric"
+            }
+          ],
+          "notes": "Note: 8-inch zipper is also required but may need to be purchased separately. Please confirm availability with the school."
+        }
+      ]
     }
   ]
 }
