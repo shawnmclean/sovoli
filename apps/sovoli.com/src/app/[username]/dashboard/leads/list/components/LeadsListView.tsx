@@ -1,21 +1,12 @@
 "use client";
 
-import { Card, CardBody } from "@sovoli/ui/components/card";
-import { Input } from "@sovoli/ui/components/input";
-import { Select, SelectItem } from "@sovoli/ui/components/select";
 import { useMemo, useState } from "react";
 import type { Lead } from "~/modules/leads/types";
 import type { OrgInstance } from "~/modules/organisations/types";
 import { UnifiedProgramLeadsView } from "../../../programs/[slug]/leads/components/UnifiedProgramLeadsView";
 import type { LeadInteraction } from "../../../programs/[slug]/leads/utils/leadCategorization";
 import { categorizeLead } from "../../../programs/[slug]/leads/utils/leadCategorization";
-
-type CategoryFilter =
-  | "all"
-  | "strong"
-  | "uncertain"
-  | "lowIntent"
-  | "noVisibility";
+import { LeadsFilter, type CategoryFilter } from "./LeadsFilter";
 
 export function LeadsListView({
   initialLeads,
@@ -28,31 +19,6 @@ export function LeadsListView({
   const [selectedProgramId, setSelectedProgramId] = useState<string>("all");
   const [selectedCategory, setSelectedCategory] =
     useState<CategoryFilter>("all");
-
-  const programOptions = useMemo(() => {
-    const programs = orgInstance.academicModule?.programs ?? [];
-    return programs.map((p) => ({
-      id: p.id,
-      name: p.name ?? "Program",
-    }));
-  }, [orgInstance.academicModule?.programs]);
-
-  const programOptionsWithAll = useMemo(
-    () => [{ id: "all", name: "All programs" }, ...programOptions],
-    [programOptions],
-  );
-
-  const statusOptions = useMemo(
-    () =>
-      [
-        { id: "all", name: "All statuses" },
-        { id: "noVisibility", name: "New / No activity" },
-        { id: "uncertain", name: "Uncertain" },
-        { id: "strong", name: "Strong" },
-        { id: "lowIntent", name: "Low intent" },
-      ] as const,
-    [],
-  );
 
   const programCycleIdSet = useMemo(() => {
     if (selectedProgramId === "all") return null;
@@ -102,62 +68,24 @@ export function LeadsListView({
   ]);
 
   return (
-    <div className="space-y-4">
-      <Card>
-        <CardBody className="space-y-4">
-          <div className="grid gap-3 sm:grid-cols-3">
-            <Input
-              label="Search"
-              placeholder="Name or phone"
-              value={query}
-              onValueChange={setQuery}
-              variant="bordered"
-            />
-
-            <Select
-              label="Program"
-              items={programOptionsWithAll}
-              selectedKeys={new Set([selectedProgramId])}
-              onSelectionChange={(keys) => {
-                const key = Array.from(keys)[0];
-                setSelectedProgramId(typeof key === "string" ? key : "all");
-              }}
-              variant="bordered"
-            >
-              {(item) => (
-                <SelectItem key={item.id} textValue={item.name}>
-                  {item.name}
-                </SelectItem>
-              )}
-            </Select>
-
-            <Select
-              label="Status"
-              items={statusOptions}
-              selectedKeys={new Set([selectedCategory])}
-              onSelectionChange={(keys) => {
-                const key = Array.from(keys)[0];
-                setSelectedCategory(
-                  (typeof key === "string" ? key : "all") as CategoryFilter,
-                );
-              }}
-              variant="bordered"
-            >
-              {(item) => (
-                <SelectItem key={item.id} textValue={item.name}>
-                  {item.name}
-                </SelectItem>
-              )}
-            </Select>
-          </div>
-        </CardBody>
-      </Card>
-
-      <UnifiedProgramLeadsView
-        initialLeads={filteredLeads}
+    <div className="flex flex-col">
+      <LeadsFilter
         orgInstance={orgInstance}
-        programName="All programs"
+        query={query}
+        selectedProgramId={selectedProgramId}
+        selectedCategory={selectedCategory}
+        onQueryChange={setQuery}
+        onProgramChange={setSelectedProgramId}
+        onCategoryChange={setSelectedCategory}
       />
+
+      <div className="mx-auto w-full max-w-5xl p-4">
+        <UnifiedProgramLeadsView
+          initialLeads={filteredLeads}
+          orgInstance={orgInstance}
+          programName="All programs"
+        />
+      </div>
     </div>
   );
 }

@@ -57,15 +57,6 @@ export default async function LeadsListPage({
   });
 
   return (
-    <div className="mx-auto flex max-w-5xl flex-col gap-6 p-4">
-      <div className="space-y-2">
-        <h1 className="text-3xl font-bold">All Leads</h1>
-        <p className="text-default-500">
-          Search and filter leads across all programs.
-        </p>
-      </div>
-
-      <LeadsListView initialLeads={enhancedLeads} orgInstance={orgInstance} />
-    </div>
+    <LeadsListView initialLeads={enhancedLeads} orgInstance={orgInstance} />
   );
 }
