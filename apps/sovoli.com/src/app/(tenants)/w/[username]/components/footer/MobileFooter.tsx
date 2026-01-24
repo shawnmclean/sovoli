@@ -22,6 +22,7 @@ import {
   UsersIcon,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
+import posthog from "posthog-js";
 import { tv } from "tailwind-variants";
 import type {
   OrgCategoryKeys,
@@ -186,15 +187,64 @@ export interface MobileFooterProps {
   orgInstance: OrgInstance;
 }
 
+type NavArea = "mobile_footer" | "mobile_footer_drawer";
+type NavAction = "click" | "open" | "close";
+
 export function MobileFooter({ orgInstance }: MobileFooterProps) {
   const pathname = usePathname();
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpenChange } = useDisclosure();
 
   // Get the footer configuration based on organization categories
   const footerConfig = getFooterConfig(orgInstance);
   const offeringsNavItem = getOfferingsNavItem(orgInstance);
   const isServiceTenant = Boolean(offeringsNavItem);
   const isStationaryType = orgInstance.org.categories.includes("stationery");
+
+  const captureNavInteraction = (params: {
+    area: NavArea;
+    action: NavAction;
+    label: string;
+  }) => {
+    posthog.capture(
+      "nav_interaction",
+      {
+        area: params.area,
+        action: params.action,
+        label: params.label,
+        tenant: orgInstance.org.username,
+        source: "sovoli_web",
+      },
+      { send_instantly: true },
+    );
+  };
+
+  const handleDrawerOpenChange = (next?: boolean) => {
+    const nextIsOpen = typeof next === "boolean" ? next : !isOpen;
+
+    // Track only when state actually changes.
+    if (nextIsOpen !== isOpen) {
+      captureNavInteraction({
+        area: "mobile_footer_drawer",
+        action: nextIsOpen ? "open" : "close",
+        label: "More",
+      });
+    }
+
+    // `useDisclosure().onOpenChange` supports both (boolean) and (toggle) calls.
+    (onOpenChange as unknown as (isOpen?: boolean) => void)(next);
+  };
+
+  const openDrawer = () => handleDrawerOpenChange(true);
+  const closeDrawer = () => handleDrawerOpenChange(false);
+
+  const handleDrawerItemPress = (label: string) => {
+    captureNavInteraction({
+      area: "mobile_footer_drawer",
+      action: "click",
+      label,
+    });
+    closeDrawer();
+  };
 
   const ctaButtonClasses = footerCTAButton({
     isSelected: pathname.startsWith("/programs/apply"),
@@ -220,6 +270,13 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
                 color="default"
                 size="sm"
                 className={buttonClasses.base()}
+                onPress={() => {
+                  captureNavInteraction({
+                    area: "mobile_footer",
+                    action: "click",
+                    label: button.label,
+                  });
+                }}
               >
                 <IconComponent className={buttonClasses.icon()} />
                 <span className={buttonClasses.text()}>{button.label}</span>
@@ -237,6 +294,13 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
               size="lg"
               as={Link}
               href="/chat"
+              onPress={() => {
+                captureNavInteraction({
+                  area: "mobile_footer",
+                  action: "click",
+                  label: "Chat",
+                });
+              }}
             >
               <MessagesSquareIcon className="text-xl" />
             </Button>
@@ -261,7 +325,19 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
                 color="default"
                 size="sm"
                 className={buttonClasses.base()}
-                onPress={button.label === "More" ? onOpen : undefined}
+                onPress={() => {
+                  const isMore = button.label === "More";
+
+                  captureNavInteraction({
+                    area: "mobile_footer",
+                    action: "click",
+                    label: button.label,
+                  });
+
+                  if (isMore) {
+                    openDrawer();
+                  }
+                }}
               >
                 <IconComponent className={buttonClasses.icon()} />
                 <span className={buttonClasses.text()}>{button.label}</span>
@@ -273,7 +349,7 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
             placement="bottom"
             backdrop="opaque"
             hideCloseButton
-            onOpenChange={onOpenChange}
+            onOpenChange={handleDrawerOpenChange}
             motionProps={{
               variants: {
                 enter: {
@@ -303,7 +379,7 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
                     color="default"
                     size="sm"
                     className={drawerButtonClasses.base()}
-                    onPress={onOpenChange}
+                    onPress={() => handleDrawerItemPress("Contact")}
                   >
                     <PhoneIcon className={drawerButtonClasses.icon()} />
                     <span className={drawerButtonClasses.text()}>Contact</span>
@@ -319,7 +395,7 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
                       color="default"
                       size="sm"
                       className={drawerButtonClasses.base()}
-                      onPress={onOpenChange}
+                      onPress={() => handleDrawerItemPress("Team")}
                     >
                       <UsersIcon className={drawerButtonClasses.icon()} />
                       <span className={drawerButtonClasses.text()}>Team</span>
@@ -335,7 +411,7 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
                         color="default"
                         size="sm"
                         className={drawerButtonClasses.base()}
-                        onPress={onOpenChange}
+                        onPress={() => handleDrawerItemPress("Events")}
                       >
                         <CalendarIcon className={drawerButtonClasses.icon()} />
                         <span className={drawerButtonClasses.text()}>
@@ -349,7 +425,7 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
                         color="default"
                         size="sm"
                         className={drawerButtonClasses.base()}
-                        onPress={onOpenChange}
+                        onPress={() => handleDrawerItemPress("Team")}
                       >
                         <UsersIcon className={drawerButtonClasses.icon()} />
                         <span className={drawerButtonClasses.text()}>Team</span>
@@ -365,7 +441,7 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
                       color="default"
                       size="sm"
                       className={drawerButtonClasses.base()}
-                      onPress={onOpenChange}
+                      onPress={() => handleDrawerItemPress("Events")}
                     >
                       <CalendarIcon className={drawerButtonClasses.icon()} />
                       <span className={drawerButtonClasses.text()}>Events</span>
@@ -379,7 +455,7 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
                     color="default"
                     size="sm"
                     className={drawerButtonClasses.base()}
-                    onPress={onOpenChange}
+                    onPress={() => handleDrawerItemPress("Jobs")}
                   >
                     <BriefcaseIcon className={drawerButtonClasses.icon()} />
                     <span className={drawerButtonClasses.text()}>Jobs</span>
@@ -391,7 +467,7 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
                     color="default"
                     size="sm"
                     className={drawerButtonClasses.base()}
-                    onPress={onOpenChange}
+                    onPress={() => handleDrawerItemPress("About")}
                   >
                     <InfoIcon className={drawerButtonClasses.icon()} />
                     <span className={drawerButtonClasses.text()}>About</span>
@@ -403,7 +479,7 @@ export function MobileFooter({ orgInstance }: MobileFooterProps) {
                     color="default"
                     size="sm"
                     className={drawerButtonClasses.base()}
-                    onPress={onOpenChange}
+                    onPress={() => handleDrawerItemPress("Suppliers")}
                   >
                     <ShoppingBagIcon className={drawerButtonClasses.icon()} />
                     <span className={drawerButtonClasses.text()}>

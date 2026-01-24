@@ -6,11 +6,8 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import { UnifiedProgramLeadsView } from "../../../programs/[slug]/leads/components/UnifiedProgramLeadsView";
 import type { LeadInteraction } from "../../../programs/[slug]/leads/utils/leadCategorization";
 import { categorizeLead } from "../../../programs/[slug]/leads/utils/leadCategorization";
-import {
-  LeadsFilter,
-  type CategoryFilter,
-  type LeadsSummaryStats,
-} from "./LeadsFilter";
+import { LeadsFilter } from "./LeadsFilter";
+import type { CategoryFilter, LeadsSummaryStats } from "./LeadsFilter";
 
 export function LeadsListView({
   initialLeads,
