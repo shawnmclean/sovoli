@@ -433,5 +433,16 @@
       "level": "Book 3",
       "kind": "textbook"
     }
+  },
+  {
+    "id": "book-milady-standard-fundamentals-for-estheticians-12e",
+    "name": "Milady’s Standard Fundamentals for Estheticians (12th Edition)",
+    "category": "textbooks",
+    "tags": ["textbook", "esthetics", "skincare"],
+    "attributes": {
+      "brand": "Milady",
+      "edition": "12",
+      "kind": "textbook"
+    }
   }
 ]

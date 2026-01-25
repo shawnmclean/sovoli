@@ -117,5 +117,33 @@
     "category": "mirrors-personal-care",
     "tags": ["waxing", "brows", "mirror"],
     "unitLabel": "unit"
+  },
+  {
+    "id": "comedone-extractor",
+    "name": "Comedone Extractor",
+    "category": "anti-spot-aids-non-powered",
+    "tags": ["skincare", "aesthetics", "extraction", "tools"],
+    "unitLabel": "unit"
+  },
+  {
+    "id": "sunscreen",
+    "name": "Sunscreen",
+    "category": "sun-protection-products",
+    "tags": ["skincare", "sun-protection", "spf"],
+    "unitLabel": "bottle"
+  },
+  {
+    "id": "lip-balm",
+    "name": "Lip Balm",
+    "category": "lip-balms",
+    "tags": ["skincare", "lip-care"],
+    "unitLabel": "unit"
+  },
+  {
+    "id": "uniform-scrubs-white",
+    "name": "Uniform Scrubs (White)",
+    "category": "clothing",
+    "tags": ["uniform", "scrubs", "student"],
+    "unitLabel": "set"
   }
 ]

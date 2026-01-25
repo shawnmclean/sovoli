@@ -26,5 +26,19 @@
     "category": "fabric-textile-towels",
     "tags": ["towels", "hand", "roll"],
     "unitLabel": "roll"
+  },
+  {
+    "id": "twin-size-flat-sheets-white",
+    "name": "Twin size flat sheets (white)",
+    "category": "bed-sheets-valances",
+    "tags": ["bedding", "sheets", "twin", "white"],
+    "unitLabel": "set"
+  },
+  {
+    "id": "white-facial-towels",
+    "name": "White facial towels",
+    "category": "fabric-textile-towels",
+    "tags": ["towels", "face", "white"],
+    "unitLabel": "towel"
   }
 ]

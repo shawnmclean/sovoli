@@ -45,9 +45,9 @@
     },
     {
       "id": "skincare-20260125",
-      "customLabel": "Skincare Program - January 2026",
+      "customLabel": "Fundamentals of Skincare & Aesthetics - January 2026",
       "startDate": "2026-01-25",
-      "endDate": "2026-04-25"
+      "endDate": "2026-03-29"
     }
   ],
   "programCycles": [
@@ -350,10 +350,31 @@
       "id": "skincare-20260125",
       "academicCycleId": "skincare-20260125",
       "pricingPackage": {
-        "pricingItems": [],
+        "pricingItems": [
+          {
+            "id": "registration",
+            "label": "Registration",
+            "billingCycle": "one-time",
+            "purpose": "registration",
+            "amount": {
+              "JMD": 3000
+            },
+            "notes": "Non-refundable registration fee. Covers administrative processing, course setup, and student onboarding."
+          },
+          {
+            "id": "tuition",
+            "label": "Tuition",
+            "purpose": "tuition",
+            "billingCycle": "program",
+            "amount": {
+              "JMD": 100000
+            }
+          }
+        ],
         "discounts": [],
         "paymentSplits": []
       },
+      "notes": "Schedule: 1 day per week, 10:00 AM–5:00 PM.",
       "status": "open",
       "enrolled": 0,
       "_source": "HEW-Programs-extraction.json",

@@ -816,17 +816,141 @@
       ]
     },
     {
-      "name": "Skincare Program",
+      "name": "Fundamentals of Skincare & Aesthetics",
       "id": "program-4",
-      "slug": "skincare",
+      "slug": "fundamentals-of-skincare",
+      "audience": "student",
       "categoryId": "facial-treatments",
+      "quickFacts": [
+        "Starts Jan 25, 2026",
+        "10 weeks",
+        "1 day/week",
+        "10:00 AM–5:00 PM",
+        "In-person",
+        "Theory + practical",
+        "Final portfolio"
+      ],
+      "tagline": "Build a strong foundation in professional skincare and aesthetics",
+      "outcome": "Graduate with the practical skills and confidence to deliver professional facial treatments and client care",
+      "description": "The Fundamentals of Skincare & Aesthetics Program is designed to provide learners with a strong foundation in professional skincare, facial treatments, client care, and aesthetics principles. This program integrates theory, hands-on practical training, safety standards, and professional workplace skills to prepare students for entry-level roles in spas, salons, and aesthetic clinics. Learners will gain knowledge in skin anatomy, cosmetic chemistry, nutrition, electrical modalities, facial treatment services, and retail sales, while maintaining high standards of hygiene, safety, and customer service. Delivery mode: in-person (theory & practical) with a final portfolio.",
+      "capabilities": [
+        {
+          "outcome": "Professional Practice & **Workplace Skills**",
+          "competencies": [
+            {
+              "statement": "Maintain a safe, clean, and efficient work environment (CSBCOR0011A)"
+            },
+            {
+              "statement": "Maintain workplace safety (BSBCOR0113A)"
+            },
+            {
+              "statement": "Plan and organize work (CSBCOR0021A)"
+            },
+            {
+              "statement": "Organize personal work priorities and development (BSBCOR0023A)"
+            },
+            {
+              "statement": "Perform interactive workplace communication (CSBCOR0001B)"
+            },
+            {
+              "statement": "Deliver quality service to customers (CSBCOR0041A)"
+            }
+          ]
+        },
+        {
+          "outcome": "Client Care & **Salon Operations**",
+          "competencies": [
+            {
+              "statement": "Prepare clients for salon services (CSBCOS0001A)"
+            },
+            {
+              "statement": "Receive and direct clients (CSBCOS0002A)"
+            },
+            {
+              "statement": "Schedule and check out clients (CSBCOS0012A)"
+            },
+            {
+              "statement": "Sell products and services (CSBCOS0032A)"
+            }
+          ]
+        },
+        {
+          "outcome": "Skincare & Aesthetics **Theory Foundations**",
+          "competencies": [
+            {
+              "statement": "Apply knowledge of anatomy and physiology to beauty therapy treatments (CSBBTH0043A)"
+            },
+            {
+              "statement": "Apply knowledge of cosmetic chemistry to beauty therapy treatments (CSBBTH0103A)"
+            },
+            {
+              "statement": "Apply knowledge of nutrition to beauty therapy treatments (CSBBTH0093A)"
+            },
+            {
+              "statement": "Apply knowledge of electricity to beauty treatments (CSBBTH0113A)"
+            }
+          ]
+        },
+        {
+          "outcome": "Practical **Skincare Treatments**",
+          "competencies": [
+            {
+              "statement": "Develop treatment plans for beauty therapy treatments (CSBBTH0054A)"
+            },
+            {
+              "statement": "Provide facial treatments (CSBBTH0052A)"
+            }
+          ]
+        }
+      ],
+      "certification": {
+        "description": "Receive a certificate of participation upon successful completion of the program. Final assessment includes a portfolio."
+      },
       "_addedAt": "2026-01-14T15:08:59.803Z",
       "_source": "HEW-Programs-extraction.json",
       "cycleIds": ["skincare-20260125"],
       "media": {
         "coverId": "hew-skincare-hero",
         "galleryIds": ["hew-skincare-hero"]
-      }
+      },
+      "requirements": [
+        {
+          "name": "Tools & Materials",
+          "category": "materials",
+          "audience": "student",
+          "items": [
+            { "itemId": "comedone-extractor" },
+            { "itemId": "tweezers" },
+            { "itemId": "q-tips-cotton-swabs" },
+            { "itemId": "small-metal-bowl" },
+            { "itemId": "air-tight-plastic-container" },
+            { "itemId": "alcohol-disinfectant" },
+            { "itemId": "white-facial-towels", "quantity": 6 },
+            { "itemId": "twin-size-flat-sheets-white", "quantity": 4 },
+            { "itemId": "sunscreen" },
+            { "itemId": "lip-balm" },
+            { "itemId": "zip-lock-bags" },
+            { "itemId": "massage-oil", "notes": "Massage oil or massage cream" }
+          ]
+        },
+        {
+          "name": "Uniform",
+          "category": "uniform",
+          "audience": "student",
+          "items": [{ "itemId": "uniform-scrubs-white" }]
+        },
+        {
+          "name": "Booklist",
+          "category": "booklist",
+          "audience": "student",
+          "items": [
+            {
+              "itemId": "book-milady-standard-fundamentals-for-estheticians-12e",
+              "notes": "Milady’s Standard Fundamentals for Estheticians (12th Edition)"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

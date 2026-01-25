@@ -12,5 +12,26 @@
     "category": "food-beverage-storage-containers",
     "tags": ["container", "applicator", "bottle"],
     "unitLabel": "bottle"
+  },
+  {
+    "id": "small-metal-bowl",
+    "name": "Small Metal Bowl",
+    "category": "bowls-non-disposable",
+    "tags": ["container", "bowl", "metal"],
+    "unitLabel": "unit"
+  },
+  {
+    "id": "air-tight-plastic-container",
+    "name": "Air-tight Plastic Container",
+    "category": "food-beverage-storage-containers",
+    "tags": ["container", "storage", "air-tight", "plastic"],
+    "unitLabel": "container"
+  },
+  {
+    "id": "zip-lock-bags",
+    "name": "Zip Lock Bags",
+    "category": "disposable-food-bags",
+    "tags": ["bags", "storage", "zip"],
+    "unitLabel": "pack"
   }
 ]

@@ -131,5 +131,19 @@
     "category": "gloves",
     "tags": ["hygiene", "ppe", "disposable"],
     "unitLabel": "box"
+  },
+  {
+    "id": "q-tips-cotton-swabs",
+    "name": "Q-Tips / Cotton Swabs",
+    "category": "cotton-wool-products",
+    "tags": ["hygiene", "cotton", "swabs"],
+    "unitLabel": "pack"
+  },
+  {
+    "id": "supply-facial-tissue",
+    "name": "Facial Tissue",
+    "category": "facial-tissue-handkerchiefs-disposable",
+    "tags": ["hygiene", "tissue", "facial-tissue"],
+    "unitLabel": "box"
   }
 ]
