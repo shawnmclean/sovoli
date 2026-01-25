@@ -1,12 +1,38 @@
 import { format } from "date-fns";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
+import type { Metadata } from "next";
 import { inferSchema, initParser } from "udsv";
 
 import { parseLabDateHeader } from "./labs-utils";
 import { LabsTableClient } from "./LabsTableClient";
 
 export const runtime = "nodejs";
+
+export const metadata: Metadata = {
+  // Use an absolute title so we don't inherit the root layout's title template/siteName.
+  title: { absolute: "Health Labs" },
+  description: "Personal lab results dashboard.",
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
+  openGraph: {
+    title: "Health Labs",
+    description: "Personal lab results dashboard.",
+    siteName: "Shane Health",
+  },
+  twitter: {
+    card: "summary",
+    title: "Health Labs",
+    description: "Personal lab results dashboard.",
+  },
+};
 
 interface LabTestRow {
   testName: string;
