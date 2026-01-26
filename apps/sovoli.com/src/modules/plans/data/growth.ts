@@ -12,6 +12,11 @@ export const growthPlan: PlanDefinition = {
       ctaLabel: "Get Website",
       covers: ["hasWebsite", "hasWebsiteEduDomain"],
     },
+    customDomain: {
+      label: "Custom Domain",
+      pitch: "We connect yourdomain.com and set up SSL so your site is secure.",
+      covers: ["hasWebsiteEduDomain"],
+    },
     googleProfile: {
       label: "Google Business Synchronization",
       pitch:
