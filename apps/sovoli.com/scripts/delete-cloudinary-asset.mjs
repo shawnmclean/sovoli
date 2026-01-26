@@ -36,12 +36,16 @@ if (!publicId) {
   process.exit(1);
 }
 
+// TypeScript: ensure this is a string after validation
+/** @type {string} */
+const publicIdStr = publicId;
+
 async function deleteAsset() {
   try {
-    console.log(`Deleting asset: ${publicId}`);
+    console.log(`Deleting asset: ${publicIdStr}`);
 
     // Delete the asset
-    const result = await cloudinary.uploader.destroy(publicId, {
+    const result = await cloudinary.uploader.destroy(publicIdStr, {
       resource_type: "image",
       invalidate: true, // Invalidate CDN cache
     });

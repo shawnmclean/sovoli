@@ -38,14 +38,20 @@ if (!fromPublicId || !toPublicId) {
   process.exit(1);
 }
 
+// TypeScript: ensure these are strings after validation
+/** @type {string} */
+const fromPublicIdStr = fromPublicId;
+/** @type {string} */
+const toPublicIdStr = toPublicId;
+
 async function copyAsset() {
   try {
-    console.log(`Copying asset from: ${fromPublicId}`);
-    console.log(`To: ${toPublicId}`);
+    console.log(`Copying asset from: ${fromPublicIdStr}`);
+    console.log(`To: ${toPublicIdStr}`);
 
     // Use upload with the existing asset URL to create a copy
     // First, get the existing asset URL
-    const existingAsset = await cloudinary.api.resource(fromPublicId, {
+    const existingAsset = await cloudinary.api.resource(fromPublicIdStr, {
       resource_type: "image",
     });
 
@@ -54,7 +60,7 @@ async function copyAsset() {
     // Upload the existing image to the new location
     // We'll use the URL of the existing asset
     const uploadResult = await cloudinary.uploader.upload(existingAsset.secure_url, {
-      public_id: toPublicId,
+      public_id: toPublicIdStr,
       overwrite: false,
       invalidate: true,
     });
@@ -63,12 +69,12 @@ async function copyAsset() {
     console.log("\nNew asset details:");
     console.log(JSON.stringify(
       {
-        id: toPublicId.split("/").pop(),
+        id: toPublicIdStr.split("/").pop(),
         type: "image",
         url: uploadResult.secure_url,
         publicId: uploadResult.public_id,
         assetId: uploadResult.asset_id,
-        bucket: toPublicId.substring(0, toPublicId.lastIndexOf("/")),
+        bucket: toPublicIdStr.substring(0, toPublicIdStr.lastIndexOf("/")),
         format: uploadResult.format,
         bytes: uploadResult.bytes,
         version: uploadResult.version,
