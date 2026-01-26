@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { Button } from "@sovoli/ui/components/button";
+
 import { ORGS } from "~/modules/data/organisations";
 import { TenantListWithStatus } from "./components/TenantListWithStatus";
 
@@ -32,14 +35,24 @@ export default function AdminPage() {
   const tenants = getAllTenantsWithWebsiteModule();
 
   return (
-    <div className="container mx-auto py-8 px-4">
-      <div className="max-w-4xl mx-auto">
+    <div className="container mx-auto px-4 py-8">
+      <div className="mx-auto max-w-4xl">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">Domain Status</h1>
+          <h1 className="mb-2 text-3xl font-bold">Domain Status</h1>
           <p className="text-muted-foreground">
             {tenants.length} tenant{tenants.length !== 1 ? "s" : ""} with
             website modules
           </p>
+          <div className="mt-4">
+            <Button
+              as={Link}
+              href="/admin/billing"
+              radius="full"
+              variant="flat"
+            >
+              View Billing Status
+            </Button>
+          </div>
         </div>
 
         <TenantListWithStatus tenants={tenants} />

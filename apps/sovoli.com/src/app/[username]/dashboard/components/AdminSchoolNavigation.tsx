@@ -1,7 +1,8 @@
 "use client";
 
-import { Tab, Tabs } from "@sovoli/ui/components/tabs";
 import { usePathname } from "next/navigation";
+import { Tab, Tabs } from "@sovoli/ui/components/tabs";
+
 import type { OrgInstance } from "~/modules/organisations/types";
 
 export interface AdminSchoolNavigationProps {
@@ -25,7 +26,7 @@ export function AdminSchoolNavigation({
       variant="underlined"
       selectedKey={selectedKey}
       fullWidth
-      className="sticky top-0 z-10 border-b border-default-200 bg-background py-1"
+      className="border-default-200 bg-background sticky top-0 z-10 border-b py-1"
     >
       <Tab key={baseDashboardPath} title="Overview" href={baseDashboardPath} />
       <Tab
@@ -39,14 +40,14 @@ export function AdminSchoolNavigation({
         href={`${baseDashboardPath}/programs`}
       />
       <Tab
-        key={`${baseDashboardPath}/billing`}
-        title="Billing"
-        href={`${baseDashboardPath}/billing`}
-      />
-      <Tab
         key={`${baseDashboardPath}/leads`}
         title="Leads"
         href={`${baseDashboardPath}/leads`}
+      />
+      <Tab
+        key={`${baseDashboardPath}/billing`}
+        title="Billing"
+        href={`${baseDashboardPath}/billing`}
       />
     </Tabs>
   );

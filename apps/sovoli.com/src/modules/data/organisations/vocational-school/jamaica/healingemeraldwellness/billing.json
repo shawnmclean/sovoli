@@ -1,8 +1,37 @@
 {
   "subscription": {
+    "planKey": "growth",
     "cadence": "monthly",
+    "status": "active",
     "isPaid": false
   },
-  "notes": "Update this file to track payments, cadence, and next billing date."
+  "invoices": [
+    {
+      "id": "inv-hew-2026-01",
+      "status": "open",
+      "issuedAt": "2026-01-25T00:00:00.000Z",
+      "dueAt": "2026-02-04T00:00:00.000Z",
+      "currency": "USD",
+      "planKey": "growth",
+      "cadence": "monthly",
+      "lineItems": [
+        {
+          "pricingItemId": "base-plan-monthly",
+          "label": "Growth System",
+          "quantity": 1,
+          "unitAmount": { "USD": 30 },
+          "lineAmount": { "USD": 30 }
+        },
+        {
+          "pricingItemId": "additional-programs-monthly",
+          "label": "Additional Programs",
+          "quantity": 3,
+          "unitAmount": { "USD": 4 },
+          "lineAmount": { "USD": 12 }
+        }
+      ],
+      "subtotal": { "USD": 42 },
+      "total": { "USD": 42 }
+    }
+  ]
 }
-
