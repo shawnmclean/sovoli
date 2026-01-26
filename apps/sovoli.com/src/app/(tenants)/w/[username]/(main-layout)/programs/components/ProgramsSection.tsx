@@ -7,7 +7,9 @@ export interface ProgramsSectionProps {
 }
 
 export function ProgramsSection({ orgInstance }: ProgramsSectionProps) {
-  const programs = orgInstance.academicModule?.programs ?? [];
+  const programs = (orgInstance.academicModule?.programs ?? []).filter(
+    (p) => p.isActive !== false,
+  );
 
   return (
     <div className="space-y-12">

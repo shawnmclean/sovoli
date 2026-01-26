@@ -102,7 +102,9 @@ function getProgramCategoryChain(program: Program) {
 }
 
 export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
-  const programs = orgInstance.academicModule?.programs ?? [];
+  const programs = (orgInstance.academicModule?.programs ?? []).filter(
+    (p) => p.isActive !== false,
+  );
 
   if (programs.length === 0) {
     return null;

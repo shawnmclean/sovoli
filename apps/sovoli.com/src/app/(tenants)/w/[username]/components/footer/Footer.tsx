@@ -19,7 +19,9 @@ export const Footer = ({ orgInstance }: FooterProps) => {
     academicModule,
   } = orgInstance;
 
-  const programs = academicModule?.programs;
+  const programs = (academicModule?.programs ?? []).filter(
+    (p) => p.isActive !== false,
+  );
   const footerConfig = website.footer;
   const sections = footerConfig?.sections ?? [];
 

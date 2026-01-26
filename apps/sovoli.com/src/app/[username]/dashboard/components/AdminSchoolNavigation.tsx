@@ -39,6 +39,11 @@ export function AdminSchoolNavigation({
         href={`${baseDashboardPath}/programs`}
       />
       <Tab
+        key={`${baseDashboardPath}/billing`}
+        title="Billing"
+        href={`${baseDashboardPath}/billing`}
+      />
+      <Tab
         key={`${baseDashboardPath}/leads`}
         title="Leads"
         href={`${baseDashboardPath}/leads`}

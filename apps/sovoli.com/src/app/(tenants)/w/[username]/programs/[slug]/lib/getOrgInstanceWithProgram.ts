@@ -16,13 +16,15 @@ const getCachedOrgInstanceWithProgram = async (
 
   if (!orgInstance) return null;
 
-  const program = orgInstance.academicModule?.programs.find(
-    (p) => p.slug === slug,
+  const programs = (orgInstance.academicModule?.programs ?? []).filter(
+    (p) => p.isActive !== false,
   );
+
+  const program = programs.find((p) => p.slug === slug);
 
   if (!program) {
     // Check if slug matches a group
-    const program = orgInstance.academicModule?.programs.find(
+    const program = programs.find(
       (p) =>
         p.group?.slug === slug ||
         p.standardProgramVersion?.program.group?.slug === slug,
@@ -34,12 +36,11 @@ const getCachedOrgInstanceWithProgram = async (
     if (!group) return null;
 
     // Find all programs that belong to this group
-    const groupPrograms =
-      orgInstance.academicModule?.programs.filter(
-        (p) =>
-          p.group?.id === group.id ||
-          p.standardProgramVersion?.program.group?.id === group.id,
-      ) ?? [];
+    const groupPrograms = programs.filter(
+      (p) =>
+        p.group?.id === group.id ||
+        p.standardProgramVersion?.program.group?.id === group.id,
+    );
 
     // Return the group with its programs populated
     return {

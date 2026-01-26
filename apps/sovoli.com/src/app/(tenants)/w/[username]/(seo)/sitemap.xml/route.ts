@@ -64,7 +64,9 @@ function generateAcademicsSitemapUrls(
   baseUrl: string,
   orgInstance: OrgInstance,
 ): SitemapUrl[] {
-  const programs = orgInstance.academicModule?.programs ?? [];
+  const programs = (orgInstance.academicModule?.programs ?? []).filter(
+    (p) => p.isActive !== false,
+  );
 
   return [
     {

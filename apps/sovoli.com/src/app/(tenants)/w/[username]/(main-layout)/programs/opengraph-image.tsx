@@ -80,7 +80,9 @@ export default async function OpenGraphImage({ params }: Props) {
 
   const { org, academicModule } = orgInstance;
 
-  const programs = academicModule?.programs ?? [];
+  const programs = (academicModule?.programs ?? []).filter(
+    (p) => p.isActive !== false,
+  );
 
   // Get program names and requirements
   const programList = programs

@@ -10,6 +10,7 @@ import {
 } from "./parseCyclesModule";
 import { type MediaMap, parseMediaModule } from "./parseMediaModule";
 import { parseNeedsModule } from "./parseNeedsModule";
+import { parseBillingModule } from "./parseBillingModule";
 import { parseOrgModule } from "./parseOrgModule";
 import { parseProjectsModule } from "./parseProjectsModule";
 import { parseServiceModule } from "./parseServiceModule";
@@ -45,6 +46,8 @@ export interface OrgInstanceJsonData {
   catalog?: unknown;
   /** Optional: Services module data */
   services?: unknown;
+  /** Optional: Billing module data */
+  billing?: unknown;
 }
 
 /**
@@ -197,6 +200,11 @@ export function parseOrgInstance(
     ? parseServiceModule(jsonData.services, { mediaMap })
     : (existingInstance?.serviceModule ?? null);
 
+  // Step 11: Parse billing module (no dependencies)
+  const billingModule = jsonData.billing
+    ? parseBillingModule(jsonData.billing)
+    : (existingInstance?.billingModule ?? null);
+
   // Build and return the complete OrgInstance
   const orgInstance: OrgInstance = {
     org: finalOrg,
@@ -205,6 +213,7 @@ export function parseOrgInstance(
     serviceModule,
     workforceModule,
     scoringModule: existingInstance?.scoringModule ?? null,
+    billingModule,
     catalogModule,
     eventModule: existingInstance?.eventModule ?? null,
     needsModule,

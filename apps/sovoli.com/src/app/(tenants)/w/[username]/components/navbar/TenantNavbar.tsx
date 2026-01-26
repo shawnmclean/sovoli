@@ -46,7 +46,9 @@ export function TenantNavbar({
     academicModule,
   },
 }: TenantNavbarProps) {
-  const programs = academicModule?.programs;
+  const programs = (academicModule?.programs ?? []).filter(
+    (p) => p.isActive !== false,
+  );
 
   const navConfig = website.header?.nav ?? [];
   const actionsConfig = website.header?.actions ?? [];
@@ -70,7 +72,7 @@ export function TenantNavbar({
         case "about":
           return { label: item.label, href: "/about" };
         case "academics":
-          return programs?.length
+          return programs.length
             ? {
                 label: item.label,
                 dropdown: [

@@ -108,15 +108,16 @@ export default async function Layout({ children, params, modals }: Props) {
               : "https://schema.org/EducationalOrganization",
     }),
     ...(orgInstance.academicModule?.programs &&
-      orgInstance.academicModule.programs.length > 0 && {
+      orgInstance.academicModule.programs.filter((p) => p.isActive !== false)
+        .length > 0 && {
         hasOfferingCatalog: {
           "@type": "OfferingCatalog",
           name: "Educational Programs",
-          itemListElement: orgInstance.academicModule.programs.map(
-            (program) => ({
+          itemListElement: orgInstance.academicModule.programs
+            .filter((program) => program.isActive !== false)
+            .map((program) => ({
               "@id": `${orgInstance.websiteModule.website.url}/programs/${program.slug}`,
-            }),
-          ),
+            })),
         },
       }),
   };

@@ -1,5 +1,6 @@
 import type { AcademicModule } from "../academics/types";
 import type { CatalogModule } from "../catalogs/types";
+import type { BillingModule } from "../billing/types";
 import type { Media } from "../core/media/types";
 import type { Contact, SocialLink } from "../core/types";
 import type { EventModule } from "../events/types";
@@ -128,6 +129,7 @@ export interface OrgInstance {
   serviceModule: ServiceModule | null;
   workforceModule: WorkforceModule | null;
   scoringModule: ScoringModule | null;
+  billingModule?: BillingModule | null;
   catalogModule?: CatalogModule | null;
   eventModule?: EventModule | null;
   needsModule?: NeedsModule | null;

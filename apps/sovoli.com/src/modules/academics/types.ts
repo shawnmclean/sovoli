@@ -231,6 +231,16 @@ export interface Program {
 
   category?: ProgramCategory;
 
+  /**
+   * Whether this program is currently active.
+   *
+   * - Public tenant site should hide programs when `isActive === false`
+   * - Admin/dashboard can still show inactive programs
+   *
+   * Defaults to true when omitted in JSON.
+   */
+  isActive?: boolean;
+
   highlights?: ProgramHighlight[];
 
   courses?: Course[];

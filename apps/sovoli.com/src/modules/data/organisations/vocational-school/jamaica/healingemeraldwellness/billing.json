@@ -1,0 +1,8 @@
+{
+  "subscription": {
+    "cadence": "monthly",
+    "isPaid": false
+  },
+  "notes": "Update this file to track payments, cadence, and next billing date."
+}
+

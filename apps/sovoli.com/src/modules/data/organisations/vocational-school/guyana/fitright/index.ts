@@ -2,6 +2,7 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import { parseMediaModule } from "../../../utils/parseMediaModule";
 import { parseOrgInstance } from "../../../utils/parseOrgInstance";
 import { parseWebsiteModule } from "../../../utils/parseWebsiteModule";
+import billingData from "./billing.json";
 import cyclesData from "./cycles.json";
 import mediaData from "./media.json";
 // Import JSON files
@@ -27,6 +28,7 @@ export const FITRIGHT_ORG: OrgInstance = parseOrgInstance({
     groupAcademic: [sewingAcademicData, workshopsAcademicData],
     website: websiteData,
     services: servicesData,
+    billing: billingData,
   },
 });
 

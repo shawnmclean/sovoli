@@ -24,11 +24,14 @@ export const ProgramsInGroupSection = ({
 
   // Get all programs in the same group from the orgInstance
   const programsInGroup =
-    orgInstance.academicModule?.programs.filter(
+    (
+      orgInstance.academicModule?.programs.filter((p) => p.isActive !== false) ??
+      []
+    ).filter(
       (p) =>
         p.group?.id === group.id ||
         p.standardProgramVersion?.program.group?.id === group.id,
-    ) ?? [];
+    );
 
   if (programsInGroup.length <= 1) {
     return null;

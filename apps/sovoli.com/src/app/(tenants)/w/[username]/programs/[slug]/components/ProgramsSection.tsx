@@ -34,7 +34,9 @@ export function ProgramsSection({
   currentProgram,
 }: ProgramsSectionProps) {
   // Get all programs from the organization, excluding the current one
-  const allPrograms = orgInstance.academicModule?.programs ?? [];
+  const allPrograms = (orgInstance.academicModule?.programs ?? []).filter(
+    (p) => p.isActive !== false,
+  );
   const otherPrograms = allPrograms.filter(
     (program) => program.slug !== currentProgram.slug,
   );

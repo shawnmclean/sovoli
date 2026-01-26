@@ -2,6 +2,7 @@ import type { OrgInstance } from "~/modules/organisations/types";
 import { parseMediaModule } from "../../../utils/parseMediaModule";
 import { parseOrgInstance } from "../../../utils/parseOrgInstance";
 import { parseWebsiteModule } from "../../../utils/parseWebsiteModule";
+import billingData from "./billing.json";
 import cyclesData from "./cycles.json";
 import massageTherapyAcademicData from "./massage-therapy-academic.json";
 import mediaData from "./media.json";
@@ -24,6 +25,7 @@ export const HEALING_EMERALD_ORG: OrgInstance = parseOrgInstance({
     academic: massageTherapyAcademicData,
     website: websiteData,
     services: servicesData,
+    billing: billingData,
   },
 });
 

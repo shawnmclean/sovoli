@@ -43,7 +43,9 @@ export function SchoolProgramSearchContent({
   useEffect(() => {
     if (selectedSchool) {
       const school = ORGS.find((s) => s.org.username === selectedSchool);
-      const programs = school?.academicModule?.programs ?? [];
+      const programs = (school?.academicModule?.programs ?? []).filter(
+        (p) => p.isActive !== false,
+      );
       console.log("Available programs:", programs);
       setAvailablePrograms(programs);
       // Only reset program if it's not valid for the new school

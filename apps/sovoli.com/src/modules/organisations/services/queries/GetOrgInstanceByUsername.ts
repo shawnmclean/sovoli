@@ -31,16 +31,8 @@ export class GetOrgInstanceByUsernameQueryHandler
 
     return {
       orgInstance: {
-        org: entry.org,
+        ...entry,
         scoringModule,
-        websiteModule: entry.websiteModule ?? null,
-        academicModule: entry.academicModule ?? null,
-        serviceModule: entry.serviceModule ?? null,
-        workforceModule: entry.workforceModule ?? null,
-        catalogModule: entry.catalogModule ?? null,
-        eventModule: entry.eventModule ?? null,
-        needsModule: entry.needsModule ?? null,
-        projectsModule: entry.projectsModule ?? null,
       },
     };
   }

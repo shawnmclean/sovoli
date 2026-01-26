@@ -51,10 +51,12 @@ export function getProgramRequirements(
     };
   }
 
-  // Find the program
-  const program = school.academicModule.programs.find(
-    (p) => p.id === programId,
+  const activePrograms = school.academicModule.programs.filter(
+    (p) => p.isActive !== false,
   );
+
+  // Find the program
+  const program = activePrograms.find((p) => p.id === programId);
 
   if (!program) {
     return {

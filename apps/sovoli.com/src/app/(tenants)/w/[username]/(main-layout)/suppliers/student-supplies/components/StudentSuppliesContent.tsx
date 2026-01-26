@@ -92,7 +92,9 @@ export function StudentSuppliesContent({
   };
 
   const categoriesWithItems = useMemo(() => {
-    const programs = orgInstance.academicModule?.programs ?? [];
+    const programs = (orgInstance.academicModule?.programs ?? []).filter(
+      (p) => p.isActive !== false,
+    );
 
     // First, collect all programs with their requirements
     const programsWithRequirements = programs
@@ -237,7 +239,9 @@ export function StudentSuppliesContent({
                 {items.map((itemWithPrograms, itemIndex) => {
                   const { item, unit, notes, programs } = itemWithPrograms;
                   const totalPrograms =
-                    orgInstance.academicModule?.programs.length ?? 0;
+                    orgInstance.academicModule?.programs.filter(
+                      (p) => p.isActive !== false,
+                    ).length ?? 0;
                   const allPrograms =
                     programs.length === totalPrograms && totalPrograms > 0;
 

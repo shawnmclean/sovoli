@@ -46,8 +46,10 @@ export function OrgLandingSection({ orgInstance }: OrgLandingSectionProps) {
 
   // Calculate age range from all programs
   const ageRange = (() => {
-    const programs = orgInstance.academicModule?.programs;
-    if (!programs || programs.length === 0) return null;
+    const programs = (orgInstance.academicModule?.programs ?? []).filter(
+      (p) => p.isActive !== false,
+    );
+    if (programs.length === 0) return null;
 
     const allAges: number[] = [];
 
