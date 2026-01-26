@@ -1,7 +1,7 @@
 import { z } from "zod";
 import type { Service, ServiceModule } from "~/modules/services/types";
 import type { MediaMap } from "./parseMediaModule";
-import { getMediaByIdOptional } from "./parseMediaModule";
+import { getMediaByIdOptional, getMediaByIds } from "./parseMediaModule";
 
 /**
  * Zod schema for JSON representation of a service (with imageId instead of image object)
@@ -32,6 +32,7 @@ const serviceJsonSchema = z.object({
     },
   ),
   imageId: z.string().optional(),
+  galleryIds: z.array(z.string()).optional(),
   price: z.string().optional(),
 });
 
@@ -78,12 +79,17 @@ export function parseServiceModule(
         )
       : undefined;
 
+    const gallery = serviceJson.galleryIds && mediaMap
+      ? getMediaByIds(mediaMap, serviceJson.galleryIds, `service "${serviceJson.name}"`)
+      : undefined;
+
     const service: Service = {
       name: serviceJson.name,
       description: serviceJson.description,
       category: serviceJson.category,
       url: serviceJson.url,
       image,
+      gallery,
       price: serviceJson.price,
     };
 

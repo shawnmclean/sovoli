@@ -52,7 +52,11 @@ HEALING_EMERALD_ORG.websiteModule = {
 // Add media array to org from media.json
 // Only include gallery photos (exclude logo which is already in logoPhoto)
 const mediaMap = parseMediaModule(mediaData);
-const galleryMediaIds = ["hew-massage-model", "hew-reception-area"];
+const galleryMediaIds = [
+  "hew-gallery-outside-1",
+  "hew-massage-model",
+  "hew-reception-area",
+];
 HEALING_EMERALD_ORG.org.media = galleryMediaIds
   .map((id) => mediaMap.get(id))
   .filter((media): media is NonNullable<typeof media> => media !== undefined);
