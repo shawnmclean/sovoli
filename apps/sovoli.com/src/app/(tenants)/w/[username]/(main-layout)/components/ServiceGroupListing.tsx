@@ -92,10 +92,10 @@ export function ServiceGroupListing({ orgInstance }: ServiceGroupListingProps) {
                     >
                     <Card className="overflow-hidden shadow-xs hover:shadow-lg transition-all duration-200 cursor-pointer border-0 bg-card h-full w-[200px] flex flex-col mr-4">
                       <div className="relative aspect-square w-full">
-                        {service.image?.type === "image" ? (
+                        {service.media && service.media.length > 0 && service.media[0]?.type === "image" ? (
                           <CldImage
-                            src={service.image.publicId}
-                            alt={service.image.alt ?? service.name}
+                            src={service.media[0].publicId}
+                            alt={service.media[0].alt ?? service.name}
                             width={200}
                             height={200}
                             crop="fill"

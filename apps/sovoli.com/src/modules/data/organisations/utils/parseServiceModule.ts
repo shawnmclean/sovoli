@@ -1,10 +1,10 @@
 import { z } from "zod";
 import type { Service, ServiceModule } from "~/modules/services/types";
 import type { MediaMap } from "./parseMediaModule";
-import { getMediaByIdOptional, getMediaByIds } from "./parseMediaModule";
+import { getMediaByIds } from "./parseMediaModule";
 
 /**
- * Zod schema for JSON representation of a service (with imageId instead of image object)
+ * Zod schema for JSON representation of a service (with media array instead of image/gallery objects)
  */
 const serviceJsonSchema = z.object({
   name: z.string(),
@@ -31,8 +31,7 @@ const serviceJsonSchema = z.object({
       message: "Service URL must be a valid URL (http:// or https://) or a relative path (starting with /)",
     },
   ),
-  imageId: z.string().optional(),
-  galleryIds: z.array(z.string()).optional(),
+  media: z.array(z.string()).optional(),
   price: z.string().optional(),
 });
 
@@ -53,12 +52,12 @@ export interface ParseServiceModuleOptions {
 
 /**
  * Parses a services.json file and resolves foreign key references to Media objects.
- * Validates that all referenced media exist (if imageId is provided).
+ * Validates that all referenced media exist (if media is provided).
  *
  * @param jsonData - The parsed JSON data from the services.json file
- * @param options - Optional options including mediaMap for resolving image references
+ * @param options - Optional options including mediaMap for resolving media references
  * @returns Fully hydrated ServiceModule with Media objects resolved
- * @throws Error if any imageId cannot be resolved or if JSON structure is invalid
+ * @throws Error if any media ID cannot be resolved or if JSON structure is invalid
  */
 export function parseServiceModule(
   jsonData: unknown,
@@ -69,18 +68,10 @@ export function parseServiceModule(
 
   const { mediaMap } = options ?? {};
 
-  // Resolve imageId references and build hydrated service objects
+  // Resolve media references and build hydrated service objects
   const services: Service[] = validated.services.map((serviceJson) => {
-    const image = serviceJson.imageId && mediaMap
-      ? getMediaByIdOptional(
-          mediaMap,
-          serviceJson.imageId,
-          `service "${serviceJson.name}"`,
-        )
-      : undefined;
-
-    const gallery = serviceJson.galleryIds && mediaMap
-      ? getMediaByIds(mediaMap, serviceJson.galleryIds, `service "${serviceJson.name}"`)
+    const media = serviceJson.media && mediaMap
+      ? getMediaByIds(mediaMap, serviceJson.media, `service "${serviceJson.name}"`)
       : undefined;
 
     const service: Service = {
@@ -88,8 +79,7 @@ export function parseServiceModule(
       description: serviceJson.description,
       category: serviceJson.category,
       url: serviceJson.url,
-      image,
-      gallery,
+      media,
       price: serviceJson.price,
     };
 

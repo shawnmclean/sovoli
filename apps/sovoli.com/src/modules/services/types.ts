@@ -4,8 +4,7 @@ export interface Service {
   name: string;
   description: string;
   category?: string;
-  image?: Media;
-  gallery?: Media[];
+  media?: Media[];
   url: string;
   price?: string;
 }
