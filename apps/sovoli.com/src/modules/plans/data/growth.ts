@@ -17,6 +17,7 @@ export const growthPlan: PlanDefinition = {
       pitch:
         "We'll ensure your Google Business profile is up to date and accurate.",
       ctaLabel: "Get Google Business",
+      show: false,
       covers: ["hasGoogleProfile"],
     },
     programs: {
