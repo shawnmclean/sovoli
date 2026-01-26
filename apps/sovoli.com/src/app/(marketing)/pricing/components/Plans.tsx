@@ -2,12 +2,11 @@
 "use client";
 
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
+import { Switch } from "@sovoli/ui/components/switch";
 import { CheckIcon } from "lucide-react";
-import { useMemo, useState } from "react";
-import { useCountry } from "~/modules/core/context/CountryProvider";
+import { useState } from "react";
 import type { PlanDefinition } from "~/modules/plans/types";
 import type { RuleSet } from "~/modules/scoring/types";
-import { getPreferredCurrency } from "~/utils/currencyDetection";
 import { PlanCard } from "./PlanCard";
 
 interface PlansProps {
@@ -17,12 +16,9 @@ interface PlansProps {
 }
 
 export function Plans({ plans, ruleSet: _ruleSet, orgUsername }: PlansProps) {
-  const countryCode = useCountry();
-  const preferredCurrency = useMemo(
-    () => getPreferredCurrency(countryCode),
-    [countryCode],
-  );
+  const preferredCurrency = "USD";
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+  const [cadence, setCadence] = useState<"monthly" | "annual">("monthly");
 
   const toggleExpand = (planKey: string) => {
     setExpanded((prev) => ({
@@ -39,6 +35,35 @@ export function Plans({ plans, ruleSet: _ruleSet, orgUsername }: PlansProps) {
 
   return (
     <>
+      <div className="col-span-full flex items-center justify-center pb-2">
+        <div className="flex items-center gap-3">
+          <span
+            className={`text-sm font-medium ${
+              cadence === "monthly" ? "text-foreground" : "text-default-500"
+            }`}
+          >
+            Monthly
+          </span>
+          <Switch
+            size="sm"
+            isSelected={cadence === "annual"}
+            onValueChange={(isYearly) =>
+              setCadence(isYearly ? "annual" : "monthly")
+            }
+            aria-label="Toggle monthly or yearly billing"
+          />
+          <span
+            className={`text-sm font-medium ${
+              cadence === "annual" ? "text-foreground" : "text-default-500"
+            }`}
+          >
+            Yearly
+          </span>
+          <span className="text-xs font-semibold text-success-700 bg-success-50 border border-success-200 rounded-full px-2 py-0.5">
+            Save 15%
+          </span>
+        </div>
+      </div>
       {plans.map((plan, idx) => {
         const showDetails = (idx === 0 || expanded[plan.key]) ?? false;
         const isGrowthPlan = plan.key === "growth";
@@ -52,6 +77,7 @@ export function Plans({ plans, ruleSet: _ruleSet, orgUsername }: PlansProps) {
               isPrimary={idx === 0}
               orgUsername={orgUsername}
               preferredCurrency={preferredCurrency}
+              cadence={cadence}
             />
             {/* Campaign Ads Service - shown right after Growth plan */}
             {isGrowthPlan && campaignAdsItem && (

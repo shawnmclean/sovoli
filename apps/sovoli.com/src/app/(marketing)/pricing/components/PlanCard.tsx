@@ -30,6 +30,7 @@ interface PlanCardProps {
   hideHeader?: boolean; // hide plan title/subtitle
   hideCta?: boolean; // hide CTA button
   preferredCurrency?: CurrencyCode;
+  cadence?: "monthly" | "annual";
 }
 
 export function PlanCard({
@@ -41,6 +42,7 @@ export function PlanCard({
   hideHeader = false,
   hideCta = false,
   preferredCurrency: serverCurrency = "USD",
+  cadence,
 }: PlanCardProps) {
   // Enhance server-detected currency with client-side timezone detection
   const preferredCurrency = usePreferredCurrency(serverCurrency);
@@ -51,26 +53,52 @@ export function PlanCard({
     Record<string, number>
   >({});
 
+  const getSelectionKey = (id: string) => id.replace(/-(monthly|annual)$/u, "");
+
   const toggleOptional = (id: string) => {
+    const key = getSelectionKey(id);
     setSelectedOptionals((prev) => ({
       ...prev,
-      [id]: !prev[id],
+      [key]: !prev[key],
     }));
   };
 
   const incrementQuantity = (id: string) => {
+    const key = getSelectionKey(id);
     setQuantityBasedCounts((prev) => ({
       ...prev,
-      [id]: (prev[id] ?? 0) + 1,
+      [key]: (prev[key] ?? 0) + 1,
     }));
   };
 
   const decrementQuantity = (id: string) => {
+    const key = getSelectionKey(id);
     setQuantityBasedCounts((prev) => ({
       ...prev,
-      [id]: Math.max(0, (prev[id] ?? 0) - 1),
+      [key]: Math.max(0, (prev[key] ?? 0) - 1),
     }));
   };
+
+  // Resolve which cadence to use for recurring items.
+  const availableCadences = new Set(
+    plan.pricingPackage.pricingItems
+      .filter((item) => !item.optional)
+      .map((item) => item.billingCycle)
+      .filter(
+        (cycle): cycle is "monthly" | "annual" =>
+          cycle === "monthly" || cycle === "annual",
+      ),
+  );
+
+  const requestedCadence =
+    cadence ??
+    (availableCadences.has("monthly") ? "monthly" : ("annual" as const));
+
+  const activeCadence = availableCadences.has(requestedCadence)
+    ? requestedCadence
+    : availableCadences.has("annual")
+      ? "annual"
+      : "monthly";
 
   // Split pricing items by billing cycle
   const baseItems = plan.pricingPackage.pricingItems.filter(
@@ -80,7 +108,10 @@ export function PlanCard({
   // Get all optional add-ons (excluding Campaign Ads which is shown separately)
   // This includes both regular optional items and quantity-based items
   const allOptionalItems = plan.pricingPackage.pricingItems.filter(
-    (item) => item.optional && item.id !== "optional-campaign-ads",
+    (item) =>
+      item.optional &&
+      item.id !== "optional-campaign-ads" &&
+      (item.billingCycle === "one-time" || item.billingCycle === activeCadence),
   );
 
   // Separate quantity-based from regular optional items for rendering
@@ -95,9 +126,7 @@ export function PlanCard({
   const oneTimeItems = baseItems.filter(
     (item) => item.billingCycle === "one-time",
   );
-  const annualItems = baseItems.filter(
-    (item) => item.billingCycle === "annual",
-  );
+  const recurringItems = baseItems.filter((item) => item.billingCycle === activeCadence);
 
   // Apply active discounts
   const getDiscountedAmount = (
@@ -121,6 +150,20 @@ export function PlanCard({
     }
 
     return base;
+  };
+
+  const getDiscountedAmountByCurrency = (item: PricingItem): AmountByCurrency => {
+    const totals: AmountByCurrency = {};
+    const currencies: CurrencyCode[] = ["USD", "GYD", "JMD"];
+
+    for (const currency of currencies) {
+      const value = getDiscountedAmount(item, currency);
+      if (value > 0) {
+        totals[currency] = value;
+      }
+    }
+
+    return totals;
   };
 
   // Compute totals by billing cycle for all currencies
@@ -148,7 +191,7 @@ export function PlanCard({
     const currencies: CurrencyCode[] = ["USD", "GYD", "JMD"];
 
     for (const item of quantityBasedItems) {
-      const quantity = quantityBasedCounts[item.id] ?? 0;
+      const quantity = quantityBasedCounts[getSelectionKey(item.id)] ?? 0;
       if (quantity === 0) continue;
 
       for (const currency of currencies) {
@@ -169,12 +212,12 @@ export function PlanCard({
   };
 
   const oneTimeTotals = calculateTotals(oneTimeItems);
-  const annualTotals = calculateTotals(annualItems);
+  const recurringTotals = calculateTotals(recurringItems);
   const quantityBasedCost = calculateQuantityBasedCost();
 
   // Calculate selected regular optional add-ons (non-quantity-based)
   const selectedRegularOptionals = regularOptionalItems.filter(
-    (item) => selectedOptionals[item.id],
+    (item) => selectedOptionals[getSelectionKey(item.id)],
   );
   const selectedRegularOptionalsTotals = calculateTotals(
     selectedRegularOptionals,
@@ -184,23 +227,23 @@ export function PlanCard({
   const totalPayNow: AmountByCurrency = {};
   const currencies: CurrencyCode[] = ["USD", "GYD", "JMD"];
   for (const currency of currencies) {
-    const baseAnnual = annualTotals[currency] ?? 0;
+    const baseRecurring = recurringTotals[currency] ?? 0;
     const baseOneTime = oneTimeTotals[currency] ?? 0;
     const regularOptionals = selectedRegularOptionalsTotals[currency] ?? 0;
     const quantityBased = quantityBasedCost[currency] ?? 0;
-    const total = baseAnnual + baseOneTime + regularOptionals + quantityBased;
+    const total = baseRecurring + baseOneTime + regularOptionals + quantityBased;
     if (total > 0) {
       totalPayNow[currency] = total;
     }
   }
 
   const selectedAddOnLabels = regularOptionalItems
-    .filter((item) => selectedOptionals[item.id])
+    .filter((item) => selectedOptionals[getSelectionKey(item.id)])
     .map((item) => item.label);
 
   // Add quantity-based items to WhatsApp message
   for (const item of quantityBasedItems) {
-    const quantity = quantityBasedCounts[item.id] ?? 0;
+    const quantity = quantityBasedCounts[getSelectionKey(item.id)] ?? 0;
     if (quantity > 0) {
       selectedAddOnLabels.push(`${quantity} ${item.label}`);
     }
@@ -237,13 +280,17 @@ export function PlanCard({
         {/* Discount Badge */}
         {(() => {
           const now = new Date().toISOString();
-          const baseDiscount = plan.pricingPackage.discounts?.find(
-            (d) =>
-              d.type === "percentage" &&
-              d.appliesTo.includes("base-plan") &&
-              (!d.validFrom || d.validFrom <= now) &&
-              (!d.validUntil || d.validUntil >= now),
-          );
+          const isYearly = activeCadence === "annual";
+          if (!isYearly) return null;
+
+          const baseItemIds = recurringItems.map((item) => item.id);
+          const baseDiscount = plan.pricingPackage.discounts?.find((d) => {
+            if (d.type !== "percentage") return false;
+            if (!baseItemIds.some((id) => d.appliesTo.includes(id))) return false;
+            if (d.validFrom && d.validFrom > now) return false;
+            if (d.validUntil && d.validUntil < now) return false;
+            return true;
+          });
 
           return baseDiscount ? (
             <div className="bg-success-50 border border-success-200 rounded-lg px-3 py-1">
@@ -265,11 +312,11 @@ export function PlanCard({
         <div className="mt-1">
           <div className="text-3xl font-bold text-primary">
             <Price
-              amount={annualTotals}
+              amount={recurringTotals}
               preferredCurrency={preferredCurrency}
             />
             <span className="text-sm font-normal text-default-500 ml-1">
-              / year
+              {activeCadence === "monthly" ? "/ month" : "/ year"}
             </span>
           </div>
         </div>
@@ -336,13 +383,15 @@ export function PlanCard({
                 <div className="space-y-3">
                   {/* Quantity-based items */}
                   {quantityBasedItems.map((item) => {
-                    const quantity = quantityBasedCounts[item.id] ?? 0;
+                    const quantity =
+                      quantityBasedCounts[getSelectionKey(item.id)] ?? 0;
                     const itemCost: AmountByCurrency = {};
+                    const perUnitAmount = getDiscountedAmountByCurrency(item);
                     const currencies: CurrencyCode[] = ["USD", "GYD", "JMD"];
 
                     for (const currency of currencies) {
-                      const perUnitAmount = getDiscountedAmount(item, currency);
-                      const total = perUnitAmount * quantity;
+                      const perUnit = getDiscountedAmount(item, currency);
+                      const total = perUnit * quantity;
                       if (total > 0) {
                         itemCost[currency] = total;
                       }
@@ -398,7 +447,7 @@ export function PlanCard({
                             </div>
                             <div className="text-base font-semibold text-success-600">
                               <Price
-                                amount={item.amount}
+                                amount={perUnitAmount}
                                 preferredCurrency={preferredCurrency}
                               />
                             </div>
@@ -450,7 +499,7 @@ export function PlanCard({
                             <span className="text-xs text-success-600 font-semibold mt-1">
                               +{" "}
                               <Price
-                                amount={item.amount}
+                                amount={getDiscountedAmountByCurrency(item)}
                                 preferredCurrency={preferredCurrency}
                               />
                             </span>
@@ -477,11 +526,11 @@ export function PlanCard({
               <div className="flex items-center gap-2">
                 <span className="text-lg font-semibold">
                   <Price
-                    amount={annualTotals}
+                    amount={recurringTotals}
                     preferredCurrency={preferredCurrency}
                   />
                   <span className="text-xs font-normal text-default-500 ml-1">
-                    / year
+                    {activeCadence === "monthly" ? "/ month" : "/ year"}
                   </span>
                 </span>
               </div>

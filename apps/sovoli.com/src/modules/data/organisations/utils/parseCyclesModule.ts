@@ -67,6 +67,7 @@ const pricingItemJsonSchema = z.object({
   description: z.string().optional(),
   billingCycle: z.enum([
     "one-time",
+    "monthly",
     "annual",
     "term",
     "program",

@@ -1,7 +1,7 @@
 export type CurrencyCode = "GYD" | "USD" | "JMD";
 export type AmountByCurrency = Partial<Record<CurrencyCode, number>>;
 
-export type BillingCycle = "one-time" | "annual" | "term" | "program";
+export type BillingCycle = "one-time" | "monthly" | "annual" | "term" | "program";
 export type PricingItemPurpose = "registration" | "tuition" | "materials";
 
 export interface Discount {
