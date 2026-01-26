@@ -4,24 +4,35 @@ import { computeOrgScoring } from "~/modules/scoring/lib/computeOrgScoring";
 import type { Query } from "~/services/core/Query";
 import type { QueryHandler } from "~/services/core/QueryHandler";
 
-interface Result {
+export interface GetOrgInstanceByUsernameResult {
   orgInstance: OrgInstance | null;
 }
 
-export class GetOrgInstanceByUsernameQuery implements Query<Result> {
-  resultType?: Result;
+export class GetOrgInstanceByUsernameQuery
+  implements Query<GetOrgInstanceByUsernameResult>
+{
+  resultType?: GetOrgInstanceByUsernameResult;
 
   constructor(public readonly username: string) {}
 }
 
 export class GetOrgInstanceByUsernameQueryHandler
-  implements QueryHandler<GetOrgInstanceByUsernameQuery, Result>
+  implements
+    QueryHandler<GetOrgInstanceByUsernameQuery, GetOrgInstanceByUsernameResult>
 {
-  async handle(query: GetOrgInstanceByUsernameQuery): Promise<Result> {
+  async handle(
+    query: GetOrgInstanceByUsernameQuery,
+  ): Promise<GetOrgInstanceByUsernameResult> {
+    if (typeof query.username !== "string" || query.username.trim() === "") {
+      return { orgInstance: null };
+    }
+
+    const username = query.username.toLowerCase();
     const entry = await Promise.resolve(
       ORGS.find(
         (entry) =>
-          entry.org.username.toLowerCase() === query.username.toLowerCase(),
+          typeof entry.org.username === "string" &&
+          entry.org.username.toLowerCase() === username,
       ),
     );
 

@@ -1,7 +1,5 @@
-import Link from "next/link";
-import { Button } from "@sovoli/ui/components/button";
-
 import { ORGS } from "~/modules/data/organisations";
+import { AdminLinkButton } from "./components/AdminLinkButton";
 import { TenantListWithStatus } from "./components/TenantListWithStatus";
 
 interface TenantWithDomain {
@@ -44,14 +42,9 @@ export default function AdminPage() {
             website modules
           </p>
           <div className="mt-4">
-            <Button
-              as={Link}
-              href="/admin/billing"
-              radius="full"
-              variant="flat"
-            >
+            <AdminLinkButton href="/admin/billing">
               View Billing Status
-            </Button>
+            </AdminLinkButton>
           </div>
         </div>
 

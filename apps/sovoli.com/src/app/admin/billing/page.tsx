@@ -1,9 +1,3 @@
-/* eslint-disable
-  @typescript-eslint/no-unsafe-argument,
-  @typescript-eslint/no-unsafe-assignment,
-  @typescript-eslint/no-unsafe-member-access,
-  @typescript-eslint/no-unsafe-return
-*/
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
 

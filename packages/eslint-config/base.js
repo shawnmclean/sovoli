@@ -80,6 +80,13 @@ export default tseslint.config(
   },
   {
     linterOptions: { reportUnusedDisableDirectives: true },
-    languageOptions: { parserOptions: { projectService: true } },
+    // Critical: ensure type-aware linting can resolve each package/app tsconfig
+    // even when ESLint runs from the repo root (common in editor integrations).
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: path.join(import.meta.dirname, "../.."),
+      },
+    },
   },
 );

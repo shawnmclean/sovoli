@@ -21,12 +21,14 @@ import type {
   PricingItem,
 } from "~/modules/core/economics/types";
 import type { PlanDefinition, PlanKey } from "~/modules/plans/types";
+import type { OrgInstance } from "~/modules/organisations/types";
 import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
+import type { GetOrgInstanceByUsernameResult } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
 import { plans } from "~/modules/plans/data";
 import { bus } from "~/services/core/bus";
 
-const retrieveOrgInstance = async (username: string) => {
-  const result = await bus.queryProcessor.execute(
+const retrieveOrgInstance = async (username: string): Promise<OrgInstance> => {
+  const result: GetOrgInstanceByUsernameResult = await bus.queryProcessor.execute(
     new GetOrgInstanceByUsernameQuery(username),
   );
   if (!result.orgInstance) return notFound();
@@ -112,6 +114,8 @@ export default async function BillingPage({
 }: {
   params: Promise<{ username: string }>;
 }) {
+  // Next can pass `params` as a Promise in newer versions; `await` also works
+  // if it's already a plain object.
   const { username } = await params;
   const orgInstance = await retrieveOrgInstance(username);
 
@@ -161,12 +165,12 @@ export default async function BillingPage({
       ? additionalProgramsPerUnitUsd * additionalPrograms
       : 0;
 
-  const activeInvoice =
+  const activeInvoice: BillingInvoice | null =
     invoices
       .filter((inv) => inv.status === "open" || inv.status === "draft")
       .sort((a, b) => b.issuedAt.localeCompare(a.issuedAt))[0] ?? null;
 
-  const pastInvoices = invoices
+  const pastInvoices: BillingInvoice[] = invoices
     .filter((inv) => inv.status !== "open" && inv.status !== "draft")
     .slice()
     .sort((a, b) => b.issuedAt.localeCompare(a.issuedAt));
@@ -192,7 +196,15 @@ export default async function BillingPage({
         ? ("danger" as const)
         : ("default" as const);
 
-  const invoicePreviewLineItems = [
+  interface InvoicePreviewLineItem {
+    pricingItemId: string;
+    label: string;
+    quantity: number;
+    unitUsd: number;
+    lineUsd: number;
+  }
+
+  const invoicePreviewLineItems: InvoicePreviewLineItem[] = [
     ...(baseItem
       ? [
         {
@@ -441,7 +453,10 @@ export default async function BillingPage({
                         {/* Simple line items list for history */}
                         <div className="space-y-1 rounded bg-default-50 p-3">
                           {inv.lineItems?.map((li, idx) => (
-                            <div key={idx} className="flex justify-between text-xs">
+                      <div
+                        key={`${inv.id}-${li.pricingItemId}-${idx}`}
+                        className="flex justify-between text-xs"
+                      >
                               <span className="text-default-600 truncate max-w-[150px]">{li.label ?? li.pricingItemId}</span>
                               <span className="text-default-900">{currency(amountUsd(li.lineAmount))}</span>
                             </div>
