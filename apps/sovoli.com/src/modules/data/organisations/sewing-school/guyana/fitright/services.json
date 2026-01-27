@@ -3,6 +3,7 @@
     {
       "name": "Clothing Alterations & Repairs",
       "slug": "clothing-alterations-repairs",
+      "media": ["fitright-service-alteration"],
       "description": "Professional clothing adjustments and garment repairs for a better fit and longer wear.",
       "whatWeDo": "We adjust and repair everyday clothing to fit comfortably and look right.",
       "commonServices": [
@@ -25,6 +26,7 @@
     {
       "name": "Custom Dressmaking",
       "slug": "custom-dressmaking",
+      "media": ["fitright-service-dressmaking"],
       "description": "Made-to-measure garments sewn specially for you.",
       "whatWeDo": "We create custom garments from consultation to final fitting.",
       "commonServices": [
@@ -45,6 +47,7 @@
     {
       "name": "Uniform Sewing & Alterations",
       "slug": "uniform-sewing-alterations",
+      "media": ["fitright-service-uniform"],
       "description": "Reliable uniform sewing and adjustment services for schools and organizations.",
       "whatWeDo": "We sew new uniforms and adjust existing ones to fit properly.",
       "commonServices": [
