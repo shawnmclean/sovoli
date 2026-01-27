@@ -24,7 +24,7 @@ const retrieveOrgInstanceWithService = async (
 interface Props {
   children: React.ReactNode;
   params: Promise<{ username: string; slug: string }>;
-  modals: React.ReactNode;
+  modals?: React.ReactNode;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
