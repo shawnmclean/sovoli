@@ -49,11 +49,16 @@ const stateFilePathStr = stateFilePath;
 
 /**
  * Detect resource type from publicId or try both
+ * @param {string} publicId - The Cloudinary public ID of the asset to delete
  */
 async function deleteAsset(publicId) {
+  // TypeScript: ensure this is a string
+  /** @type {string} */
+  const publicIdStr = publicId;
+
   // Try image first (most common)
   try {
-    const result = await cloudinary.uploader.destroy(publicId, {
+    const result = await cloudinary.uploader.destroy(publicIdStr, {
       resource_type: "image",
       invalidate: true,
     });
@@ -65,7 +70,7 @@ async function deleteAsset(publicId) {
     // If image fails, try video
     if (error.message && error.message.includes("not found")) {
       try {
-        const result = await cloudinary.uploader.destroy(publicId, {
+        const result = await cloudinary.uploader.destroy(publicIdStr, {
           resource_type: "video",
           invalidate: true,
         });
@@ -83,7 +88,7 @@ async function deleteAsset(publicId) {
   // If we get here, it might be "not found" for image
   // Try video as fallback
   try {
-    const result = await cloudinary.uploader.destroy(publicId, {
+    const result = await cloudinary.uploader.destroy(publicIdStr, {
       resource_type: "video",
       invalidate: true,
     });
