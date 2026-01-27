@@ -67,8 +67,11 @@ async function deleteAsset(publicId) {
       return { success: true, resourceType: "image" };
     }
   } catch (error) {
+    // TypeScript: type guard for error
+    const errorMessage = error instanceof Error ? error.message : String(error);
+
     // If image fails, try video
-    if (error.message && error.message.includes("not found")) {
+    if (errorMessage.includes("not found")) {
       try {
         const result = await cloudinary.uploader.destroy(publicIdStr, {
           resource_type: "video",
@@ -79,10 +82,11 @@ async function deleteAsset(publicId) {
           return { success: true, resourceType: "video" };
         }
       } catch (videoError) {
-        return { success: false, error: videoError.message };
+        const videoErrorMessage = videoError instanceof Error ? videoError.message : String(videoError);
+        return { success: false, error: videoErrorMessage };
       }
     }
-    return { success: false, error: error.message };
+    return { success: false, error: errorMessage };
   }
 
   // If we get here, it might be "not found" for image
@@ -98,7 +102,8 @@ async function deleteAsset(publicId) {
     }
     return { success: false, error: `Result: ${result.result}` };
   } catch (error) {
-    return { success: false, error: error.message };
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    return { success: false, error: errorMessage };
   }
 }
 
@@ -149,9 +154,10 @@ async function deleteOldMedia() {
 
     // Confirm deletion
     console.log("⚠️  WARNING: This will permanently delete the following files from Cloudinary:");
-    oldPublicIds.forEach((id, index) => {
+    for (let index = 0; index < oldPublicIds.length; index++) {
+      const id = oldPublicIds[index];
       console.log(`  ${index + 1}. ${id}`);
-    });
+    }
     console.log("\nPress Ctrl+C to cancel, or wait 5 seconds to continue...\n");
 
     // Wait 5 seconds

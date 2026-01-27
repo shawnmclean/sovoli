@@ -61,6 +61,9 @@ const TARGET_PREFIX = `o/${tenantUsernameStr}/`;
  * Examples:
  *   o/vocational-school/jamaica/healingemeraldwellness/team/alicia/file
  *   -> team/alicia/file
+ * @param {string} oldPublicId - The old Cloudinary public ID
+ * @param {string} tenantUsername - The tenant username
+ * @returns {string} The path segment after the tenant name
  */
 function extractPathSegment(oldPublicId, tenantUsername) {
   // Find the tenant name in the path (with leading slash)
@@ -86,22 +89,24 @@ function extractPathSegment(oldPublicId, tenantUsername) {
   // Last resort: extract filename and assume it's in root
   const parts = oldPublicId.split("/");
   const filename = parts[parts.length - 1];
-  return filename;
+  return filename || "";
 }
 
 /**
  * Detect resource type from media object
+ * @param {Record<string, unknown>} mediaItem - The media item object
+ * @returns {"image" | "video"} The resource type
  */
 function detectResourceType(mediaItem) {
   if (mediaItem.type === "video") {
     return "video";
   }
   // Check URL for video indicators
-  if (mediaItem.url && /\.(mp4|mov|webm)$/i.test(mediaItem.url)) {
+  if (mediaItem.url && typeof mediaItem.url === "string" && /\.(mp4|mov|webm)$/i.test(mediaItem.url)) {
     return "video";
   }
   // Check format
-  if (mediaItem.format && /^(mp4|mov|webm)$/i.test(mediaItem.format)) {
+  if (mediaItem.format && typeof mediaItem.format === "string" && /^(mp4|mov|webm)$/i.test(mediaItem.format)) {
     return "video";
   }
   return "image";
@@ -226,12 +231,13 @@ async function migrateMedia() {
           success: true,
         });
       } catch (error) {
-        console.error(`  ❌ Failed to migrate: ${error.message}`);
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        console.error(`  ❌ Failed to migrate: ${errorMessage}`);
         migrationResults.push({
           id: mediaItem.id,
           oldPublicId,
           success: false,
-          error: error.message,
+          error: errorMessage,
         });
       }
     }
