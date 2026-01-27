@@ -22,8 +22,12 @@ After reading the Business Protocol, load **ONLY** the specific context you need
 *   *Contains: Tech stack, Monorepo structure, Commands, Code style, Quality checks.*
 
 ### 4. Media & Upload Tasks
-**Read**: [Media Protocol](docs/protocols/MEDIA.md)
+**Read**: [Media Protocol](docs/protocols/MEDIA.md) and [Uploading Media Guide](docs/uploading-media.md)
 *   *Contains: Upload scripts, Cloudinary rules, Size limits.*
+*   **⚠️ CRITICAL**: All media files MUST be uploaded to paths following format `o/<tenant-username>/...`
+    *   Use the tenant's `username` from `org.json` (NOT category-based paths)
+    *   Example: `o/healingemeraldwellness/team/alicia` ✅
+    *   NOT: `o/vocational-school/jamaica/healingemeraldwellness/...` ❌
 
 ### 5. Product & Data Tasks
 **Read**: [docs/README.md](docs/README.md)

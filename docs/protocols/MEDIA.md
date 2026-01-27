@@ -14,7 +14,15 @@ pnpm with-env node apps/sovoli.com/scripts/upload-media.mjs <file-path> <org-pat
 ```
 
 - **File Path**: Local path to the file.
-- **Org Path**: The folder structure in Cloudinary (e.g., `tenants/healing-emerald`).
+- **Org Path**: **MUST follow the format `o/<tenant-username>/[subdirectories]`**
+  - Example: `o/healingemeraldwellness/team/alicia`
+  - Example: `o/littlefishkindergarten/programs`
+  - **DO NOT use old category-based paths** like `o/vocational-school/jamaica/healingemeraldwellness/...`
+
+**Required Path Format:**
+- All media files MUST be uploaded to paths starting with `o/<tenant-username>/`
+- The tenant username comes from the `username` field in the organization's `org.json` file
+- Subdirectories can be added after the tenant username (e.g., `/team`, `/programs`, `/services`, `/gallery`)
 
 ## 3. Constraints
 

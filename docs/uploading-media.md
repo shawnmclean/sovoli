@@ -4,22 +4,38 @@
 
 ## Step 1: Determine the Organization Path
 
-The `<org-path>` parameter follows this pattern: `o/<category>/<country>/<region>/<organization-name>`
+**⚠️ IMPORTANT: Required Path Format**
 
-**How to find it:**
-- Look at the file path of the program/project JSON file you're working with
-- Example: `apps/sovoli.com/src/modules/data/organisations/private-schools/jamaica/st-elizabeth/littlefishkindergarten/nursery-academic.json`
-- Extract the path after `organisations/`: `private-schools/jamaica/st-elizabeth/littlefishkindergarten`
-- Add `o/` prefix: `o/private-schools/jamaica/st-elizabeth/littlefishkindergarten`
+All media files MUST follow the direct tenant path format: `o/<tenant-username>/...`
 
-**Common patterns:**
-- Private schools: `o/private-schools/jamaica/<region>/<school-name>`
-- Vocational training: `o/vocational-school/<country>/<region>/<org-name>`
-- Other organizations: `o/<category>/<country>/<region>/<org-name>`
+**The `<org-path>` parameter MUST follow this pattern:**
+```
+o/<tenant-username>/[subdirectories]
+```
 
-**Subdirectories for team member assets:**
-- Team member photos/certificates: `o/<category>/<country>/<region>/<org-name>/team/<member-name>`
-- Example: `o/vocational-school/jamaica/healingemeraldwellness/team/alicia`
+**How to find the tenant username:**
+1. Look at the organization's `org.json` file
+2. Find the `username` field (e.g., `"username": "healingemeraldwellness"`)
+3. Use that username directly in the path
+
+**Examples of correct paths:**
+- Base path: `o/healingemeraldwellness`
+- With subdirectories: `o/healingemeraldwellness/team/alicia`
+- Programs: `o/healingemeraldwellness/programs/massage-therapy`
+- Services: `o/healingemeraldwellness/services/swedish-massage`
+- Gallery: `o/healingemeraldwellness/gallery`
+
+**Common subdirectories:**
+- Team member photos/certificates: `o/<tenant-username>/team/<member-name>`
+- Programs: `o/<tenant-username>/programs/<program-name>`
+- Services: `o/<tenant-username>/services/<service-name>`
+- Gallery: `o/<tenant-username>/gallery`
+
+**❌ DO NOT USE the old category-based format:**
+- ❌ `o/vocational-school/jamaica/healingemeraldwellness/...` (old format - deprecated)
+- ❌ `o/private-schools/jamaica/st-elizabeth/littlefishkindergarten/...` (old format - deprecated)
+- ✅ `o/healingemeraldwellness/...` (correct format)
+- ✅ `o/littlefishkindergarten/...` (correct format)
 
 ## Step 2: Upload Media Files
 
@@ -40,20 +56,20 @@ pnpm with-env node scripts/upload-media.mjs <file-path> <org-path>
 - Relative path from workspace root: `"tmp/image.jpg"`
 
 **Org-path options:**
-- Base organization path: `o/vocational-school/jamaica/healingemeraldwellness`
-- With subdirectories: `o/vocational-school/jamaica/healingemeraldwellness/team/alicia` (for team member assets)
+- Base organization path: `o/<tenant-username>` (e.g., `o/healingemeraldwellness`)
+- With subdirectories: `o/<tenant-username>/<subdirectory>` (e.g., `o/healingemeraldwellness/team/alicia`)
 
 **Examples:**
 ```bash
-# Upload image from workspace root (absolute path)
-pnpm --filter @sovoli/sovoli.com exec -- pnpm with-env node scripts/upload-media.mjs "E:\Developers\sovoli\tmp\spa-standards.png" "o/vocational-school/jamaica/healingemeraldwellness/team/alicia"
+# Upload image from workspace root (absolute path) - using direct tenant path
+pnpm --filter @sovoli/sovoli.com exec -- pnpm with-env node scripts/upload-media.mjs "E:\Developers\sovoli\tmp\spa-standards.png" "o/healingemeraldwellness/team/alicia"
 
-# Upload image from workspace root (relative path)
-pnpm --filter @sovoli/sovoli.com exec -- pnpm with-env node scripts/upload-media.mjs "tmp/image.jpg" "o/private-schools/jamaica/st-elizabeth/littlefishkindergarten"
+# Upload image from workspace root (relative path) - using direct tenant path
+pnpm --filter @sovoli/sovoli.com exec -- pnpm with-env node scripts/upload-media.mjs "tmp/image.jpg" "o/littlefishkindergarten"
 
-# Upload video from apps/sovoli.com directory
+# Upload video from apps/sovoli.com directory - using direct tenant path
 cd apps/sovoli.com
-pnpm with-env node scripts/upload-media.mjs "E:\Developers\sovoli\tmp\video.mp4" "o/private-schools/jamaica/st-elizabeth/littlefishkindergarten"
+pnpm with-env node scripts/upload-media.mjs "E:\Developers\sovoli\tmp\video.mp4" "o/littlefishkindergarten/programs"
 ```
 
 **Important:** The script outputs two JSON objects:
@@ -64,16 +80,19 @@ pnpm with-env node scripts/upload-media.mjs "E:\Developers\sovoli\tmp\video.mp4"
 
 **Location pattern:**
 ```
-apps/sovoli.com/src/modules/data/organisations/<org-path-without-o-prefix>/media.json
+apps/sovoli.com/src/modules/data/organisations/<category>/<country>/<region>/<tenant-name>/media.json
 ```
 
+**Note:** The file system path still uses the category-based structure, but the Cloudinary path uses the direct tenant format.
+
 **Example:**
-- Org-path: `o/private-schools/jamaica/st-elizabeth/littlefishkindergarten`
-- Media.json location: `apps/sovoli.com/src/modules/data/organisations/private-schools/jamaica/st-elizabeth/littlefishkindergarten/media.json`
+- Tenant username: `littlefishkindergarten`
+- Cloudinary org-path: `o/littlefishkindergarten` (for uploads)
+- Media.json location: `apps/sovoli.com/src/modules/data/organisations/private-schools/jamaica/st-elizabeth/littlefishkindergarten/media.json` (file system)
 
 **How to verify:**
-- Use `glob_file_search` to find: `**/<org-name>/media.json`
-- Or navigate: `apps/sovoli.com/src/modules/data/organisations/` + org-path without `o/` prefix
+- Use `glob_file_search` to find: `**/<tenant-name>/media.json`
+- Or navigate: `apps/sovoli.com/src/modules/data/organisations/` + find the tenant's directory
 
 ## Step 4: Add Media Entry to media.json
 
