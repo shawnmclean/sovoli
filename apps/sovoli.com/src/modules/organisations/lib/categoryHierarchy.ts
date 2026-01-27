@@ -8,6 +8,7 @@ export const ORG_CATEGORY_KEYS: readonly OrgCategoryKeys[] = [
   "special-education-school",
   "vocational-school",
   "beauty-school",
+  "sewing-school",
   "stationery",
   "hardware",
   "diary-farm",
@@ -25,6 +26,7 @@ export const ORG_CATEGORY_GROUPS: Record<
     "special-education-school",
     "vocational-school",
     "beauty-school",
+    "sewing-school",
   ],
 };
 

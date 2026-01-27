@@ -148,6 +148,7 @@ export type OrgCategoryKeys =
   | "special-education-school"
   | "vocational-school"
   | "beauty-school"
+  | "sewing-school"
   | "stationery"
   | "hardware"
   | "diary-farm";

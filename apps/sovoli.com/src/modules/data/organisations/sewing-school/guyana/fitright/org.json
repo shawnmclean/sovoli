@@ -3,6 +3,7 @@
   "name": "FitRight Academy",
   "logoPhotoId": "fitright-logo",
   "categories": ["vocational-school"],
+  "categoryDisplay": "Sewing school and workshop",
   "locations": [
     {
       "key": "main-location",

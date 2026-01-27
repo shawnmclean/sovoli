@@ -4,6 +4,7 @@ import { DIARY_FARMS } from "./diary-farms";
 import { HARDWARE_ORGS } from "./hardware";
 import { PRIVATE_SCHOOLS } from "./private-schools";
 import { PUBLIC_SCHOOLS } from "./public-schools";
+import { SEWING_SCHOOLS } from "./sewing-school";
 import { STATIONARY_ORGS } from "./stationary";
 import { VOCATIONAL_SCHOOLS } from "./vocational-school";
 
@@ -12,6 +13,7 @@ const orgs: OrgInstance[] = [
   ...HARDWARE_ORGS,
   ...PRIVATE_SCHOOLS,
   ...PUBLIC_SCHOOLS,
+  ...SEWING_SCHOOLS,
   ...STATIONARY_ORGS,
   ...VOCATIONAL_SCHOOLS,
 ];
