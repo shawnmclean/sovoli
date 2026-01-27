@@ -190,8 +190,8 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0(@opentelemetry/api@1.9.0)(pino@9.5.0)
       posthog-js:
-        specifier: 1.334.1
-        version: 1.334.1
+        specifier: 1.335.3
+        version: 1.335.3
       posthog-node:
         specifier: 5.5.1
         version: 5.5.1
@@ -2719,11 +2719,11 @@ packages:
   '@polka/url@0.5.0':
     resolution: {integrity: sha512-oZLYFEAzUKyi3SKnXvj32ZCEGH6RDnao7COuCVhDydMS9NrCSVXhM79VaKyP5+Zc33m0QXEd2DN3UkU7OsHcfw==}
 
-  '@posthog/core@1.13.0':
-    resolution: {integrity: sha512-knjncrk7qRmssFRbGzBl1Tunt21GRpe0Wv+uVelyL0Rh7PdQUsgguulzXFTps8hA6wPwTU4kq85qnbAJ3eH6Wg==}
+  '@posthog/core@1.14.0':
+    resolution: {integrity: sha512-havjGYHwL8Gy6LXIR911h+M/sYlJLQbepxP/cc1M7Cp3v8F92bzpqkbuvUIUyb7/izkxfGwc9wMqKAo0QxMTrg==}
 
-  '@posthog/types@1.334.1':
-    resolution: {integrity: sha512-ypFnwTO7qbV7icylLbujbamPdQXbJq0a61GUUBnJAeTbBw/qYPIss5IRYICcbCj0uunQrwD7/CGxVb5TOYKWgA==}
+  '@posthog/types@1.335.3':
+    resolution: {integrity: sha512-mReFmfI+ep5sH3cnFhjvWfOcl3j6olKpN5lHFbOomLGxYTHMXcyMUBE3/o8WfrAgR1qxKQUsWMNcv6BhLr/GKA==}
 
   '@prisma/config@6.19.0':
     resolution: {integrity: sha512-zwCayme+NzI/WfrvFEtkFhhOaZb/hI+X8TTjzjJ252VbPxAl2hWHK5NMczmnG9sXck2lsXrxIZuK524E25UNmg==}
@@ -5825,8 +5825,8 @@ packages:
     resolution: {integrity: sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==}
     engines: {node: '>=0.10.0'}
 
-  posthog-js@1.334.1:
-    resolution: {integrity: sha512-5cDzLICr2afnwX/cR9fwoLC0vN0Nb5gP5HiCigzHkgHdO+E3WsYefla3EFMQz7U4r01CBPZ+nZ9/srkzeACxtQ==}
+  posthog-js@1.335.3:
+    resolution: {integrity: sha512-ZQg3ozgsPom+SZtAxMN97Zx9Vqkdsv1D4TZU/OqbAZdm27PswV6+ShBurm3nKm9jrlUU1cGHMRn2ZJZf249znQ==}
 
   posthog-node@5.5.1:
     resolution: {integrity: sha512-y2TBl6H27vEbXk7sqG8QISmYaUN/UcPOYYDAK0wtnXRG3ySb93mG//vri1zS2hZvYHbBv0Tz8sLpZRCq4/v99A==}
@@ -9518,7 +9518,7 @@ snapshots:
   '@opentelemetry/sql-common@0.41.0(@opentelemetry/api@1.9.0)':
     dependencies:
       '@opentelemetry/api': 1.9.0
-      '@opentelemetry/core': 2.1.0(@opentelemetry/api@1.9.0)
+      '@opentelemetry/core': 2.5.0(@opentelemetry/api@1.9.0)
 
   '@panva/hkdf@1.2.1': {}
 
@@ -9528,11 +9528,11 @@ snapshots:
 
   '@polka/url@0.5.0': {}
 
-  '@posthog/core@1.13.0':
+  '@posthog/core@1.14.0':
     dependencies:
       cross-spawn: 7.0.6
 
-  '@posthog/types@1.334.1': {}
+  '@posthog/types@1.335.3': {}
 
   '@prisma/config@6.19.0(magicast@0.3.5)':
     dependencies:
@@ -13379,15 +13379,15 @@ snapshots:
     dependencies:
       xtend: 4.0.2
 
-  posthog-js@1.334.1:
+  posthog-js@1.335.3:
     dependencies:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/api-logs': 0.208.0
       '@opentelemetry/exporter-logs-otlp-http': 0.208.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/resources': 2.5.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/sdk-logs': 0.208.0(@opentelemetry/api@1.9.0)
-      '@posthog/core': 1.13.0
-      '@posthog/types': 1.334.1
+      '@posthog/core': 1.14.0
+      '@posthog/types': 1.335.3
       core-js: 3.45.1
       dompurify: 3.3.1
       fflate: 0.4.8
