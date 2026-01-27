@@ -1,5 +1,6 @@
 import { z } from "zod";
 import type { Service, ServiceModule } from "~/modules/services/types";
+import { slugify } from "~/utils/slugify";
 import type { MediaMap } from "./parseMediaModule";
 import { getMediaByIds } from "./parseMediaModule";
 
@@ -28,11 +29,17 @@ const serviceJsonSchema = z.object({
       return false;
     },
     {
-      message: "Service URL must be a valid URL (http:// or https://) or a relative path (starting with /)",
+      message:
+        "Service URL must be a valid URL (http:// or https://) or a relative path (starting with /)",
     },
   ),
   media: z.array(z.string()).optional(),
   price: z.string().optional(),
+  slug: z.string().optional(),
+  whatWeDo: z.string().optional(),
+  commonServices: z.array(z.string()).optional(),
+  whoThisIsFor: z.array(z.string()).optional(),
+  actionText: z.string().optional(),
 });
 
 /**
@@ -70,9 +77,17 @@ export function parseServiceModule(
 
   // Resolve media references and build hydrated service objects
   const services: Service[] = validated.services.map((serviceJson) => {
-    const media = serviceJson.media && mediaMap
-      ? getMediaByIds(mediaMap, serviceJson.media, `service "${serviceJson.name}"`)
-      : undefined;
+    const media =
+      serviceJson.media && mediaMap
+        ? getMediaByIds(
+            mediaMap,
+            serviceJson.media,
+            `service "${serviceJson.name}"`,
+          )
+        : undefined;
+
+    // Generate slug from name if not provided
+    const slug = serviceJson.slug ?? slugify(serviceJson.name);
 
     const service: Service = {
       name: serviceJson.name,
@@ -81,6 +96,11 @@ export function parseServiceModule(
       url: serviceJson.url,
       media,
       price: serviceJson.price,
+      slug,
+      whatWeDo: serviceJson.whatWeDo,
+      commonServices: serviceJson.commonServices,
+      whoThisIsFor: serviceJson.whoThisIsFor,
+      actionText: serviceJson.actionText,
     };
 
     return service;

@@ -1,23 +1,61 @@
 {
   "services": [
     {
-      "name": "Alterations",
-      "description": "Professional alteration services to ensure your garments fit perfectly. We handle hemming, taking in or letting out seams, adjusting sleeves, and more to make your clothes look tailor-made for you.",
-      "url": "/services",
-      "price": "Price on request"
+      "name": "Clothing Alterations & Repairs",
+      "slug": "clothing-alterations-repairs",
+      "description": "Professional clothing adjustments and garment repairs for a better fit and longer wear.",
+      "whatWeDo": "We adjust and repair everyday clothing to fit comfortably and look right.",
+      "commonServices": [
+        "Hemming (pants, skirts, dresses)",
+        "Waist adjustments",
+        "Sleeve shortening or lengthening",
+        "Resizing garments",
+        "Seam and tear repairs",
+        "Zipper and button repairs"
+      ],
+      "whoThisIsFor": [
+        "Everyday wear",
+        "Formal and event clothing",
+        "Workwear"
+      ],
+      "price": "Price on request",
+      "actionText": "Request alteration service",
+      "url": "/services/clothing-alterations-repairs"
     },
     {
-      "name": "Dress",
-      "description": "Custom dressmaking services. From elegant evening wear to casual day dresses, we create beautiful, well-fitted garments tailored to your style and measurements.",
-      "url": "/services",
-      "price": "Price on request"
+      "name": "Custom Dressmaking",
+      "slug": "custom-dressmaking",
+      "description": "Made-to-measure garments sewn specially for you.",
+      "whatWeDo": "We create custom garments from consultation to final fitting.",
+      "commonServices": [
+        "Custom dresses",
+        "Made-to-measure outfits",
+        "Fabric and style consultation",
+        "One or more fittings"
+      ],
+      "whoThisIsFor": [
+        "Special occasions",
+        "Events and celebrations",
+        "Clients who want a unique fit"
+      ],
+      "price": "Price on request",
+      "actionText": "Request custom dressmaking",
+      "url": "/services/custom-dressmaking"
     },
     {
-      "name": "Custom Tailoring & Alterations",
-      "description": "The right fit starts here. Professional sewing and garment alteration services tailored to individual specifications.\n\nIncluded services:\n- Wedding dress tailoring and alterations\n- Office wear tailoring\n- Everyday clothing custom tailoring\n- Sleeve adjustments\n- Pant/trouser adjustments\n- General sewing and alteration work",
-      "category": "Tailoring & Garment Services",
-      "url": "/services",
-      "price": "Price on request"
+      "name": "Uniform Sewing & Alterations",
+      "slug": "uniform-sewing-alterations",
+      "description": "Reliable uniform sewing and adjustment services for schools and organizations.",
+      "whatWeDo": "We sew new uniforms and adjust existing ones to fit properly.",
+      "commonServices": [
+        "School uniform sewing",
+        "Uniform resizing and alterations",
+        "Repairs and adjustments"
+      ],
+      "whoThisIsFor": ["Students", "Parents", "Schools and organizations"],
+      "price": "Price on request",
+      "actionText": "Request uniform service",
+      "url": "/services/uniform-sewing-alterations"
     }
   ]
 }

@@ -7,6 +7,11 @@ export interface Service {
   media?: Media[];
   url: string;
   price?: string;
+  slug?: string;
+  whatWeDo?: string;
+  commonServices?: string[];
+  whoThisIsFor?: string[];
+  actionText?: string;
 }
 
 export interface ServiceModule {

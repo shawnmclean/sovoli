@@ -35,11 +35,16 @@ This is a **monorepo** using pnpm workspaces and Turbo.
 
 ## 5. Quality Checks (Run After Changes)
 
-**Always run these checks:**
-1. `pnpm lint`
-2. `pnpm typecheck`
-3. `pnpm format`
-4. `pnpm build` (to verify compilation)
+**MANDATORY**: After making any TypeScript/JavaScript code changes, you **MUST** run these checks before marking tasks complete:
+
+1. `pnpm typecheck` - **CRITICAL**: Run this first to catch type errors
+2. `pnpm lint` - Check for linting issues
+3. `pnpm format` - Ensure code formatting is correct
+4. `pnpm build` - Verify compilation succeeds
+
+**Exception**: Only skip if explicitly told by the user or if changes are purely documentation/markdown files.
+
+Type checking is especially important because TypeScript errors can break the build and cause runtime issues. Always fix type errors before proceeding.
 
 ## 6. Important Paths
 
