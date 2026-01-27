@@ -101,6 +101,19 @@ function getProgramCategoryChain(program: Program) {
   return chain.reverse();
 }
 
+function getCategoryForProgram(program: Program): {
+  id: string;
+  title: string;
+} {
+  const chain = getProgramCategoryChain(program);
+  const category =
+    chain.length >= 2 ? chain[chain.length - 2] : chain[chain.length - 1];
+  return {
+    id: category?.id ?? "other",
+    title: category?.name ?? "Other Programs",
+  };
+}
+
 export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
   const programs = (orgInstance.academicModule?.programs ?? []).filter(
     (p) => p.isActive !== false,
@@ -193,28 +206,25 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
     // Sort categories with multiple programs by title
     multiProgramCategories.sort((a, b) => a.title.localeCompare(b.title));
 
-    // Add "More programs" section at the end if there are single-program categories
+    // Add section for single-program categories. Use actual category title when
+    // there's only one program (or one effective group); otherwise "More programs".
     if (singleProgramCategories.length > 0) {
-      multiProgramCategories.push({
-        id: "more-programs",
-        title: "More programs",
-        programs: singleProgramCategories.sort((a, b) => {
-          const minAgeA = getMinAgeForSorting(a);
-          const minAgeB = getMinAgeForSorting(b);
-
-          // Primary sort: by minimum age
-          if (minAgeA !== minAgeB) {
-            return minAgeA - minAgeB;
-          }
-
-          // Secondary sort: by name
-          const nameA =
-            a.name ?? a.standardProgramVersion?.program.name ?? a.slug;
-          const nameB =
-            b.name ?? b.standardProgramVersion?.program.name ?? b.slug;
-          return nameA.localeCompare(nameB);
-        }),
+      const sorted = singleProgramCategories.sort((a, b) => {
+        const minAgeA = getMinAgeForSorting(a);
+        const minAgeB = getMinAgeForSorting(b);
+        if (minAgeA !== minAgeB) return minAgeA - minAgeB;
+        const nameA =
+          a.name ?? a.standardProgramVersion?.program.name ?? a.slug;
+        const nameB =
+          b.name ?? b.standardProgramVersion?.program.name ?? b.slug;
+        return nameA.localeCompare(nameB);
       });
+      const first = sorted.at(0);
+      const { id, title } =
+        sorted.length === 1 && first
+          ? getCategoryForProgram(first)
+          : { id: "more-programs", title: "More programs" };
+      multiProgramCategories.push({ id, title, programs: sorted });
     }
 
     // Return all categories (those with multiple programs + "More programs" if needed)
@@ -262,9 +272,11 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
         const otherPrograms = singleProgramGroups.flatMap(
           (group) => group.programs,
         );
+        const single = singleProgramGroups.at(0);
+        const useGroupTitle = singleProgramGroups.length === 1 && single;
         multiProgramGroups.push({
-          title: "Other Programs",
-          order: 999,
+          title: useGroupTitle ? single.title : "Other Programs",
+          order: useGroupTitle ? (single.order ?? 999) : 999,
           programs: otherPrograms,
         });
       }
