@@ -4,6 +4,7 @@
       "id": "fr-sewing",
       "slug": "sewing-class",
       "name": "Sewing Class",
+      "isActive": false,
       "audience": "student",
       "categoryId": "fashion-sewing",
       "quickFacts": ["Certificate Included", "Expert Instructor"],

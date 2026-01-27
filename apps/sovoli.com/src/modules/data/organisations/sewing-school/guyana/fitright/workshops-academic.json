@@ -4,6 +4,7 @@
       "id": "fr-bag-workshop",
       "slug": "sew-your-own-bag",
       "name": "Intro to Sewing: Make Your Own Bag",
+      "isActive": false,
       "audience": "student",
       "categoryId": "fashion-workshops",
       "highlights": [
@@ -135,15 +136,15 @@
         {
           "outcome": "Complete basic sewing projects",
           "competencies": [
-              {
-                "statement": "Sew a pocket skirt or a tank top"
-              },
-              {
-                "statement": "Apply different stitches and seam finishes"
-              },
-              {
-                "statement": "Understand and apply shaped facing techniques"
-              }
+            {
+              "statement": "Sew a pocket skirt or a tank top"
+            },
+            {
+              "statement": "Apply different stitches and seam finishes"
+            },
+            {
+              "statement": "Understand and apply shaped facing techniques"
+            }
           ]
         }
       ],
