@@ -27,7 +27,7 @@ export function MetaConnectButton({ onConnected, appId }: MetaConnectButtonProps
     const handleConnect = () => {
         setIsConnecting(true);
 
-        const redirectUri = window.location.origin + window.location.pathname;
+        const redirectUri = window.location.origin + "/meta-callback";
         const scope = "ads_management,pages_read_engagement,business_management,pages_show_list,public_profile";
         const authUrl = `https://www.facebook.com/v24.0/dialog/oauth?client_id=${appId}&redirect_uri=${encodeURIComponent(
             redirectUri
@@ -45,28 +45,31 @@ export function MetaConnectButton({ onConnected, appId }: MetaConnectButtonProps
             `width=${width},height=${height},left=${left},top=${top}`
         );
 
-        // Poll the popup for the token
-        const pollTimer = setInterval(() => {
-            try {
-                if (popup && popup.closed) {
-                    clearInterval(pollTimer);
-                    setIsConnecting(false);
-                    return;
-                }
+        // Listen for message from the callback page
+        const handleMessage = (event: MessageEvent) => {
+            if (event.origin !== window.location.origin) return;
 
-                if (popup && popup.location.hash.includes("access_token=")) {
-                    const token = new URLSearchParams(popup.location.hash.substring(1)).get("access_token");
-                    if (token) {
-                        clearInterval(pollTimer);
-                        popup.close();
-                        onConnected(token);
-                        setIsConnecting(false);
-                    }
-                }
-            } catch (e) {
-                // Cross-origin errors are expected until redirect back to same origin
+            if (event.data.type === "META_OAUTH_TOKEN") {
+                onConnected(event.data.token);
+                setIsConnecting(false);
+                window.removeEventListener("message", handleMessage);
+            } else if (event.data.type === "META_OAUTH_ERROR") {
+                console.error("Meta Auth Error:", event.data.error);
+                setIsConnecting(false);
+                window.removeEventListener("message", handleMessage);
             }
-        }, 500);
+        };
+
+        window.addEventListener("message", handleMessage);
+
+        // Cleanup if popup is closed manually
+        const checkClosed = setInterval(() => {
+            if (popup && popup.closed) {
+                clearInterval(checkClosed);
+                setIsConnecting(false);
+                window.removeEventListener("message", handleMessage);
+            }
+        }, 1000);
     };
 
     return (
