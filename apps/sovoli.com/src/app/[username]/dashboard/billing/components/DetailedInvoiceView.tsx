@@ -65,10 +65,8 @@ export function DetailedInvoiceView({
   const derivedPeriod = deriveInvoicePeriod(invoice.lineItems);
   const invoicePeriod =
     invoice.periodStart && invoice.periodEnd
-      ? // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        formatPeriod(invoice.periodStart, invoice.periodEnd)
-      : // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-        derivedPeriod?.periodStart && derivedPeriod?.periodEnd
+      ? formatPeriod(invoice.periodStart, invoice.periodEnd)
+      : derivedPeriod
         ? formatPeriod(derivedPeriod.periodStart, derivedPeriod.periodEnd)
         : null;
 
@@ -82,9 +80,9 @@ export function DetailedInvoiceView({
 
   // Extract company info - config is a const object, safe to access
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment
-  const companyName = config.company?.name ?? "";
+  const companyName = config.company.name;
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment
-  const companyAddress = config.company?.address;
+  const companyAddress = config.company.address;
 
   return (
     <div className="mx-auto max-w-md w-full space-y-6">
@@ -153,11 +151,8 @@ export function DetailedInvoiceView({
                   // Type checks ensure safety, but linter is strict about error types
                   const proration =
                     item.proration &&
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                     typeof item.proration.fullPeriodDays === "number" &&
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                     typeof item.proration.usedDays === "number" &&
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                     typeof item.proration.factor === "number"
                       ? {
                           // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
@@ -284,14 +279,14 @@ export function DetailedInvoiceView({
                       {companyName}
                     </span>
                     {/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
-                    {companyAddress?.line1}
+                    {companyAddress.line1}
                     <br />
                     {/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
-                    {companyAddress?.city},{" "}
+                    {companyAddress.city},{" "}
                     {/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
-                    {companyAddress?.state}{" "}
+                    {companyAddress.state}{" "}
                     {/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
-                    {companyAddress?.country}
+                    {companyAddress.country}
                   </div>
                 </div>
               </div>

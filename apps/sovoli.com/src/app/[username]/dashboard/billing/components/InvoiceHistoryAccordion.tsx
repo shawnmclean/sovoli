@@ -64,10 +64,10 @@ export function InvoiceHistoryAccordion({
 }: InvoiceHistoryAccordionProps) {
   const pathname = usePathname();
   // Extract username from pathname (e.g., /username/dashboard/billing)
-  const username = pathname?.split("/")[1];
+  const username = pathname ? pathname.split("/")[1] : undefined;
 
   const validInvoices = invoices.filter(
-    (inv) => inv && inv.id && typeof inv.id === "string",
+    (inv) => inv?.id && typeof inv.id === "string",
   );
 
   if (validInvoices.length === 0) {
@@ -86,14 +86,12 @@ export function InvoiceHistoryAccordion({
   return (
     <Accordion variant="splitted" className="px-2">
       {validInvoices.map((inv) => {
+        const derivedPeriod = deriveInvoicePeriod(inv.lineItems);
         const invoicePeriod =
           inv.periodStart && inv.periodEnd
             ? formatPeriod(inv.periodStart, inv.periodEnd)
-            : deriveInvoicePeriod(inv.lineItems)
-              ? formatPeriod(
-                  deriveInvoicePeriod(inv.lineItems)!.periodStart,
-                  deriveInvoicePeriod(inv.lineItems)!.periodEnd,
-                )
+            : derivedPeriod
+              ? formatPeriod(derivedPeriod.periodStart, derivedPeriod.periodEnd)
               : null;
 
         return (

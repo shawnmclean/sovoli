@@ -11,7 +11,7 @@ export interface ServiceHeroSectionProps {
 }
 
 export const ServiceHeroSection = ({
-  orgInstance,
+  orgInstance: _orgInstance,
   service,
   username,
 }: ServiceHeroSectionProps) => {

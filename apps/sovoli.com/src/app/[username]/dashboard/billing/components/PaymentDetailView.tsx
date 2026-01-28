@@ -7,10 +7,7 @@ import { DollarSign, Calendar, CreditCard, FileText } from "lucide-react";
 import Link from "next/link";
 import type { BillingPayment } from "~/modules/billing/types";
 import type { CurrencyCode } from "~/modules/core/economics/types";
-import {
-  formatInvoiceDate,
-  formatInvoiceDateTime,
-} from "~/modules/billing/utils/periodUtils";
+import { formatInvoiceDateTime } from "~/modules/billing/utils/periodUtils";
 
 interface PaymentDetailViewProps {
   payment: BillingPayment;

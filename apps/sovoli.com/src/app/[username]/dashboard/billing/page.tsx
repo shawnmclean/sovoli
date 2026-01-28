@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { Button } from "@sovoli/ui/components/button";
-import { Card, CardBody, CardHeader, CardFooter } from "@sovoli/ui/components/card";
+import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
 import { Divider } from "@sovoli/ui/components/divider";
 import Link from "next/link";
@@ -8,13 +8,9 @@ import {
   CreditCard,
   FileText,
   AlertTriangle,
-  CheckCircle2,
   Calendar,
   ChevronRight,
-  Download,
 } from "lucide-react";
-
-import type { BillingInvoice } from "~/modules/billing/types";
 import type {
   AmountByCurrency,
   CurrencyCode,
@@ -338,7 +334,7 @@ export default async function BillingPage({
                               {formatDate(inv.issuedAt)}
                             </span>
                             <span className="text-xs text-default-400">
-                              #{inv.invoiceNumber || inv.id.slice(-6)}
+                              #{inv.invoiceNumber ?? inv.id.slice(-6)}
                             </span>
                           </div>
                           <div className="sm:hidden text-xs text-default-500 mt-0.5">
