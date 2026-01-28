@@ -14,11 +14,28 @@ const planKeySchema = z.enum(["growth", "enrollment", "sis"]);
 
 const subscriptionCadenceSchema = z.enum(["monthly", "annual"]);
 
+const prorationInfoSchema = z.object({
+  fullPeriodDays: z.number(),
+  usedDays: z.number(),
+  factor: z.number(),
+});
+
+const lineItemSourceSchema = z.object({
+  subscriptionId: z.string().optional(),
+  planId: z.string().optional(),
+  addonId: z.string().optional(),
+});
+
 const invoiceLineItemSchema = z.object({
   pricingItemId: z.string(),
   label: z.string().optional(),
   description: z.string().optional(),
   quantity: z.number().optional(),
+  type: z.enum(["subscription", "usage", "one_time", "adjustment"]).optional(),
+  periodStart: z.string().optional(),
+  periodEnd: z.string().optional(),
+  source: lineItemSourceSchema.optional(),
+  proration: prorationInfoSchema.optional(),
   unitAmount: amountByCurrencySchema.optional(),
   lineAmount: amountByCurrencySchema.optional(),
 });
@@ -38,7 +55,9 @@ const paymentSchema = z.object({
   invoiceId: z.string().optional(),
   currency: currencyCodeSchema.optional(),
   amount: amountByCurrencySchema,
-  reference: z.string().optional(),
+  processor: z.string().optional(),
+  transactionReference: z.string().optional(),
+  reference: z.string().optional(), // Legacy field, prefer transactionReference
   notes: z.string().optional(),
 });
 
@@ -52,10 +71,13 @@ const invoiceSchema = z.object({
     "uncollectible",
     "refunded",
   ]),
+  invoiceNumber: z.string().optional(),
   issuedAt: z.string(),
   dueAt: z.string().optional(),
   paidAt: z.string().optional(),
   voidedAt: z.string().optional(),
+  periodStart: z.string().optional(),
+  periodEnd: z.string().optional(),
 
   currency: currencyCodeSchema.optional(),
   planKey: planKeySchema.optional(),

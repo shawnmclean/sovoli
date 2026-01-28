@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
+import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
 import { Divider } from "@sovoli/ui/components/divider";
+import Link from "next/link";
 import {
   Clock,
   FileText,
@@ -10,6 +12,7 @@ import {
   CalendarDays,
   ShieldCheck,
   Banknote,
+  ExternalLink,
 } from "lucide-react";
 
 import type { BillingInvoice } from "~/modules/billing/types";
@@ -445,20 +448,34 @@ export default async function BillingPage({
             <Card className="border-warning-200 bg-warning-50 shadow-sm">
               <CardBody className="flex flex-row items-start gap-4 p-4">
                 <AlertCircle className="mt-1 h-5 w-5 text-warning-600" />
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-1 flex-1">
                   <h3 className="font-semibold text-warning-900">
                     Invoice Due
                   </h3>
                   <p className="text-sm text-warning-800">
                     Invoice{" "}
                     <span className="font-mono font-medium">
-                      {activeInvoice.id}
+                      {activeInvoice.invoiceNumber ?? activeInvoice.id}
                     </span>{" "}
                     is {activeInvoice.status}.
                   </p>
                   <div className="mt-2 flex items-center gap-4 text-sm font-medium text-warning-900">
                     <span>Due: {formatDate(activeInvoice.dueAt)}</span>
                     <span>{currency(amountUsd(activeInvoice.total))}</span>
+                  </div>
+                  <div className="mt-3">
+                    <Link
+                      href={`/${username}/dashboard/billing/invoices/${activeInvoice.id}`}
+                    >
+                      <Button
+                        size="sm"
+                        variant="flat"
+                        color="warning"
+                        endContent={<ExternalLink className="h-3 w-3" />}
+                      >
+                        View Invoice Details
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </CardBody>

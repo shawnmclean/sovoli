@@ -20,4 +20,18 @@ export const config = {
     },
   ],
   rootDomain: env.NODE_ENV === "development" ? "localhost:3000" : "sovoli.com",
+  /**
+   * Company information for invoicing and billing.
+   * This is the entity that issues invoices and collects payments.
+   */
+  company: {
+    name: "Carbon Technologies LLC",
+    address: {
+      line1: "78 Spring Way",
+      city: "Kingston 10",
+      state: "St. Andrew",
+      country: "Jamaica",
+    },
+    email: "hi@sovoli.com",
+  },
 };

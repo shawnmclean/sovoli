@@ -14,6 +14,8 @@
       "issuedAt": "2026-01-25T00:00:00.000Z",
       "dueAt": "2026-02-04T00:00:00.000Z",
       "paidAt": "2026-01-27T00:00:00.000Z",
+      "periodStart": "2026-01-24T00:00:00.000Z",
+      "periodEnd": "2026-02-24T00:00:00.000Z",
       "currency": "USD",
       "planKey": "growth",
       "cadence": "monthly",
@@ -21,14 +23,20 @@
         {
           "pricingItemId": "base-plan-monthly",
           "label": "Growth System",
+          "type": "subscription",
           "quantity": 1,
+          "periodStart": "2026-01-24T00:00:00.000Z",
+          "periodEnd": "2026-02-24T00:00:00.000Z",
           "unitAmount": { "USD": 30 },
           "lineAmount": { "USD": 30 }
         },
         {
           "pricingItemId": "additional-programs-monthly",
           "label": "Additional Programs",
+          "type": "subscription",
           "quantity": 3,
+          "periodStart": "2026-01-24T00:00:00.000Z",
+          "periodEnd": "2026-02-24T00:00:00.000Z",
           "unitAmount": { "USD": 4 },
           "lineAmount": { "USD": 12 }
         }

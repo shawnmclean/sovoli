@@ -35,6 +35,42 @@ export type BillingSubscriptionStatus =
   | "canceled"
   | "unpaid";
 
+export type InvoiceLineItemType =
+  | "subscription"
+  | "usage"
+  | "one_time"
+  | "adjustment";
+
+export interface ProrationInfo {
+  /**
+   * Total days in the full billing period.
+   */
+  fullPeriodDays: number;
+  /**
+   * Number of days used/billed in this period.
+   */
+  usedDays: number;
+  /**
+   * Proration factor (usedDays / fullPeriodDays).
+   */
+  factor: number;
+}
+
+export interface LineItemSource {
+  /**
+   * Subscription ID that generated this line item.
+   */
+  subscriptionId?: string;
+  /**
+   * Plan ID that generated this line item.
+   */
+  planId?: string;
+  /**
+   * Add-on ID that generated this line item.
+   */
+  addonId?: string;
+}
+
 export interface BillingAddOnSelection {
   /**
    * Pricing item ID from the selected plan definition.
@@ -50,6 +86,28 @@ export interface BillingInvoiceLineItem {
   description?: string;
   quantity?: number;
   /**
+   * Type of line item (subscription, usage, one-time, adjustment).
+   */
+  type?: InvoiceLineItemType;
+  /**
+   * Billing period start (ISO timestamp).
+   * Required for subscription/usage line items.
+   */
+  periodStart?: string;
+  /**
+   * Billing period end (ISO timestamp, exclusive).
+   * Required for subscription/usage line items.
+   */
+  periodEnd?: string;
+  /**
+   * Source information (subscription_id, plan_id, addon_id).
+   */
+  source?: LineItemSource;
+  /**
+   * Proration information if this line item is prorated.
+   */
+  proration?: ProrationInfo;
+  /**
    * Snapshot amounts at invoice time (optional).
    * If omitted, UI can derive from plan pricing items.
    */
@@ -62,6 +120,12 @@ export interface BillingInvoice {
   status: BillingInvoiceStatus;
 
   /**
+   * Human-friendly invoice number (e.g., "INV-2026-001").
+   * Assigned manually or by invoice generation system.
+   */
+  invoiceNumber?: string;
+
+  /**
    * ISO timestamps.
    * `issuedAt` is when the invoice is created/issued to the customer.
    */
@@ -69,6 +133,17 @@ export interface BillingInvoice {
   dueAt?: string;
   paidAt?: string;
   voidedAt?: string;
+
+  /**
+   * Billing period start (ISO timestamp).
+   * Derived as min(lineItems.periodStart) if not explicitly set.
+   */
+  periodStart?: string;
+  /**
+   * Billing period end (ISO timestamp, exclusive).
+   * Derived as max(lineItems.periodEnd) if not explicitly set.
+   */
+  periodEnd?: string;
 
   currency?: CurrencyCode;
 
@@ -117,7 +192,16 @@ export interface BillingPayment {
   currency?: CurrencyCode;
   amount: AmountByCurrency;
 
-  reference?: string; // e.g. bank transfer ref, receipt number
+  /**
+   * Payment processor (e.g., "stripe", "bank_transfer", "cash", "manual").
+   */
+  processor?: string;
+  /**
+   * Transaction reference from processor (e.g., payment intent ID, bank transfer ref).
+   */
+  transactionReference?: string;
+
+  reference?: string; // e.g. bank transfer ref, receipt number (legacy, prefer transactionReference)
   notes?: string;
 }
 
