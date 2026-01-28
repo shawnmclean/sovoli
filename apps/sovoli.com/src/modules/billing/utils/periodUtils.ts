@@ -95,12 +95,12 @@ export function deriveInvoicePeriod(
     return undefined;
   }
 
-  const periods = lineItems
-    .filter((li) => li.periodStart && li.periodEnd)
-    .map((li) => ({
-      start: li.periodStart as string,
-      end: li.periodEnd as string,
-    }));
+  const periods = lineItems.flatMap((li) => {
+    if (li.periodStart && li.periodEnd) {
+      return [{ start: li.periodStart, end: li.periodEnd }];
+    }
+    return [];
+  });
 
   if (periods.length === 0) {
     return undefined;

@@ -72,9 +72,6 @@ export default async function Layout({ children, params, modals }: Props) {
     slug,
   );
 
-  if (!service) {
-    return notFound();
-  }
 
   return (
     <div className="flex min-h-screen flex-col">
