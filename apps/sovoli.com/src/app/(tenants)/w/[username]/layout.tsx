@@ -95,31 +95,32 @@ export default async function Layout({ children, params, modals }: Props) {
     }),
     ...(orgInstance.org.socialLinks &&
       orgInstance.org.socialLinks.length > 0 && {
-        sameAs: orgInstance.org.socialLinks.map((link) => link.url),
-      }),
+      sameAs: orgInstance.org.socialLinks.map((link) => link.url),
+    }),
     ...(orgInstance.org.categories.length > 0 && {
       additionalType:
         orgInstance.org.categories[0] === "private-school"
           ? "https://schema.org/School"
           : orgInstance.org.categories[0] === "nursery-school"
             ? "https://schema.org/Preschool"
-            : orgInstance.org.categories[0] === "vocational-school"
+            : orgInstance.org.categories[0] &&
+              ["vocational-school", "sewing-school", "beauty-school", "fashion-school", "music-school"].includes(orgInstance.org.categories[0])
               ? "https://schema.org/CollegeOrUniversity"
               : "https://schema.org/EducationalOrganization",
     }),
     ...(orgInstance.academicModule?.programs &&
       orgInstance.academicModule.programs.filter((p) => p.isActive !== false)
         .length > 0 && {
-        hasOfferingCatalog: {
-          "@type": "OfferingCatalog",
-          name: "Educational Programs",
-          itemListElement: orgInstance.academicModule.programs
-            .filter((program) => program.isActive !== false)
-            .map((program) => ({
-              "@id": `${orgInstance.websiteModule.website.url}/programs/${program.slug}`,
-            })),
-        },
-      }),
+      hasOfferingCatalog: {
+        "@type": "OfferingCatalog",
+        name: "Educational Programs",
+        itemListElement: orgInstance.academicModule.programs
+          .filter((program) => program.isActive !== false)
+          .map((program) => ({
+            "@id": `${orgInstance.websiteModule.website.url}/programs/${program.slug}`,
+          })),
+      },
+    }),
   };
 
   return (

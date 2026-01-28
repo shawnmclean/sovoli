@@ -18,7 +18,10 @@ const retrieveOrgInstanceWithService = async (
   const result = await getOrgInstanceWithService(username, slug);
   if (!result?.service) return notFound();
 
-  return result;
+  return result as {
+    orgInstance: typeof result.orgInstance;
+    service: NonNullable<typeof result.service>;
+  };
 };
 
 interface Props {
@@ -30,13 +33,6 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { username, slug } = await params;
   const result = await retrieveOrgInstanceWithService(username, slug);
-
-  if (!result || !result.service) {
-    return {
-      title: "Service not found",
-      description: "The requested service could not be found.",
-    };
-  }
 
   const {
     orgInstance: {

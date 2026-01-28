@@ -78,10 +78,7 @@ export function DetailedInvoiceView({
   const balanceDueUsd = totalUsd - amountPaidUsd;
   const currencyCode = invoice.currency ?? "USD";
 
-  // Extract company info - config is a const object, safe to access
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment
   const companyName = config.company.name;
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment
   const companyAddress = config.company.address;
 
   return (
@@ -151,17 +148,14 @@ export function DetailedInvoiceView({
                   // Type checks ensure safety, but linter is strict about error types
                   const proration =
                     item.proration &&
-                    typeof item.proration.fullPeriodDays === "number" &&
-                    typeof item.proration.usedDays === "number" &&
-                    typeof item.proration.factor === "number"
+                      typeof item.proration.fullPeriodDays === "number" &&
+                      typeof item.proration.usedDays === "number" &&
+                      typeof item.proration.factor === "number"
                       ? {
-                          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-                          fullPeriodDays: item.proration.fullPeriodDays,
-                          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-                          usedDays: item.proration.usedDays,
-                          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-                          factor: item.proration.factor,
-                        }
+                        fullPeriodDays: item.proration.fullPeriodDays,
+                        usedDays: item.proration.usedDays,
+                        factor: item.proration.factor,
+                      }
                       : null;
 
                   return (
@@ -278,14 +272,10 @@ export function DetailedInvoiceView({
                     <span className="text-default-700 font-medium block text-sm">
                       {companyName}
                     </span>
-                    {/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
                     {companyAddress.line1}
                     <br />
-                    {/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
                     {companyAddress.city},{" "}
-                    {/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
                     {companyAddress.state}{" "}
-                    {/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
                     {companyAddress.country}
                   </div>
                 </div>

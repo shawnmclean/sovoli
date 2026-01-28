@@ -206,7 +206,7 @@ const SHARED_CUSTOMERS: Customer[] = [
     quote: "Sovoli launched our school and filled our first two paid programs.",
     caseStudyLink: "https://www.fitright.gy",
     logo: "https://res.cloudinary.com/dipyku9mn/image/upload/v1765638250/o/fitright/logo/logo.webp",
-    category: "Vocational School",
+    category: "Sewing School",
   },
 ];
 

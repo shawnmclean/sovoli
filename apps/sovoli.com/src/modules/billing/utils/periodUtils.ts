@@ -98,8 +98,8 @@ export function deriveInvoicePeriod(
   const periods = lineItems
     .filter((li) => li.periodStart && li.periodEnd)
     .map((li) => ({
-      start: li.periodStart!,
-      end: li.periodEnd!,
+      start: li.periodStart as string,
+      end: li.periodEnd as string,
     }));
 
   if (periods.length === 0) {

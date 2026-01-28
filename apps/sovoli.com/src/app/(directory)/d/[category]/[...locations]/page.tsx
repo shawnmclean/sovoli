@@ -24,6 +24,7 @@ const CATEGORY_MAP: Record<string, string> = {
   "secondary-school": "Secondary School",
   "pre-school": "Pre-School",
   "beauty-school": "Beauty School",
+  "sewing-school": "Sewing School",
   "vocational-school": "Vocational School",
   stationery: "Stationery",
   hardware: "Hardware",
@@ -265,11 +266,10 @@ export default async function DirectoryCategoryPage(props: Props) {
                     key={pageNum}
                     href={href}
                     aria-current={isActive ? "page" : undefined}
-                    className={`px-3 py-1 rounded-md border text-sm font-medium ${
-                      isActive
+                    className={`px-3 py-1 rounded-md border text-sm font-medium ${isActive
                         ? "bg-primary-600 text-white border-primary-600"
                         : "bg-white text-default-700 border-default-200 hover:bg-default-100"
-                    }`}
+                      }`}
                   >
                     {pageNum}
                   </Link>

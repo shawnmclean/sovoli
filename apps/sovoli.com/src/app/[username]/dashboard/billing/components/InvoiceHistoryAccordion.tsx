@@ -67,7 +67,7 @@ export function InvoiceHistoryAccordion({
   const username = pathname ? pathname.split("/")[1] : undefined;
 
   const validInvoices = invoices.filter(
-    (inv) => inv?.id && typeof inv.id === "string",
+    (inv) => inv.id && typeof inv.id === "string",
   );
 
   if (validInvoices.length === 0) {

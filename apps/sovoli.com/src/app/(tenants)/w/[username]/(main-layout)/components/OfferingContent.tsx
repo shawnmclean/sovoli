@@ -15,6 +15,7 @@ export function OfferingContent({ orgInstance }: OfferingContentProps) {
   const programCategories = new Set([
     "private-school",
     "vocational-school",
+    "sewing-school",
     "beauty-school",
     "fashion-school",
     "music-school",
