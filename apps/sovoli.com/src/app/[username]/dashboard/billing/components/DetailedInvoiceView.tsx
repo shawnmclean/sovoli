@@ -1,9 +1,9 @@
 "use client";
 
-import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
+import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
 import { Divider } from "@sovoli/ui/components/divider";
-import { FileText, Calendar, DollarSign } from "lucide-react";
+import { Calendar, Download } from "lucide-react";
 import type { BillingInvoice } from "~/modules/billing/types";
 import type {
   AmountByCurrency,
@@ -17,6 +17,7 @@ import {
 } from "~/modules/billing/utils/periodUtils";
 import { config } from "~/utils/config";
 
+
 interface DetailedInvoiceViewProps {
   invoice: BillingInvoice;
   orgName?: string;
@@ -27,7 +28,7 @@ function currency(value: number, code: CurrencyCode = "USD") {
     style: "currency",
     currency: code,
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
+    maximumFractionDigits: 2,
   });
 }
 
@@ -67,11 +68,7 @@ export function DetailedInvoiceView({
       ? formatPeriod(invoice.periodStart, invoice.periodEnd)
       : derivedPeriod
         ? formatPeriod(derivedPeriod.periodStart, derivedPeriod.periodEnd)
-        : "Not specified";
-
-  // Get period dates for the grouped header display
-  const periodStart = invoice.periodStart ?? derivedPeriod?.periodStart;
-  const periodEnd = invoice.periodEnd ?? derivedPeriod?.periodEnd;
+        : null;
 
   const totalUsd = amountUsd(invoice.total);
   const subtotalUsd = amountUsd(invoice.subtotal);
@@ -82,352 +79,222 @@ export function DetailedInvoiceView({
   const currencyCode = invoice.currency ?? "USD";
 
   return (
-    <div className="space-y-6 print:space-y-4">
-      {/* Invoice Header */}
-      <Card className="shadow-sm print:shadow-none print:border-none">
-        <CardHeader className="border-b border-default-100 pb-4">
-          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-            <div className="flex items-start gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 print:hidden">
-                <FileText className="h-5 w-5 text-primary" />
-              </div>
-              <div>
-                <h2 className="text-xl font-bold text-default-900">
-                  Invoice Details
-                </h2>
-                {invoice.invoiceNumber && (
-                  <p className="text-sm text-default-500 font-mono mt-1">
-                    {invoice.invoiceNumber}
-                  </p>
-                )}
-                <p className="text-xs text-default-500 font-mono mt-1">
-                  ID: {invoice.id}
-                </p>
+    <div className="mx-auto max-w-md w-full space-y-6">
+      <Card className="shadow-none border border-default-200 overflow-hidden bg-content1">
+        <CardBody className="p-0">
+          {/* Header Section: Amount & Status */}
+          <div className="p-6 pb-8 bg-default-50 text-center border-b border-default-100">
+            <div className="flex justify-center mb-4">
+              <div className="h-10 w-10 rounded-full bg-content1 border border-default-200 flex items-center justify-center p-2 shadow-sm">
+                {/* Brand Icon Placeholder or simple generic icon */}
+                <span className="font-bold text-lg text-primary">S</span>
               </div>
             </div>
-            <Chip
-              size="sm"
-              variant="flat"
-              color={getInvoiceStatusColor(invoice.status)}
-              className="capitalize"
-            >
-              {invoice.status}
-            </Chip>
-          </div>
-        </CardHeader>
-        <CardBody className="pt-6">
-          {/* From / To Section */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 pb-6 border-b border-default-200">
-            {/* From: Company Information */}
-            <div>
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-default-500 mb-2">
-                From
-              </h3>
-              <div className="space-y-1 text-sm text-default-900">
-                <div className="font-semibold">{config.company.name}</div>
-                <div className="text-default-600">
-                  {config.company.address.line1}
-                  <br />
-                  {config.company.address.city}, {config.company.address.state}
-                  <br />
-                  {config.company.address.country}
-                </div>
-                <div className="text-default-600 mt-2">
-                  <a
-                    href={`mailto:${config.company.email}`}
-                    className="hover:text-primary"
-                  >
-                    {config.company.email}
-                  </a>
-                </div>
-              </div>
-            </div>
-            {/* To: Customer Information */}
-            {orgName && (
-              <div>
-                <h3 className="text-xs font-semibold uppercase tracking-wider text-default-500 mb-2">
-                  To
-                </h3>
-                <div className="space-y-1 text-sm text-default-900">
-                  <div className="font-semibold">{orgName}</div>
-                </div>
-              </div>
-            )}
-          </div>
 
-          {/* Invoice Info Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-            <div className="space-y-4">
-              <div>
-                <span className="text-xs font-medium uppercase tracking-wider text-default-500 block mb-1">
-                  Billing Period
-                </span>
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4 text-default-400" />
-                  <span className="text-sm font-medium text-default-900">
-                    {invoicePeriod}
-                  </span>
-                </div>
-              </div>
-              <div>
-                <span className="text-xs font-medium uppercase tracking-wider text-default-500 block mb-1">
-                  Issued Date
-                </span>
-                <span className="text-sm font-medium text-default-900">
-                  {formatInvoiceDate(invoice.issuedAt)}
-                </span>
-              </div>
-            </div>
-            <div className="space-y-4">
-              <div>
-                <span className="text-xs font-medium uppercase tracking-wider text-default-500 block mb-1">
-                  Due Date
-                </span>
-                <span className="text-sm font-medium text-default-900">
-                  {formatInvoiceDate(invoice.dueAt)}
-                </span>
-              </div>
-              {invoice.paidAt && (
-                <div>
-                  <span className="text-xs font-medium uppercase tracking-wider text-default-500 block mb-1">
-                    Paid Date
-                  </span>
-                  <span className="text-sm font-medium text-default-900">
-                    {formatInvoiceDate(invoice.paidAt)}
-                  </span>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Line Items Table */}
-          {invoice.lineItems && invoice.lineItems.length > 0 ? (
-            <div className="mb-6">
-              <h3 className="text-sm font-bold text-default-900 mb-3 uppercase">
-                Items
-              </h3>
-              {/* Billing Period Header - shown once at top */}
-              {periodStart && periodEnd && (
-                <div className="mb-3 text-sm font-medium text-default-700">
-                  {formatPeriod(periodStart, periodEnd, true)}
-                </div>
-              )}
-              <div className="border border-default-200 rounded-lg overflow-hidden">
-                <div className="bg-default-50 px-4 py-2 border-b border-default-200">
-                  <div className="grid grid-cols-12 gap-4 text-xs font-medium text-default-600 uppercase tracking-wider">
-                    <div className="col-span-6">Description</div>
-                    <div className="col-span-2 text-right">Quantity</div>
-                    <div className="col-span-2 text-right">Unit Price</div>
-                    <div className="col-span-2 text-right">Amount</div>
-                  </div>
-                </div>
-                <div className="divide-y divide-default-100">
-                  {invoice.lineItems.map((item, idx) => {
-                    const unitPriceUsd = amountUsd(item.unitAmount);
-                    const lineAmountUsd = amountUsd(item.lineAmount);
-
-                    return (
-                      <div
-                        key={`${invoice.id}-${item.pricingItemId}-${idx}`}
-                        className="px-4 py-3"
-                      >
-                        <div className="grid grid-cols-12 gap-4 items-start">
-                          <div className="col-span-6">
-                            <div className="font-medium text-sm text-default-900">
-                              {item.label ?? item.pricingItemId}
-                            </div>
-                            {item.description && (
-                              <div className="text-xs text-default-500 mt-1">
-                                {item.description}
-                              </div>
-                            )}
-                            {item.proration && (
-                              <div className="text-xs text-default-500 mt-1">
-                                Prorated: {formatProration(item.proration)}
-                              </div>
-                            )}
-                            {item.type && (
-                              <Chip
-                                size="sm"
-                                variant="flat"
-                                className="mt-1 text-xs"
-                              >
-                                {item.type}
-                              </Chip>
-                            )}
-                          </div>
-                          <div className="col-span-2 text-right text-sm text-default-900">
-                            Qty {item.quantity ?? 1}
-                          </div>
-                          <div className="col-span-2 text-right text-sm text-default-900">
-                            {currency(unitPriceUsd, currencyCode)}
-                          </div>
-                          <div className="col-span-2 text-right font-semibold text-sm text-default-900">
-                            {currency(lineAmountUsd, currencyCode)}
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div className="mb-6 text-sm text-default-500">
-              No line items available.
-            </div>
-          )}
-
-          <Divider className="my-6" />
-
-          {/* Totals Section */}
-          <div className="space-y-2">
-            {subtotalUsd > 0 && (
-              <div className="flex justify-between text-sm">
-                <span className="text-default-600">Subtotal</span>
-                <span className="text-default-900 font-medium">
-                  {currency(subtotalUsd, currencyCode)}
-                </span>
-              </div>
-            )}
-            {discountUsd > 0 && (
-              <div className="flex justify-between text-sm text-success">
-                <span>Discounts</span>
-                <span className="font-medium">
-                  -{currency(discountUsd, currencyCode)}
-                </span>
-              </div>
-            )}
-            {taxUsd > 0 && (
-              <div className="flex justify-between text-sm">
-                <span className="text-default-600">Tax</span>
-                <span className="text-default-900 font-medium">
-                  {currency(taxUsd, currencyCode)}
-                </span>
-              </div>
-            )}
-            <Divider className="my-2" />
-            <div className="flex justify-between text-lg font-bold">
-              <span className="text-default-900">Total</span>
-              <span className="text-default-900">
-                {currency(totalUsd, currencyCode)}
+            <div className="flex flex-col items-center gap-1">
+              <span className="text-default-500 text-xs font-semibold uppercase tracking-wider">
+                Invoice {invoice.invoiceNumber || `#${invoice.id.slice(-6)}`}
               </span>
+              <div className="flex items-center gap-2">
+                <h1 className="text-4xl font-bold text-default-900 tracking-tight">
+                  {currency(totalUsd, currencyCode)}
+                </h1>
+              </div>
+              <Chip
+                size="sm"
+                variant="flat"
+                color={getInvoiceStatusColor(invoice.status)}
+                className="mt-2 capitalize"
+              >
+                {invoice.status}
+              </Chip>
             </div>
-            {amountPaidUsd > 0 && (
-              <>
-                <div className="flex justify-between text-sm text-success mt-2">
-                  <span>Amount Paid</span>
-                  <span className="font-medium">
-                    {currency(amountPaidUsd, currencyCode)}
-                  </span>
+
+            <div className="mt-6 flex justify-center gap-8 text-sm">
+              <div>
+                <span className="text-default-400 block text-xs mb-0.5">Issued</span>
+                <span className="font-medium text-default-700">{formatInvoiceDate(invoice.issuedAt)}</span>
+              </div>
+              <div>
+                <span className="text-default-400 block text-xs mb-0.5">Due</span>
+                <span className="font-medium text-default-700">{formatInvoiceDate(invoice.dueAt)}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-6 space-y-6">
+            {/* Line Items List - No Table */}
+            <div className="space-y-4">
+              {invoice.lineItems && invoice.lineItems.length > 0 ? (
+                invoice.lineItems.map((item, idx) => {
+                  const lineAmountUsd = amountUsd(item.lineAmount);
+
+                  return (
+                    <div key={`${invoice.id}-${idx}`} className="flex justify-between items-start gap-4">
+                      <div className="flex flex-col gap-0.5 max-w-[70%]">
+                        <span className="text-sm font-medium text-default-900 leading-snug">
+                          {item.label ?? item.pricingItemId}
+                          {(item.quantity ?? 1) > 1 && (
+                            <span className="text-default-400 font-normal ml-1">
+                              × {item.quantity}
+                            </span>
+                          )}
+                        </span>
+
+                        {(item.description || item.proration) && (
+                          <span className="text-xs text-default-500 leading-snug">
+                            {item.description}
+                            {item.proration && (
+                              <span className="block mt-0.5 opacity-80">
+                                {formatProration(item.proration)}
+                              </span>
+                            )}
+                          </span>
+                        )}
+                        {item.type && (
+                          <span className="text-[10px] text-default-400 uppercase tracking-wider mt-1">
+                            {item.type}
+                          </span>
+                        )}
+                      </div>
+                      <span className="text-sm font-semibold text-default-900 shrink-0">
+                        {currency(lineAmountUsd, currencyCode)}
+                      </span>
+                    </div>
+                  );
+                })
+              ) : (
+                <div className="text-center text-sm text-default-400 py-4">
+                  No line items found
                 </div>
-                {balanceDueUsd > 0 && (
-                  <div className="flex justify-between text-sm text-warning mt-2">
-                    <span>Balance Due</span>
-                    <span className="font-medium">
-                      {currency(balanceDueUsd, currencyCode)}
+              )}
+            </div>
+
+            <Divider className="opacity-50" />
+
+            {/* Totals Section - Clean Horizontal Lines */}
+            <div className="space-y-2 pt-1 text-sm">
+              <div className="flex justify-between text-default-500">
+                <span>Subtotal</span>
+                <span>{currency(subtotalUsd, currencyCode)}</span>
+              </div>
+
+              {discountUsd > 0 && (
+                <div className="flex justify-between text-success">
+                  <span>Discount</span>
+                  <span>-{currency(discountUsd, currencyCode)}</span>
+                </div>
+              )}
+
+              {taxUsd > 0 && (
+                <div className="flex justify-between text-default-500">
+                  <span>Tax</span>
+                  <span>{currency(taxUsd, currencyCode)}</span>
+                </div>
+              )}
+
+              <Divider className="my-2 border-dashed opacity-50" />
+
+              <div className="flex justify-between items-center text-base font-bold text-default-900">
+                <span>Total</span>
+                <span>{currency(totalUsd, currencyCode)}</span>
+              </div>
+
+              {amountPaidUsd > 0 && (
+                <div className="pt-2 space-y-2">
+                  <div className="flex justify-between text-sm text-success">
+                    <span>Paid</span>
+                    <span>{currency(amountPaidUsd, currencyCode)}</span>
+                  </div>
+                  {balanceDueUsd > 0 ? (
+                    <div className="flex justify-between text-sm font-medium text-warning">
+                      <span>Balance Due</span>
+                      <span>{currency(balanceDueUsd, currencyCode)}</span>
+                    </div>
+                  ) : (
+                    <div className="flex justify-between text-sm text-default-400">
+                      <span>Balance Due</span>
+                      <span>{currency(0, currencyCode)}</span>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* Additional Metadata Grouped at Bottom */}
+            <div className="pt-6 mt-6 border-t border-default-100">
+              <div className="grid grid-cols-1 gap-6 text-xs">
+                {/* Billed To */}
+                {orgName && (
+                  <div>
+                    <span className="text-default-400 font-semibold uppercase tracking-wider block mb-1">
+                      Billed To
+                    </span>
+                    <span className="text-default-700 font-medium text-sm">
+                      {orgName}
                     </span>
                   </div>
                 )}
-                {balanceDueUsd <= 0 && (
-                  <div className="flex justify-between text-sm text-success mt-2">
-                    <span>Balance</span>
-                    <span className="font-medium">Paid in Full</span>
+
+                {/* Billed From */}
+                <div>
+                  <span className="text-default-400 font-semibold uppercase tracking-wider block mb-1">
+                    From
+                  </span>
+                  <div className="text-default-600">
+                    <span className="text-default-700 font-medium block text-sm">{config.company.name}</span>
+                    {config.company.address.line1}<br />
+                    {config.company.address.city}, {config.company.address.state} {config.company.address.country}
                   </div>
-                )}
-              </>
-            )}
-          </div>
-
-          {/* Payment Information */}
-          {invoice.payments && invoice.payments.length > 0 && (
-            <>
-              <Divider className="my-6" />
-              <div>
-                <h3 className="text-sm font-semibold text-default-900 mb-3">
-                  Payments
-                </h3>
-                <div className="space-y-2">
-                  {invoice.payments.map((payment) => {
-                    const paymentUsd = amountUsd(payment.amount);
-                    const paymentStatusColor =
-                      payment.status === "succeeded"
-                        ? "success"
-                        : payment.status === "pending"
-                          ? "warning"
-                          : payment.status === "failed"
-                            ? "danger"
-                            : "default";
-
-                    return (
-                      <div
-                        key={payment.id}
-                        className="flex items-center justify-between p-3 bg-default-50 rounded-lg"
-                      >
-                        <div className="flex items-center gap-3">
-                          <DollarSign className="h-4 w-4 text-default-400" />
-                          <div>
-                            <div className="text-sm font-medium text-default-900">
-                              {currency(
-                                paymentUsd,
-                                payment.currency ?? currencyCode,
-                              )}
-                            </div>
-                            <div className="text-xs text-default-500">
-                              {formatInvoiceDate(payment.paidAt)}
-                              {payment.processor && ` • ${payment.processor}`}
-                              {payment.transactionReference &&
-                                ` • ${payment.transactionReference}`}
-                            </div>
-                          </div>
-                        </div>
-                        <Chip
-                          size="sm"
-                          variant="flat"
-                          color={paymentStatusColor}
-                          className="capitalize"
-                        >
-                          {payment.status}
-                        </Chip>
-                      </div>
-                    );
-                  })}
                 </div>
               </div>
-            </>
-          )}
+            </div>
 
-          {/* Notes */}
-          {invoice.notes && (
-            <>
-              <Divider className="my-6" />
-              <div>
-                <h3 className="text-sm font-semibold text-default-900 mb-2">
-                  Notes
-                </h3>
-                <p className="text-sm text-default-600 whitespace-pre-wrap">
-                  {invoice.notes}
-                </p>
+            {/* Payments List (if relevant) */}
+            {invoice.payments && invoice.payments.length > 0 && (
+              <div className="pt-6 mt-2 border-t border-default-100">
+                <span className="text-default-400 font-semibold uppercase tracking-wider block mb-3 text-xs">
+                  Payment History
+                </span>
+                <div className="space-y-3">
+                  {invoice.payments.map((payment) => (
+                    <div key={payment.id} className="flex justify-between items-center text-xs">
+                      <div className="flex items-center gap-2">
+                        <div className={`w-1.5 h-1.5 rounded-full ${payment.status === 'succeeded' ? "bg-success" : "bg-default-300"}`} />
+                        <span className="text-default-600">
+                          {formatInvoiceDate(payment.paidAt)}
+                          {payment.status !== 'succeeded' && ` (${payment.status})`}
+                        </span>
+                      </div>
+                      <span className="text-default-700 font-medium">
+                        {currency(amountUsd(payment.amount), payment.currency ?? currencyCode)}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </>
-          )}
+            )}
+
+            {invoicePeriod && (
+              <div className="text-center pt-2">
+                <span className="text-[10px] text-default-400 bg-default-100 px-2 py-1 rounded-full">
+                  Period: {invoicePeriod}
+                </span>
+              </div>
+            )}
+          </div>
         </CardBody>
       </Card>
 
-      {/* Print Styles */}
-      <style jsx global>{`
-        @media print {
-          .print\\:hidden {
-            display: none !important;
-          }
-          .print\\:shadow-none {
-            box-shadow: none !important;
-          }
-          .print\\:border-none {
-            border: none !important;
-          }
-        }
-      `}</style>
+      {/* Footer Notes (outside card) */}
+      {invoice.notes && (
+        <div className="text-center px-4">
+          <p className="text-xs text-default-500 max-w-xs mx-auto">
+            {invoice.notes}
+          </p>
+        </div>
+      )}
     </div>
   );
 }
+
