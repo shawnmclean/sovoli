@@ -23,6 +23,10 @@ export const env = createEnv({
     CLOUDINARY_API_KEY: z.string().min(1),
     AUTH_SECRET: z.string().min(1),
     AIRTABLE_API_KEY: z.string().min(1),
+    META_PARTNER_BM_ID: z.string().optional(),
+    META_PARTNER_SYSTEM_USER_TOKEN: z.string().optional(),
+    PARTNER_BM_ADMIN_SYSTEM_USER_ACCESS_TOKEN: z.string().optional(),
+    META_APP_ID: z.string().optional(),
   },
 
   /**
