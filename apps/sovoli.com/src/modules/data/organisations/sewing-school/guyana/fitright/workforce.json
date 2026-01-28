@@ -24,7 +24,7 @@
       "slug": "xavrine-dornellas",
       "name": "Xavrine D'Ornellas",
       "photoId": "fitright-xavirine-photo",
-      "bio": "Xavrine, the creator behind Fitright Sewing and Teaching, is a long-time educator with a passion for sewing that began in the early 1970s. Over the years, that passion turned into a profession. She opened a private Sewing Studio to serve individuals both here in Guyana and overseas. Her work has ranged from simple clothing to wedding ensembles. With decades of hands-on experience in teaching and as a graduate of The Fashion Institute of Technology (New York), she is excited to share everything she has learned—from making a tote bag to constructing full garments.",
+      "bio": "Xavrine, the creator behind FitRight Academy, is a long-time educator with a passion for sewing that began in the early 1970s. Over the years, that passion turned into a profession. She opened a private Sewing Studio to serve individuals both here in Guyana and overseas. Her work has ranged from simple clothing to wedding ensembles. With decades of hands-on experience in teaching and as a graduate of The Fashion Institute of Technology (New York), she is excited to share everything she has learned—from making a tote bag to constructing full garments.",
       "quote": "Transform fabric into beautiful, well-fitted garments with fun and approachable techniques.",
       "isPublic": true,
       "contacts": [],
@@ -38,19 +38,35 @@
       "subjectAssignments": [
         {
           "subject": "Sewing",
-          "grades": ["Beginner", "Elementary", "Intermediate", "Advanced"]
+          "grades": [
+            "Beginner",
+            "Elementary",
+            "Intermediate",
+            "Advanced"
+          ]
         },
         {
           "subject": "Pattern Making",
-          "grades": ["Elementary", "Intermediate", "Advanced"]
+          "grades": [
+            "Elementary",
+            "Intermediate",
+            "Advanced"
+          ]
         },
         {
           "subject": "Fashion Design",
-          "grades": ["Intermediate", "Advanced"]
+          "grades": [
+            "Intermediate",
+            "Advanced"
+          ]
         },
         {
           "subject": "Dressmaking",
-          "grades": ["Elementary", "Intermediate", "Advanced"]
+          "grades": [
+            "Elementary",
+            "Intermediate",
+            "Advanced"
+          ]
         }
       ],
       "education": [

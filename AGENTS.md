@@ -39,8 +39,8 @@ After reading the Business Protocol, load **ONLY** the specific context you need
 
 ### 7. Tenant Domain Setup Tasks
 **See**: Examples below for setting up custom tenant domains.
-*   **Existing tenants with custom domains**: Modern Academy (`ma.edu.gy`), FitRight (`fitright.gy`), Healing Emerald Wellness (`hewja.com`)
-*   **Pattern 1 (JSON-based)**: For tenants using `website.json` (e.g., FitRight, Healing Emerald Wellness)
+*   **Existing tenants with custom domains**: Modern Academy (`ma.edu.gy`), FitRight Academy (`fitright.gy`), Healing Emerald Wellness (`hewja.com`)
+*   **Pattern 1 (JSON-based)**: For tenants using `website.json` (e.g., FitRight Academy, Healing Emerald Wellness)
     *   Add `"domain"` field to `website.json` under `website` object: `"domain": "www.{domain}"`
     *   Format: Use `www.{domain}` prefix to match existing patterns
     *   Example: `apps/sovoli.com/src/modules/data/organisations/vocational-school/guyana/fitright/website.json`

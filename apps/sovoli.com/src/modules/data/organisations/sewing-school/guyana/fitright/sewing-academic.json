@@ -7,7 +7,10 @@
       "isActive": false,
       "audience": "student",
       "categoryId": "fashion-sewing",
-      "quickFacts": ["Certificate Included", "Expert Instructor"],
+      "quickFacts": [
+        "Certificate Included",
+        "Expert Instructor"
+      ],
       "highlights": [
         {
           "icon": "hammer",
@@ -25,7 +28,7 @@
           "description": "Learn everything from taking measurements to constructing full garments."
         }
       ],
-      "description": "Fitright classes will teach you a variety of techniques to create clothing for yourself and family members, or to sew for profit. This comprehensive program covers everything from basic measurements to pattern making, fabric handling, and garment construction.",
+      "description": "FitRight Academy classes will teach you a variety of techniques to create clothing for yourself and family members, or to sew for profit. This comprehensive program covers everything from basic measurements to pattern making, fabric handling, and garment construction.",
       "capabilities": [
         {
           "outcome": "Garment Construction",
@@ -123,7 +126,9 @@
         ]
       },
       "groupId": "sewing",
-      "cycleIds": ["fr-sewing-2026-01-05"]
+      "cycleIds": [
+        "fr-sewing-2026-01-05"
+      ]
     }
   ]
 }

@@ -4,9 +4,13 @@
       "id": "fr-bag-workshop",
       "slug": "sew-your-own-bag",
       "name": "Intro to Sewing: Make Your Own Bag",
-      "isActive": false,
+      "isActive": true,
       "audience": "student",
       "categoryId": "fashion-workshops",
+      "quickFacts": [
+        "Expert Instructor",
+        "Materials Provided"
+      ],
       "highlights": [
         {
           "icon": "hammer",
@@ -100,12 +104,10 @@
         }
       ],
       "tagline": "Develop the fundamentals of sewing before taking your next big step",
-      "description": "This program at FitRight helps you develop the fundamentals of sewing before taking your next big step. In this intensive one-day workshop, you'll learn essential sewing machine skills, pattern reading, and fabric handling techniques. Perfect for beginners who want to build a solid foundation in sewing.",
+      "description": "This program at FitRight Academy helps you develop the fundamentals of sewing before taking your next big step. In this intensive one-day workshop, you'll learn essential sewing machine skills, pattern reading, and fabric handling techniques. Perfect for beginners who want to build a solid foundation in sewing.",
       "quickFacts": [
-        "1 day workshop",
-        "6 hours of hands-on practice",
-        "10:00 AM – 4:00 PM",
-        "No prerequisites required"
+        "Expert Instructor",
+        "Beginner Friendly"
       ],
       "capabilities": [
         {

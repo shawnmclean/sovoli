@@ -574,14 +574,14 @@ const creativeArtsContent: GrowthSystemContent = {
 };
 
 export const contentByCategory: Record<BusinessCategory, GrowthSystemContent> =
-  {
-    "private-schools": k12EducationContent,
-    "beauty-schools": beautyWellnessContent,
-    "fashion-schools": fashionSewingContent,
-    farms: farmContent,
-    "personal-trainers": fitnessSportsContent,
-    "music-schools": creativeArtsContent,
-  };
+{
+  "private-schools": k12EducationContent,
+  "beauty-schools": beautyWellnessContent,
+  "fashion-schools": fashionSewingContent,
+  farms: farmContent,
+  "personal-trainers": fitnessSportsContent,
+  "music-schools": creativeArtsContent,
+};
 
 export function getContent(category: BusinessCategory): GrowthSystemContent {
   return contentByCategory[category];

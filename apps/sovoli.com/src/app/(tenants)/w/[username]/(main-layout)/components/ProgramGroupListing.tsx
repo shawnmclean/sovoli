@@ -233,7 +233,7 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
 
   const fallbackGroups = (() => {
     // Fallback (when no category is available):
-    // - use Program Groups if present (FitRight)
+    // - use Program Groups if present (FitRight Academy)
     // - else Private schools: group by age eligibility
     // - else: show a single list (no group concept)
     if (hasProgramGroups) {
@@ -326,179 +326,179 @@ export function ProgramGroupListing({ orgInstance }: ProgramGroupListingProps) {
       </div>
       {categorySections
         ? categorySections.map((category) => {
-            return (
-              <div key={category.id} className="space-y-4">
+          return (
+            <div key={category.id} className="space-y-4">
+              <div>
+                <h2 className="text-lg font-bold text-foreground mb-1">
+                  {category.title}
+                </h2>
+              </div>
+
+              <div className="relative">
+                <Carousel
+                  opts={{
+                    align: "start",
+                    loop: false,
+                  }}
+                  className="w-full"
+                >
+                  <CarouselContent className="-ml-2">
+                    {category.programs.map((program) => {
+                      const programName =
+                        program.name ??
+                        program.standardProgramVersion?.program.name ??
+                        "Program";
+                      const programImage = getProgramImage(program);
+                      const ageReq = getAgeRequirement(program);
+
+                      return (
+                        <CarouselItem
+                          key={program.slug}
+                          className="pl-2 basis-[216px] shrink-0"
+                        >
+                          <Link
+                            href={`/programs/${program.slug}`}
+                            className="block w-full"
+                          >
+                            <Card className="overflow-hidden shadow-xs hover:shadow-lg transition-all duration-200 cursor-pointer border-0 bg-card h-full w-[200px] flex flex-col mr-4">
+                              <div className="relative aspect-square w-full">
+                                {programImage ? (
+                                  <>
+                                    <CldImage
+                                      src={programImage.publicId}
+                                      alt={programName}
+                                      width={200}
+                                      height={200}
+                                      crop="fill"
+                                      sizes="200px"
+                                      quality="auto"
+                                      className="object-cover w-full h-full"
+                                    />
+                                    {/* Gradient overlay for better text readability */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                                  </>
+                                ) : (
+                                  <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                                    <div className="text-4xl text-muted-foreground">
+                                      📚
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                              <CardBody className="p-3 flex-1 flex flex-col justify-between">
+                                <h3 className="font-semibold text-foreground text-sm line-clamp-2 mb-1">
+                                  {programName}
+                                </h3>
+                                {ageReq?.ageRange && (
+                                  <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                                    <UserIcon className="w-3 h-3 shrink-0" />
+                                    <span>
+                                      {formatAgeRange(ageReq.ageRange)}
+                                    </span>
+                                  </div>
+                                )}
+                              </CardBody>
+                            </Card>
+                          </Link>
+                        </CarouselItem>
+                      );
+                    })}
+                  </CarouselContent>
+                </Carousel>
+              </div>
+            </div>
+          );
+        })
+        : fallbackGroups.map((group, idx) => {
+          const shouldShowHeader =
+            hasProgramGroups ||
+            (isPrivateSchool && fallbackGroups.length > 1);
+
+          return (
+            <div key={`${group.title}-${idx}`} className="space-y-4">
+              {shouldShowHeader && (
                 <div>
-                  <h2 className="text-lg font-bold text-foreground mb-1">
-                    {category.title}
+                  <h2 className="text-xl font-bold text-foreground mb-1">
+                    {group.title}
                   </h2>
                 </div>
+              )}
 
-                <div className="relative">
-                  <Carousel
-                    opts={{
-                      align: "start",
-                      loop: false,
-                    }}
-                    className="w-full"
-                  >
-                    <CarouselContent className="-ml-2">
-                      {category.programs.map((program) => {
-                        const programName =
-                          program.name ??
-                          program.standardProgramVersion?.program.name ??
-                          "Program";
-                        const programImage = getProgramImage(program);
-                        const ageReq = getAgeRequirement(program);
+              <div className="relative">
+                <Carousel
+                  opts={{
+                    align: "start",
+                    loop: false,
+                  }}
+                  className="w-full"
+                >
+                  <CarouselContent className="-ml-2">
+                    {group.programs.map((program) => {
+                      const programName =
+                        program.name ??
+                        program.standardProgramVersion?.program.name ??
+                        "Program";
+                      const programImage = getProgramImage(program);
+                      const ageReq = getAgeRequirement(program);
 
-                        return (
-                          <CarouselItem
-                            key={program.slug}
-                            className="pl-2 basis-[216px] shrink-0"
+                      return (
+                        <CarouselItem
+                          key={program.slug}
+                          className="pl-2 basis-[216px] shrink-0"
+                        >
+                          <Link
+                            href={`/programs/${program.slug}`}
+                            className="block w-full"
                           >
-                            <Link
-                              href={`/programs/${program.slug}`}
-                              className="block w-full"
-                            >
-                              <Card className="overflow-hidden shadow-xs hover:shadow-lg transition-all duration-200 cursor-pointer border-0 bg-card h-full w-[200px] flex flex-col mr-4">
-                                <div className="relative aspect-square w-full">
-                                  {programImage ? (
-                                    <>
-                                      <CldImage
-                                        src={programImage.publicId}
-                                        alt={programName}
-                                        width={200}
-                                        height={200}
-                                        crop="fill"
-                                        sizes="200px"
-                                        quality="auto"
-                                        className="object-cover w-full h-full"
-                                      />
-                                      {/* Gradient overlay for better text readability */}
-                                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                                    </>
-                                  ) : (
-                                    <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                                      <div className="text-4xl text-muted-foreground">
-                                        📚
-                                      </div>
+                            <Card className="overflow-hidden shadow-xs hover:shadow-lg transition-all duration-200 cursor-pointer border-0 bg-card h-full w-[200px] flex flex-col mr-4">
+                              <div className="relative aspect-square w-full">
+                                {programImage ? (
+                                  <>
+                                    <CldImage
+                                      src={programImage.publicId}
+                                      alt={programName}
+                                      width={200}
+                                      height={200}
+                                      crop="fill"
+                                      sizes="200px"
+                                      quality="auto"
+                                      className="object-cover w-full h-full"
+                                    />
+                                    {/* Gradient overlay for better text readability */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                                  </>
+                                ) : (
+                                  <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                                    <div className="text-4xl text-muted-foreground">
+                                      📚
                                     </div>
-                                  )}
-                                </div>
-                                <CardBody className="p-3 flex-1 flex flex-col justify-between">
-                                  <h3 className="font-semibold text-foreground text-sm line-clamp-2 mb-1">
-                                    {programName}
-                                  </h3>
-                                  {ageReq?.ageRange && (
-                                    <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                                      <UserIcon className="w-3 h-3 shrink-0" />
-                                      <span>
-                                        {formatAgeRange(ageReq.ageRange)}
-                                      </span>
-                                    </div>
-                                  )}
-                                </CardBody>
-                              </Card>
-                            </Link>
-                          </CarouselItem>
-                        );
-                      })}
-                    </CarouselContent>
-                  </Carousel>
-                </div>
+                                  </div>
+                                )}
+                              </div>
+                              <CardBody className="p-3 flex-1 flex flex-col justify-between">
+                                <h3 className="font-semibold text-foreground text-sm line-clamp-2 mb-1">
+                                  {programName}
+                                </h3>
+                                {ageReq?.ageRange && (
+                                  <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                                    <UserIcon className="w-3 h-3 shrink-0" />
+                                    <span>
+                                      {formatAgeRange(ageReq.ageRange)}
+                                    </span>
+                                  </div>
+                                )}
+                              </CardBody>
+                            </Card>
+                          </Link>
+                        </CarouselItem>
+                      );
+                    })}
+                  </CarouselContent>
+                </Carousel>
               </div>
-            );
-          })
-        : fallbackGroups.map((group, idx) => {
-            const shouldShowHeader =
-              hasProgramGroups ||
-              (isPrivateSchool && fallbackGroups.length > 1);
-
-            return (
-              <div key={`${group.title}-${idx}`} className="space-y-4">
-                {shouldShowHeader && (
-                  <div>
-                    <h2 className="text-xl font-bold text-foreground mb-1">
-                      {group.title}
-                    </h2>
-                  </div>
-                )}
-
-                <div className="relative">
-                  <Carousel
-                    opts={{
-                      align: "start",
-                      loop: false,
-                    }}
-                    className="w-full"
-                  >
-                    <CarouselContent className="-ml-2">
-                      {group.programs.map((program) => {
-                        const programName =
-                          program.name ??
-                          program.standardProgramVersion?.program.name ??
-                          "Program";
-                        const programImage = getProgramImage(program);
-                        const ageReq = getAgeRequirement(program);
-
-                        return (
-                          <CarouselItem
-                            key={program.slug}
-                            className="pl-2 basis-[216px] shrink-0"
-                          >
-                            <Link
-                              href={`/programs/${program.slug}`}
-                              className="block w-full"
-                            >
-                              <Card className="overflow-hidden shadow-xs hover:shadow-lg transition-all duration-200 cursor-pointer border-0 bg-card h-full w-[200px] flex flex-col mr-4">
-                                <div className="relative aspect-square w-full">
-                                  {programImage ? (
-                                    <>
-                                      <CldImage
-                                        src={programImage.publicId}
-                                        alt={programName}
-                                        width={200}
-                                        height={200}
-                                        crop="fill"
-                                        sizes="200px"
-                                        quality="auto"
-                                        className="object-cover w-full h-full"
-                                      />
-                                      {/* Gradient overlay for better text readability */}
-                                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                                    </>
-                                  ) : (
-                                    <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                                      <div className="text-4xl text-muted-foreground">
-                                        📚
-                                      </div>
-                                    </div>
-                                  )}
-                                </div>
-                                <CardBody className="p-3 flex-1 flex flex-col justify-between">
-                                  <h3 className="font-semibold text-foreground text-sm line-clamp-2 mb-1">
-                                    {programName}
-                                  </h3>
-                                  {ageReq?.ageRange && (
-                                    <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                                      <UserIcon className="w-3 h-3 shrink-0" />
-                                      <span>
-                                        {formatAgeRange(ageReq.ageRange)}
-                                      </span>
-                                    </div>
-                                  )}
-                                </CardBody>
-                              </Card>
-                            </Link>
-                          </CarouselItem>
-                        );
-                      })}
-                    </CarouselContent>
-                  </Carousel>
-                </div>
-              </div>
-            );
-          })}
+            </div>
+          );
+        })}
     </div>
   );
 }

@@ -1,15 +1,15 @@
 {
   "website": {
-    "siteName": "Fit Right",
-    "title": "Dressmaking, Alterations & Academic Programs - Fit Right",
-    "description": "Fit Right specializes in dressmaking, alterations, and offers a range of academic programs, providing quality education and tailoring services.",
+    "siteName": "FitRight Academy",
+    "title": "Dressmaking, Alterations & Academic Programs - FitRight Academy",
+    "description": "FitRight Academy specializes in dressmaking, alterations, and offers a range of academic programs, providing quality education and tailoring services.",
     "domain": "www.fitright.gy",
     "images": [
       {
         "url": "/fitright/websites/landing/hero.jpg",
         "width": 1200,
         "height": 600,
-        "alt": "Fit Right front or logo"
+        "alt": "FitRight Academy front or logo"
       }
     ],
     "header": {
@@ -50,7 +50,7 @@
       "sections": [
         {
           "key": "social",
-          "title": "Fit Right",
+          "title": "FitRight Academy",
           "description": "Empowering students to reach their full potential through innovative education."
         },
         {
@@ -70,7 +70,7 @@
     "pages": [
       {
         "name": "home",
-        "title": "Welcome to Fit Right Academy",
+        "title": "Welcome to FitRight Academy",
         "subtitle": "Where craft meets excellence in fashion and education.",
         "sections": [
           {
@@ -78,7 +78,7 @@
             "layout": "default",
             "variant": "image",
             "title": "Master the Art of Dressmaking and Design",
-            "subtitle": "Fit Right offers premium tailoring services and hands-on vocational training in fashion design and alterations.",
+            "subtitle": "FitRight Academy offers premium tailoring services and hands-on vocational training in fashion design and alterations.",
             "backgroundImage": "/vocational-training/guyana/fitright/website/home/hero.webp",
             "actions": [
               {

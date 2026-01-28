@@ -9,7 +9,7 @@ We are currently running live market tests with specific pilot clients to valida
 
 **Active Pilots:**
 *   **Healing Emerald**
-*   **FitRight**
+*   **FitRight Academy**
 
 **Immediate Objective:**
 *   Drive traffic to their **Program Pages**.
@@ -25,7 +25,7 @@ These are the metrics that matter right now. All engineering efforts must move t
 
 ## 3. Engineering Guidelines (The "How")
 
-1.  **Check Alignment**: Before writing code, ask: "Does this help us convert traffic for Healing Emerald/FitRight, or help us get the next 10 tenants?"
+1.  **Check Alignment**: Before writing code, ask: "Does this help us convert traffic for Healing Emerald/FitRight Academy, or help us get the next 10 tenants?"
 2.  **Manual Over Auto**: Do not build an event system if we can do it manually. Do not build a complex admin panel if a JSON edit suffices.
 3.  **Speed**: We need to iterate fast based on feedback from the pilots.
 
@@ -43,7 +43,7 @@ This tracks active engineering work. Agents checking this: focus on **High Prior
 
 ### 🔥 High Priority (current Sprint)
 *   [ ] **Optimization**: Audit "Healing Emerald" program page for conversion blockers.
-*   [ ] **Optimization**: Audit "FitRight" program page for conversion blockers.
+*   [ ] **Optimization**: Audit "FitRight Academy" program page for conversion blockers.
 *   [ ] **Infrastructure**: Set up manual analytics/logging for current pilots if not exists.
 
 ### 🧊 Backlog (Future)
