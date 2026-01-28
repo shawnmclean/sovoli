@@ -65,7 +65,10 @@
       "groupId": "workshops",
       "cycleIds": [],
       "media": {
-        "galleryIds": ["fitright-bag-workshop-1", "fitright-bag-workshop-2"]
+        "galleryIds": [
+          "fitright-bag-workshop-1",
+          "fitright-bag-workshop-2"
+        ]
       }
     },
     {
@@ -150,8 +153,6 @@
       ],
       "groupId": "workshops",
       "cycleIds": [
-        "fr-sewing-fundamentals-2026-01-28",
-        "fr-sewing-fundamentals-2026-01-29",
         "fr-sewing-fundamentals-2026-01-30",
         "fr-sewing-fundamentals-2026-01-31",
         "fr-sewing-fundamentals-2026-02-03",
