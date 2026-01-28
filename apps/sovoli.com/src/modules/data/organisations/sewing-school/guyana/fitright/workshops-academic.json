@@ -181,12 +181,23 @@
           "audience": "student",
           "items": [
             {
-              "itemId": "supply-cotton-fabric-2-yards",
+              "itemId": "supply-cotton-fabric-3-yards",
+              "quantity": 3,
+              "unit": "yards",
+              "notes": "Plain, non-stretch fabric"
+            },
+            {
+              "itemId": "supply-sewing-thread",
               "quantity": 1,
-              "notes": "Non-stretch fabric"
+              "notes": "Thread should match the cotton material."
+            },
+            {
+              "itemId": "supply-zipper-8-inch",
+              "quantity": 8,
+              "unit": "inches"
             }
           ],
-          "notes": "Note: 8-inch zipper is also required but may need to be purchased separately. Please confirm availability with the school."
+          "notes": "Please confirm availability with the school if you need to purchase supplies on-site."
         }
       ]
     }

@@ -203,10 +203,11 @@ apps/sovoli.com/src/modules/data/organisations/
 1. **Check if items exist**: Search the items database for existing items
    - Common items: towels, notebooks, pens, hand sanitizer, disinfectants
    - Check: `apps/sovoli.com/src/modules/data/items/library/` for item files
-2. **If items don't exist**: Note them for creation (separate task)
-   - Do NOT add non-existent items to supply lists
-   - The system will filter them out, but it's better to verify first
-3. **Add items to requirements**: Use existing item IDs only
+2. **If items don't exist**: Create them in the items library before updating supply lists
+   - Add the new item to the appropriate JSON file in `apps/sovoli.com/src/modules/data/items/library/`
+   - Verify the item's `category` exists in `apps/sovoli.com/src/modules/data/items/categories/` (create a category only if it truly doesn't exist)
+   - Keep item IDs consistent with existing naming conventions (`supply-...`)
+3. **Add items to requirements**: Use the verified item IDs only
 
 **Supply List Structure**:
 ```json
