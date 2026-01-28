@@ -23,28 +23,37 @@ interface AssetDisplayProps {
         token: string;
         name?: string;
     };
+    businessId: string;
     pages: MetaPage[];
     adAccounts: MetaAdAccount[];
 }
 
-export function AssetDisplay({ systemUser, pages, adAccounts }: AssetDisplayProps) {
+export function AssetDisplay({ systemUser, businessId, pages, adAccounts }: AssetDisplayProps) {
     return (
         <div className="space-y-6">
-            <Card className="border-green-200 bg-green-50/50">
+            <Card className="border-success/30 bg-success/5">
                 <CardHeader className="flex items-center gap-2">
-                    <Check className="h-5 w-5 text-green-700" />
-                    <h3 className="text-lg font-semibold text-green-700">Meta Business Connected</h3>
+                    <Check className="h-5 w-5 text-success" />
+                    <h3 className="text-lg font-semibold text-success">Meta Business Connected</h3>
                 </CardHeader>
                 <CardBody className="space-y-4">
-                    <div>
-                        <h4 className="text-sm font-semibold text-green-800">System User</h4>
-                        <p className="text-sm font-mono bg-white p-2 rounded border mt-1 select-all">
-                            ID: {systemUser.id} {systemUser.name ? `(${systemUser.name})` : ""}
-                        </p>
+                    <div className="grid gap-4 md:grid-cols-2">
+                        <div>
+                            <h4 className="text-sm font-semibold text-secondary">System User</h4>
+                            <p className="text-sm font-mono bg-default-50 p-2 rounded border border-default-200 mt-1 select-all text-ellipsis overflow-hidden">
+                                ID: {systemUser.id} {systemUser.name ? `(${systemUser.name})` : ""}
+                            </p>
+                        </div>
+                        <div>
+                            <h4 className="text-sm font-semibold text-secondary">Business ID</h4>
+                            <p className="text-sm font-mono bg-default-50 p-2 rounded border border-default-200 mt-1 select-all">
+                                {businessId}
+                            </p>
+                        </div>
                     </div>
                     <div>
-                        <h4 className="text-sm font-semibold text-green-800">System User Token</h4>
-                        <p className="text-xs font-mono bg-white p-2 rounded border mt-1 break-all select-all">
+                        <h4 className="text-sm font-semibold text-secondary">System User Token</h4>
+                        <p className="text-xs font-mono bg-default-50 p-2 rounded border border-default-200 mt-1 break-all select-all">
                             {systemUser.token}
                         </p>
                     </div>

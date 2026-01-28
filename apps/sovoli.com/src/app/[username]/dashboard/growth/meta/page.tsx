@@ -5,6 +5,9 @@ import { useParams } from "next/navigation";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Spinner } from "@sovoli/ui/components/spinner";
 import { AlertCircle } from "lucide-react";
+import { Badge } from "@sovoli/ui/components/badge";
+import { Button } from "@sovoli/ui/components/button";
+import { Input } from "@sovoli/ui/components/input";
 import { MetaConnectButton } from "./components/MetaConnectButton";
 import { BusinessManagerList } from "./components/BusinessManagerList";
 import { AssetDisplay } from "./components/AssetDisplay";
@@ -12,7 +15,8 @@ import {
     getBusinessManagers,
     setupOboConnection,
     createSystemUserAndToken,
-    fetchMetaAssets
+    fetchMetaAssets,
+    getSystemUser
 } from "./actions";
 
 // For demo purposes, we'll get the App ID from an env or hardcode if missing
@@ -29,12 +33,16 @@ export default function MetaOboPage() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
+    const [directToken, setDirectToken] = useState("");
+    const [directBmId, setDirectBmId] = useState("");
+
     const [setupResult, setSetupResult] = useState<{
         systemUser: {
             id: string;
             token: string;
             name?: string;
         };
+        businessId: string;
         pages: { id: string; name: string; access_token?: string }[];
         adAccounts: { id: string; name: string; account_id: string; currency: string }[];
     } | null>(null);
@@ -79,6 +87,7 @@ export default function MetaOboPage() {
                     token: suResult.token ?? "",
                     name: suResult.systemUserName,
                 },
+                businessId: bmId,
                 pages: assetsResult.pages ?? [],
                 adAccounts: assetsResult.adAccounts ?? [],
             });
@@ -86,6 +95,42 @@ export default function MetaOboPage() {
         } catch (err: unknown) {
             setError(err instanceof Error ? err.message : "An error occurred during setup");
             setStep("select-bm");
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleDirectConnect = async () => {
+        if (!directToken || !directBmId) {
+            setError("Please provide both context and token");
+            return;
+        }
+
+        setIsLoading(true);
+        setError(null);
+
+        try {
+            // Step 1: Validate Token & Get User
+            const userResult = await getSystemUser(directToken);
+            if (userResult.status === "error") throw new Error(userResult.message);
+
+            // Step 2: Fetch Assets
+            const assetsResult = await fetchMetaAssets(directToken, directBmId);
+            if (assetsResult.status === "error") throw new Error(assetsResult.message);
+
+            setSetupResult({
+                systemUser: {
+                    id: userResult.user.id,
+                    token: directToken,
+                    name: userResult.user.name,
+                },
+                businessId: directBmId,
+                pages: assetsResult.pages ?? [],
+                adAccounts: assetsResult.adAccounts ?? [],
+            });
+            setStep("completed");
+        } catch (err: unknown) {
+            setError(err instanceof Error ? err.message : "An error occurred during direct connection");
         } finally {
             setIsLoading(false);
         }
@@ -110,17 +155,51 @@ export default function MetaOboPage() {
             )}
 
             {step === "connect" && (
-                <Card>
-                    <CardHeader className="flex flex-col items-start gap-1 p-6 pb-0">
-                        <h3 className="text-lg font-bold">Step 1: Authenticate</h3>
-                        <p className="text-sm text-muted-foreground">
-                            Login with your Facebook account that has admin access to your Business Manager.
-                        </p>
-                    </CardHeader>
-                    <CardBody className="flex justify-center py-8">
-                        <MetaConnectButton appId={META_APP_ID} onConnected={handleConnected} />
-                    </CardBody>
-                </Card>
+                <div className="grid gap-8 md:grid-cols-2">
+                    <Card>
+                        <CardHeader className="flex flex-col items-start gap-1 p-6 pb-0">
+                            <h3 className="text-lg font-bold">Option 1: OAuth Flow</h3>
+                            <p className="text-sm text-muted-foreground">
+                                Login with your Facebook account that has admin access to your Business Manager.
+                            </p>
+                        </CardHeader>
+                        <CardBody className="flex justify-center py-8">
+                            <MetaConnectButton appId={META_APP_ID} onConnected={handleConnected} />
+                        </CardBody>
+                    </Card>
+
+                    <Card>
+                        <CardHeader className="flex flex-col items-start gap-1 p-6 pb-0">
+                            <h3 className="text-lg font-bold">Option 2: Direct Token</h3>
+                            <p className="text-sm text-muted-foreground">
+                                Paste a System User Access Token and Business ID directly if you have them.
+                            </p>
+                        </CardHeader>
+                        <CardBody className="space-y-4 py-8">
+                            <Input
+                                label="System User Token"
+                                placeholder="EAA..."
+                                value={directToken}
+                                onValueChange={setDirectToken}
+                            />
+                            <Input
+                                label="Meta Business ID"
+                                placeholder="1234..."
+                                value={directBmId}
+                                onValueChange={setDirectBmId}
+                            />
+                            <Button
+                                color="primary"
+                                className="w-full"
+                                isLoading={isLoading}
+                                onClick={handleDirectConnect}
+                                disabled={!directToken || !directBmId}
+                            >
+                                Connect Directly
+                            </Button>
+                        </CardBody>
+                    </Card>
+                </div>
             )}
 
             {step === "select-bm" && (
@@ -148,8 +227,9 @@ export default function MetaOboPage() {
             {step === "completed" && setupResult && (
                 <AssetDisplay
                     systemUser={setupResult.systemUser}
-                    pages={setupResult.pages ?? []}
-                    adAccounts={setupResult.adAccounts ?? []}
+                    businessId={setupResult.businessId}
+                    pages={setupResult.pages}
+                    adAccounts={setupResult.adAccounts}
                 />
             )}
         </div>

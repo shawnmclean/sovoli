@@ -125,10 +125,16 @@ export async function createSystemUserAndToken(clientBmId: string) {
 
 export async function fetchMetaAssets(clientSystemUserToken: string, clientBmId: string) {
     try {
-        const pagesResponse = await metaApiRequest<{ data: { id: string; name: string; access_token?: string }[] }>("me/accounts", {
-            accessToken: clientSystemUserToken,
-        });
+        // Fetch pages owned by the Business Manager
+        const pagesResponse = await metaApiRequest<{ data: { id: string; name: string; access_token?: string }[] }>(
+            `${clientBmId}/owned_pages`,
+            {
+                accessToken: clientSystemUserToken,
+                params: { fields: "id,name,access_token" }
+            }
+        );
 
+        // Fetch ad accounts in the Business Manager
         const adAccountsResponse = await metaApiRequest<{ data: { id: string; name: string; account_id: string; currency: string }[] }>(
             `${clientBmId}/client_ad_accounts`,
             {
@@ -142,6 +148,17 @@ export async function fetchMetaAssets(clientSystemUserToken: string, clientBmId:
             pages: pagesResponse.data ?? [],
             adAccounts: adAccountsResponse.data ?? [],
         };
+    } catch (error: unknown) {
+        return { status: "error", message: error instanceof Error ? error.message : "Unknown error" };
+    }
+}
+
+export async function getSystemUser(token: string): Promise<{ status: "success"; user: { id: string; name?: string } } | { status: "error"; message: string }> {
+    try {
+        const userResponse = await metaApiRequest<{ id: string; name?: string }>("me", {
+            accessToken: token,
+        });
+        return { status: "success", user: userResponse };
     } catch (error: unknown) {
         return { status: "error", message: error instanceof Error ? error.message : "Unknown error" };
     }
