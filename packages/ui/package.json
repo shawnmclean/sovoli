@@ -40,6 +40,7 @@
     "@heroui/number-input": "2.0.18",
     "@heroui/progress": "2.2.22",
     "@heroui/radio": "2.3.27",
+    "@heroui/react-utils": "2.1.14",
     "@heroui/select": "2.4.28",
     "@heroui/skeleton": "2.2.17",
     "@heroui/slider": "2.4.24",
@@ -51,7 +52,6 @@
     "@heroui/theme": "^2.4.24",
     "@heroui/tooltip": "2.2.24",
     "@heroui/user": "2.2.22",
-    "@heroui/react-utils": "2.1.14",
     "@ncdai/react-wheel-picker": "1.0.17",
     "date-fns": "4.1.0",
     "embla-carousel-auto-scroll": "8.6.0",
@@ -59,7 +59,8 @@
     "framer-motion": "11.15.0",
     "lucide-react": "catalog:",
     "react": "catalog:",
-    "react-dom": "catalog:"
+    "react-dom": "catalog:",
+    "recharts": "^3.7.0"
   },
   "devDependencies": {
     "@sovoli/eslint-config": "workspace:*",

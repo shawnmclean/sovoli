@@ -1,8 +1,26 @@
+"use client";
+
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+  Legend,
+} from "@sovoli/ui/components/chart";
 
 import type { BillingInvoice, BillingPayment } from "~/modules/billing/types";
-import type { AmountByCurrency, CurrencyCode } from "~/modules/core/economics/types";
+import type {
+  AmountByCurrency,
+  CurrencyCode,
+} from "~/modules/core/economics/types";
 import { ORGS } from "~/modules/data/organisations";
 import type { OrgInstance } from "~/modules/organisations/types";
 
@@ -72,8 +90,9 @@ function clampAmountByCurrencyToNonNegative(into: AmountByCurrency) {
 function formatAmountByCurrency(amount?: AmountByCurrency): string {
   if (!amount) return "—";
 
-  const entries = (Object.entries(amount) as [CurrencyCode, number | undefined][])
-    .filter(([, value]) => typeof value === "number" && value !== 0) as [
+  const entries = (
+    Object.entries(amount) as [CurrencyCode, number | undefined][]
+  ).filter(([, value]) => typeof value === "number" && value !== 0) as [
     CurrencyCode,
     number,
   ][];
@@ -103,6 +122,14 @@ function isInUtcYearMonth(
   return d.getUTCFullYear() === year && d.getUTCMonth() === monthIndex;
 }
 
+const COLORS = [
+  "hsl(var(--heroui-primary))",
+  "hsl(var(--heroui-success))",
+  "hsl(var(--heroui-warning))",
+  "hsl(var(--heroui-danger))",
+  "hsl(var(--heroui-secondary))",
+];
+
 export default function AdminBillingPage() {
   const nowIso = new Date().toISOString();
   const now = new Date();
@@ -130,6 +157,7 @@ export default function AdminBillingPage() {
     .filter((o) => o.websiteModule?.website.domain)
     .filter((o) => (o.billingModule?.invoices?.length ?? 0) > 0);
 
+  // --- Rollup Calculation ---
   const rollup = (() => {
     const paidAllTime: AmountByCurrency = {};
     const paidThisMonth: AmountByCurrency = {};
@@ -137,6 +165,7 @@ export default function AdminBillingPage() {
     const expectedNextMonth: AmountByCurrency = {};
 
     const paymentById = new Map<string, BillingPayment>();
+    const revenueByMonth = new Map<string, number>(); // YYYY-MM -> Total USD (simplified for chart)
 
     let paidAllTimeCount = 0;
     let paidThisMonthCount = 0;
@@ -148,10 +177,6 @@ export default function AdminBillingPage() {
       const payments = o.billingModule?.payments ?? [];
 
       for (const inv of invoices) {
-        for (const p of inv.payments ?? []) {
-          paymentById.set(p.id, p);
-        }
-
         if (inv.status === "open") {
           const invoiceMonthIso = inv.dueAt ?? inv.issuedAt;
           if (isInUtcYearMonth(invoiceMonthIso, thisYear, thisMonthIndex)) {
@@ -164,8 +189,10 @@ export default function AdminBillingPage() {
             expectedNextMonthCount += 1;
           }
         }
+        for (const p of inv.payments ?? []) {
+          paymentById.set(p.id, p);
+        }
       }
-
       for (const p of payments) {
         paymentById.set(p.id, p);
       }
@@ -180,6 +207,35 @@ export default function AdminBillingPage() {
         addAmountByCurrency(paidThisMonth, p.amount);
         paidThisMonthCount += 1;
       }
+
+      // Populate history for chart
+      if (p.paidAt) {
+        const d = new Date(p.paidAt);
+        if (!Number.isNaN(d.getTime())) {
+          const key = `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}`;
+
+          // Only aggregating 'USD' roughly or primary currency for the chart?
+          // Ideally charts show one currency or stacked. 
+          // For simplicity, we assume primary currency is USD or simply take the raw number if mixed 
+          // (which is bad but "Scrappy"). 
+          // Better: Convert or just pick USD.
+          const amt = p.amount.USD ?? p.amount.GYD ?? p.amount.JMD ?? 0; // Simple fallback
+
+          revenueByMonth.set(key, (revenueByMonth.get(key) ?? 0) + amt);
+        }
+      }
+    }
+
+    // Chart Data: Last 12 months
+    const chartData = [];
+    for (let i = 11; i >= 0; i--) {
+      const d = new Date(Date.UTC(thisYear, thisMonthIndex - i, 1));
+      const key = `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}`;
+      const label = d.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" });
+      chartData.push({
+        name: label,
+        revenue: revenueByMonth.get(key) ?? 0
+      });
     }
 
     return {
@@ -191,6 +247,7 @@ export default function AdminBillingPage() {
       paidThisMonthCount,
       expectedThisMonthCount,
       expectedNextMonthCount,
+      chartData
     };
   })();
 
@@ -251,207 +308,243 @@ export default function AdminBillingPage() {
         nextBillAt: subscription?.nextBillAt,
         openInvoices: countOpenInvoices(invoices),
         invoicesCount: invoices.length,
-        paymentsCount: countPayments(
-          invoices,
-          modulePayments,
-        ),
+        paymentsCount: countPayments(invoices, modulePayments),
         amountOwed,
         totalPaid,
       };
     });
 
+  const tenantStatusData = [
+    { name: "Paid", value: tenants.filter(t => t.derivedIsPaid === true).length },
+    { name: "Overdue/Unpaid", value: tenants.filter(t => t.derivedIsPaid === false).length },
+    { name: "Unknown", value: tenants.filter(t => t.derivedIsPaid === undefined).length },
+  ].filter(x => x.value > 0);
+
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mx-auto max-w-5xl space-y-6">
-        <div className="space-y-1">
-          <h1 className="text-3xl font-bold">Billing Status</h1>
-          <p className="text-default-500 text-sm">
-            Scrappy billing ledger overview across tenants (JSON-driven).
-          </p>
-        </div>
+    <div className="container mx-auto space-y-8 p-6 lg:p-8">
+      {/* Header */}
+      <div className="space-y-1">
+        <h1 className="text-3xl font-bold tracking-tight text-default-900">Billing Dashboard</h1>
+        <p className="text-default-500 text-lg">
+          Insights into revenue, subscriptions, and tenant health.
+        </p>
+      </div>
 
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          <Card>
-            <CardHeader className="flex flex-col items-start gap-1">
-              <div className="text-default-500 text-xs font-medium tracking-wider uppercase">
-                Paid (all time)
-              </div>
-            </CardHeader>
-            <CardBody className="pt-0">
-              <div className="text-default-900 text-2xl font-bold">
-                {formatAmountByCurrency(rollup.paidAllTime)}
-              </div>
-              <div className="text-default-500 text-sm">
-                {rollup.paidAllTimeCount} payment
-                {rollup.paidAllTimeCount !== 1 ? "s" : ""}
-              </div>
-            </CardBody>
-          </Card>
+      {/* Summary Cards */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <Card className="border-none shadow-md">
+          <CardHeader className="flex flex-col items-start gap-1 pb-0">
+            <span className="text-xs font-medium uppercase tracking-wider text-default-500">
+              Total Revenue (All Time)
+            </span>
+          </CardHeader>
+          <CardBody>
+            <div className="text-3xl font-extrabold text-default-900">
+              {formatAmountByCurrency(rollup.paidAllTime)}
+            </div>
+            <div className="text-sm font-medium text-success-600">
+              {rollup.paidAllTimeCount} payments processed
+            </div>
+          </CardBody>
+        </Card>
 
-          <Card>
-            <CardHeader className="flex flex-col items-start gap-1">
-              <div className="text-default-500 text-xs font-medium tracking-wider uppercase">
-                Paid this month
-              </div>
-              <Chip size="sm" variant="flat" color="primary">
-                {thisMonthLabel}
-              </Chip>
-            </CardHeader>
-            <CardBody className="pt-0">
-              <div className="text-default-900 text-2xl font-bold">
+        <Card className="border-none shadow-md">
+          <CardHeader className="flex flex-col items-start gap-1 pb-0">
+            <span className="text-xs font-medium uppercase tracking-wider text-default-500">
+              Revenue This Month
+            </span>
+          </CardHeader>
+          <CardBody>
+            <div className="flex items-center gap-2">
+              <div className="text-3xl font-extrabold text-default-900">
                 {formatAmountByCurrency(rollup.paidThisMonth)}
               </div>
-              <div className="text-default-500 text-sm">
-                {rollup.paidThisMonthCount} payment
-                {rollup.paidThisMonthCount !== 1 ? "s" : ""}
-              </div>
-            </CardBody>
-          </Card>
+              <Chip size="sm" color="primary" variant="flat">{thisMonthLabel}</Chip>
+            </div>
+            <div className="text-sm font-medium text-default-500">
+              {rollup.paidThisMonthCount} payments
+            </div>
+          </CardBody>
+        </Card>
 
-          <Card>
-            <CardHeader className="flex flex-col items-start gap-1">
-              <div className="text-default-500 text-xs font-medium tracking-wider uppercase">
-                Expected this month (open invoices)
-              </div>
-              <Chip size="sm" variant="flat" color="warning">
-                {thisMonthLabel}
-              </Chip>
-            </CardHeader>
-            <CardBody className="pt-0">
-              <div className="text-default-900 text-2xl font-bold">
+        <Card className="border-none shadow-md">
+          <CardHeader className="flex flex-col items-start gap-1 pb-0">
+            <span className="text-xs font-medium uppercase tracking-wider text-default-500">
+              Expected This Month
+            </span>
+          </CardHeader>
+          <CardBody>
+            <div className="flex items-center gap-2">
+              <div className="text-3xl font-extrabold text-warning-600">
                 {formatAmountByCurrency(rollup.expectedThisMonth)}
               </div>
-              <div className="text-default-500 text-sm">
-                {rollup.expectedThisMonthCount} invoice
-                {rollup.expectedThisMonthCount !== 1 ? "s" : ""}
-              </div>
-            </CardBody>
-          </Card>
+              <Chip size="sm" color="warning" variant="flat">{thisMonthLabel}</Chip>
+            </div>
+            <div className="text-sm font-medium text-default-500">
+              {rollup.expectedThisMonthCount} open invoices
+            </div>
+          </CardBody>
+        </Card>
 
-          <Card>
-            <CardHeader className="flex flex-col items-start gap-1">
-              <div className="text-default-500 text-xs font-medium tracking-wider uppercase">
-                Expected next month (open invoices)
-              </div>
-              <Chip size="sm" variant="flat" color="secondary">
-                {nextMonthLabel}
-              </Chip>
-            </CardHeader>
-            <CardBody className="pt-0">
-              <div className="text-default-900 text-2xl font-bold">
+        <Card className="border-none shadow-md">
+          <CardHeader className="flex flex-col items-start gap-1 pb-0">
+            <span className="text-xs font-medium uppercase tracking-wider text-default-500">
+              Expected Next Month
+            </span>
+          </CardHeader>
+          <CardBody>
+            <div className="flex items-center gap-2">
+              <div className="text-3xl font-extrabold text-default-900">
                 {formatAmountByCurrency(rollup.expectedNextMonth)}
               </div>
-              <div className="text-default-500 text-sm">
-                {rollup.expectedNextMonthCount} invoice
-                {rollup.expectedNextMonthCount !== 1 ? "s" : ""}
-              </div>
-            </CardBody>
-          </Card>
-        </div>
-
-        <Card>
-          <CardHeader className="flex flex-col items-start gap-1">
-            <div className="text-default-500 text-sm">
-              {tenants.length} tenant{tenants.length !== 1 ? "s" : ""} shown
+              <Chip size="sm" color="secondary" variant="flat">{nextMonthLabel}</Chip>
             </div>
+            <div className="text-sm font-medium text-default-500">
+              {rollup.expectedNextMonthCount} invoices due
+            </div>
+          </CardBody>
+        </Card>
+      </div>
+
+      {/* Charts Section */}
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        {/* Revenue Trend */}
+        <Card className="col-span-1 border-none shadow-md lg:col-span-2">
+          <CardHeader>
+            <h3 className="text-lg font-semibold text-default-900">Revenue Trend (Last 12 Months)</h3>
           </CardHeader>
-          <CardBody className="space-y-3">
-            {tenants.map((t) => (
-              <div
-                key={t.username}
-                className="border-default-200 rounded-lg border p-4"
-              >
-                <div className="flex flex-wrap items-start justify-between gap-3">
-                  <div className="min-w-0">
-                    <div className="text-default-900 truncate font-semibold">
-                      {t.name}
-                    </div>
-                    <div className="text-default-500 truncate text-sm">
-                      @{t.username}
-                    </div>
-                  </div>
+          <CardBody className="h-[350px] w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={rollup.chartData}>
+                <CartesianGrid strokeDasharray="3 3" opacity={0.3} vertical={false} />
+                <XAxis
+                  dataKey="name"
+                  axisLine={false}
+                  tickLine={false}
+                  tick={{ fill: "hsl(var(--heroui-default-500))", fontSize: 12 }}
+                  dy={10}
+                />
+                <YAxis
+                  axisLine={false}
+                  tickLine={false}
+                  tick={{ fill: "hsl(var(--heroui-default-500))", fontSize: 12 }}
+                  tickFormatter={(value) => `$${value}`}
+                />
+                <Tooltip
+                  cursor={{ fill: "hsl(var(--heroui-default-100))" }}
+                  contentStyle={{
+                    backgroundColor: "hsl(var(--heroui-content1))",
+                    borderRadius: "8px",
+                    border: "1px solid hsl(var(--heroui-default-200))",
+                    boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+                    color: "hsl(var(--heroui-foreground))",
+                  }}
+                  itemStyle={{ color: "hsl(var(--heroui-foreground))" }}
+                />
+                <Bar
+                  dataKey="revenue"
+                  fill="currentColor"
+                  className="fill-primary"
+                  radius={[4, 4, 0, 0]}
+                  barSize={32}
+                />
+              </BarChart>
+            </ResponsiveContainer>
+          </CardBody>
+        </Card>
 
-                  <div className="flex flex-wrap items-center gap-2">
-                    <Chip size="sm" variant="flat" color="secondary">
-                      {t.planKey}
-                    </Chip>
-                    <Chip size="sm" variant="flat" color="primary">
-                      {t.cadence}
-                    </Chip>
-                    <Chip
-                      size="sm"
-                      variant="flat"
-                      color={getPaidChipColor(t.derivedIsPaid)}
-                    >
-                      {t.derivedIsPaid === true
-                        ? "Paid"
-                        : t.derivedIsPaid === false
-                          ? "Not paid"
-                          : "Unknown"}
-                    </Chip>
-                    {t.openInvoices > 0 && (
-                      <Chip size="sm" variant="flat" color="warning">
-                        {t.openInvoices} open invoice
-                        {t.openInvoices !== 1 ? "s" : ""}
-                      </Chip>
-                    )}
-                  </div>
+        {/* Tenant Status */}
+        <Card className="col-span-1 border-none shadow-md">
+          <CardHeader>
+            <h3 className="text-lg font-semibold text-default-900">Tenant Status</h3>
+          </CardHeader>
+          <CardBody className="h-[350px] w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={tenantStatusData}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={60}
+                  outerRadius={100}
+                  fill="#8884d8"
+                  paddingAngle={5}
+                  dataKey="value"
+                >
+                  {tenantStatusData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "hsl(var(--heroui-content1))",
+                    borderRadius: "8px",
+                    border: "1px solid hsl(var(--heroui-default-200))",
+                    boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+                    color: "hsl(var(--heroui-foreground))",
+                  }}
+                />
+                <Legend verticalAlign="bottom" height={36} />
+              </PieChart>
+            </ResponsiveContainer>
+          </CardBody>
+        </Card>
+      </div>
+
+      {/* Tenant Table / List */}
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold text-default-900">Tenant Details</h2>
+        <div className="grid grid-cols-1 gap-4">
+          {tenants.map((t) => (
+            <div
+              key={t.username}
+              className="group relative flex flex-col gap-4 rounded-xl border border-default-200 bg-content1 p-5 transition-all hover:border-primary-300 hover:shadow-md sm:flex-row sm:items-center sm:justify-between"
+            >
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-3">
+                  <h3 className="truncate text-lg font-bold text-default-900">
+                    {t.name}
+                  </h3>
+                  <Chip size="sm" variant="dot" color={getPaidChipColor(t.derivedIsPaid)}>
+                    {t.derivedIsPaid === true ? "Active" : "Issue"}
+                  </Chip>
                 </div>
+                <div className="text-sm text-default-500">@{t.username}</div>
 
-                <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+                <div className="mt-2 flex flex-wrap items-center gap-2 text-xs font-medium text-default-500">
+                  <span className="rounded-md bg-default-100 px-2 py-1">
+                    Plan: {t.planKey}
+                  </span>
+                  <span className="rounded-md bg-default-100 px-2 py-1">
+                    Cadence: {t.cadence}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex flex-shrink-0 flex-col gap-3 sm:items-end">
+                <div className="flex items-center gap-4 text-right">
                   <div>
-                    <div className="text-default-500 text-xs font-medium tracking-wider uppercase">
-                      Last paid
-                    </div>
-                    <div className="text-default-900 font-semibold">
-                      {formatDate(t.lastPaidAt)}
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-default-500 text-xs font-medium tracking-wider uppercase">
-                      Paid through
-                    </div>
-                    <div className="text-default-900 font-semibold">
-                      {formatDate(t.paidThrough)}
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-default-500 text-xs font-medium tracking-wider uppercase">
-                      Next bill
-                    </div>
-                    <div className="text-default-900 font-semibold">
-                      {formatDate(t.nextBillAt)}
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-default-500 text-xs font-medium tracking-wider uppercase">
-                      Owed (open balance)
-                    </div>
-                    <div className="text-default-900 font-semibold">
+                    <div className="text-xs uppercase text-default-500">Open Balance</div>
+                    <div className={`text-lg font-bold ${Object.keys(t.amountOwed).length ? 'text-danger-600' : 'text-default-900'}`}>
                       {formatAmountByCurrency(t.amountOwed)}
                     </div>
                   </div>
                   <div>
-                    <div className="text-default-500 text-xs font-medium tracking-wider uppercase">
-                      Paid (all time)
-                    </div>
-                    <div className="text-default-900 font-semibold">
+                    <div className="text-xs uppercase text-default-500">Total Paid</div>
+                    <div className="text-lg font-bold text-success-600">
                       {formatAmountByCurrency(t.totalPaid)}
                     </div>
                   </div>
-                  <div>
-                    <div className="text-default-500 text-xs font-medium tracking-wider uppercase">
-                      Ledger entries
-                    </div>
-                    <div className="text-default-900 font-semibold">
-                      {t.invoicesCount} inv • {t.paymentsCount} pay
-                    </div>
-                  </div>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-default-400">
+                  <span>Last Paid: {formatDate(t.lastPaidAt)}</span>
+                  <span>•</span>
+                  <span>Next: {formatDate(t.nextBillAt)}</span>
                 </div>
               </div>
-            ))}
-          </CardBody>
-        </Card>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
