@@ -1,18 +1,17 @@
 import { notFound } from "next/navigation";
 import { Button } from "@sovoli/ui/components/button";
-import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
+import { Card, CardBody, CardHeader, CardFooter } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
 import { Divider } from "@sovoli/ui/components/divider";
 import Link from "next/link";
 import {
-  Clock,
+  CreditCard,
   FileText,
-  AlertCircle,
-  Package,
-  CalendarDays,
-  ShieldCheck,
-  Banknote,
-  ExternalLink,
+  AlertTriangle,
+  CheckCircle2,
+  Calendar,
+  ChevronRight,
+  Download,
 } from "lucide-react";
 
 import type { BillingInvoice } from "~/modules/billing/types";
@@ -28,7 +27,9 @@ import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/
 import type { GetOrgInstanceByUsernameResult } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
 import { plans } from "~/modules/plans/data";
 import { bus } from "~/services/core/bus";
-import { InvoiceHistoryAccordion } from "./components/InvoiceHistoryAccordion";
+
+
+// --- Helpers ---
 
 const retrieveOrgInstance = async (username: string): Promise<OrgInstance> => {
   const result: GetOrgInstanceByUsernameResult =
@@ -45,14 +46,36 @@ function parseIsoDate(value?: string): Date | null {
   return Number.isNaN(d.getTime()) ? null : d;
 }
 
-function formatDate(value?: string): string {
-  const d = parseIsoDate(value);
+function formatDate(value?: string | Date): string {
+  if (!value) return "—";
+  const d = typeof value === "string" ? parseIsoDate(value) : value;
   if (!d) return "—";
   return d.toLocaleDateString("en-US", {
     year: "numeric",
-    month: "short",
+    month: "long",
     day: "numeric",
   });
+}
+
+function currency(value: number, code: CurrencyCode = "USD") {
+  return value.toLocaleString("en-US", {
+    style: "currency",
+    currency: code,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
+  });
+}
+
+function amountUsd(amount?: AmountByCurrency): number {
+  return amount?.USD ?? 0;
+}
+
+function resolvePlan(planKey?: PlanKey): PlanDefinition | null {
+  if (planKey) {
+    const found = plans.find((p) => p.key === planKey);
+    if (found) return found;
+  }
+  return plans[0] ?? null;
 }
 
 function getDiscountedAmountUsd(
@@ -73,44 +96,34 @@ function getDiscountedAmountUsd(
   return base * (1 - activeDiscount.value / 100);
 }
 
-function currency(value: number, code: CurrencyCode = "USD") {
-  return value.toLocaleString("en-US", {
-    style: "currency",
-    currency: code,
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  });
-}
+// --- Components ---
 
-function amountUsd(amount?: AmountByCurrency): number {
-  return amount?.USD ?? 0;
-}
-
-function getInvoiceStatusColor(status: BillingInvoice["status"]) {
-  switch (status) {
-    case "paid":
-      return "success" as const;
-    case "open":
-      return "warning" as const;
-    case "draft":
-      return "default" as const;
-    case "void":
-    case "uncollectible":
-    case "refunded":
-      return "danger" as const;
+function StatusBadge({
+  status,
+  isPaid,
+}: {
+  status?: string;
+  isPaid?: boolean;
+}) {
+  if (status === "active" && isPaid) {
+    return (
+      <Chip color="success" variant="flat" size="sm" className="capitalize">
+        Active
+      </Chip>
+    );
   }
-}
-
-function resolvePlan(planKey?: PlanKey): PlanDefinition | null {
-  if (planKey) {
-    const found = plans.find((p) => p.key === planKey);
-    if (found) return found;
+  if (status === "active" && !isPaid) {
+    return (
+      <Chip color="warning" variant="flat" size="sm" className="capitalize">
+        Past Due
+      </Chip>
+    );
   }
-  return plans[0] ?? null;
-}
-
-function isAdditionalProgramsPricingItemId(pricingItemId: string): boolean {
-  return pricingItemId.includes("additional-programs");
+  return (
+    <Chip color="default" variant="flat" size="sm" className="capitalize">
+      {status ?? "Unknown"}
+    </Chip>
+  );
 }
 
 export default async function BillingPage({
@@ -118,431 +131,282 @@ export default async function BillingPage({
 }: {
   params: Promise<{ username: string }>;
 }) {
-  // Next can pass `params` as a Promise in newer versions; `await` also works
-  // if it's already a plain object.
   const { username } = await params;
   const orgInstance = await retrieveOrgInstance(username);
 
   const subscription = orgInstance.billingModule?.subscription;
   const invoices = orgInstance.billingModule?.invoices ?? [];
-  const _payments = orgInstance.billingModule?.payments ?? [];
-
-  const cadence = subscription?.cadence ?? "monthly";
   const plan = resolvePlan(subscription?.planKey);
+
+  // -- Billing Logic --
+  const now = new Date();
+  const nextBillingDate =
+    subscription?.nextBillAt ?? subscription?.paidThrough;
+
+  // Filter for *Actively Due* invoices only.
+  // An invoice is due if it is open/draft AND strictly from the past or today.
+  // Future dated 'open' invoices (generated for next cycle) should be ignored.
+  const overdueInvoices = invoices.filter((inv) => {
+    const isUnpaid = inv.status === "open" || inv.status === "draft";
+    const issueDate = parseIsoDate(inv.issuedAt);
+    const isIssued = issueDate ? issueDate <= now : false;
+    return isUnpaid && isIssued;
+  });
+
+  const activeAlertInvoice = overdueInvoices[0];
+
+  const pastInvoices = invoices
+    .filter((inv) => !overdueInvoices.includes(inv))
+    .sort((a, b) => b.issuedAt.localeCompare(a.issuedAt));
+
+  // -- Cost Estimation --
+  // Reuse logic to estimate next bill amount
+  const cadence = subscription?.cadence ?? "monthly";
+  const pricingItems = plan?.pricingPackage.pricingItems ?? [];
+  const discounts = plan?.pricingPackage.discounts ?? [];
 
   const activeProgramsCount =
     orgInstance.academicModule?.programs.filter((p) => p.isActive !== false)
       .length ?? 0;
-  const includedPrograms = 2;
-  const additionalPrograms = Math.max(
-    0,
-    activeProgramsCount - includedPrograms,
+  const includedPrograms = 2; // Hardcoded in original, keeping consistent
+  const additionalPrograms = Math.max(0, activeProgramsCount - includedPrograms);
+
+  const baseItem = pricingItems.find(
+    (item) => !item.optional && item.billingCycle === cadence,
   );
 
-  const pricingItems = plan?.pricingPackage.pricingItems ?? [];
-  const discounts = plan?.pricingPackage.discounts ?? [];
-
-  const baseItem =
-    pricingItems.find(
-      (item) => !item.optional && item.billingCycle === cadence,
-    ) ?? null;
-
-  const additionalProgramsItem =
-    pricingItems.find(
-      (item) =>
-        item.optional &&
-        item.isQuantityBased &&
-        item.billingCycle === cadence &&
-        item.id.includes("additional-programs"),
-    ) ?? null;
+  // Assuming ID convention from original file
+  const additionalProgramsItem = pricingItems.find(
+    (item) =>
+      item.optional &&
+      item.isQuantityBased &&
+      item.billingCycle === cadence &&
+      item.id.includes("additional-programs"),
+  );
 
   const baseUsd = baseItem ? getDiscountedAmountUsd(baseItem, discounts) : 0;
-
-  const addOnsSelections = subscription?.addOns ?? [];
-
   const additionalProgramsPerUnitUsd = additionalProgramsItem
     ? getDiscountedAmountUsd(additionalProgramsItem, discounts)
     : 0;
 
-  const derivedAdditionalProgramsUsd =
-    additionalProgramsItem && additionalPrograms > 0
-      ? additionalProgramsPerUnitUsd * additionalPrograms
-      : 0;
-
-  const activeInvoice: BillingInvoice | null =
-    invoices
-      .filter((inv) => inv.status === "open" || inv.status === "draft")
-      .sort((a, b) => b.issuedAt.localeCompare(a.issuedAt))[0] ?? null;
-
-  const pastInvoices: BillingInvoice[] = invoices
-    .filter(
-      (inv) =>
-        inv?.id &&
-        typeof inv.id === "string" &&
-        inv.status !== "open" &&
-        inv.status !== "draft",
-    )
-    .slice()
-    .sort((a, b) => b.issuedAt.localeCompare(a.issuedAt));
-
-  const nowIso = new Date().toISOString();
-  const derivedIsPaid =
-    subscription?.isPaid ??
-    (subscription?.paidThrough
-      ? subscription.paidThrough >= nowIso
-      : undefined);
-
-  const paidStatusLabel =
-    derivedIsPaid === true
-      ? "Active"
-      : derivedIsPaid === false
-        ? "Past Due"
-        : "Unknown";
-
-  const paidStatusColor =
-    derivedIsPaid === true
-      ? ("success" as const)
-      : derivedIsPaid === false
-        ? ("danger" as const)
-        : ("default" as const);
-
-  interface InvoicePreviewLineItem {
-    pricingItemId: string;
-    label: string;
-    quantity: number;
-    unitUsd: number;
-    lineUsd: number;
-  }
-
-  const invoicePreviewLineItems: InvoicePreviewLineItem[] = [
-    ...(baseItem
-      ? [
-          {
-            pricingItemId: baseItem.id,
-            label: baseItem.label,
-            quantity: 1,
-            unitUsd: baseUsd,
-            lineUsd: baseUsd,
-          },
-        ]
-      : []),
-    ...(additionalProgramsItem
-      ? [
-          {
-            pricingItemId: additionalProgramsItem.id,
-            label: additionalProgramsItem.label,
-            quantity: additionalPrograms,
-            unitUsd: additionalProgramsPerUnitUsd,
-            lineUsd: derivedAdditionalProgramsUsd,
-          },
-        ]
-      : []),
-    ...addOnsSelections
-      .filter((s) => !isAdditionalProgramsPricingItemId(s.pricingItemId))
-      .map((s) => {
-        const item = pricingItems.find((i) => i.id === s.pricingItemId);
-        const unitUsd = item ? getDiscountedAmountUsd(item, discounts) : 0;
-        const quantity = s.quantity ?? 1;
-        return {
-          pricingItemId: s.pricingItemId,
-          label: item?.label ?? s.pricingItemId,
-          quantity,
-          unitUsd,
-          lineUsd: unitUsd * quantity,
-        };
-      }),
-  ].filter((li) => li.quantity > 0);
-
-  const invoicePreviewTotalUsd = invoicePreviewLineItems.reduce(
-    (sum, li) => sum + li.lineUsd,
-    0,
-  );
+  const estimatedTotal =
+    baseUsd + (additionalPrograms * additionalProgramsPerUnitUsd);
 
   return (
-    <div className="mx-auto flex max-w-7xl flex-col gap-8 p-4 sm:p-6 lg:p-8">
-      {/* Header */}
-      <div className="flex flex-col gap-2">
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
-          Billing & Subscription
-        </h1>
-        <p className="text-default-500 text-lg">
-          Manage your subscription plan, view usage, and access invoice history.
+    <div className="mx-auto max-w-5xl p-4 sm:p-6 lg:p-8 space-y-8">
+      {/* Page Header */}
+      <div>
+        <h1 className="text-2xl font-bold text-default-900">Billing</h1>
+        <p className="text-default-500">
+          Manage your subscription and payment details.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-        {/* Left Column: Subscription & Usage */}
-        <div className="space-y-8 lg:col-span-2">
-          {/* Current Plan Card */}
-          <Card className="shadow-sm">
-            <CardHeader className="border-b border-default-100 pb-4">
-              <div className="flex w-full items-start justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-                    <ShieldCheck className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <h2 className="text-lg font-semibold text-default-900">
-                      Current Plan
-                    </h2>
-                    <p className="text-small text-default-500">
-                      {plan?.title ?? "Standard Plan"}
-                    </p>
-                  </div>
+      {/* Alert for Overdue Invoice */}
+      {activeAlertInvoice && (
+        <div className="rounded-lg border border-danger-200 bg-danger-50 p-4 flex items-start gap-3">
+          <AlertTriangle className="h-5 w-5 text-danger-600 mt-0.5 shrink-0" />
+          <div className="flex-1">
+            <h3 className="text-sm font-semibold text-danger-900">
+              Payment Overdue
+            </h3>
+            <p className="text-sm text-danger-700 mt-1">
+              There is an outstanding invoice of{" "}
+              <span className="font-bold">
+                {currency(amountUsd(activeAlertInvoice.total))}
+              </span>{" "}
+              due on {formatDate(activeAlertInvoice.dueAt)}.
+            </p>
+            <div className="mt-3">
+              <Link
+                href={`/${username}/dashboard/billing/invoices/${activeAlertInvoice.id}`}
+              >
+                <Button size="sm" color="danger" variant="flat">
+                  Review Invoice
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Main Content: Plan & Subscription */}
+        <div className="md:col-span-2 space-y-6">
+
+          {/* Plan Details Card */}
+          <Card className="shadow-sm border border-default-200">
+            <CardHeader className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-0 pt-6 px-6">
+              <div>
+                <h2 className="text-lg font-semibold text-default-900">
+                  {plan?.title ?? "Standard Plan"}
+                </h2>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="text-sm text-default-500">
+                    {cadence === "monthly" ? "Monthly billing" : "Annual billing"}
+                  </span>
+                  <StatusBadge
+                    status={subscription?.status}
+                    isPaid={subscription?.isPaid}
+                  />
                 </div>
-                <Chip
-                  color={paidStatusColor}
-                  variant="flat"
-                  className="capitalize"
-                >
-                  {paidStatusLabel}
-                </Chip>
+              </div>
+              <div className="text-right">
+                <div className="text-2xl font-bold text-default-900">
+                  {currency(estimatedTotal)}
+                  <span className="text-sm font-normal text-default-500 ml-1">
+                    /{cadence === "monthly" ? "mo" : "yr"}
+                  </span>
+                </div>
               </div>
             </CardHeader>
-            <CardBody className="gap-6 pt-6">
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                <div className="flex flex-col gap-1">
-                  <span className="text-xs font-medium uppercase tracking-wider text-default-500">
-                    Billing Period
+            <CardBody className="px-6 py-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-4 bg-default-50 rounded-lg border border-default-100">
+                <div>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-default-500 block mb-1">
+                    Current Usage
                   </span>
                   <div className="flex items-center gap-2">
-                    <CalendarDays className="h-4 w-4 text-default-400" />
-                    <span className="font-semibold text-default-900 capitalize">
-                      {cadence}
+                    <span className="text-sm text-default-900">
+                      <span className="font-semibold">{activeProgramsCount}</span> Active Programs
                     </span>
                   </div>
+                  <p className="text-xs text-default-400 mt-1">
+                    {includedPrograms} included in base plan
+                  </p>
                 </div>
-                <div className="flex flex-col gap-1">
-                  <span className="text-xs font-medium uppercase tracking-wider text-default-500">
-                    Next Payment
+                <div>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-default-500 block mb-1">
+                    Next Invoice
                   </span>
                   <div className="flex items-center gap-2">
-                    <Clock className="h-4 w-4 text-default-400" />
-                    <span className="font-semibold text-default-900">
-                      {formatDate(subscription?.nextBillAt)}
+                    <Calendar className="h-4 w-4 text-default-400" />
+                    <span className="text-sm font-medium text-default-900">
+                      {formatDate(nextBillingDate)}
                     </span>
                   </div>
+                  <p className="text-xs text-default-400 mt-1">
+                    Estimated amount: {currency(estimatedTotal)}
+                  </p>
                 </div>
               </div>
 
-              <Divider />
-
-              <div className="flex items-center justify-between">
-                <div className="flex flex-col gap-1">
-                  <div className="text-2xl font-bold text-default-900">
-                    {currency(invoicePreviewTotalUsd)}
-                  </div>
-                  <div className="text-xs text-default-500">
-                    Estimated upcoming total
-                  </div>
+              {/* Line Items Breakdown (Simplified) */}
+              <div className="mt-6 space-y-3">
+                <div className="flex justify-between text-sm">
+                  <span className="text-default-600">{plan?.title} (Base)</span>
+                  <span className="text-default-900 font-medium">{currency(baseUsd)}</span>
                 </div>
-                {/* Placeholder for 'Manage Subscription' or similar action if needed */}
+                {additionalPrograms > 0 && (
+                  <div className="flex justify-between text-sm">
+                    <span className="text-default-600">
+                      {additionalPrograms} Additional {additionalPrograms === 1 ? 'Program' : 'Programs'}
+                    </span>
+                    <span className="text-default-900 font-medium">
+                      {currency(additionalPrograms * additionalProgramsPerUnitUsd)}
+                    </span>
+                  </div>
+                )}
+                <Divider className="my-2" />
+                <div className="flex justify-between text-sm font-semibold">
+                  <span>Total Current Usage</span>
+                  <span>{currency(estimatedTotal)}</span>
+                </div>
               </div>
             </CardBody>
           </Card>
 
-          {/* Usage & Limits */}
-          {additionalProgramsItem && (
-            <Card className="shadow-sm">
-              <CardHeader className="border-b border-default-100 pb-4">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary/10">
-                    <Package className="h-5 w-5 text-secondary" />
-                  </div>
-                  <div>
-                    <h2 className="text-lg font-semibold text-default-900">
-                      Usage & Add-ons
-                    </h2>
-                    <p className="text-small text-default-500">
-                      Track your active programs.
-                    </p>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardBody className="gap-4 pt-4">
-                <div className="flex flex-wrap items-center gap-4 rounded-lg bg-default-50 p-3 sm:gap-8">
-                  <div>
-                    <div className="text-[10px] font-medium uppercase tracking-wider text-default-500">
-                      Active
-                    </div>
-                    <div className="text-lg font-bold text-default-900">
-                      {activeProgramsCount}
-                    </div>
-                  </div>
-                  <div className="hidden h-8 w-px bg-default-200 sm:block"></div>
-                  <div>
-                    <div className="text-[10px] font-medium uppercase tracking-wider text-default-500">
-                      Included
-                    </div>
-                    <div className="text-lg font-bold text-default-900">
-                      {includedPrograms}
-                    </div>
-                  </div>
-                  <div className="hidden h-8 w-px bg-default-200 sm:block"></div>
-                  <div>
-                    <div className="text-[10px] font-medium uppercase tracking-wider text-default-500">
-                      Additional
-                    </div>
-                    <div className="flex items-baseline gap-1">
-                      <div className="text-lg font-bold text-default-900">
-                        {additionalPrograms}
-                      </div>
-                      {additionalPrograms > 0 && (
-                        <span className="text-[10px] text-default-500">
-                          ({currency(derivedAdditionalProgramsUsd)}/
-                          {cadence === "annual" ? "yr" : "mo"})
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Detailed Breakdown */}
-                <div className="rounded-lg border border-default-200">
-                  <div className="bg-default-50 px-3 py-1.5 text-[10px] font-medium uppercase text-default-500">
-                    Upcoming Invoice Details
-                  </div>
-                  <div className="divide-y divide-default-100 p-0">
-                    {invoicePreviewLineItems.map((li) => (
-                      <div
-                        key={li.pricingItemId}
-                        className="flex items-center justify-between px-3 py-2"
-                      >
-                        <div className="flex flex-col">
-                          <span className="text-sm font-medium text-default-900">
-                            {li.label}
-                          </span>
-                          <span className="text-[10px] text-default-500">
-                            Qty: {li.quantity} × {currency(li.unitUsd)}
-                          </span>
+          {/* Invoice History */}
+          <div className="pt-4">
+            <h3 className="text-lg font-bold text-default-900 mb-4">Invoice History</h3>
+            <div className="rounded-lg border border-default-200 bg-content1 overflow-hidden divide-y divide-default-100">
+              {pastInvoices.length > 0 ? (
+                pastInvoices.map((inv) => (
+                  <Link
+                    key={inv.id}
+                    href={`/${username}/dashboard/billing/invoices/${inv.id}`}
+                    className="block hover:bg-default-50 transition-colors"
+                  >
+                    <div className="flex items-center justify-between p-4">
+                      <div className="flex items-center gap-4">
+                        <div className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full bg-default-100 text-default-500">
+                          <FileText className="h-5 w-5" />
                         </div>
-                        <span className="text-sm font-semibold text-default-900">
-                          {currency(li.lineUsd)}
-                        </span>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <span className="font-medium text-default-900 text-sm">
+                              {formatDate(inv.issuedAt)}
+                            </span>
+                            <span className="text-xs text-default-400">
+                              #{inv.invoiceNumber || inv.id.slice(-6)}
+                            </span>
+                          </div>
+                          <div className="sm:hidden text-xs text-default-500 mt-0.5">
+                            {currency(amountUsd(inv.total))}
+                          </div>
+                        </div>
                       </div>
-                    ))}
-                    {invoicePreviewLineItems.length === 0 && (
-                      <div className="px-3 py-2 text-xs text-default-500">
-                        No active line items.
+                      <div className="flex items-center gap-4">
+                        <div className="hidden sm:block font-medium text-sm text-default-900">
+                          {currency(amountUsd(inv.total))}
+                        </div>
+                        <Chip
+                          size="sm"
+                          variant="flat"
+                          color={inv.status === 'paid' ? 'success' : inv.status === 'open' ? 'warning' : 'default'}
+                          className="capitalize"
+                        >
+                          {inv.status}
+                        </Chip>
+                        <ChevronRight className="h-4 w-4 text-default-300" />
                       </div>
-                    )}
-                  </div>
-                  <div className="flex justify-between border-t border-default-100 bg-default-50/50 px-3 py-2">
-                    <span className="text-sm font-bold text-default-900">
-                      Total
-                    </span>
-                    <span className="text-sm font-bold text-default-900">
-                      {currency(invoicePreviewTotalUsd)}
-                    </span>
-                  </div>
+                    </div>
+                  </Link>
+                ))
+              ) : (
+                <div className="p-8 text-center text-default-500">
+                  No invoices found.
                 </div>
-              </CardBody>
-            </Card>
-          )}
+              )}
+            </div>
+          </div>
         </div>
 
-        {/* Right Column: Invoices & History */}
-        <div className="space-y-8">
-          {/* Active Invoice Alert if any */}
-          {activeInvoice && (
-            <Card className="border-warning-200 bg-warning-50 shadow-sm">
-              <CardBody className="flex flex-row items-start gap-4 p-4">
-                <AlertCircle className="mt-1 h-5 w-5 text-warning-600" />
-                <div className="flex flex-col gap-1 flex-1">
-                  <h3 className="font-semibold text-warning-900">
-                    Invoice Due
-                  </h3>
-                  <p className="text-sm text-warning-800">
-                    Invoice{" "}
-                    <span className="font-mono font-medium">
-                      {activeInvoice.invoiceNumber ?? activeInvoice.id}
-                    </span>{" "}
-                    is {activeInvoice.status}.
-                  </p>
-                  <div className="mt-2 flex items-center gap-4 text-sm font-medium text-warning-900">
-                    <span>Due: {formatDate(activeInvoice.dueAt)}</span>
-                    <span>{currency(amountUsd(activeInvoice.total))}</span>
-                  </div>
-                  <div className="mt-3">
-                    <Link
-                      href={`/${username}/dashboard/billing/invoices/${activeInvoice.id}`}
-                    >
-                      <Button
-                        size="sm"
-                        variant="flat"
-                        color="warning"
-                        endContent={<ExternalLink className="h-3 w-3" />}
-                      >
-                        View Invoice Details
-                      </Button>
-                    </Link>
-                  </div>
+        {/* Sidebar: Payment Method & Support */}
+        <div className="space-y-6">
+          {/* Payment Method */}
+          <Card className="shadow-sm border border-default-200">
+            <CardHeader className="pb-2">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-default-500">Payment Method</h3>
+            </CardHeader>
+            <CardBody className="pt-2">
+              <div className="flex items-center gap-3 p-3 rounded-lg border border-default-200 bg-default-50">
+                <div className="h-8 w-12 bg-content1 rounded border border-default-200 flex items-center justify-center">
+                  <CreditCard className="h-4 w-4 text-default-600" />
                 </div>
-              </CardBody>
-            </Card>
-          )}
-
-          <Card className="shadow-sm">
-            <CardHeader className="border-b border-default-100 pb-4">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-default-100">
-                  <FileText className="h-5 w-5 text-default-500" />
-                </div>
-                <div>
-                  <h2 className="text-lg font-semibold text-default-900">
-                    Invoice History
-                  </h2>
-                  <p className="text-small text-default-500">
-                    Recent billing activity.
-                  </p>
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-default-900">Cash / Manual</p>
+                  <p className="text-xs text-default-500">•••• •••• •••• ••••</p>
                 </div>
               </div>
-            </CardHeader>
-            <CardBody className="p-0">
-              <InvoiceHistoryAccordion invoices={pastInvoices} />
+              <div className="mt-4 text-xs text-default-400">
+                Online payments support coming soon. Please <a href="mailto:hi@sovoli.com" className="text-primary-600 hover:underline">contact support</a> for billing questions.
+              </div>
             </CardBody>
           </Card>
 
-          <Card className="shadow-sm">
-            <CardHeader className="border-b border-default-100 pb-4">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-default-100">
-                  <Banknote className="h-5 w-5 text-default-500" />
-                </div>
-                <div>
-                  <h2 className="text-lg font-semibold text-default-900">
-                    Payment Methods
-                  </h2>
-                </div>
-              </div>
-            </CardHeader>
-            <CardBody>
-              <div className="flex items-center justify-between rounded-lg border border-default-200 p-3">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-8 w-10 items-center justify-center rounded bg-success-50">
-                    <Banknote className="h-4 w-6 text-success-600" />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-sm font-medium text-default-900">
-                      Cash
-                    </span>
-                    <span className="text-xs text-default-500">
-                      Pay directly
-                    </span>
-                  </div>
-                </div>
-                <Chip size="sm" variant="flat" color="success">
-                  Active
-                </Chip>
-              </div>
-              <div className="mt-4">
-                <p className="text-xs text-default-400">
-                  We currently only accept cash payments. Online payment methods
-                  coming soon.
-                </p>
-              </div>
-            </CardBody>
-          </Card>
+          {/* Support / Help */}
+          <div className="rounded-lg bg-primary-50 p-4 border border-primary-100">
+            <h4 className="font-semibold text-primary-700 text-sm mb-1">Need help with billing?</h4>
+            <p className="text-xs text-primary-600 mb-3">
+              Contact our support team for any questions regarding your invoices or plan.
+            </p>
+            <a href="mailto:hi@sovoli.com" className="w-full block">
+              <Button size="sm" color="primary" variant="flat" className="w-full">
+                Contact Support
+              </Button>
+            </a>
+          </div>
         </div>
       </div>
     </div>
