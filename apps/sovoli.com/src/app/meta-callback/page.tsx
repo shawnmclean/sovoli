@@ -10,18 +10,20 @@ export default function MetaCallbackPage() {
         if (hash.includes("access_token=")) {
             const params = new URLSearchParams(hash.substring(1));
             const token = params.get("access_token");
+            const opener = window.opener as Window | null;
 
-            if (token && window.opener) {
+            if (token && opener) {
                 // Send the token back to the main dashboard window
-                window.opener.postMessage({ type: "META_OAUTH_TOKEN", token }, window.location.origin);
+                opener.postMessage({ type: "META_OAUTH_TOKEN", token }, window.location.origin);
                 window.close();
             }
         } else if (hash.includes("error=")) {
             const params = new URLSearchParams(hash.substring(1));
-            const error = params.get("error_description") || "Authentication failed";
+            const error = params.get("error_description") ?? "Authentication failed";
+            const opener = window.opener as Window | null;
 
-            if (window.opener) {
-                window.opener.postMessage({ type: "META_OAUTH_ERROR", error }, window.location.origin);
+            if (opener) {
+                opener.postMessage({ type: "META_OAUTH_ERROR", error }, window.location.origin);
                 window.close();
             }
         }

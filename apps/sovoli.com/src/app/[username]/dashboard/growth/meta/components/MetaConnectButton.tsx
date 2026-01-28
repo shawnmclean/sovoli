@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@sovoli/ui/components/button";
-import { FacebookIcon, Loader2 } from "lucide-react";
+import { FacebookIcon } from "lucide-react";
 import { Spinner } from "@sovoli/ui/components/spinner";
 
 interface MetaConnectButtonProps {
@@ -12,6 +12,20 @@ interface MetaConnectButtonProps {
 
 export function MetaConnectButton({ onConnected, appId }: MetaConnectButtonProps) {
     const [isConnecting, setIsConnecting] = useState(false);
+
+    const isMetaOauthMessage = (
+        data: unknown,
+    ): data is { type: "META_OAUTH_TOKEN"; token: string } | { type: "META_OAUTH_ERROR"; error: string } => {
+        if (!data || typeof data !== "object") return false;
+        const record = data as Record<string, unknown>;
+        if (record.type === "META_OAUTH_TOKEN") {
+            return typeof record.token === "string";
+        }
+        if (record.type === "META_OAUTH_ERROR") {
+            return typeof record.error === "string";
+        }
+        return false;
+    };
 
     useEffect(() => {
         // Handle the redirect back from FB if it happens in the same window (unlikely with popup)
@@ -49,11 +63,13 @@ export function MetaConnectButton({ onConnected, appId }: MetaConnectButtonProps
         const handleMessage = (event: MessageEvent) => {
             if (event.origin !== window.location.origin) return;
 
+            if (!isMetaOauthMessage(event.data)) return;
+
             if (event.data.type === "META_OAUTH_TOKEN") {
                 onConnected(event.data.token);
                 setIsConnecting(false);
                 window.removeEventListener("message", handleMessage);
-            } else if (event.data.type === "META_OAUTH_ERROR") {
+            } else {
                 console.error("Meta Auth Error:", event.data.error);
                 setIsConnecting(false);
                 window.removeEventListener("message", handleMessage);
@@ -64,7 +80,7 @@ export function MetaConnectButton({ onConnected, appId }: MetaConnectButtonProps
 
         // Cleanup if popup is closed manually
         const checkClosed = setInterval(() => {
-            if (popup && popup.closed) {
+            if (popup?.closed) {
                 clearInterval(checkClosed);
                 setIsConnecting(false);
                 window.removeEventListener("message", handleMessage);

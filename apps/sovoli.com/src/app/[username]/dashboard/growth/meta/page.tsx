@@ -5,24 +5,27 @@ import { useParams } from "next/navigation";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Spinner } from "@sovoli/ui/components/spinner";
 import { AlertCircle } from "lucide-react";
-import { Badge } from "@sovoli/ui/components/badge";
 import { Button } from "@sovoli/ui/components/button";
 import { Input } from "@sovoli/ui/components/input";
 import { MetaConnectButton } from "./components/MetaConnectButton";
 import { BusinessManagerList } from "./components/BusinessManagerList";
+import { AssetSelector } from "./components/AssetSelector";
 import { AssetDisplay } from "./components/AssetDisplay";
 import {
     getBusinessManagers,
     setupOboConnection,
     createSystemUserAndToken,
     fetchMetaAssets,
-    getSystemUser
+    getSystemUser,
+    fetchBusinessAssets,
+    createMetaAdAccount,
+    assignAssetToSystemUser
 } from "./actions";
 
 // For demo purposes, we'll get the App ID from an env or hardcode if missing
 const META_APP_ID = "4067035073542160";
 
-type Step = "connect" | "select-bm" | "setting-up" | "completed";
+type Step = "connect" | "select-bm" | "select-assets" | "setting-up" | "completed";
 
 export default function MetaOboPage() {
     const { username } = useParams<{ username: string }>();
@@ -35,6 +38,9 @@ export default function MetaOboPage() {
 
     const [directToken, setDirectToken] = useState("");
     const [directBmId, setDirectBmId] = useState("");
+
+    const [availablePages, setAvailablePages] = useState<{ id: string; name: string }[]>([]);
+    const [availableAdAccounts, setAvailableAdAccounts] = useState<{ id: string; name: string; account_id: string; currency: string }[]>([]);
 
     const [setupResult, setSetupResult] = useState<{
         systemUser: {
@@ -55,45 +61,118 @@ export default function MetaOboPage() {
 
         const result = await getBusinessManagers(token);
         if (result.status === "success") {
-            setBusinesses(result.businesses ?? []);
+            setBusinesses(result.businesses);
         } else {
-            setError(result.message ?? "Failed to fetch Business Managers");
+            setError(result.message);
         }
         setIsLoading(false);
     };
 
     const handleSelectBm = async (bmId: string) => {
         setSelectedBmId(bmId);
-        setStep("setting-up");
         setIsLoading(true);
         setError(null);
 
+        const result = await fetchBusinessAssets(bmId, userToken);
+        if (result.status === "success") {
+            const pages = result.pages;
+            const adAccounts = result.adAccounts;
+
+            setAvailablePages(pages);
+            setAvailableAdAccounts(adAccounts);
+
+            // Automatically proceed to setup with all available assets
+            await handleConfirmAssets({
+                pageIds: pages.map(p => p.id),
+                adAccountIds: adAccounts.map(a => a.id),
+            }, bmId);
+        } else {
+            setError(result.message);
+            setIsLoading(false);
+        }
+    };
+
+    const handleConfirmAssets = async (selection: {
+        pageIds: string[];
+        adAccountIds: string[];
+        newAdAccount?: { name: string; currency: string; timezoneId: number }
+    }, bmIdFromSelect?: string) => { // Added bmIdFromSelect to handle automatic flow correctly
+        setIsLoading(true);
+        setError(null);
+        setStep("setting-up");
+
+        const businessId = selectedBmId || bmIdFromSelect;
+        if (!businessId) {
+            setError("Business ID is missing");
+            setIsLoading(false);
+            return;
+        }
+
         try {
-            // Step 1: Setup OBO relationship
-            const oboResult = await setupOboConnection(bmId, userToken);
+            // 1. Create OBO Connection
+            const oboResult = await setupOboConnection(businessId, userToken);
             if (oboResult.status === "error") throw new Error(oboResult.message);
 
-            // Step 2: Create System User
-            const suResult = await createSystemUserAndToken(bmId);
+            // 2. Create System User
+            const suResult = await createSystemUserAndToken(businessId);
             if (suResult.status === "error") throw new Error(suResult.message);
+            const systemUserId = suResult.systemUserId;
+            const suToken = suResult.token;
 
-            // Step 3: Fetch Assets
-            const assetsResult = await fetchMetaAssets(suResult.token || "", bmId);
+            // 3. Create New Ad Account if requested
+            const finalAdAccountIds = [...selection.adAccountIds];
+            if (selection.newAdAccount) {
+                const createResult = await createMetaAdAccount({
+                    businessId: businessId,
+                    accessToken: userToken, // Use user token to create ad account
+                    assignToUserId: systemUserId, // Assign to the system user immediately
+                    ...selection.newAdAccount
+                });
+                if (createResult.status === "error") throw new Error(createResult.message);
+                finalAdAccountIds.push(createResult.adAccountId);
+            }
+
+            // 4. Assign Assets to System User
+            // Note: We use User Access Token to assign assets to the System User
+            for (const pageId of selection.pageIds) {
+                const res = await assignAssetToSystemUser({
+                    assetId: pageId,
+                    systemUserId,
+                    userAccessToken: userToken,
+                    assetType: "PAGE"
+                });
+                if (res.status === "error") console.error(`Failed to assign page ${pageId}:`, res.message);
+            }
+
+            for (const adAccountId of finalAdAccountIds) {
+                const res = await assignAssetToSystemUser({
+                    assetId: adAccountId,
+                    systemUserId,
+                    userAccessToken: userToken,
+                    assetType: "AD_ACCOUNT"
+                });
+                if (res.status === "error") console.error(`Failed to assign ad account ${adAccountId}:`, res.message);
+            }
+
+            // 5. Fetch Final Assets with System User Token
+            const assetsResult = await fetchMetaAssets(suToken, businessId);
             if (assetsResult.status === "error") throw new Error(assetsResult.message);
 
             setSetupResult({
                 systemUser: {
-                    id: suResult.systemUserId ?? "",
-                    token: suResult.token ?? "",
+                    id: systemUserId,
+                    token: suToken,
                     name: suResult.systemUserName,
                 },
-                businessId: bmId,
-                pages: assetsResult.pages ?? [],
-                adAccounts: assetsResult.adAccounts ?? [],
+                businessId: businessId,
+                pages: assetsResult.pages,
+                adAccounts: assetsResult.adAccounts,
             });
             setStep("completed");
+
         } catch (err: unknown) {
             setError(err instanceof Error ? err.message : "An error occurred during setup");
+            // If we fail, go back to BM selection
             setStep("select-bm");
         } finally {
             setIsLoading(false);
@@ -125,8 +204,8 @@ export default function MetaOboPage() {
                     name: userResult.user.name,
                 },
                 businessId: directBmId,
-                pages: assetsResult.pages ?? [],
-                adAccounts: assetsResult.adAccounts ?? [],
+                pages: assetsResult.pages,
+                adAccounts: assetsResult.adAccounts,
             });
             setStep("completed");
         } catch (err: unknown) {
@@ -206,6 +285,15 @@ export default function MetaOboPage() {
                 <BusinessManagerList
                     businesses={businesses}
                     onSelect={handleSelectBm}
+                    isLoading={isLoading}
+                />
+            )}
+
+            {step === "select-assets" && (
+                <AssetSelector
+                    pages={availablePages}
+                    adAccounts={availableAdAccounts}
+                    onConfirm={handleConfirmAssets}
                     isLoading={isLoading}
                 />
             )}
