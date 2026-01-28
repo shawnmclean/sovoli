@@ -3,14 +3,17 @@
     "planKey": "growth",
     "cadence": "monthly",
     "status": "active",
-    "isPaid": false
+    "isPaid": true,
+    "lastPaidAt": "2026-01-27T00:00:00.000Z",
+    "paidThrough": "2026-02-25T00:00:00.000Z"
   },
   "invoices": [
     {
       "id": "inv-hew-2026-01",
-      "status": "open",
+      "status": "paid",
       "issuedAt": "2026-01-25T00:00:00.000Z",
       "dueAt": "2026-02-04T00:00:00.000Z",
+      "paidAt": "2026-01-27T00:00:00.000Z",
       "currency": "USD",
       "planKey": "growth",
       "cadence": "monthly",
@@ -31,7 +34,19 @@
         }
       ],
       "subtotal": { "USD": 42 },
-      "total": { "USD": 42 }
+      "total": { "USD": 42 },
+      "payments": [
+        {
+          "id": "pay-hew-2026-01-1",
+          "status": "succeeded",
+          "method": "cash",
+          "paidAt": "2026-01-27T00:00:00.000Z",
+          "invoiceId": "inv-hew-2026-01",
+          "currency": "USD",
+          "amount": { "USD": 42 },
+          "reference": "First sale"
+        }
+      ]
     }
   ]
 }

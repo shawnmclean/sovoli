@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { Accordion, AccordionItem } from "@sovoli/ui/components/accordion";
 import { Card, CardBody, CardHeader } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
 import { Divider } from "@sovoli/ui/components/divider";
@@ -26,11 +25,13 @@ import { GetOrgInstanceByUsernameQuery } from "~/modules/organisations/services/
 import type { GetOrgInstanceByUsernameResult } from "~/modules/organisations/services/queries/GetOrgInstanceByUsername";
 import { plans } from "~/modules/plans/data";
 import { bus } from "~/services/core/bus";
+import { InvoiceHistoryAccordion } from "./components/InvoiceHistoryAccordion";
 
 const retrieveOrgInstance = async (username: string): Promise<OrgInstance> => {
-  const result: GetOrgInstanceByUsernameResult = await bus.queryProcessor.execute(
-    new GetOrgInstanceByUsernameQuery(username),
-  );
+  const result: GetOrgInstanceByUsernameResult =
+    await bus.queryProcessor.execute(
+      new GetOrgInstanceByUsernameQuery(username),
+    );
   if (!result.orgInstance) return notFound();
   return result.orgInstance;
 };
@@ -171,7 +172,13 @@ export default async function BillingPage({
       .sort((a, b) => b.issuedAt.localeCompare(a.issuedAt))[0] ?? null;
 
   const pastInvoices: BillingInvoice[] = invoices
-    .filter((inv) => inv.status !== "open" && inv.status !== "draft")
+    .filter(
+      (inv) =>
+        inv?.id &&
+        typeof inv.id === "string" &&
+        inv.status !== "open" &&
+        inv.status !== "draft",
+    )
     .slice()
     .sort((a, b) => b.issuedAt.localeCompare(a.issuedAt));
 
@@ -207,25 +214,25 @@ export default async function BillingPage({
   const invoicePreviewLineItems: InvoicePreviewLineItem[] = [
     ...(baseItem
       ? [
-        {
-          pricingItemId: baseItem.id,
-          label: baseItem.label,
-          quantity: 1,
-          unitUsd: baseUsd,
-          lineUsd: baseUsd,
-        },
-      ]
+          {
+            pricingItemId: baseItem.id,
+            label: baseItem.label,
+            quantity: 1,
+            unitUsd: baseUsd,
+            lineUsd: baseUsd,
+          },
+        ]
       : []),
     ...(additionalProgramsItem
       ? [
-        {
-          pricingItemId: additionalProgramsItem.id,
-          label: additionalProgramsItem.label,
-          quantity: additionalPrograms,
-          unitUsd: additionalProgramsPerUnitUsd,
-          lineUsd: derivedAdditionalProgramsUsd,
-        },
-      ]
+          {
+            pricingItemId: additionalProgramsItem.id,
+            label: additionalProgramsItem.label,
+            quantity: additionalPrograms,
+            unitUsd: additionalProgramsPerUnitUsd,
+            lineUsd: derivedAdditionalProgramsUsd,
+          },
+        ]
       : []),
     ...addOnsSelections
       .filter((s) => !isAdditionalProgramsPricingItemId(s.pricingItemId))
@@ -252,7 +259,9 @@ export default async function BillingPage({
     <div className="mx-auto flex max-w-7xl flex-col gap-8 p-4 sm:p-6 lg:p-8">
       {/* Header */}
       <div className="flex flex-col gap-2">
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">Billing & Subscription</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
+          Billing & Subscription
+        </h1>
         <p className="text-default-500 text-lg">
           Manage your subscription plan, view usage, and access invoice history.
         </p>
@@ -261,7 +270,6 @@ export default async function BillingPage({
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         {/* Left Column: Subscription & Usage */}
         <div className="space-y-8 lg:col-span-2">
-
           {/* Current Plan Card */}
           <Card className="shadow-sm">
             <CardHeader className="border-b border-default-100 pb-4">
@@ -271,11 +279,19 @@ export default async function BillingPage({
                     <ShieldCheck className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <h2 className="text-lg font-semibold text-default-900">Current Plan</h2>
-                    <p className="text-small text-default-500">{plan?.title ?? "Standard Plan"}</p>
+                    <h2 className="text-lg font-semibold text-default-900">
+                      Current Plan
+                    </h2>
+                    <p className="text-small text-default-500">
+                      {plan?.title ?? "Standard Plan"}
+                    </p>
                   </div>
                 </div>
-                <Chip color={paidStatusColor} variant="flat" className="capitalize">
+                <Chip
+                  color={paidStatusColor}
+                  variant="flat"
+                  className="capitalize"
+                >
                   {paidStatusLabel}
                 </Chip>
               </div>
@@ -283,17 +299,25 @@ export default async function BillingPage({
             <CardBody className="gap-6 pt-6">
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <div className="flex flex-col gap-1">
-                  <span className="text-xs font-medium uppercase tracking-wider text-default-500">Billing Period</span>
+                  <span className="text-xs font-medium uppercase tracking-wider text-default-500">
+                    Billing Period
+                  </span>
                   <div className="flex items-center gap-2">
                     <CalendarDays className="h-4 w-4 text-default-400" />
-                    <span className="font-semibold text-default-900 capitalize">{cadence}</span>
+                    <span className="font-semibold text-default-900 capitalize">
+                      {cadence}
+                    </span>
                   </div>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <span className="text-xs font-medium uppercase tracking-wider text-default-500">Next Payment</span>
+                  <span className="text-xs font-medium uppercase tracking-wider text-default-500">
+                    Next Payment
+                  </span>
                   <div className="flex items-center gap-2">
                     <Clock className="h-4 w-4 text-default-400" />
-                    <span className="font-semibold text-default-900">{formatDate(subscription?.nextBillAt)}</span>
+                    <span className="font-semibold text-default-900">
+                      {formatDate(subscription?.nextBillAt)}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -302,8 +326,12 @@ export default async function BillingPage({
 
               <div className="flex items-center justify-between">
                 <div className="flex flex-col gap-1">
-                  <div className="text-2xl font-bold text-default-900">{currency(invoicePreviewTotalUsd)}</div>
-                  <div className="text-xs text-default-500">Estimated upcoming total</div>
+                  <div className="text-2xl font-bold text-default-900">
+                    {currency(invoicePreviewTotalUsd)}
+                  </div>
+                  <div className="text-xs text-default-500">
+                    Estimated upcoming total
+                  </div>
                 </div>
                 {/* Placeholder for 'Manage Subscription' or similar action if needed */}
               </div>
@@ -319,30 +347,47 @@ export default async function BillingPage({
                     <Package className="h-5 w-5 text-secondary" />
                   </div>
                   <div>
-                    <h2 className="text-lg font-semibold text-default-900">Usage & Add-ons</h2>
-                    <p className="text-small text-default-500">Track your active programs.</p>
+                    <h2 className="text-lg font-semibold text-default-900">
+                      Usage & Add-ons
+                    </h2>
+                    <p className="text-small text-default-500">
+                      Track your active programs.
+                    </p>
                   </div>
                 </div>
               </CardHeader>
               <CardBody className="gap-4 pt-4">
                 <div className="flex flex-wrap items-center gap-4 rounded-lg bg-default-50 p-3 sm:gap-8">
                   <div>
-                    <div className="text-[10px] font-medium uppercase tracking-wider text-default-500">Active</div>
-                    <div className="text-lg font-bold text-default-900">{activeProgramsCount}</div>
+                    <div className="text-[10px] font-medium uppercase tracking-wider text-default-500">
+                      Active
+                    </div>
+                    <div className="text-lg font-bold text-default-900">
+                      {activeProgramsCount}
+                    </div>
                   </div>
                   <div className="hidden h-8 w-px bg-default-200 sm:block"></div>
                   <div>
-                    <div className="text-[10px] font-medium uppercase tracking-wider text-default-500">Included</div>
-                    <div className="text-lg font-bold text-default-900">{includedPrograms}</div>
+                    <div className="text-[10px] font-medium uppercase tracking-wider text-default-500">
+                      Included
+                    </div>
+                    <div className="text-lg font-bold text-default-900">
+                      {includedPrograms}
+                    </div>
                   </div>
                   <div className="hidden h-8 w-px bg-default-200 sm:block"></div>
                   <div>
-                    <div className="text-[10px] font-medium uppercase tracking-wider text-default-500">Additional</div>
+                    <div className="text-[10px] font-medium uppercase tracking-wider text-default-500">
+                      Additional
+                    </div>
                     <div className="flex items-baseline gap-1">
-                      <div className="text-lg font-bold text-default-900">{additionalPrograms}</div>
+                      <div className="text-lg font-bold text-default-900">
+                        {additionalPrograms}
+                      </div>
                       {additionalPrograms > 0 && (
                         <span className="text-[10px] text-default-500">
-                          ({currency(derivedAdditionalProgramsUsd)}/{cadence === 'annual' ? 'yr' : 'mo'})
+                          ({currency(derivedAdditionalProgramsUsd)}/
+                          {cadence === "annual" ? "yr" : "mo"})
                         </span>
                       )}
                     </div>
@@ -356,27 +401,41 @@ export default async function BillingPage({
                   </div>
                   <div className="divide-y divide-default-100 p-0">
                     {invoicePreviewLineItems.map((li) => (
-                      <div key={li.pricingItemId} className="flex items-center justify-between px-3 py-2">
+                      <div
+                        key={li.pricingItemId}
+                        className="flex items-center justify-between px-3 py-2"
+                      >
                         <div className="flex flex-col">
-                          <span className="text-sm font-medium text-default-900">{li.label}</span>
-                          <span className="text-[10px] text-default-500">Qty: {li.quantity} × {currency(li.unitUsd)}</span>
+                          <span className="text-sm font-medium text-default-900">
+                            {li.label}
+                          </span>
+                          <span className="text-[10px] text-default-500">
+                            Qty: {li.quantity} × {currency(li.unitUsd)}
+                          </span>
                         </div>
-                        <span className="text-sm font-semibold text-default-900">{currency(li.lineUsd)}</span>
+                        <span className="text-sm font-semibold text-default-900">
+                          {currency(li.lineUsd)}
+                        </span>
                       </div>
                     ))}
                     {invoicePreviewLineItems.length === 0 && (
-                      <div className="px-3 py-2 text-xs text-default-500">No active line items.</div>
+                      <div className="px-3 py-2 text-xs text-default-500">
+                        No active line items.
+                      </div>
                     )}
                   </div>
                   <div className="flex justify-between border-t border-default-100 bg-default-50/50 px-3 py-2">
-                    <span className="text-sm font-bold text-default-900">Total</span>
-                    <span className="text-sm font-bold text-default-900">{currency(invoicePreviewTotalUsd)}</span>
+                    <span className="text-sm font-bold text-default-900">
+                      Total
+                    </span>
+                    <span className="text-sm font-bold text-default-900">
+                      {currency(invoicePreviewTotalUsd)}
+                    </span>
                   </div>
                 </div>
               </CardBody>
             </Card>
           )}
-
         </div>
 
         {/* Right Column: Invoices & History */}
@@ -387,9 +446,15 @@ export default async function BillingPage({
               <CardBody className="flex flex-row items-start gap-4 p-4">
                 <AlertCircle className="mt-1 h-5 w-5 text-warning-600" />
                 <div className="flex flex-col gap-1">
-                  <h3 className="font-semibold text-warning-900">Invoice Due</h3>
+                  <h3 className="font-semibold text-warning-900">
+                    Invoice Due
+                  </h3>
                   <p className="text-sm text-warning-800">
-                    Invoice <span className="font-mono font-medium">{activeInvoice.id}</span> is {activeInvoice.status}.
+                    Invoice{" "}
+                    <span className="font-mono font-medium">
+                      {activeInvoice.id}
+                    </span>{" "}
+                    is {activeInvoice.status}.
                   </p>
                   <div className="mt-2 flex items-center gap-4 text-sm font-medium text-warning-900">
                     <span>Due: {formatDate(activeInvoice.dueAt)}</span>
@@ -407,73 +472,17 @@ export default async function BillingPage({
                   <FileText className="h-5 w-5 text-default-500" />
                 </div>
                 <div>
-                  <h2 className="text-lg font-semibold text-default-900">Invoice History</h2>
-                  <p className="text-small text-default-500">Recent billing activity.</p>
+                  <h2 className="text-lg font-semibold text-default-900">
+                    Invoice History
+                  </h2>
+                  <p className="text-small text-default-500">
+                    Recent billing activity.
+                  </p>
                 </div>
               </div>
             </CardHeader>
             <CardBody className="p-0">
-              {pastInvoices.length > 0 ? (
-                <Accordion variant="splitted" className="px-2">
-                  {pastInvoices.map((inv) => (
-                    <AccordionItem
-                      key={inv.id}
-                      aria-label={inv.id}
-                      classNames={{
-                        base: "group-[.is-splitted]:bg-transparent group-[.is-splitted]:shadow-none border-b border-default-100 last:border-0",
-                        trigger: "py-4",
-                      }}
-                      title={
-                        <div className="flex w-full items-center justify-between gap-2 pr-2">
-                          <div className="flex flex-col gap-1">
-                            <span className="text-sm font-semibold text-default-900">{formatDate(inv.issuedAt)}</span>
-                            <span className="text-xs text-default-500 font-mono">{inv.id}</span>
-                          </div>
-                          <div className="flex items-center gap-3">
-                            <Chip size="sm" variant="flat" color={getInvoiceStatusColor(inv.status)}>
-                              {inv.status}
-                            </Chip>
-                            <span className="text-sm font-semibold text-default-900">{currency(amountUsd(inv.total))}</span>
-                          </div>
-                        </div>
-                      }
-                    >
-                      <div className="pb-4 pt-0 space-y-3">
-                        <div className="grid grid-cols-2 gap-4 text-xs">
-                          <div>
-                            <span className="text-default-500 block">Due Date</span>
-                            <span className="text-default-900 font-medium">{formatDate(inv.dueAt)}</span>
-                          </div>
-                          <div>
-                            <span className="text-default-500 block">Paid Date</span>
-                            <span className="text-default-900 font-medium">{formatDate(inv.paidAt)}</span>
-                          </div>
-                        </div>
-
-                        {/* Simple line items list for history */}
-                        <div className="space-y-1 rounded bg-default-50 p-3">
-                          {inv.lineItems?.map((li, idx) => (
-                      <div
-                        key={`${inv.id}-${li.pricingItemId}-${idx}`}
-                        className="flex justify-between text-xs"
-                      >
-                              <span className="text-default-600 truncate max-w-[150px]">{li.label ?? li.pricingItemId}</span>
-                              <span className="text-default-900">{currency(amountUsd(li.lineAmount))}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              ) : (
-                <div className="flex flex-col items-center justify-center py-12 text-center">
-                  <div className="rounded-full bg-default-100 p-3">
-                    <FileText className="h-6 w-6 text-default-400" />
-                  </div>
-                  <p className="mt-3 text-sm text-default-500">No past invoices available.</p>
-                </div>
-              )}
+              <InvoiceHistoryAccordion invoices={pastInvoices} />
             </CardBody>
           </Card>
 
@@ -484,7 +493,9 @@ export default async function BillingPage({
                   <Banknote className="h-5 w-5 text-default-500" />
                 </div>
                 <div>
-                  <h2 className="text-lg font-semibold text-default-900">Payment Methods</h2>
+                  <h2 className="text-lg font-semibold text-default-900">
+                    Payment Methods
+                  </h2>
                 </div>
               </div>
             </CardHeader>
@@ -495,15 +506,22 @@ export default async function BillingPage({
                     <Banknote className="h-4 w-6 text-success-600" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-sm font-medium text-default-900">Cash</span>
-                    <span className="text-xs text-default-500">Pay directly</span>
+                    <span className="text-sm font-medium text-default-900">
+                      Cash
+                    </span>
+                    <span className="text-xs text-default-500">
+                      Pay directly
+                    </span>
                   </div>
                 </div>
-                <Chip size="sm" variant="flat" color="success">Active</Chip>
+                <Chip size="sm" variant="flat" color="success">
+                  Active
+                </Chip>
               </div>
               <div className="mt-4">
                 <p className="text-xs text-default-400">
-                  We currently only accept cash payments. Online payment methods coming soon.
+                  We currently only accept cash payments. Online payment methods
+                  coming soon.
                 </p>
               </div>
             </CardBody>
