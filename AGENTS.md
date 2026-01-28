@@ -7,6 +7,11 @@
 > **Why?** It contains the "Scrappy Protocol" and the **Mandatory Implementation Plan Template**. If you skip this, you will be rejected.
 > **Rule**: Even if you think your task is purely technical, purely media-related, or small—**READ THE BUSINESS PROTOCOL FIRST**.
 
+**MANDATORY DEFINITION OF DONE**: Before wrapping up any task that modifies TypeScript/JavaScript files, you **MUST** run the quality checks.
+1. Use the `/done` workflow: `.agent/workflows/done.md`
+2. Run `pnpm typecheck` and `pnpm lint` at a minimum.
+3. Fix all errors before submitting.
+
 ---
 
 ## 📂 Documentation Router
@@ -37,7 +42,12 @@ After reading the Business Protocol, load **ONLY** the specific context you need
 **Read**: [PostHog Lead Data Sync](docs/leads/posthog-sync.md)
 *   *Contains: How to sync lead data from PostHog to JSON files using the CLI command `sync-posthog-leads` or manual scripts.*
 
-### 7. Tenant Domain Setup Tasks
+### 7. Workflows & Quality Gate
+**Use**: `.agent/workflows/`
+*   `/done`: Mandatory quality checks (Typecheck, Lint, Format, Build) before task completion.
+*   **Skill**: `typescript-quality-gate` - Reference for quality standards.
+
+### 8. Tenant Domain Setup Tasks
 **See**: Examples below for setting up custom tenant domains.
 *   **Existing tenants with custom domains**: Modern Academy (`ma.edu.gy`), FitRight Academy (`fitright.gy`), Healing Emerald Wellness (`hewja.com`)
 *   **Pattern 1 (JSON-based)**: For tenants using `website.json` (e.g., FitRight Academy, Healing Emerald Wellness)

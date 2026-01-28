@@ -35,12 +35,14 @@ This is a **monorepo** using pnpm workspaces and Turbo.
 
 ## 5. Quality Checks (Run After Changes)
 
-**MANDATORY**: After making any TypeScript/JavaScript code changes, you **MUST** run these checks before marking tasks complete:
+**MANDATORY**: After making any TypeScript/JavaScript code changes, you **MUST** run these checks before marking tasks complete. You can use the **`/done`** workflow to run all of these automatically.
 
 1. `pnpm typecheck` - **CRITICAL**: Run this first to catch type errors
 2. `pnpm lint` - Check for linting issues
 3. `pnpm format` - Ensure code formatting is correct
 4. `pnpm build` - Verify compilation succeeds
+
+**Automation**: Run `view_file` on `.agent/workflows/done.md` (or use `/done` if your interface supports it) to execute these checks.
 
 **Exception**: Only skip if explicitly told by the user or if changes are purely documentation/markdown files.
 
