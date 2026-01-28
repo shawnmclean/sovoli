@@ -116,6 +116,27 @@
     "unitLabel": "yards"
   },
   {
+    "id": "supply-cotton-fabric-3-yards",
+    "name": "Cotton Material",
+    "category": "arts-crafts-needlework-fabrics-textiles",
+    "tags": ["sewing", "fabric", "cotton"],
+    "unitLabel": "yards"
+  },
+  {
+    "id": "supply-sewing-thread",
+    "name": "Sewing Thread",
+    "category": "arts-crafts-needlework-threads",
+    "tags": ["sewing", "thread"],
+    "unitLabel": "spool"
+  },
+  {
+    "id": "supply-zipper-8-inch",
+    "name": "Zipper",
+    "category": "arts-crafts-needlework-fasteners",
+    "tags": ["sewing", "zipper", "fastener"],
+    "unitLabel": "zipper"
+  },
+  {
     "id": "supply-scrapbook",
     "name": "Scrapbook",
     "category": "paper-craft-card-making-supplies",
