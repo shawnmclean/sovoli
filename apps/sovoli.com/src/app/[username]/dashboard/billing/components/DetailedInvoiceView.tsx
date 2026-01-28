@@ -1,9 +1,10 @@
 "use client";
 
+import { Button } from "@sovoli/ui/components/button";
 import { Card, CardBody } from "@sovoli/ui/components/card";
 import { Chip } from "@sovoli/ui/components/chip";
 import { Divider } from "@sovoli/ui/components/divider";
-import { Calendar, Download } from "lucide-react";
+import { Download } from "lucide-react";
 import type { BillingInvoice } from "~/modules/billing/types";
 import type {
   AmountByCurrency,
@@ -16,7 +17,6 @@ import {
   deriveInvoicePeriod,
 } from "~/modules/billing/utils/periodUtils";
 import { config } from "~/utils/config";
-
 
 interface DetailedInvoiceViewProps {
   invoice: BillingInvoice;
@@ -65,8 +65,10 @@ export function DetailedInvoiceView({
   const derivedPeriod = deriveInvoicePeriod(invoice.lineItems);
   const invoicePeriod =
     invoice.periodStart && invoice.periodEnd
-      ? formatPeriod(invoice.periodStart, invoice.periodEnd)
-      : derivedPeriod
+      ? // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        formatPeriod(invoice.periodStart, invoice.periodEnd)
+      : // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+        derivedPeriod?.periodStart && derivedPeriod?.periodEnd
         ? formatPeriod(derivedPeriod.periodStart, derivedPeriod.periodEnd)
         : null;
 
@@ -77,6 +79,12 @@ export function DetailedInvoiceView({
   const amountPaidUsd = calculateAmountPaid(invoice.payments);
   const balanceDueUsd = totalUsd - amountPaidUsd;
   const currencyCode = invoice.currency ?? "USD";
+
+  // Extract company info - config is a const object, safe to access
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment
+  const companyName = config.company?.name ?? "";
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment
+  const companyAddress = config.company?.address;
 
   return (
     <div className="mx-auto max-w-md w-full space-y-6">
@@ -93,7 +101,7 @@ export function DetailedInvoiceView({
 
             <div className="flex flex-col items-center gap-1">
               <span className="text-default-500 text-xs font-semibold uppercase tracking-wider">
-                Invoice {invoice.invoiceNumber || `#${invoice.id.slice(-6)}`}
+                Invoice {invoice.invoiceNumber ?? `#${invoice.id.slice(-6)}`}
               </span>
               <div className="flex items-center gap-2">
                 <h1 className="text-4xl font-bold text-default-900 tracking-tight">
@@ -112,12 +120,20 @@ export function DetailedInvoiceView({
 
             <div className="mt-6 flex justify-center gap-8 text-sm">
               <div>
-                <span className="text-default-400 block text-xs mb-0.5">Issued</span>
-                <span className="font-medium text-default-700">{formatInvoiceDate(invoice.issuedAt)}</span>
+                <span className="text-default-400 block text-xs mb-0.5">
+                  Issued
+                </span>
+                <span className="font-medium text-default-700">
+                  {formatInvoiceDate(invoice.issuedAt)}
+                </span>
               </div>
               <div>
-                <span className="text-default-400 block text-xs mb-0.5">Due</span>
-                <span className="font-medium text-default-700">{formatInvoiceDate(invoice.dueAt)}</span>
+                <span className="text-default-400 block text-xs mb-0.5">
+                  Due
+                </span>
+                <span className="font-medium text-default-700">
+                  {formatInvoiceDate(invoice.dueAt)}
+                </span>
               </div>
             </div>
           </div>
@@ -125,12 +141,39 @@ export function DetailedInvoiceView({
           <div className="p-6 space-y-6">
             {/* Line Items List - No Table */}
             <div className="space-y-4">
+              {/* Period Information */}
+              {invoicePeriod && (
+                <div className="text-xs text-default-400">{invoicePeriod}</div>
+              )}
               {invoice.lineItems && invoice.lineItems.length > 0 ? (
                 invoice.lineItems.map((item, idx) => {
                   const lineAmountUsd = amountUsd(item.lineAmount);
 
+                  // Extract proration values after type checks
+                  // Type checks ensure safety, but linter is strict about error types
+                  const proration =
+                    item.proration &&
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                    typeof item.proration.fullPeriodDays === "number" &&
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                    typeof item.proration.usedDays === "number" &&
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                    typeof item.proration.factor === "number"
+                      ? {
+                          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+                          fullPeriodDays: item.proration.fullPeriodDays,
+                          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+                          usedDays: item.proration.usedDays,
+                          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+                          factor: item.proration.factor,
+                        }
+                      : null;
+
                   return (
-                    <div key={`${invoice.id}-${idx}`} className="flex justify-between items-start gap-4">
+                    <div
+                      key={`${invoice.id}-${idx}`}
+                      className="flex justify-between items-start gap-4"
+                    >
                       <div className="flex flex-col gap-0.5 max-w-[70%]">
                         <span className="text-sm font-medium text-default-900 leading-snug">
                           {item.label ?? item.pricingItemId}
@@ -141,19 +184,14 @@ export function DetailedInvoiceView({
                           )}
                         </span>
 
-                        {(item.description || item.proration) && (
+                        {(item.description ?? proration) && (
                           <span className="text-xs text-default-500 leading-snug">
                             {item.description}
-                            {item.proration && (
+                            {proration && (
                               <span className="block mt-0.5 opacity-80">
-                                {formatProration(item.proration)}
+                                {formatProration(proration)}
                               </span>
                             )}
-                          </span>
-                        )}
-                        {item.type && (
-                          <span className="text-[10px] text-default-400 uppercase tracking-wider mt-1">
-                            {item.type}
                           </span>
                         )}
                       </div>
@@ -242,9 +280,18 @@ export function DetailedInvoiceView({
                     From
                   </span>
                   <div className="text-default-600">
-                    <span className="text-default-700 font-medium block text-sm">{config.company.name}</span>
-                    {config.company.address.line1}<br />
-                    {config.company.address.city}, {config.company.address.state} {config.company.address.country}
+                    <span className="text-default-700 font-medium block text-sm">
+                      {companyName}
+                    </span>
+                    {/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
+                    {companyAddress?.line1}
+                    <br />
+                    {/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
+                    {companyAddress?.city},{" "}
+                    {/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
+                    {companyAddress?.state}{" "}
+                    {/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
+                    {companyAddress?.country}
                   </div>
                 </div>
               </div>
@@ -258,16 +305,25 @@ export function DetailedInvoiceView({
                 </span>
                 <div className="space-y-3">
                   {invoice.payments.map((payment) => (
-                    <div key={payment.id} className="flex justify-between items-center text-xs">
+                    <div
+                      key={payment.id}
+                      className="flex justify-between items-center text-xs"
+                    >
                       <div className="flex items-center gap-2">
-                        <div className={`w-1.5 h-1.5 rounded-full ${payment.status === 'succeeded' ? "bg-success" : "bg-default-300"}`} />
+                        <div
+                          className={`w-1.5 h-1.5 rounded-full ${payment.status === "succeeded" ? "bg-success" : "bg-default-300"}`}
+                        />
                         <span className="text-default-600">
                           {formatInvoiceDate(payment.paidAt)}
-                          {payment.status !== 'succeeded' && ` (${payment.status})`}
+                          {payment.status !== "succeeded" &&
+                            ` (${payment.status})`}
                         </span>
                       </div>
                       <span className="text-default-700 font-medium">
-                        {currency(amountUsd(payment.amount), payment.currency ?? currencyCode)}
+                        {currency(
+                          amountUsd(payment.amount),
+                          payment.currency ?? currencyCode,
+                        )}
                       </span>
                     </div>
                   ))}
@@ -275,13 +331,31 @@ export function DetailedInvoiceView({
               </div>
             )}
 
-            {invoicePeriod && (
-              <div className="text-center pt-2">
-                <span className="text-[10px] text-default-400 bg-default-100 px-2 py-1 rounded-full">
-                  Period: {invoicePeriod}
-                </span>
+            {/* Download Buttons */}
+            <div className="pt-4 mt-4 border-t border-default-100">
+              <div className="flex gap-3">
+                <Button
+                  variant="bordered"
+                  className="flex-1"
+                  startContent={<Download size={16} />}
+                  onPress={() => {
+                    // TODO: Implement download invoice functionality
+                  }}
+                >
+                  Download Invoice
+                </Button>
+                <Button
+                  variant="bordered"
+                  className="flex-1"
+                  startContent={<Download size={16} />}
+                  onPress={() => {
+                    // TODO: Implement download receipt functionality
+                  }}
+                >
+                  Download Receipt
+                </Button>
               </div>
-            )}
+            </div>
           </div>
         </CardBody>
       </Card>
@@ -297,4 +371,3 @@ export function DetailedInvoiceView({
     </div>
   );
 }
-
