@@ -11,6 +11,23 @@ export async function proxy(request: NextRequest) {
   // --- 1. Skip static assets and internal paths ---
   if (isStaticAsset(pathname)) return NextResponse.next();
 
+  // --- 1a. Guard admin routes with PIN cookie ---
+  if (pathname.startsWith("/admin")) {
+    if (pathname === "/admin") {
+      return NextResponse.next();
+    }
+
+    const cookie = request.cookies.get("sovoli_admin_pin")?.value;
+    if (cookie === "ok") {
+      return NextResponse.next();
+    }
+
+    const url = request.nextUrl.clone();
+    url.pathname = "/admin";
+    url.searchParams.set("next", pathname);
+    return NextResponse.redirect(url);
+  }
+
   const host = request.headers.get("host") ?? "";
   const hostname = host.toLowerCase();
   const isApiRoute = pathname.startsWith("/api/");
